@@ -1,0 +1,274 @@
+<ion-header class="bg-thime">
+    <ion-navbar>
+      <button ion-button menuToggle style="display: block !important">
+        <ion-icon class="menu-icon"
+          ><img src="assets/imgs/ic_menu.png"
+        /></ion-icon>
+      </button>  
+      <ion-title
+        >Products
+        <span float-right>
+          <ion-icon class="icon" (click)="wishlistPage()"
+            ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"
+          /></ion-icon>
+          <ion-icon class="icon" (click)="cartPage()"
+            ><img src="assets/imgs/ic_my_cart.png" width="100%;"
+          /></ion-icon>
+        </span>
+      </ion-title>
+    </ion-navbar>
+    <div class="custom-id">
+      <ion-item class="custom">
+        <ion-select
+          placeholder="All"
+          value="MAKE"
+          okText="Ok"
+          cancelText="Cancel"
+          style="margin-left: 1px"
+        >
+          <ion-option value="MAKE" style="max-width: 60px">MAKE</ion-option>
+          <ion-option value="MODEL">MODEL</ion-option>
+          <ion-option value="YEAR">YEAR</ion-option>
+        </ion-select>
+  
+        <ion-icon name="md-search" class="text-light icon"></ion-icon>
+      </ion-item>
+      <ion-searchbar
+        placeholder="Search Products"
+        (click)="searchPage()"
+      ></ion-searchbar>
+    </div>
+    <!-- <ion-list>
+      <ion-item > </ion-item>
+    </ion-list> -->
+    <!-- <div class="tab-row">
+      <ion-row>
+        <ion-col (click)="categoryPage()">
+          <div class="img-box" text-center>
+            <img src="assets/imgs/first.png">
+            <small class="text-white">LORUM</small>
+          </div>
+        </ion-col>
+        <ion-col (click)="categoryPage()">
+          <div class="img-box" text-center>
+            <img src="assets/imgs/second.png">
+            <small class="text-white">LORUM</small>
+          </div>
+        </ion-col>
+        <ion-col (click)="categoryPage()">
+          <div class="img-box" text-center>
+            <img src="assets/imgs/third.png">
+            <small class="text-white">LORUM</small>
+          </div>
+        </ion-col>
+        <ion-col (click)="categoryPage()">
+          <div class="img-box" text-center>
+            <img src="assets/imgs/fourth.png">
+            <small class="text-white">LORUM</small>
+          </div>
+        </ion-col>
+  
+        <ion-col (click)="categoryPage()">  
+          <div class="img-box" text-center>
+            <img src="assets/imgs/fifth.png">
+            <small class="text-white">LORUM</small>
+          </div>
+        </ion-col>
+      
+      </ion-row>
+    </div> -->
+  </ion-header>
+
+
+<ion-content class="bg-light">
+    <ion-row>
+        <ion-col>
+            <ion-card (click)="itemdetailPage()">
+                <ion-card-header>
+                    <div class="img-box">
+                        <!-- <img src="assets/imgs/suit_PNG8132.png"> -->
+                        <img src="assets/imgs/productimage.jpg">
+                    </div>
+                    <ion-icon name="md-heart" class="text-light icon"></ion-icon>
+                </ion-card-header>
+                <ion-card-content>
+                    <h5>Unique For Men Black Formal Slim Fit Shirt</h5>
+                    <div class="rateing">
+                        <div class="card-btn">
+                            <p class="" float-left>
+                                <span class="text-white bg-green small-text">4.2 <ion-icon name="md-star"></ion-icon></span>
+                                <span class="text-light bold"> (125)</span>
+                            </p>
+                            <div class="d-flex" float-right>
+                                <div class="price text-light mr-5">
+                                    <img src="assets/imgs/rupee-light.png" class="rupee-icon">500
+                                </div>
+                                <div class="price text-sky">
+                                    <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+        <ion-col>
+            <ion-card>
+                <ion-card-header>
+                    <div class="img-box">
+                        <!-- <img src="assets/imgs/shirt-3.jpg"> -->
+                        <img src="assets/imgs/productimagenew.jpg">
+                    </div>
+                    <ion-icon name="md-heart" class="text-light icon"></ion-icon>
+                </ion-card-header>
+                <ion-card-content>
+                    <h5>Unique For Men Black Formal Slim Fit Shirt</h5>
+                    <div class="rateing">
+                        <div class="card-btn">
+                            <p class="" float-left>
+                                <span class="text-white bg-green small-text">4.2 <ion-icon name="md-star"></ion-icon></span>
+                                <span class="text-light bold"> (125)</span>
+                            </p>
+                            <div class="d-flex" float-right>
+                                <div class="price text-light mr-5">
+                                    <img src="assets/imgs/rupee-light.png" class="rupee-icon">500
+                                </div>
+                                <div class="price text-sky">
+                                    <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+
+        <ion-col>
+            <ion-card>
+                <ion-card-header>
+                    <div class="img-box">
+                        <!-- <img src="assets/imgs/shirt-2.jpg"> -->
+                        <img src="assets/imgs/productimage.jpg">
+                    </div>
+                    <ion-icon name="md-heart" class="text-light icon"></ion-icon>
+                </ion-card-header>
+                <ion-card-content>
+                    <h5>Unique For Men Black Formal Slim Fit Shirt</h5>
+                    <div class="rateing">
+                        <div class="card-btn">
+                            <p class="" float-left>
+                                <span class="text-white bg-green small-text">4.2 <ion-icon name="md-star"></ion-icon></span>
+                                <span class="text-light bold"> (125)</span>
+                            </p>
+                            <div class="d-flex" float-right>
+                                <div class="price text-light mr-5">
+                                    <img src="assets/imgs/rupee-light.png" class="rupee-icon">500
+                                </div>
+                                <div class="price text-sky">
+                                    <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+        <ion-col>
+            <ion-card>
+                <ion-card-header>
+                    <div class="img-box">
+                        <!-- <img src="assets/imgs/shirt-4.jpg"> -->
+                        <img src="assets/imgs/productimagenew.jpg">
+                    </div>
+                    <ion-icon name="md-heart" class="text-light icon"></ion-icon>
+                </ion-card-header>
+                <ion-card-content>
+                    <h5>Unique For Men Black Formal Slim Fit Shirt</h5>
+                    <div class="rateing">
+                        <div class="card-btn">
+                            <p class="" float-left>
+                                <span class="text-white bg-green small-text">4.2 <ion-icon name="md-star"></ion-icon></span>
+                                <span class="text-light bold"> (125)</span>
+                            </p>
+                            <div class="d-flex" float-right>
+                                <div class="price text-light mr-5">
+                                    <img src="assets/imgs/rupee-light.png" class="rupee-icon">500
+                                </div>
+                                <div class="price text-sky">
+                                    <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <ion-card>
+                <ion-card-header>
+                    <div class="img-box">
+                        <!-- <img src="assets/imgs/suit_PNG8132.png"> -->
+                        <img src="assets/imgs/productimage.jpg">
+                    </div>
+                    <ion-icon name="md-heart" class="text-light icon"></ion-icon>
+                </ion-card-header>
+                <ion-card-content>
+                    <h5>Unique For Men Black Formal Slim Fit Shirt</h5>
+                    <div class="rateing">
+                        <div class="card-btn">
+                            <p class="" float-left>
+                                <span class="text-white bg-green small-text">4.2 <ion-icon name="md-star"></ion-icon></span>
+                                <span class="text-light bold"> (125)</span>
+                            </p>
+                            <div class="d-flex" float-right>
+                                <div class="price text-light mr-5">
+                                    <img src="assets/imgs/rupee-light.png" class="rupee-icon">500
+                                </div>
+                                <div class="price text-sky">
+                                    <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+        <ion-col>
+            <ion-card>
+                <ion-card-header>
+                    <div class="img-box">
+                        <!-- <img src="assets/imgs/shirt-2.jpg"> -->
+                        <img src="assets/imgs/productimagenew.jpg">
+                    </div>
+                    <ion-icon name="md-heart" class="text-light icon"></ion-icon>
+                </ion-card-header>
+                <ion-card-content>
+                    <h5>Unique For Men Black Formal Slim Fit Shirt</h5>
+                    <div class="rateing">
+                        <div class="card-btn">
+                            <p class="" float-left>
+                                <span class="text-white bg-green small-text">4.2 <ion-icon name="md-star"></ion-icon></span>
+                                <span class="text-light bold"> (125)</span>
+                            </p>
+                            <div class="d-flex" float-right>
+                                <div class="price text-light mr-5">
+                                    <img src="assets/imgs/rupee-light.png" class="rupee-icon">500
+                                </div>
+                                <div class="price text-sky">
+                                    <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-content>

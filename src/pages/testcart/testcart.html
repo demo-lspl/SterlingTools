@@ -1,0 +1,175 @@
+
+<ion-header class="bg-thime">
+  <ion-navbar>
+  <button ion-button menuToggle style="display: block !important">
+    <ion-icon class="menu-icon"
+      ><img src="assets/imgs/ic_menu.png"
+    /></ion-icon>
+  </button>
+    <ion-title style="text-align: center"
+      >View Cart
+        
+    </ion-title>
+  </ion-navbar>
+  <div class="custom-id">
+   
+    <ion-searchbar placeholder="Search any part here" ></ion-searchbar>
+  </div>
+ 
+</ion-header>
+   
+<ion-content class="bg-light">
+
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing Cart."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-item *ngIf="!viewCartList.length;else other_content">
+    <h5 style="font-size: 12px;">{{strData}}</h5> 
+   
+  </ion-item>
+
+
+  <ng-template #other_content>
+
+    <div class="pincod bg-white shadow-bottom cart-box"  style=" padding: 16px 16px 16px 16px;"
+    >
+      <ion-row style="margin-top: 8px" *ngFor="let viewCart of viewCartList;let i = index" 
+      (click)="productcategoryDetailPage(viewCart.product_id,viewCart.name)">
+        <ion-col col-4>
+          <ion-list>
+            <ion-item>
+              <img  [src]="viewCart.product_thumbnail"  style="width:200px;height:80px ;">
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col col-8>
+          
+          <div class="row"  >
+            <div class="block">{{viewCart.name}}</div>
+            <ion-icon
+            name="md-close"
+            style="margin-left: 10%; margin-top: 2%"
+            (click)="removeProduct(viewCart.product_id)">
+          </ion-icon> 
+            
+          </div>      
+  
+         
+          <div   style="margin-top: 6% ">
+             <!-- <ion-input  type="number"   [(ngModel)]="valueQuantity" id="myText" placeholder = "Input New Quantity" >{{viewCart.quantity}}  </ion-input> 
+             <input value="{{viewCart.quantity}}" class="form-control" style="text-align:center;" id="textbox" type="number">  -->
+             <!-- <ion-input type="number" min="1"  [(ngModel)]="valueQuantity">{{viewCart.quantity}}</ion-input> -->
+             <!-- <input value="{{viewCart.quantity}}" class="form-control" style="text-align:center;" id="textbox" type="number"> -->
+          </div>
+
+ 
+         
+
+          <div style="margin-top: 6% " >
+            QTY          
+            <span class="icon"
+              >
+              <ion-icon
+                name="md-remove-circle"
+                style="margin-left: 10%; margin-top: 2%"
+                (click)="decrementValue1(i,strDynamicId)">
+              </ion-icon>
+          </span>
+            <span  text-center style="margin-left: 10%;color: red;">{{viewCart.quantity}}</span>
+            <!-- <span  text-center style="margin-left: 10%;color: red;">{{strDynamicProductQuantity}}</span> -->
+
+            <span class="icon" text-right
+              ><ion-icon
+                name="md-add-circle"
+                (click)="incrementValue1(i,strDynamicId)"
+                style="margin-left: 10%"
+              ></ion-icon
+            ></span>
+          </div>
+
+        
+          <div style="margin-top: 6%">
+            <label > <span class="priceicon">Product Regular Price   </span>{{viewCart.price}} <span class="priceicon">$</span></label>
+        
+          </div>
+        </ion-col>
+      </ion-row>
+    
+    </div>
+
+    <div  >
+      <div class="reating-review bg-white" padding style="margin-bottom: 15px" > 
+        <div class="reating" >
+          <div class="select-section shadow-bottom" style="text-align: center"
+           >
+            <ion-row
+              class="ion-justify-content-center"
+              style="justify-content: center"
+             >
+              <button
+                ion-button
+                full
+                class="bg-thime btn-round btn-text"
+                style="max-width: 390px"
+                (click)="updateShoppingCart(strDynamicId)">
+                Update Shopping Cart
+              </button>
+            </ion-row>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 10%;">
+
+      {{obj}}
+    </div>
+
+
+       <!-- <div >
+        <div class="reating-review bg-white" padding style="margin-bottom: 15px" > 
+          <div class="reating" >
+            <div class="select-section shadow-bottom" style="text-align: center"
+             >
+              <ion-row
+                class="ion-justify-content-center"
+                style="justify-content: center"
+               >
+                <button
+                  ion-button
+                  full
+                  class="bg-thime btn-round btn-text"
+                  style="max-width: 390px"
+                  (click)="updateShoppingCart(strDynamicId)">
+                  Update Shopping Cart
+                </button>
+              </ion-row>
+            </div>
+          </div>
+    </div>
+       </div > -->
+
+
+      
+        
+
+
+       
+  
+ 
+
+  </ng-template>
+
+
+
+
+</ion-content>

@@ -1,0 +1,184 @@
+
+
+<ion-header>
+  <ion-navbar>
+      <button ion-button menuToggle style="display: block !important">
+    <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>
+  </button>
+
+    <!-- <ion-icon name="md-arrow-back"></ion-icon>
+    <ion-icon name="md-search" class="text-light icon"></ion-icon> -->
+
+
+      <ion-title>Categories Details
+          <!-- <span float-right> 
+            <ion-icon class="icon" (click)="searchPage()"><img src="assets/imgs/ic_search.png" width="100%;"></ion-icon>
+            <ion-icon class="icon" (click)="cartPage()"><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>             
+          </span> -->
+          <span float-right>
+            <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>
+            <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>
+            <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon>
+          </span>
+      </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content >
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing Product Categories Details."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card *ngIf="strData;else other_content">
+
+    <ion-card-header >
+      <ion-item lines="none">
+        <ion-label style="color: black;margin-right: 8px;font-size: 13px;">{{strData}}</ion-label>
+      </ion-item> 
+  
+          
+    </ion-card-header>
+  </ion-card>
+
+  
+
+
+  <ng-template #other_content>
+
+  
+  
+    
+    <ion-grid class="product-grid">
+      <ion-row class="rowgrid" text-center>
+        <ion-col col-6
+          class="columngrid"
+          *ngFor="let productCategory of productCategoryInformation"
+         >
+          <ion-card>
+            <ion-card-header style="justify-content: left">
+              <div
+                class="img-box"
+              >
+                <img  [src]="productCategory.image"  style="width:200px;height:80px ;">
+
+              </div>
+              <!-- <ion-icon name="md-heart" class="text-light icon"></ion-icon> -->
+            </ion-card-header>
+            <ion-card-content>
+          
+             
+
+
+           
+
+              <ion-item >
+                <h5 style="font-size: 11px;text-align: -webkit-center;"> {{productCategory.name}}</h5> 
+              </ion-item>
+  
+              <div>
+                <div *ngIf="productCategory.regular_price">     <!--If "product" exists-->
+                  <h5 style="font-size: 12px;text-align: center;"  > <span class="priceicon">Price : </span>  <span class="priceicon">$</span> {{productCategory.regular_price}} </h5>  
+
+                  <!-- <h5 style="font-size: 12px;text-align: center;color: red;"  > <span class="priceicon">Price : </span> {{productCategory.regular_price}}  <span class="priceicon">$</span></h5>   -->
+                  <!-- <div class="rating" style="text-align: -webkit-center;margin-top: 8px;">
+                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                  </div> -->
+
+               <h5 style="font-size: 12px;text-align: center;color: red;"  > <span class="priceicon">Price : </span> {{productCategory.name}}  <span class="priceicon">$</span></h5>   
+
+      
+                  <div class="rateing">
+                    <div class="card-btn">
+                      <p class="" float-left>
+                        <button
+                          ion-button
+                          full
+                          class="bg-thime btn-round btn-text"
+                          style="margin-top: 3px; width: 125px;text-align: center;"
+                          (click)="addToCart(productCategory.id,productCategory.name)">
+                          Read More
+                        </button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+            
+                <div *ngIf="!productCategory.regular_price">     <!--If "product" not exists-->
+                  <!-- <h5 style="font-size: 12px;text-align: center"  >  <span class="priceicon">$</span>Price Not Available</h5>   -->
+                  <h5 style="font-size: 12px;text-align: center"> Price Not Available</h5>  
+                  <div class="rating" style="text-align: -webkit-center;margin-top: 11px;">
+                    <!-- <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span> -->
+                    <h5 style="font-size: 12px;text-align: center;color: black;"  >Make :{{strProductMake}}  </h5>   
+
+                  </div>
+                  <div class="rateing">
+                    <div class="card-btn">
+                      <p class="" float-left>
+                        <button
+                          ion-button
+                          full
+                          class="bg-thime btn-round btn-text"
+                          style="margin-top: 3px; width: 125px;text-align: center;"
+                          (click)="addToCart(productCategory.id,productCategory.name)" >
+                       Read More
+                        </button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+
+            
+
+
+
+
+
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    
+  </ng-template>
+
+
+
+
+
+
+
+
+
+
+  <!-- <ng-template #other_content1>
+
+    <ion-card *ngFor="let productCategory of productCategoryInformation">
+
+      <ion-card-header >
+        <ion-item lines="none">
+          <ion-label style="color: black;margin-right: 8px;font-size: 13px;">{{productCategory.name}}</ion-label>
+        </ion-item> 
+    
+            
+      </ion-card-header>
+    </ion-card>
+
+  </ng-template> -->
+
+
+ 
+
+</ion-content>
+  

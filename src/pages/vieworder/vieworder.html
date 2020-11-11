@@ -1,0 +1,72 @@
+<!--
+  Generated template for the VieworderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+
+  <ion-navbar>
+    <ion-title>View Orders</ion-title>
+  </ion-navbar>
+
+</ion-header> -->
+
+<ion-header>
+  <ion-navbar>
+      <button ion-button menuToggle>
+    <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>
+  </button>
+      <ion-title>MyOrders
+          <span float-right> 
+            <ion-icon class="icon" (click)="searchPage()"><img src="assets/imgs/ic_search.png" width="100%;"></ion-icon>
+            <ion-icon class="icon" (click)="cartPage()"><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>             
+          </span>
+      </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing Orders..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card class="card" *ngFor="let vieworders of viewOrdersList"  >
+    <ion-card-header >
+     
+
+      <!-- <ion-item lines="none">
+        <ion-label style="color: black;max-width: 40%;margin-right: 8px;">Order Id</ion-label>
+        <ion-label style="color: black;max-width: 40%;margin-right: 8px;">{{orders.ID}}</ion-label>
+      </ion-item>   
+
+      <ion-item lines="none">
+        <ion-label style="color: black;max-width: 40%;margin-right: 8px;">Order Title</ion-label>
+        <ion-label style="color: black;max-width: 40%;margin-right: 8px;">{{orders.post_title}}</ion-label>
+      </ion-item>  -->
+
+      <!-- <ion-item lines="none">
+        <ion-label style="color: black;margin-right: 8px;">Order Title</ion-label>
+      </ion-item>  -->
+
+
+      <ion-item lines="none">
+        <ion-label style="color: black;margin-right: 8px;font-size: 13px;">{{vieworders.post_title}}</ion-label>
+      </ion-item> 
+
+
+    
+    </ion-card-header>
+  </ion-card>
+
+
+ 
+</ion-content>

@@ -1,0 +1,188 @@
+
+<ion-header class="bg-thime">
+  <ion-navbar>
+  <button ion-button menuToggle style="display: block !important">
+    <ion-icon class="menu-icon"
+      ><img src="assets/imgs/ic_menu.png"
+    /></ion-icon>
+  </button>
+    <ion-title style="text-align: left">My Wishlist
+      <span float-right>
+        <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>
+
+        <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon>
+        <!-- <ion-img class="map" [src]="picToView" (click)="changeView()"></ion-img> -->
+
+      </span>
+    </ion-title>
+  </ion-navbar>
+  <div class="custom-id">
+    <ion-searchbar placeholder="Search any part here" ></ion-searchbar>
+  </div>
+ 
+</ion-header>
+
+<ion-content class="bg-light">
+
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing Cart."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-item *ngIf=" !productsLocalCart.length;else other_content">
+    <h5 style="font-size: 12px;">{{strData}}</h5> 
+  </ion-item>
+
+ 
+
+
+  <ng-template #other_content>
+
+    <!-- <div class="reating-review bg-white" padding style="margin-top: 5px" > 
+      <div class="reating">
+        <div class="select-section shadow-bottom" style="text-align: center"
+        >
+          <ion-row
+            class="ion-justify-content-center"
+            style="justify-content: center"
+           >
+           
+  
+            <button
+              ion-button
+              full
+              class="bg-thime btn-round btn-text"
+              style="max-width: 390px"
+              (click)="clearWishlist()">
+              Clear Wishlist
+            </button>
+          </ion-row>
+        </div>
+      </div>
+    </div> -->
+    
+
+    <div class="pincod bg-white shadow-bottom cart-box"  style=" padding: 16px 16px 16px 16px;"
+    >
+      <ion-row style="margin-top: 8px" *ngFor="let productsLocal of productsLocalCart;let i = index" >
+        <ion-col col-4>
+          <ion-list>
+            <ion-item>
+              <img  [src]="productsLocal.ProductImage"  style="width:200px;height:75px ;">
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col col-8>
+
+       
+          
+          <div class="row"  >
+            <div class="block">Name: {{productsLocal.ProductName}}</div>
+            <span class="icon" text-right>
+              <ion-icon
+                name="md-close"
+                style="margin-left: 10%;margin-top: 5px;"
+                
+                
+                (click)="removeProductLocally(i,productsLocal,productsLocal.ProductName)">
+              </ion-icon>
+            </span>
+            
+            
+          </div>
+  
+        
+
+        
+          <div style="margin-top: 6%">
+            <label > Price:  {{productsLocal.ProductRegularPrice}} <span class="priceicon">$</span></label>
+          </div>
+
+          <div style="margin-top: 6%">
+            <label style="color: black;">Description:  {{productsLocal.ProductDescription}} </label>
+          </div>
+
+          <!-- <div style="margin-top: 10%">
+            <button
+          ion-button
+          full
+          class="bg-thime btn-round btn-text"
+          style="margin-top: 3px; width: 150px;text-align: center;"
+         
+
+          (click)="addToCartLocal(products.id,products.name,products.image,products.description,products.regular_price)"
+
+        >
+          Add To Cart
+        </button>
+          </div> -->
+
+          <!-- (click)="addToCart(products.ProductId)" -->
+        
+        
+        </ion-col>
+      </ion-row>
+    
+    </div>
+  
+    <!-- <div class="reating-review bg-white" padding style="margin-bottom: 15px">
+      <div class="reating">
+        <div class="select-section shadow-bottom" style="text-align: center">
+          <ion-row
+            class="ion-justify-content-center"
+            style="justify-content: center"
+          >
+            <button
+              ion-button
+              full
+              class="bg-thime btn-round btn-text"
+              style="max-width: 390px"
+            >
+              Update Shopping Cart
+            </button>
+  
+            <button
+              ion-button
+              full
+              class="bg-thime btn-round btn-text"
+              style="max-width: 390px"
+            >
+              Clear Shopping Cart
+            </button>
+          </ion-row>
+        </div>
+      </div>
+      <ion-item>
+        <ion-label style="float: left; font-size: 14px">Subtotal</ion-label>
+        <ion-label style="float: right; color: red"> Rs 251.00</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label style="float: left; font-size: 14px"
+          >Discount (Flat 10% Off)</ion-label
+        >
+        <ion-label style="float: right; color: red">-Rs25.10</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label style="float: left; font-size: 14px">Grand Total</ion-label>
+        <ion-label style="float: right; color: red">Rs 225.90</ion-label>
+      </ion-item>
+      <ion-item>
+        <button
+          ion-button
+          full
+          class="bg-thime btn-round btn-text"
+          style="max-width: 390px; float: none; height: 40px"
+         >
+          Proceed to Checkout
+        </button>
+      </ion-item>
+    </div> -->
+  </ng-template>
+</ion-content>

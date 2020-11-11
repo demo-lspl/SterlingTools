@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-uppercase>{{"app_title" | translate}}
+      <span float-end (click)="homePage()" text-capitalize>{{"skip" | translate}}</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <p>Heart</p> -->
+  <div class="form" padding-left padding-right>
+    <p text-center>{{"phone_text" | translate}}<br>{{"phone_text1" | translate}}</p>
+    <ion-list>
+      <ion-item>
+        <ion-label>{{"phone" | translate}}</ion-label>
+        <ion-input type="text" text-end value="+91 9876543210"></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button full class="bg-thime btn-round btn-text" (click)="passwordPage()">{{"continue" | translate}}"</button>
+  </div>
+</ion-content>

@@ -1,0 +1,93 @@
+page-viewcart {
+
+    .my-custom-class{
+        text-transform: none;
+    }
+
+
+    .left-side .qrcodes {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: left;
+    }
+
+    .card-main .card-header .item-block  {
+        padding: 0px;
+        background-color: #000 !important ;
+        max-width:  490px;
+        
+    }
+    .card-main .card-header {background-color: transparent; padding: 0px !important;}
+
+    .card-main .lable{margin-left:10px !important;}
+    .card-main h6 {
+        color: #fff;
+        font-weight: 700;
+        font-size: 15px;
+    }
+    .dot {
+        height: 15px;
+        width: 15px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      .red {
+        display: inline-block;
+        height:100px;
+        background:gray;
+    }
+    
+    .blue {
+        width: 25%;
+        display:inline-block;
+        margin-right: -4px;
+        box-sizing: border-box;
+        padding: 1%;
+    }
+    
+    .blue > div {
+        background:lightcoral;
+        height:70px;
+    }
+
+    .float-container {
+        border: 3px solid #fff;
+        padding: 20px;
+    }
+    
+    .float-child {
+        width: 50%;
+        float: left;
+        padding: 20px;
+        border: 2px solid red;
+    }  
+    .float-child.green {
+        margin-right: 20px;
+    }
+
+    .circle {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        display: block;
+        margin-left: 10px;
+        background: black;
+        margin-right: 10px;
+    }
+
+    .row {
+        width: 100%;
+        /*margin: 0 auto;*/
+          text-align: center;
+      }
+      .block {
+        width: 100px;
+        /*float: left;*/
+          display: inline-block;
+          zoom: 1;
+      }
+
+}

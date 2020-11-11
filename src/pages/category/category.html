@@ -1,0 +1,103 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png" style="width: 100%"></ion-icon>
+    </button>
+        <ion-title>{{"Categories" | translate}}
+            <span float-right> 
+              <ion-icon class="icon" (click)="searchPage()"><img src="assets/imgs/ic_search.png" width="100%;"></ion-icon>
+              <ion-icon class="icon" (click)="cartPage()"><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>     
+            </span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+
+
+
+    
+
+    <div  > 
+
+        <div class="man-fashion img" >
+            <ion-row style="height: 250px">
+                <ion-col col-5>
+                    <img src="assets/imgs/categoryfirst.png" >
+                </ion-col>
+                <ion-col col-7>
+                    <h6 class="text-white">PRODUCTS</h6>
+                    <p class="text-white" (click)="shirtsPage()">Car Gear Cover
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                    <p class="text-white">Air Brake Bleeder
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                    <p class="text-white">Steel Wheel
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                    <p class="text-white">Electronics
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                    <!-- <p class="text-white">Electronics
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p> -->
+                </ion-col>
+            </ion-row>
+        </div>
+    
+        <div class="man-fashion img" >
+            <ion-row style="height: 270px">
+                <ion-col col-5>
+                    <img src="assets/imgs/categorysecond.png" >
+                </ion-col>
+                <ion-col col-7>
+                    <h6 class="text-white">CATEGORIES</h6>
+                    <p class="text-white" (click)="shirtsPage()">CLUTCH
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                    <p class="text-white">BRAKE
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                    <p class="text-white">HYDRAULIC CYLINDERS
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                    <p class="text-white">HOSES
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                    <p class="text-white">KITS
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-col>
+            </ion-row>
+        </div>
+    
+        <div class="man-fashion img" >
+            <ion-row style="height: 250px;">
+                <ion-col col-5>
+                    <img src="assets/imgs/categorythird.png" >
+                </ion-col>
+                <ion-col col-7>
+                    <h6 class="text-white">ACCESSORIES</h6>
+                    <p class="text-white" (click)="shirtsPage()">Tools
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                    <p class="text-white">Clutch
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                    <p class="text-white">Bulbs
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                    <p class="text-white">Break
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                   
+                </ion-col>
+            </ion-row>
+        </div>
+    
+
+    </div>
+
+   
+ 
+</ion-content>

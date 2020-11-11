@@ -1,0 +1,201 @@
+<ion-header class="bg-thime ">
+  <ion-navbar>
+  <button ion-button menuToggle>
+    <ion-icon class="menu-icon">
+      <img src="assets/imgs/ic_menu.png">
+    </ion-icon>
+  </button>
+    <ion-title>My Account
+      <!-- <span float-right> 
+        <ion-icon padding-right name="ios-search-outline" width="100%;" ></ion-icon>
+        <ion-icon name="ios-cart-outline" width="100%;"></ion-icon>              
+      </span> -->
+      <span float-right>
+        <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>
+        <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>
+        <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon>
+      </span>
+    </ion-title>
+  </ion-navbar>
+  <ion-list padding-left class="tab-bar main-tools">
+    <ion-item padding-left padding-right style="background: red;">
+      <ion-avatar item-start>
+        <img src="assets/imgs/profile_pix.png">
+      </ion-avatar>
+      <h2 class="">{{strDataUserLogin}}
+        <small class="" style="float: right;"> Edit Profile</small>
+      </h2>
+      <p class="text-dark" style="color: black;">+91 908 765 4321
+      </p>
+    </ion-item>
+  </ion-list>
+  <ion-toolbar no-border-top class="tab-bar menu-bar">
+    <ion-segment [(ngModel)]="account">
+      <ion-segment-button value="profile" style="text-transform: none;color: black;">
+        Profile
+      </ion-segment-button>
+      <ion-segment-button value="card" style="text-transform: none;color: black;">
+        My Cards
+      </ion-segment-button>
+      <ion-segment-button value="address" style="text-transform: none;color: black;">
+       My Address
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="account">
+    <div *ngSwitchCase="'profile'" class="profile-section">
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Name</ion-label>
+          <ion-input type="text" [(ngModel)]="strDataUserLogin"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input type="email" [(ngModel)]="strDataUserEmail"></ion-input>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label floating>UserRegistered On</ion-label>
+          <ion-input type="text" [(ngModel)]="strDataUserRegistered"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Phone</ion-label>
+          <ion-input type="text" value="+91 908 765 4321"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Gender</ion-label>
+          <ion-input type="text" value="Male"></ion-input>
+        </ion-item>
+        <!-- <ion-item>
+          <ion-label floating>birthday</ion-label>
+          <ion-input type="text" value="23 Dec, 1990"></ion-input>
+        </ion-item> -->
+      </ion-list>
+    </div>
+
+    <div *ngSwitchCase="'card'" class="card-section bg-light">
+      <ion-card>
+        <ion-card-content>
+          <div class="card-row">XXXX XXXX XXXX 5887
+            <img src="assets/imgs/visa.png">
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content>
+          <div class="card-row">XXXX XXXX XXXX 5887
+            <img src="assets/imgs/master-card.png">
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <div class="form" padding-left padding-right>
+          <p padding-bottom margin-bottom>
+            <!-- <ion-icon name="ios-add-circle-outline" style="float: left;">
+
+            </ion-icon> -->
+            
+            Add New Card 
+          <span style="float: right;">Save</span></p>
+          <ion-list>
+            <ion-item>
+              <ion-label>Card Type</ion-label>
+              <ion-input type="text" text-right value="Visa Express"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Card Number</ion-label>
+              <ion-input type="text" text-right value="1234-1234-1234-1234"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Name on Card</ion-label>
+              <ion-input type="text" text-right value="John Smith"></ion-input>
+            </ion-item>
+            <div class="date-cvc-row">
+              <div class="date">
+                <ion-item>
+                  <ion-label>Expiry Date</ion-label>
+                  <ion-input type="text" text-right value="10/23"></ion-input>
+                </ion-item>
+              </div>
+              <div class="cvc">
+                <ion-item>
+                  <ion-label>CVV</ion-label>
+                  <ion-input type="text" text-right value="234"></ion-input>
+                </ion-item>
+              </div>
+            </div>
+            <ion-item class="border-none">
+              <ion-label text-right style="color: black;">Save Card Details</ion-label>
+              <ion-toggle checked="false"></ion-toggle>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-card>
+    </div>
+
+    <div *ngSwitchCase="'address'" class="address-section bg-light">
+      <ion-card>
+        <ion-card-content>
+          <div class="addres-detail">
+            <h3> 
+              <ion-icon name="ios-pin-outline" class="icon-position"> </ion-icon>
+              John Smith 
+              <span style="float: right;">Change
+                <ion-icon name="ios-arrow-forward"></ion-icon>
+              </span>
+            </h3>
+            <p>DE234 Mapleridge Drive Plano,<br> Texas 743A US.</p>
+            <p>+91 908765432</p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <div class="form" padding-left padding-right>
+          <p padding-bottom margin-bottom>
+            <!-- <ion-icon name="ios-add-circle-outline" >
+            </ion-icon> -->
+            Add New Card
+            <span style="float: right;">Save</span>
+          </p>
+          <ion-list>
+            <ion-item>
+              <ion-label>Pincode</ion-label>
+              <ion-input type="text" text-right value="110092"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Address</ion-label>
+              <ion-input type="text" text-right value="DE234 Map Drive Plano,"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Phone number</ion-label>
+              <ion-input type="text" text-right value="+91 908 765 4321"></ion-input>
+            </ion-item>
+            <div class="date-cvc-row">
+              <div class="city">
+                <ion-item>
+                  <ion-label>City</ion-label>
+                  <ion-input type="text" text-right value="Delhi"></ion-input>
+                </ion-item>
+              </div>
+              <div class="State">
+                <ion-item>
+                  <ion-label>State</ion-label>
+                  <ion-input type="text" text-right value="Delhi"></ion-input>
+                </ion-item>
+              </div>
+            </div>
+            <ion-item class="border-none">
+              <ion-label text-right>Make this my default address</ion-label>
+              <ion-toggle checked="true" (ionChange)="update($event)"></ion-toggle>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

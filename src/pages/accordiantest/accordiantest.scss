@@ -1,0 +1,37 @@
+page-accordiantest {
+
+    .card-header{
+        background-color: map-get($colors, primary);
+        color: #fff;
+    }
+    .card-content {
+        padding: 0px 16px; 
+        max-height: 0px;
+    }
+
+    .card-hd {color: #fff;
+        background-color: transparent;
+        width: auto !important;
+        min-width: 10%;
+        position: absolute;
+        z-index: 999;
+        top: 37px;
+        right: 33px;}
+
+        .card-header-md {
+            padding: 0px;
+            background-color: #000 !important;
+        }
+        .card-header-md h6 {
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .card-header-md ion-item.item.item-block.item-md.item-md-primary {
+            background-color: #000;
+        }
+        .card-md ion-card-content.card-content.card-content-md {
+            background-color: #000;
+        }
+
+}

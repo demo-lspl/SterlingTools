@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <!--
+      <button ion-button menuToggle>
+            <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>
+          </button>
+      -->
+    <ion-title>{{"cart" | translate}}
+      <span float-right>
+        <ion-icon class="icon" ><img src="assets/imgs/ic_cross.png" width="100%;"></ion-icon>           
+      </span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+
+<ion-content>
+    <div class="main">
+        <ion-card class="example-card" *ngFor="let item of cart; let i= index">
+        
+          <img mat-card-image [src]="item.imgUrl" alt="Photo of a Shiba Inu">
+          <ion-card-content>
+            <h2>{{item.name}}</h2>
+            <h3>${{item.price}}</h3>
+          </ion-card-content>
+          
+        
+            <button mat-button (click)="removeFromCart(i)">
+              Remove 
+        
+              <ion-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">delete_forever</ion-icon>
+            </button>
+        </ion-card>
+        </div>
+    
+</ion-content>

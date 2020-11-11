@@ -1,0 +1,60 @@
+.head {
+    min-height: 21vh !important;
+  }
+  .head-image {
+    background-size: contain;
+    width: 180px;
+    align-self: center;
+  }
+  .input {
+    background-color: rgb(240, 240, 240);
+    border: 1px solid rgb(210, 210, 210);
+    border-radius: 9px;
+    font-size: 0.9em !important;
+  }
+  .white {
+    color: black;
+  }
+  .title {
+    font-size: 18px;
+  }
+  .small {
+    font-size: 13px;
+    a {
+      text-decoration: unset !important;
+    }
+  }
+  .button-color {
+    background-color: black;
+  }
+  
+  .logo {
+    width: 1.25em !important;
+  }
+  ion-img.md.hydrated.logo-img {
+    width: 270px;
+    margin: 0px auto;
+    padding: 18px;
+  }
+  ion-button.ion-color.ion-color-mytheme.md.button.button-block.button-solid.ion-activatable.ion-focusable.hydrated {
+    background: linear-gradient(
+      to bottom,
+      #c4181e 0,
+      #c4181e 19%,
+      #a4171e 100%
+    ) !important;
+  }
+  strong.white {
+    color: #fff !important;
+  }
+  .login-tab {
+    margin-top: 25%;
+  }
+  .logo-main {
+    position: relative;
+    top: 12%;
+  }
+  .logo-main::after {
+    background: unset;
+  }
+  

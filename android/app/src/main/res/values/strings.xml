@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SterlingTools</string>
+    <string name="title_activity_main">SterlingTools</string>
+    <string name="package_name">com.sterlingtools</string>
+    <string name="custom_url_scheme">com.sterlingtools</string>
+</resources>

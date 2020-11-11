@@ -1,0 +1,46 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>test1</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+ 
+  <ion-card class="card" *ngFor="let viewCart of viewCartList" style="margin-top: 10%;">
+    <ion-card-header>
+      <ion-item lines="none" >
+        <ion-label style="color: black;font-size: 8px;">{{viewCart.product_id }}</ion-label>
+        <ion-label style="color: black;font-size: 8px;">{{viewCart.quantity }}</ion-label>
+        <ion-label style="color: black;font-size: 8px;">{{strPName }}</ion-label>
+      </ion-item> 
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card class="card"  style="margin-top: 10%;"   >
+    <ion-card-header>  
+      <ion-item lines="none"  >
+        <!-- <ion-label style="color: red;font-size: 7px;" ngDefaultControl [(ngModel)] = "strProductNameCart"></ion-label> -->
+        <ion-label style="color: red;font-size: 7px;">{{strProductNameCart}}</ion-label>
+
+      </ion-item>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card class="card"  style="margin-top: 10%;"  *ngFor="let product of productsListInformationTemp"  >
+    <ion-card-header>  
+      <ion-item lines="none"  >
+        <!-- <ion-label style="color: red;font-size: 7px;" ngDefaultControl [(ngModel)] = "strProductNameCart"></ion-label> -->
+        <ion-label style="color: blue;font-size: 7px;">{{strPName1}}</ion-label>
+
+      </ion-item>
+    </ion-card-header>
+  </ion-card>
+
+</ion-content>
+
+ 

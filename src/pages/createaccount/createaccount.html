@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>
+    </button>
+    <!-- <ion-title>{{"create_account" | translate}}</ion-title> -->
+
+    <!-- <ion-img class="logo-img"
+    style="align-items: center;"
+    src="assets/sterlinglogo.png"
+  ></ion-img> -->
+
+  <img src="assets/imgs/sterlinglogo.png" >
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="form" padding-left padding-right>
+    <p text-center padding-bottom margin-bottom>{{"sign_up_label" | translate}}</p>
+    <ion-list>
+      <ion-item>
+        <ion-label>{{"phone" | translate}}</ion-label>
+        <ion-input type="text" text-right value="+91 903 335 6708"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{"full_name" | translate}}</ion-label>
+        <ion-input type="text" text-right value="Jhon Smith"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{"email" | translate}}</ion-label>
+        <ion-input type="text" text-right value="jhonsmith8994@gmail.com"></ion-input>
+      </ion-item>
+      <div class="d-flex">
+        <ion-item>
+          <ion-label>{{"login_box2" | translate}}</ion-label>
+          <ion-input type="text" text-right value="******"></ion-input>
+        </ion-item>
+        <ion-icon name="ios-eye-outline" class="text-light eye-icon"></ion-icon>
+      </div>
+    </ion-list>
+    <button ion-button full class="bg-thime btn-round btn-text" (click)="homePage()">{{"continue" | translate}}</button>
+    <p text-center>
+      <small>
+        {{"tnc_prelabel" | translate}} 
+        <span class="text-sky"> {{"tnc" | translate}} </span>
+      </small>
+    </p>
+  </div>
+</ion-content>

@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>
+    </button>
+        <ion-title>{{"ordered" | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="img-box">
+        <img src="assets/imgs/order-placed.jpg">
+    </div>
+    <h3 class="text-sky" text-center>{{"ordered_text" | translate}}</h3>
+    <h4 class="" text-center>{{"ordered_text1" | translate}}<br>{{"ordered_text3" | translate}} <strong>{{"my_order" | translate}}</strong> {{"ordered_text2" | translate}}<br>{{"ordered_text4" | translate}}</h4>
+    <div class="btn-padding btn-fisx-bottom ">
+        <button ion-button full class="bg-green btn-round green-shadow btn-text" (click)="homePage()">{{"continue_shop" | translate}}</button>
+    </div>
+</ion-content>

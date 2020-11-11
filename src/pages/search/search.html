@@ -1,0 +1,58 @@
+<ion-content class="bg-light">
+  <div class="d-flex searchbar-section">
+    <ion-searchbar  placeholder="Search Brand of product"></ion-searchbar>
+    <!-- <ion-list>
+      <ion-item *ngFor="let item of items">
+        {{ item }}
+      </ion-item>
+    </ion-list> -->
+    <ion-icon name="md-close" class="close-icon" (click)="dismiss()"></ion-icon>
+  </div>
+
+  <div class="recent-search">
+    <ion-card>
+      <ion-card-header>
+        {{"recent_search" | translate}}
+        <span text-right class="right">{{"clear_history" | translate}}</span>
+      </ion-card-header>
+      <ion-card-content>
+        <p>
+          <ion-icon name="ios-time-outline"></ion-icon>Iphone7 in <strong class="text-sky">Mobile</strong>
+        </p>
+        <p>
+          <ion-icon name="ios-time-outline"></ion-icon>Shirt in <strong class="text-sky">Me,s Wear</strong>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+  
+  <div class="trending-search">
+    <ion-card>
+      <ion-card-header>
+        {{"search_trend" | translate}}
+      </ion-card-header>
+      <ion-card-content>
+        <p>
+          <ion-icon name="ios-trending-up-outline"></ion-icon>Sleevless kurti
+        </p>
+        <p>
+          <ion-icon name="ios-trending-up-outline"></ion-icon>Shoes
+        </p>
+        <p>
+          <ion-icon name="ios-trending-up-outline"></ion-icon>Watches
+        </p>
+        <p>
+          <ion-icon name="ios-trending-up-outline"></ion-icon>Tshirt
+        </p>
+        <p>
+          <ion-icon name="ios-trending-up-outline"></ion-icon>Headphones
+        </p>
+        <p>
+          <ion-icon name="ios-trending-up-outline"></ion-icon>Pendrive
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

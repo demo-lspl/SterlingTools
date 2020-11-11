@@ -1,0 +1,120 @@
+page-category {
+  .kids-fashion .row,
+  .girl-fashion .row,
+  .man-fashion .row {
+    background: rgba(182, 201, 231, 1);
+    // background: -moz-linear-gradient(left, rgba(182, 201, 231, 1) 0%, rgba(10, 103, 161, 1) 100%);
+    // background: -webkit-gradient(left top, right top, color-stop(0%, rgba(182, 201, 231, 1)), color-stop(100%, rgba(10, 103, 161, 1)));
+    // background: -webkit-linear-gradient(left, rgba(182, 201, 231, 1) 0%, rgba(10, 103, 161, 1) 100%);
+    // background: -o-linear-gradient(left, rgba(182, 201, 231, 1) 0%, rgba(10, 103, 161, 1) 100%);
+    // background: -ms-linear-gradient(left, rgba(182, 201, 231, 1) 0%, rgba(10, 103, 161, 1) 100%);
+    // background: linear-gradient(to right, rgba(182, 201, 231, 1) 0%, rgba(10, 103, 161, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b6c9e7', endColorstr='#0a67a1', GradientType=1);
+    height: 210px;
+    overflow: hidden;
+    background: #eb474c;
+  }
+  .girl-fashion .row {
+    background: rgba(255, 178, 208, 1);
+    background: -moz-linear-gradient(
+      left,
+      rgba(255, 178, 208, 1) 0%,
+      rgba(189, 13, 95, 1) 100%
+    );
+    background: -webkit-gradient(
+      left top,
+      right top,
+      color-stop(0%, rgba(255, 178, 208, 1)),
+      color-stop(100%, rgba(189, 13, 95, 1))
+    );
+    background: -webkit-linear-gradient(
+      left,
+      rgba(255, 178, 208, 1) 0%,
+      rgba(189, 13, 95, 1) 100%
+    );
+    background: -o-linear-gradient(
+      left,
+      rgba(255, 178, 208, 1) 0%,
+      rgba(189, 13, 95, 1) 100%
+    );
+    background: -ms-linear-gradient(
+      left,
+      rgba(255, 178, 208, 1) 0%,
+      rgba(189, 13, 95, 1) 100%
+    );
+    background: linear-gradient(
+      to right,
+      rgba(255, 178, 208, 1) 0%,
+      rgba(189, 13, 95, 1) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb2d0', endColorstr='#bd0d5f', GradientType=1);
+  }
+  .kids-fashion .row {
+    background: rgba(255, 197, 80, 1);
+    background: -moz-linear-gradient(
+      left,
+      rgba(255, 197, 80, 1) 0%,
+      rgba(184, 120, 0, 1) 100%
+    );
+    background: -webkit-gradient(
+      left top,
+      right top,
+      color-stop(0%, rgba(255, 197, 80, 1)),
+      color-stop(100%, rgba(184, 120, 0, 1))
+    );
+    background: -webkit-linear-gradient(
+      left,
+      rgba(255, 197, 80, 1) 0%,
+      rgba(184, 120, 0, 1) 100%
+    );
+    background: -o-linear-gradient(
+      left,
+      rgba(255, 197, 80, 1) 0%,
+      rgba(184, 120, 0, 1) 100%
+    );
+    background: -ms-linear-gradient(
+      left,
+      rgba(255, 197, 80, 1) 0%,
+      rgba(184, 120, 0, 1) 100%
+    );
+    background: linear-gradient(
+      to right,
+      rgba(255, 197, 80, 1) 0%,
+      rgba(184, 120, 0, 1) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc550', endColorstr='#b87800', GradientType=1);
+  }
+  .col {
+    padding: 0 !important;
+  }
+  h6 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-top: 2.5rem;
+  }
+  p {
+    display: flex;
+    position: relative;
+    align-items: center;
+    font-weight: 100;
+    font-size: 1.2rem;
+    padding-left: 36px;
+    letter-spacing: 1px;
+    margin: 18px 0;
+    .icon {
+      margin-left: auto;
+      padding-right: 21px;
+    }
+  }
+  img {
+    margin-left: 1rem;
+  }
+
+  .man-fashion img {
+    width: 90% !important;
+    vertical-align: middle;
+    padding-top: 45px;
+    padding-left: 4px;
+  }
+}

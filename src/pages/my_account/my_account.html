@@ -1,0 +1,70 @@
+<ion-header class="bg-thime">
+  <ion-navbar>
+  <button ion-button menuToggle>
+    <ion-icon class="menu-icon">
+      <img src="assets/imgs/ic_menu.png">
+    </ion-icon>
+  </button>
+    <ion-title>My Account
+      <!-- <span float-right> 
+        <ion-icon padding-right name="ios-search-outline" class="icon"></ion-icon>
+        <ion-icon name="ios-cart-outline" class="icon"></ion-icon>              
+      </span> -->
+    </ion-title>
+  </ion-navbar>
+  <ion-list padding-left>
+    <ion-item padding-left padding-right>
+      <ion-avatar item-start>
+         <img src="assets/imgs/more.png"> 
+      </ion-avatar>
+      <!-- <h2 class="">John Smith
+        <small class=""> {{"edit_profile" | translate}}</small>
+      </h2> -->
+      <p class="text-dark">+91 123456789
+      </p>
+    </ion-item>
+  </ion-list>
+  <!-- <ion-toolbar no-border-top class="tab-bar">
+    <ion-segment [(ngModel)]="account">
+
+      <ion-segment-button value="profile">
+       Profile
+      </ion-segment-button>
+
+      
+    </ion-segment>  
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="account">
+
+   
+
+    <div *ngSwitchCase="'profile'" class="profile-section">
+      <ion-list>
+        
+        <ion-item lines="none">
+          <ion-label floating style="color: black;text-transform: none;font-size: 14px;">Display Name</ion-label>
+          <ion-input disabled type="text"  style="margin-top: 10px;color: black;" [(ngModel)]="strDisplayName"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label floating style="color: black;text-transform: none;font-size: 14px" >Email</ion-label>
+          <ion-input disabled type="email"  style="margin-top: 10px;color: black;" [(ngModel)]="strDataUserEmail"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label floating style="color: black;text-transform: none;font-size: 14px">User Registered On </ion-label>
+          <ion-input disabled type="email" style="margin-top: 10px;color: black;" [(ngModel)]="strDataUserRegistered"></ion-input>
+        </ion-item>
+      </ion-list>
+    </div>
+
+
+   
+
+    
+
+  
+  </div>
+</ion-content>
+

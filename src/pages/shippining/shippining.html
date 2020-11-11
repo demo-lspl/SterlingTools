@@ -1,0 +1,139 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>
+    </button>
+        <ion-title>{{"confirm_order" | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-light">
+    <div class="address-section">
+        <ion-row text-center class="status">
+          <ion-col class="complate">
+            <ion-icon name="ios-checkmark-circle"></ion-icon><span>{{"login" | translate}}</span></ion-col>
+          <ion-col class="processing">
+            <ion-icon name="md-radio-button-off"></ion-icon><span>{{"shipping" | translate}}</span></ion-col>
+          <ion-col class="panding">
+            <ion-icon name="ion-record"></ion-icon><span>{{"payment" | translate}}</span></ion-col>
+        </ion-row>
+        <ion-card>
+            <ion-card-header>
+                <p>
+                    {{"your_dlvr_address" | translate}}<span class="text-sky">{{"change" | translate}}<ion-icon name="ios-arrow-forward" class="icon"></ion-icon></span></p>
+            </ion-card-header>
+            <ion-card-content>
+                <div class="addres-detail">
+                    <h3>
+                        <ion-icon name="ios-pin-outline" class="icon-position"></ion-icon>Jhon Smith
+                    </h3>
+                    <p>DE234 Mapleridge Drive Plano,<br> Texas 743A US.</p>
+                    <p>+91 908765432</p>
+                </div>
+            </ion-card-content>
+        </ion-card>
+    </div>
+    <div class="your-items">
+        <ion-card>
+            <ion-card-header>
+                <p>{{"ur_item" | translate}}</p>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-row>
+                    <ion-col col-3>
+                        <div class="img-box">
+                            <!-- <img src="assets/imgs/suit_PNG8132.png"> -->
+                            <img src="assets/imgs/productimage.jpg">
+                        </div>
+                    </ion-col>
+                    <ion-col col-9>
+                        <h4>Unique For Men Black Formal Slim Fit Shirt</h4>
+                        <div class="rate">
+                            <div style="display: flex;" class="price-box">
+                                <div class="price text-sky  mr-5">
+                                    <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300
+                                </div>
+                                <div class="price text-light">
+                                    <img src="assets/imgs/rupee-light.png" class="rupee-icon">500
+                                </div>
+                            </div>
+                            <p text-right>{{"quantity" | translate}}
+                                <span class="">1
+                                 <ion-icon name="ios-arrow-down-outline"></ion-icon>
+                                </span>
+                            </p>
+                        </div>
+                        <p class="card-bottom" padding-top>
+                            {{"delivery_by" | translate}} Fri,Jun 9: 40
+                            <span class="text-sky small" text-right> {{"remove" | translate}}</span>
+                        </p>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+    </div>
+    <div class="your-items">
+        <ion-card>
+            <ion-card-header>
+                <p>{{"ur_item" | translate}}</p>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-row>
+                    <ion-col col-3>
+                        <div class="img-box">
+                            <!-- <img src="assets/imgs/suit_PNG8132.png"> -->
+                            <img src="assets/imgs/productimage.jpg">
+                        </div>
+                    </ion-col>
+                    <ion-col col-9>
+                        <h4>Unique For Men Black Formal Slim Fit Shirt</h4>
+                        <div class="rate">
+                            <div style="display: flex;" class="price-box">
+                                <div class="price text-sky  mr-5">
+                                    <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300
+                                </div>
+                                <div class="price text-light">
+                                    <img src="assets/imgs/rupee-light.png" class="rupee-icon">500
+                                </div>
+                            </div>
+                            <p text-right>{{"quantity" | translate}}
+                                <span class="">1
+                                    <ion-icon name="ios-arrow-down-outline"></ion-icon>
+                                </span>
+                            </p>
+                        </div>
+                        <p class="card-bottom" padding-top>
+                            {{"delivery_by" | translate}} Fri,Jun 9: 40
+                            <span class="text-sky small" text-right> {{"remove" | translate}}</span>
+                        </p>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+    </div>
+    <div class="spacebar-bottom"></div>
+    <div class="receipt btn-fisx-bottom">
+        <ion-card>
+            <ion-card-header>
+                <p>Item(s) price
+                    <span text-right><img src="assets/imgs/rupee-black.png">
+                    380
+                    </span>
+                </p>
+                <p>Delivery Payable
+                    <span text-right><img src="assets/imgs/rupee-black.png">
+                   40
+                    </span>
+                </p>
+            </ion-card-header>
+            <ion-card-content>
+                <p>Amount Payable
+                    <span text-right><img src="assets/imgs/rupee-black.png">
+                   420
+                    </span>
+                </p>
+                <button ion-button full class="bg-green btn-round green-shadow btn-text" (click)="paymentPage()">{{"continue" | translate}}</button>
+            </ion-card-content>
+        </ion-card>
+    </div>
+</ion-content>

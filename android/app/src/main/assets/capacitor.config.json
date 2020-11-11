@@ -1,0 +1,16 @@
+{
+  "appId": "com.sterlingtools",
+  "appName": "SterlingTools",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 9000,
+      "launchAutoHide": true,
+      "androidSplashResourceName": "splashupdated"
+    }
+  },
+  "cordova": {}
+}
+  

@@ -1,0 +1,36 @@
+<ion-content>
+  <div class="group">
+    <div class="size-filter">
+      <div class="slid-container">
+        <span>2XS</span>
+        <span>XS</span>
+        <span class="active">S</span>
+        <span>M</span>
+        <span class="active">L</span>
+        <span>XL</span>
+        <span>XX</span>
+        <span>XXX</span>
+      </div>
+    </div>
+    <div class="type-filter">
+      <div class="slid-container">
+        <span>{{"brand" | translate}}</span>
+        <span class="active">{{"size" | translate}}</span>
+        <span>{{"color" | translate}}</span>
+        <span>{{"wear" | translate}}</span>
+        <span>{{"outfit" | translate}}</span>
+      </div>
+    </div>
+    <ion-row text-center class="action">
+      <ion-col col-5>
+        <p>{{"reset" | translate}}</p>
+      </ion-col>
+      <ion-col col-2>
+        <p><ion-icon name="ios-close-outline" (click)="dismiss()"></ion-icon></p>
+      </ion-col>
+      <ion-col col-5>
+        <p class="active">{{"apply" | translate}}</p>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

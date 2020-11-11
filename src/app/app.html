@@ -1,0 +1,173 @@
+<ion-menu [content]="content" [side]="getSideOfCurLang()">
+  <ion-header>
+  
+    <div style="background: #a8171e; height: 170px;" padding text-center>
+      <ion-item text-center>
+        <img src="assets/imgs/sterlinglogo.png" class="img" />
+
+        <h2 style="color: white; justify-content: center;">STERLING</h2>
+
+        <ion-row style="margin-top: 4%;">
+          <p style="color: white; margin-left: 14%; text-align: center;">
+            sterlingtools@gmail.com
+          </p>
+          <ion-icon
+            name="arrow-forward"
+            style="margin-left: 88%; width: 30px; height: 30px;margin-top: 40px;color: white;"
+          >
+          </ion-icon>
+        </ion-row>  
+      </ion-item>  
+    </div>
+
+
+     <!-- style="width: 40px;"  -->
+    <div class="menu-tabs" padding text-center>
+      <ion-row>
+        <img src="assets/imgs/ic_my_orders.png" />
+        <p
+          style="
+            font-size: 10px;
+            color: white;
+            
+            font-size: 12px;
+          "
+        >
+          My Orders
+        </p>
+
+        <img
+          src="assets/imgs/ic_my_addresses.png"
+          style=" width: 40px;"
+        />
+        <p
+          style="
+            font-size: 10px;
+            color: white;
+           
+            font-size: 12px;
+          "
+        >
+          My Addresses
+        </p>
+      </ion-row>
+    </div>
+  </ion-header>
+
+  <ion-content>
+    <div class="menu-title">
+      <ion-list>
+        <button ion-item menuClose (click)="homePage()">
+          <img src="assets/imgs/ic_home.png " />
+         Home
+        </button>
+        <!-- <button ion-item menuClose >
+          <img src="assets/imgs/ic_categories.png "   />
+          {{"categories" | translate}}
+         
+        </button> -->
+        <!-- <div class="drop-down ">
+                    <button ion-item menuClose (click)="categoryPage() ">
+                    <img src="assets/imgs/ic_electronics.png ">
+                        Electronics
+                </button>
+                    <button ion-item menuClose (click)="categoryPage() ">
+                    <img src="assets/imgs/ic_fashion.png ">
+                        Fashion
+                </button>
+                    <button ion-item menuClose (click)="categoryPage() ">
+                    <img src="assets/imgs/ic_home_decor.png ">
+                        Home Decor
+                </button>
+                    <button ion-item menuClose (click)="categoryPage() ">
+                    <img src="assets/imgs/ic_mobile.png ">
+                        Mobile
+                </button>
+                    <button ion-item menuClose (click)="categoryPage() ">
+                    <img src="assets/imgs/ic_more.png ">
+                        More
+                </button>
+                </div> -->
+
+                <!-- <button ion-item menuClose (click)="categoryPage()">
+                  <img src="assets/imgs/ic_categories.png "/>
+                  {{"my_order" | translate}}
+                </button> -->
+
+                <button ion-item menuClose (click)="categoryPage()">
+                  <img src="assets/imgs/ic_my_cart.png " />
+                  {{"Categories" | translate}}
+                </button>
+
+                <!-- <button ion-item menuClose (click)="categoryPage1()">
+                  <img src="assets/imgs/ic_my_cart.png " />
+                  Categories1
+                </button> -->
+        <!-- <button ion-item menuClose (click)="myorder_2Page()">
+          <img src="assets/imgs/ic_my_cart.png " />
+          {{"my_order" | translate}}
+        </button> -->  
+
+
+        <button ion-item menuClose (click)="myorder_2Page()">
+          <img src="assets/imgs/ic_my_cart.png " />
+          {{"View Orders" | translate}}
+        </button>
+
+       
+
+
+        <!-- <button ion-item menuClose (click)="wishlistPage()">
+          <img src="assets/imgs/ic_my_wishlist.png " />
+          {{"My wishlist (3)" | translate}}
+        </button> -->
+
+        <button ion-item menuClose (click)="wishlistPage1()">
+          <img src="assets/imgs/ic_my_wishlist.png " />
+          {{"My wishlist" | translate}}
+        </button>
+        <button ion-item menuClose (click)="my_accountPage()">
+          <img src="assets/imgs/ic_my_account.png " />
+          My Account
+        </button>
+        <button ion-item menuClose (click)="helpPage()">
+          <img src="assets/imgs/ic_help.png " />
+          Help Center
+        </button>
+      
+        <button ion-item menuClose (click)="privacyPolicyPage()">
+          <img src="assets/imgs/ic_logout.png " />
+          Privacy Policy
+        </button>
+
+        <button ion-item menuClose (click)="termsConditionsPage()">
+          <img src="assets/imgs/ic_logout.png " />
+          Terms & Conditions
+        </button>
+        <button ion-item menuClose (click)="phonenumberPage()">
+          <img src="assets/imgs/ic_logout.png " />
+          Logout
+        </button>
+
+        <!-- <button ion-item menuClose (click)="testPageTushar()">
+          <img src="assets/imgs/ic_logout.png " />
+          Test
+        </button> -->
+        
+          
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-menu>
+
+
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav
+  [root]="rootPage"
+ 
+  #content
+  swipeBackEnabled="false "
+  type="overlay"
+></ion-nav>
+     

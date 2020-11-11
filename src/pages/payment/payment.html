@@ -1,0 +1,130 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>
+    </button>
+        <ion-title>Pay now</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content radio-group class="bg-light">
+    <ion-row text-center class="status">
+        <ion-col class="complate">
+            <ion-icon name="ios-checkmark-circle"></ion-icon><span>Signin</span></ion-col>
+        <ion-col class="processing">
+            <ion-icon name="ios-checkmark-circle"></ion-icon><span>Shipping</span></ion-col>
+        <ion-col class="panding">
+            <ion-icon name="md-radio-button-off"></ion-icon><span>Payment</span></ion-col>
+    </ion-row>
+
+    <ion-card>
+        <p class="heading">Payment Method</p>
+        <ion-card-content>
+            <ion-item>
+                <ion-label>Credit Card</ion-label>
+                <ion-radio checked="true" value="card"></ion-radio>
+            </ion-item>
+            <div class="form">
+                <ion-list>
+                    <ion-item>
+                        <ion-label>Card Type</ion-label>
+                        <ion-select  interface="action-sheet">
+                            <ion-option selected value="visa">{{"visa_exp" | translate}}</ion-option>
+                            <ion-option value="debit">{{"debit" | translate}}</ion-option>
+                            <ion-option value="master">{{"master" | translate}}</ion-option>
+                            <ion-option value="credit">{{"credit" | translate}} </ion-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Card Number</ion-label>
+                        <ion-input type="text" text-right value="1234-1234-1234-5678"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Card Name</ion-label>
+                        <ion-input type="text" text-right value="Jhon Smith"></ion-input>
+                    </ion-item>
+                    <ion-row>
+                        <ion-col col-8 class="">
+                          <div class="d-flex mr-5">
+                            <ion-item>
+                              <ion-label>Expiry Date</ion-label>
+                              <ion-input type="text" text-right value="11/20"></ion-input>
+                            </ion-item>
+                            <ion-icon name="md-calendar" class="text-light calendar-icon"></ion-icon>
+                          </div>
+                        </ion-col>
+                        <ion-col col-4>
+                          <ion-item>
+                            <ion-label>CVV Number.</ion-label>
+                            <ion-input type="text" text-right value="244"></ion-input>
+                          </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+
+                    <!-- <ion-row>
+                        <ion-col>
+                          <ion-list inset>
+                            
+                           
+                            <ion-item >
+                              <ion-icon name="mail"  item-left ></ion-icon>
+                              <input class="input-field" placeholder="Username" type="name" [(ngModel)]="emailAddress" >
+                            </ion-item>
+      
+                           
+                            
+                          </ion-list>
+                        </ion-col>
+                      </ion-row> -->
+
+                    <ion-item>
+                        <ion-label text-right>Save Card Details</ion-label>
+                        <ion-toggle color="secondary" checked="true"></ion-toggle>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-content>
+            <ion-item>
+                <ion-label>Cash On Delivery</ion-label>
+                <ion-radio value="cod"></ion-radio>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-content>
+            <ion-item>
+                <ion-label>Net Banking
+                    
+                </ion-label>
+                <ion-radio value="net_banking"></ion-radio>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+    <div class="spacebar"></div>
+    <div class="btn-padding btn-fisx-bottom">
+        <button 
+        ion-button
+        full
+        class="bg-thime btn-round btn-text"
+        style="max-width: 390px; float: none; height: 40px"
+            (click)="placedPage()">Pay <img src="assets/imgs/rupee-white.png">
+            100$ 
+        </button>
+
+        <!-- <button
+          ion-button
+          full
+          class="bg-thime btn-round btn-text"
+          style="max-width: 390px; float: none; height: 40px"
+          (click)="checkOutPage()">
+
+        
+          Proceed to Checkout
+        </button> -->
+    </div>
+</ion-content>

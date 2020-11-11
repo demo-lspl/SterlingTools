@@ -1,0 +1,116 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>
+    </button>
+        <ion-title>{{"my_order" | translate}}
+            <span float-right> 
+               <ion-icon class="icon" (click)="searchPage()"><img src="assets/imgs/ic_search.png" width="100%;"></ion-icon>
+              <ion-icon class="icon" (click)="cartPage()"><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>            
+            </span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-light">
+    <ion-card class="border-bottom-none border" style="position: relative;">
+        <ion-card-header>
+            <p class="left-side">
+                <span class="text-light">{{"order_id" | translate}}</span> 2513254112
+                <br>
+                <span class="text-light">{{"placed_on" | translate}}</span> 17-march-17
+            </p>
+            <p class="right-side text-sky">
+                {{"cancel_order" | translate}}
+            </p>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-row>
+                <ion-col col-7>
+                    <h4>Unique For Men Black Formal Slim Fit Shirt</h4>
+                    <small><span class="text-light">{{"quantity" | translate}}:</span> 1</small>
+                    <p>
+                        <img src="assets/imgs/rupee-black.png"> 380
+                        <small class="text-light">{{"by_cod" | translate}}</small>
+                    </p>
+                    <small><span class="text-light">{{"track_status" | translate}}</span> 15-March'17</small>
+                    <button ion-button full class="bg-green btn-round  btn-text">{{"reached" | translate}} Hub,US  <ion-icon name="ios-arrow-down-outline"></ion-icon></button>
+                </ion-col>
+                <ion-col col-5>
+                    <div class="img-box">
+                        <img src="assets/imgs/shirt-2.jpg">
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+
+    <div class="order-info border-top-none border">
+        <div class="order-container">
+            <div class="status active">
+                <p padding-left padding-right>{{"order" | translate}}<br>{{"placed" | translate}}</p>
+                <ion-icon name="md-radio-button-on"></ion-icon>
+                <p style="color: #555">12:05pm<br>12 May 17</p>
+            </div>
+            <div class="status active">
+                <p>
+                    {{"dispatched" | translate}}<br>{{"4m" | translate}} Bangalore
+                </p>
+                <ion-icon name="md-radio-button-on"></ion-icon>
+                <p style="color: #555">12:05pm<br>12 May 17</p>
+            </div>
+            <div class="status active">
+                <p>
+                    {{"reached" | translate}} Hub <br>New Delhi
+                </p>
+                <ion-icon name="md-radio-button-on"></ion-icon>
+                <p>12:05pm<br>12 May 17</p>
+            </div>
+            <div class="status">
+                <p>
+                    {{"out4" | translate}}<br>{{"delivery" | translate}}
+                </p>
+                <ion-icon name="md-radio-button-on"></ion-icon>
+                <p style="color: #555">12:05pm<br>12 May 17</p>
+            </div>
+            <div class="status">
+                <p>
+                    {{"item" | translate}}<br>{{"delivery" | translate}}
+                </p>
+                <ion-icon name="md-radio-button-on"></ion-icon>
+                <p style="color: #555">12:05pm<br>12 May 17</p>
+            </div>
+        </div>
+    </div>
+    <ion-card>
+        <ion-card-header>
+            <p class="left-side">
+                <span class="text-light">{{"order_id" | translate}}</span> 2513254112
+                <br>
+                <span class="text-light">{{"placed_on" | translate}}</span> 17-march-17
+            </p>
+            <p class="right-side text-sky">
+                {{"return_item" | translate}}
+            </p>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-row>
+                <ion-col col-7>
+                    <h4>Unique For Men Black Formal Slim Fit Shirt</h4>
+                    <small><span class="text-light">{{"quantity" | translate}}:</span> 1</small>
+                    <p>
+                        <img src="assets/imgs/rupee-black.png"> 880
+                        <small class="text-light">{{"by_crd" | translate}}</small>
+                    </p>
+                    <small><span class="text-light">{{"deliver_on" | translate}} </span> 05-May'17</small>
+                    <button ion-button full class="bg-thime btn-round  btn-text">{{"rate_now" | translate}}<ion-icon name="ios-arrow-forward"></ion-icon></button>
+                </ion-col>
+                <ion-col col-5>
+                    <div class="img-box">
+                        <img src="assets/imgs/bag.jpg">
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

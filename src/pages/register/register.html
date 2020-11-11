@@ -1,0 +1,48 @@
+<ion-content class="login-content" padding>
+  <ion-row class="logo-row">
+      <ion-col>
+        <img src="assets/imgs/sterlinglogo.png"/>
+        <br/>
+        <h4>Sterling Tools</h4>
+      </ion-col>
+    </ion-row>
+  
+    <div >
+      <ion-list >
+          <div class="login-box">
+            
+                <ion-row>
+                  <ion-col>
+                    <ion-list inset>
+                      
+                     
+
+                      <div class="input-container">
+                        <ion-icon name="mail"  item-left ></ion-icon>
+                        <input class="input-field" placeholder="Enter Email Address" type="name" [(ngModel)]="emailAddress" >
+                      </div>
+
+                      <div class="input-container">
+                        <ion-icon name="person"  item-left ></ion-icon>
+                        <input class="input-field"  placeholder="Enter Name"  type="name"  [(ngModel)]="userName">
+                      </div>
+                      
+                    </ion-list>
+                  </ion-col>
+                </ion-row>
+                
+                <ion-row>  
+                  <ion-col class="signup-col">
+                    <button ion-button class="submit-btn" full type="submit" style="text-transform: none;" class="bg-thime btn-round btn-text" (click)="registerBtnClick()">Signup</button>
+                    <button ion-button class="submit-btn" full type="submit" style="text-transform: none;" class="bg-thime btn-round btn-text" (click)="backBtnClick()" >Back</button>
+
+                  </ion-col>
+                </ion-row>
+                
+             
+            </div>
+      </ion-list>
+    
+      
+    </div>
+</ion-content>

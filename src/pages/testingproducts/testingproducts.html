@@ -1,0 +1,88 @@
+<ion-header class="bg-thime">
+  <ion-navbar>
+      <ion-title>Men's Shirts
+          <span float-right>
+          <ion-icon class="icon" ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>
+            <ion-icon class="icon" ><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>
+          </span>
+      </ion-title>
+  </ion-navbar>
+ 
+</ion-header>
+
+
+<ion-content class="bg-light">
+
+
+
+    
+
+  <div class="card product-detail">
+    <ion-slides pager="true" slidesperview="1">
+          <ion-slide>
+            <img alt="" src="{{selectProduct?.thumb}}">
+          </ion-slide>
+          <ion-slide ngfor="let prodImg of selectProduct?.images">
+            <img alt="" src="{{prodImg}}">
+          </ion-slide>
+        </ion-slides>
+     
+        <ion-row class="action-btn-wrap" no-padding="">
+          <ion-col text-right="">
+        <button class="wish-list-btn card" click="" color="light" icon-only="" ion-button="" item="" togglewishlist="">
+              <ion-icon color="gray" name="md-heart"></ion-icon>
+            </button>
+     
+            <button class="wish-list-btn card" click="" color="light" icon-only="" ion-button="" item="" togglewishlist="">
+              <ion-icon color="gray" name="share"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+         
+     
+    <div class="border-bottom" margin-top="" padding="" text-center="">
+    <h2><span>
+    {{selectProduct?.name}}</span></h2>
+    {{ selectProduct?.short_description }}
+     
+    <h3 class="price" color="danger" margin-top="">
+    {{ selectProduct?.price | currency:'USD':true
+              }}</h3>
+    </div>
+    <ion-row padding-="">
+            <ion-col>
+              </ion-col></ion-row>
+     
+    <h4>
+                  Quantity
+              </h4>
+    <ion-col class="qty" text-right="">
+                <button    (click)="decreaseProductCount()" color="light" decreaseproductcount="" ion-button="" small="">
+                  -
+                </button>
+                <button clear="" color="dark" ion-button="" small="">
+                  {{productCount}}
+                </button>
+                <button (click)="incrementProductCount()" color="light" incrementproductcount="" ion-button="" small="">
+                  +
+                </button>
+              </ion-col>
+           
+      </div>
+
+      <ion-footer class="single-footer">
+     
+        <ion-grid>
+          <ion-row>
+             <ion-col addtocart="" class="addCart" click="" selectproduct="">
+               <button color="secondary" full="" ion-button="">
+                 ADD TO CART
+               </button>          
+       
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+         
+      </ion-footer>
+    
+</ion-content>

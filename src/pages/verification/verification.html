@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>
+    </button>
+    <ion-title>{{"verify_code" | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="form" padding-left padding-right>
+    <p text-center>{{"verify_label" | translate}} <br>{{"verify_label1" | translate}} +91 903 335 6708</p>
+    <ion-list>
+      <ion-item>
+        <ion-label>{{"verify_code" | translate}}</ion-label>
+        <ion-input type="text" text-right value="______"></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button full class="bg-thime btn-round btn-text" (click)="createaccountPage()">{{"verify" | translate}}</button>
+    <p text-center>
+      <span float-left class="text-sky">{{"resend" | translate}}</span>
+      <span float-right>1:32 {{"min_left" | translate}}</span>
+    </p>
+  </div>
+</ion-content>
