@@ -1,16 +1,14 @@
+/**
+ *  Created By Lasting Erp
+ */
+
+
 import { ViewcartPage } from './../viewcart/viewcart';
 import { WishlistupdatedPage } from './../wishlistupdated/wishlistupdated';
 import { HomePage } from './../home/home';
 import { ApiProvider } from './../../providers/api/api';
 import { HttpClient } from '@angular/common/http';
 import { LoadingController, Platform, ToastController, App } from 'ionic-angular';
-/**
- * Generated class for the MyaccountupdatedPage page.
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -39,6 +37,22 @@ export class MyaccountupdatedPage implements OnInit {
   strData: string;
   countProducts:number|any;
   buttonIcon: string ;
+  strAddress: string; 
+  strCity:string
+  strState:string;
+  strPostalCode:string;
+  strPhone:string;
+  strAddressUpdated= '';  
+  strCityUpdated='';
+  strStateUpdated='';
+  strPostalCodeUpdated='';
+  strPhoneNoUpdated='';
+  strResponseCode: string; 
+  userDataValue:number| string;
+  strUserData: string;
+  strId: string;
+
+
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams, 
@@ -55,31 +69,34 @@ export class MyaccountupdatedPage implements OnInit {
     console.log('ionViewDidLoad MyaccountupdatedPage');
   }
 
-  ngOnInit(){
+  ngOnInit(){ 
 
     this.viewCartApi();
     this.showLoaderPageLoad();
-    this.httpClient.get('http://busybanda.com/sterling-tools/api/get_current_user_data?' +  'id=' + localStorage.getItem('Userid value'))
-        .subscribe((jsonResponse) => {
+    this.getProfileApi();
+  } 
+                        
 
+
+  getProfileApi(){
+    this.httpClient.get('http://busybanda.com/sterling-tools/api/get_user_details?' +  'user_id=' + localStorage.getItem('Userid value')).subscribe((jsonResponse) => {
           this.obj = JSON.stringify(jsonResponse);
-         
-
           const parsedData = JSON.parse(this.obj);
           status = parsedData.Status;
-
           if (localStorage.getItem("Userid value") === null) {
             console.log('Issue');
-          }
-
+          }  
+ 
           else {
-            console.log('Success');
+            console.log('Success' +this.obj);
           }
+          this.strAddress = parsedData.result.address;
+          this.strCity = parsedData.result.city;
+          this.strState = parsedData.result.state;
+          this.strPostalCode = parsedData.result.postalcode;
+          this.strPhone = parsedData.result.phone;
 
-          this.strDataUserLogin = parsedData.result.data.user_login;
-          this.strDataUserEmail = parsedData.result.data.user_email;
-          this.strDataUserRegistered = parsedData.result.data.user_registered;
-          this.strDisplayName = parsedData.result.data.display_name;
+          console.log('Fetched address' + this.strAddress);
         });
         this.platform.registerBackButtonAction(() => {
           // Catches the active view
@@ -93,7 +110,109 @@ export class MyaccountupdatedPage implements OnInit {
               }
           }
       });
+  }
+
+  async loginBtnClick() {
+    console.log('Login Button clicked.');   
+  
+     if(this.strAddress=== '')
+    {
+        this.showToastOnEmptyAddress();
+    }
+    else if(this.strCity=== '')
+    {
+      this.showToastOnEmptyCity();
+    }  
+
+    else if(this.strState=== '')
+    {
+      this.showToastOnEmptyState();
+    }  
+    else if(this.strPostalCode=== '')
+    {
+      this.showToastOnEmptyPostalCode();
+    }  
+    else if(this.strPhone=== '')
+    {
+      this.showToastOnEmptyPhone();
+    }  
+   
+
+    // else if ((await Network.getStatus()).connectionType === 'none') {
+    //   this.showNetworkAlert();
+    //   console.log('Network status not available', this.networkStatus);
+    // } 
+
+    
+    // Credentials filled 
+    else 
+     {
+      this.showLoadingControllerLaunch();
+     
+     }
   } 
+
+  showLoadingControllerLaunch() {
+    let loading = this.loadingController.create({
+      content: 'Please wait!'
+    });
+  
+    loading.present();
+    this.callUpdateProfileApi();
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 1000); 
+  }
+
+  public callUpdateProfileApi() {
+
+     this.strAddressUpdated = this.strAddress;
+     this.strCityUpdated = this.strCity;
+     this.strStateUpdated = this.strState;
+     this.strPostalCodeUpdated = this.strPostalCode;
+     this.strPhoneNoUpdated = this.strPhone;
+
+     
+    console.log('callUpdateProfileApi called' + this.strAddress);
+     
+    this.httpClient.get('http://busybanda.com/sterling-tools/api/set_user_details?' +  'user_id=' + localStorage.getItem('Userid value')+  '&address=' + this.strAddress + '&city=' + this.strCity +  '&state=' + this.strState +  '&postalcode=' + this.strPostalCode +  '&phone=' + this.strPhone).subscribe((response) => {
+    
+    this.obj = JSON.stringify(response);
+    const parsedData = JSON.parse(this.obj);
+    status = parsedData.Status;
+    this.strResponseCode = parsedData.RespCode;
+
+    console.log('Updated profile' + this.obj)
+
+    this.getProfileApi();
+    
+ 
+      
+
+
+
+
+
+
+    
+
+
+   
+    if(this.obj.includes('Updated'))
+    {
+      console.log('Json Response success ' + this.obj)
+      console.log('Json Response status ' + this.obj.status)
+      this.navCtrl.setRoot(HomePage);
+    }
+
+    else
+     {
+      this.showLoadingControllerFailure();
+      console.log('Json Response Failure ' + this.obj)
+    }
+     });
+  }
     
    
    
@@ -102,7 +221,7 @@ export class MyaccountupdatedPage implements OnInit {
 
   async viewCartApi() {            
     try {
-      const service = this.apiProvider.getTest1();  
+      const service = this.apiProvider.getCartDetails();  
       service.subscribe(async (data) => {
         if (data) {
           const resultado = data;
@@ -136,7 +255,7 @@ export class MyaccountupdatedPage implements OnInit {
   cartPage() {
     this.navCtrl.push(ViewcartPage);
   }
-
+                                                     
 
 
   showLoaderPageLoad() {
@@ -170,6 +289,65 @@ export class MyaccountupdatedPage implements OnInit {
     this.toggleState = true;
    }
 
+   async showToastOnEmptyAddress()
+     {
+      const toast = await this.toastController.create({
+        message: 'Enter Address ',
+        duration: 3000,
+        position: 'bottom',
+      });
+      toast.present();
+    }
+
+    async showToastOnEmptyCity()
+    {
+     const toast = await this.toastController.create({
+       message: 'Enter City ',
+       duration: 3000,
+       position: 'bottom',
+     });
+     toast.present();
+   }
+
+   async showToastOnEmptyState()
+   {
+    const toast = await this.toastController.create({
+      message: 'Enter State ',
+      duration: 3000,
+      position: 'bottom',
+    });
+    toast.present();
+  }
+
+  async showToastOnEmptyPostalCode()
+  {
+   const toast = await this.toastController.create({
+     message: 'Enter Postal Code ',
+     duration: 3000,
+     position: 'bottom',
+   });
+   toast.present();
+ }
+
+ async showToastOnEmptyPhone()
+ {
+  const toast = await this.toastController.create({
+    message: 'Enter Phone ',
+    duration: 3000,
+    position: 'bottom',
+  });
+  toast.present();
+}
+
+async showLoadingControllerFailure() 
+{
+  const toast = await this.toastController.create({
+    message: 'Invalid username or password',
+    duration: 6000,
+    position: 'bottom',
+  });
+  toast.present();
+}
 
  
 

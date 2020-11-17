@@ -48,33 +48,50 @@
   <div [ngSwitch]="account">
     <div *ngSwitchCase="'profile'" class="profile-section">
       <ion-list>
-        <ion-item>
+        <!-- <ion-item>
           <ion-label floating>Name</ion-label>
-          <ion-input type="text" [(ngModel)]="strDataUserLogin"></ion-input>
+          <ion-input type="text" [(ngModel)]="strDataUserLogin" ></ion-input>
         </ion-item>
         <ion-item>
           <ion-label floating>Email</ion-label>
           <ion-input type="email" [(ngModel)]="strDataUserEmail"></ion-input>
         </ion-item>
 
-
         <ion-item>
           <ion-label floating>UserRegistered On</ion-label>
           <ion-input type="text" [(ngModel)]="strDataUserRegistered"></ion-input>
-        </ion-item>
+        </ion-item> -->
         <ion-item>
-          <ion-label floating>Phone</ion-label>
-          <ion-input type="text" value="+91 908 765 4321"></ion-input>
+          <ion-label floating>Address</ion-label>
+          <ion-input type="text" [(ngModel)]="strAddress"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label floating>Gender</ion-label>
-          <ion-input type="text" value="Male"></ion-input>
+          <ion-label floating>City</ion-label>
+          <ion-input type="text" [(ngModel)]="strCity"></ion-input>
         </ion-item>
-        <!-- <ion-item>
-          <ion-label floating>birthday</ion-label>
-          <ion-input type="text" value="23 Dec, 1990"></ion-input>
-        </ion-item> -->
+
+        <ion-item>
+          <ion-label floating>State</ion-label>
+          <ion-input type="text" [(ngModel)]="strState"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Postal Code</ion-label>
+          <ion-input type="number" [(ngModel)]="strPostalCode"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Phone</ion-label>
+          <ion-input type="number" [(ngModel)]="strPhone"></ion-input>
+        </ion-item>
+      
+
+        <ion-row>  
+          <ion-col class="signup-col">
+            <button ion-button class="submit-btn" full type="submit" style="text-transform: none;" class="bg-thime btn-round btn-text" (click)="loginBtnClick()">Update</button>
+
+          </ion-col>
+        </ion-row>
       </ion-list>
     </div>
 

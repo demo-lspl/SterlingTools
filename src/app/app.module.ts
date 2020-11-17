@@ -1,3 +1,4 @@
+import { ViewallPage } from './../pages/viewall/viewall';
 import { TestcartPage } from './../pages/testcart/testcart';
 import { PaymentpagePage } from './../pages/paymentpage/paymentpage';
 import { Test1Page } from './../pages/test1/test1';
@@ -24,7 +25,7 @@ import { VieworderdetailsPage } from './../pages/vieworderdetails/vieworderdetai
 import { VieworderPage } from './../pages/vieworder/vieworder';
 import { DemoPage } from './../pages/demo/demo';
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, Pipe } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
@@ -118,13 +119,15 @@ export function createTranslateLoader(http: HttpClient) {
     TestingPage,
     Test1Page,
     PaymentpagePage,
-    TestcartPage
+    TestcartPage,
+    ViewallPage,
+    
   ],
   imports: [  
    
     IonicStorageModule.forRoot(),
     RouterModule.forRoot([]),
-
+    
 
     Ng2SearchPipeModule,
     HttpClientModule,
@@ -186,7 +189,8 @@ export function createTranslateLoader(http: HttpClient) {
     TestingPage,
     Test1Page,
     PaymentpagePage,
-    TestcartPage
+    TestcartPage,
+    ViewallPage
   ],
   providers: [
     InAppBrowser,

@@ -105,6 +105,16 @@
       </ion-row>
    </ion-grid> --> 
   
+   
+   <ion-item>
+    <ion-label>SORT BY </ion-label>
+    <ion-select placeholder="Please select" value="Name" okText="Okay" cancelText="Dismiss" (ionChange)="sortDropDownValue(productCategoryGridList)">
+      <ion-option value="Name"  >Name</ion-option>
+      <!-- <ion-option value="Price">Price</ion-option> -->
+    
+    </ion-select>
+  </ion-item>
+   
    <ion-grid class="product-grid" >
     <ion-row class="rowgrid" text-center style="height: 300px;">
       <ion-col col-6
@@ -118,7 +128,7 @@
             >
               <!-- <img src="assets/imgs/productimage.jpg" style="width: 130px;float: left;" /> -->
 
-              <img  [src]="productCategoryGrid.thumbnail"  style="width:200px;height:80px ;">
+              <img  [src]="productCategoryGrid.thumbnail"  style="width:200px;height:120px ;">
 
             </div>
             <ion-icon name="md-heart" class="text-light icon"></ion-icon>

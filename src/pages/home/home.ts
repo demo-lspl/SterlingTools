@@ -1,10 +1,9 @@
-import { TestingPage } from './../testing/testing';
-import { DemoPage } from './../demo/demo';
+import { ViewallPage } from './../viewall/viewall';
 /*
     Dashboard Screen Lasting Erp 21/10/2020
 */
 
-
+import { DemoPage } from './../demo/demo';
 import { WishlistupdatedPage } from './../wishlistupdated/wishlistupdated';
 import { ProductcategorydetailPage } from './../productcategorydetail/productcategorydetail';
 import { FilterdataPage } from './../filterdata/filterdata';
@@ -16,10 +15,11 @@ import {NavController,ModalController,ToastController,LoadingController, Platfor
 import { ItemdetailPage } from "../itemdetail/itemdetail";
 import { HttpClient } from "@angular/common/http";
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import {  map} from 'rxjs/operators';
 
-  
+    
 @Component({  
-  selector: "page-home",         
+  selector: "page-home",           
   templateUrl: "home.html",
 })
 export class HomePage implements OnInit {
@@ -30,7 +30,7 @@ export class HomePage implements OnInit {
   accordionExpandedCategory = false; 
   @ViewChild("cc") cardContentVehicle: any;
   @ViewChild("cc1") cardContentCategory: any;  
-  @Input("title") title: string;
+  @Input("title") title: string;  
   @Input("title") Elem: string;
   strProductRegularPrice:string;
   strProductRegularPriceRevised: string;
@@ -45,7 +45,6 @@ export class HomePage implements OnInit {
   items: any;
   val;
   featuredProductsList: any = [];  
-  // featuredProductsList1: any = [];
   featuredCategoryList: any = [];  
   featuredProductCategoryList: any = [];
   productTitle:''
@@ -61,11 +60,17 @@ export class HomePage implements OnInit {
   public myimage = 'https://aws1.discourse-cdn.com/ionicframework/original/3X/c/f/cf7af661f0bae7cca915258f2b8d6b3937fccda4.png';
   strUserId:number | any;
   countClick: number = 0;
-  
-              
-                                   
-  
-
+  makeList: any = [];  
+  modelList: any = [];  
+  companyName: any;
+  strMakeListValue:string;
+  strModelListValue:string;
+  zone;
+  modeKeys:any=[];
+  httpClientFetch = [];
+  makeValue:string;
+  modelValue:string;
+  varoutput :any = [] ;
   
   constructor(
     public navCtrl: NavController,
@@ -75,21 +80,15 @@ export class HomePage implements OnInit {
     public httpClient: HttpClient,
     public loadingController: LoadingController,
     public rendererVehicle: Renderer,
-    public rendererCategories: Renderer,
+    public rendererCategories: Renderer,  
     public _elRef:ElementRef,
     public inAppBrowser: InAppBrowser,
     public platform: Platform,
     public app: App,
-
-    // public storage: Storage
   ) {
 
-
-    // this.storage.get('myStore').then((data) => {
-    //   this.items = data;
-    //   console.log(data);
-    // });
-  }
+    // this.onSelect(this.selectedCountry.id);
+  }   
 
 
   ngOnInit() {
@@ -98,8 +97,8 @@ export class HomePage implements OnInit {
       this.showToastOnWishlist();
     }
     else {
-      console.log('Clicked one');
-
+     // console.log('Clicked one');
+  
     }
      this.rendererVehicle.setElementStyle(this._elRef.nativeElement, "webkitTransition","max-height 500px, padding 500ms");
      this.rendererCategories.setElementStyle(this._elRef.nativeElement, "webkitTransition","max-height 500px, padding 1200ms");
@@ -108,6 +107,17 @@ export class HomePage implements OnInit {
      this.getAllFeaturedProductsCategories();
      this.getCategoriesApi();
      this.viewCartApi();
+      this.getMakeApi();
+     // this.getModelApi(this.makeValue);
+
+   // this.callMakeApi();
+     this.zone = {
+      kind: 'key2'
+    }
+    // this.modeKeys = [
+   
+
+   
 
      this.platform.registerBackButtonAction(() => {
       // Catches the active view
@@ -124,6 +134,22 @@ export class HomePage implements OnInit {
   });  
 
    }
+
+
+   hide(){
+    if(this.hideMe){
+      console.log('Current State' + this.hideMe);
+      this.hideMe=false;
+    }
+  
+    else {
+      console.log('Current State..' + this.hideMe);
+      this.hideMe=true;
+    }
+  
+    }
+
+  
 
    addEvent(){
   	if(this.myimage=='https://aws1.discourse-cdn.com/ionicframework/original/3X/c/f/cf7af661f0bae7cca915258f2b8d6b3937fccda4.png')
@@ -221,31 +247,21 @@ addToCart(id, name,image,description,regular_price) {
   wishlistPage() {
     this.navCtrl.push(WishlistupdatedPage);
   }
-
+  
  doRefresh(event) {  
     console.log('Begin async operation');
     this.getAllFeaturedProducts();
     this.getAllFeaturedProductsCategories();
     this.viewCartApi();
+    this.getMakeApi();
+    //this.getModelApi(this.makeValue);
     
     setTimeout(() => {
       console.log('Async operation has ended');
       event.complete();
     }, 500);
   }
-
- hide(){
-  if(this.hideMe){
-    console.log('Current State' + this.hideMe);
-    this.hideMe=false;
-  }
-
-  else {
-    console.log('Current State..' + this.hideMe);
-    this.hideMe=true;
-  }
-
-  }
+     
     
  toggleMenu() {
       console.log('toggleMenu called here');
@@ -261,15 +277,16 @@ addToCart(id, name,image,description,regular_price) {
       }
     }
 
- gridView() {
+ gridView() { 
     this.showLoadingControllerGridView();
     for (var i = 0; i < this.elements.length; i++) {
       this.elements[i].style.width = "50%";
-    }
+    } 
   }
 
   viewAllCategories() {
-    this.navCtrl.push(ViewallcategoriesPage);
+   // this.navCtrl.push(ViewallcategoriesPage);
+    this.navCtrl.push(ViewallPage);
   }
 
   productDetailPage(id, name,regular_price) {
@@ -284,16 +301,14 @@ addToCart(id, name,image,description,regular_price) {
     console.log('data added '+this.val);
   }
 
- 
-
-  productcategoryDetailPage(catId,name) {
+productcategoryDetailPage(catId,name) {
     this.navCtrl.push(ProductcategorydetailPage, {
       catId: catId,
       name:name
     });
   }
 
-  toggleAccordionVehicle() {
+toggleAccordionVehicle() {
     if (this.accordionExpandedVehicle) {
       this.rendererVehicle.setElementStyle(
         this.cardContentVehicle.nativeElement,
@@ -322,7 +337,7 @@ addToCart(id, name,image,description,regular_price) {
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
   }
 
-  toggleAccordionCategory() {  
+toggleAccordionCategory() {  
     if (this.accordionExpandedCategory) {
       this.rendererCategories.setElementStyle(
         this.cardContentCategory.nativeElement,
@@ -350,11 +365,8 @@ addToCart(id, name,image,description,regular_price) {
     this.accordionExpandedCategory = !this.accordionExpandedCategory;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
   }
-
-
-  
     
-  getAllFeaturedProducts() {
+getAllFeaturedProducts() {
     
     const service = this.apiProvider.getFeaturedProducts();
     service.subscribe((jsonResponse) => {
@@ -383,7 +395,7 @@ addToCart(id, name,image,description,regular_price) {
   
   }  
 
-  getAllFeaturedProductsCategories() {
+getAllFeaturedProductsCategories() {
     
     const service = this.apiProvider.getProductCategoriesGrid();
     service.subscribe((jsonResponse) => {
@@ -404,8 +416,8 @@ addToCart(id, name,image,description,regular_price) {
   }
 
 
-  getCategoriesApi(){
-    console.log('getProductCategoriesApi called    ');
+getCategoriesApi(){
+    // console.log('getProductCategoriesApi called    ');  
     const service = this.apiProvider.getProductCategories();
     service.subscribe((data) => {
         const resultado = data;
@@ -414,15 +426,81 @@ addToCart(id, name,image,description,regular_price) {
     });
   }
   
-    
-
+                     
  
+
+sortDropDownValue() {
+    console.log("Selected sortDropDownValue");
+    this.getCategoriesApi();
+    this.featuredProductCategoryList.sort(); 
+    var points = [5.0, 3.7, 1.0, 2.9, 3.4, 4.5];
+    var output :any  = [];
+    
+    for (let i = 0; i < points.length; i++) {
+      	points.sort(function (a, b) {
+		    return b - a
+	  });
+	  output += points[i] + "<br>";
+}
+    console.log(output);
+    console.log("Selected sortDropDownValue" + this.featuredProductCategoryList.sort());
+  }
+                  
+getMakeApi(){     
+    console.log('getMakeApi called    ');
+    const service = this.apiProvider.getMakeCategories();
+    service.subscribe((data) => {
+        const resultado = data;
+        this.makeList = resultado; 
+        this.strMakeListValue =  resultado;
+        console.log('MakeApi response   ' + resultado);
+        this.modeKeys =resultado;
+  
+      //  if(this.makeList){
+      //   this.getModelApi(this.makeValue)
+      //   console.log('MakeApi response success ' + this.makeList.length);
+      //   //console.log("Selected model api:  ", this.makeValue);
+      //  }
+      //  else {
+      //   console.log('getMakeApi issue ');
+      //  }
+     });
+  } 
+  
+makeDropDownValue(){
+  console.log("Selected make:  ", this.makeValue); 
+  }
+
+
+
+  // onSelect(make) {
+  //   this.modelList = this.apiProvider.getModelCategories(this.makeValue).filter((item) => item.make == make);
+  // }
+
+  modelDropDownValue(make) {
+    console.log("Selected model:  ", this.makeValue); 
+    this.modelList = this.apiProvider.getModelCategories(this.makeValue).filter((item) => item.make == make);
+  }
+
+  
+
+getModelApi(makeValue){
+    console.log('getModelApi called    ');
+    const service = this.apiProvider.getModelCategories(makeValue);
+    service.subscribe((data) => {
+        const resultado = data;
+        this.modelList = resultado; 
+       this.strModelListValue =  resultado;
+       console.log('getModelApi called tushar    ' + resultado);
+       console.log('getModelApi called tushar    ' + this.modelList);
+       console.log('getModelApi called tushar    ' + this.strModelListValue);
+       this.modeKeys = resultado;
+       console.log('modelkeys ' + this.modeKeys);
+    });
+  }
   
     
 addToWishList(id, name,image,description,regular_price) {
-
- 
-
   this.countClick++;
 
     if(this.countClick>1){
@@ -430,7 +508,7 @@ addToWishList(id, name,image,description,regular_price) {
       this.showToastOnWishlist();
     }
     else {
-      console.log('Clicked one');
+     // console.log('Clicked one');
       let products = [];
       if (localStorage.getItem('products')) {
         products = JSON.parse(localStorage.getItem('products')); // get product list 
@@ -450,19 +528,18 @@ addToWishList(id, name,image,description,regular_price) {
       }
     }
   
-
-    
+  
+     
  
 }
-
-  readMoreLocal(id, name,image,description,regular_price){
+readMoreLocal(id, name,image,description,regular_price){
   this.showToastOnPriceEmptyProducts();
 }
-      
+             
   
 async viewCartApi() {            
   try {
-    const service = this.apiProvider.getTest1();  
+    const service = this.apiProvider.getCartDetails();  
     service.subscribe(async (data) => {
       if (data) {
         const resultado = data;
@@ -632,5 +709,34 @@ async showToastOnWishlist()
  });
  toast.present();
 } 
-  
+    
+callMakeApi() {
+  //this.showMakeLoader();
+  // const service = this.apiProvider.getMakeCategories();
+  //   service.subscribe((data) => {
+  //       const resultado = data;
+  //       this.makeList = resultado; 
+  //      this.strMakeListValue =  resultado;
+  //      console.log('getMakeApi called    ' + resultado);
+  //      this.modeKeys =resultado;
+  //   });
+  // return this.httpClient.get('http://busybanda.com/sterling-tools/api/mmey_make_search').pipe(map((res: any) => this.httpClientFetch = res.result));
+
+  this.httpClient.get('http://busybanda.com/sterling-tools/api/mmey_make_search').subscribe((response) => {
+    const resultado = response;
+    this.makeList = resultado; 
+    this.modeKeys =resultado;
+});
+}  
+
+async showMakeLoader() {
+  const loading = await this.loadingController.create({
+    content: 'Please wait fetching Make!',
+    duration: 600,
+  });
+  await loading.present();
 }
+
+
+
+}   

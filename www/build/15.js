@@ -26,7 +26,7 @@ ProductCategoryDetailGridPageModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__product_category_detail_grid__["a" /* ProductCategoryDetailGridPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__product_category_detail_grid__["a" /* ProductCategoryDetailGridPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__product_category_detail_grid__["a" /* ProductCategoryDetailGridPage */]),
         ],
     })
 ], ProductCategoryDetailGridPageModule);

@@ -53,17 +53,17 @@ export class ProductcategorydetailPage implements OnInit{
       this.dynamicTermId = this.strId;  
    
       // console.log('Received productsList id ' + this.strId);
-  } 
-  
-  ionViewDidLoad() {
+  }   
+   
+  ionViewDidLoad() {  
     console.log('ionViewDidLoad ProductcategorydetailPage');
   }
-
-
+    
+ 
   searchPage() {
     // let modal = this.modalCtrl.create(SearchPage);
     // modal.present();
-  }
+  }  
     
   cartPage() {
     // let modal = this.modalCtrl.create(CartPage);
@@ -92,14 +92,14 @@ export class ProductcategorydetailPage implements OnInit{
   }
 
   addToCart(id,strProductAdded) {
-    // this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
-    //   this.obj = JSON.stringify(jsonResponse);
-    //   console.log("Sent productsList response " + this.obj);
-    //   console.log("Sent productsList id " + id);
-    //   this.showToastOnAddProductSingle(strProductAdded);
-    // });
+    this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
+      this.obj = JSON.stringify(jsonResponse);
+      console.log("Sent productsList response " + this.obj);
+      console.log("Sent productsList id " + id);
+      this.showToastOnAddProductSingle(strProductAdded);
+    });
 
-    this.showToastOnAddProductSingle(strProductAdded);
+    // this.showToastOnAddProductSingle(strProductAdded);
 }
 
   ngOnInit() {
@@ -114,12 +114,12 @@ export class ProductcategorydetailPage implements OnInit{
               this.navCtrl.setRoot(ProductcategoryPage);
           } else {
           }
-      }
+      }  
   }); 
     this.showLoadingControllerLaunch();
     this.callProductCategoryDetail()
   } 
-
+  
   callProductCategoryDetail() {
     this.httpClient.get('http://busybanda.com/sterling-tools/api/get_category_by_id?' +  'id=' +this.dynamicTermId)
     .subscribe((jsonResponse) => {
@@ -180,17 +180,17 @@ export class ProductcategorydetailPage implements OnInit{
       message: 'In Process',
       duration: 1500,
       position: "bottom",
-    });   
+    });     
     toast.present();  
   }
-
+          
   wishlistPage() {
     this.navCtrl.push(WishlistupdatedPage); 
   }
 
   async viewCartApi() {            
     try {
-      const service = this.apiProvider.getTest1();  
+      const service = this.apiProvider.getCartDetails();  
       service.subscribe(async (data) => {
         if (data) {
           const resultado = data;
@@ -214,6 +214,37 @@ export class ProductcategorydetailPage implements OnInit{
       });
     } catch (error) {}
   }
+
+  sortDropDownValue() {
+    console.log("Selected sortDropDownValue");
+    this.showToastOnSortingCategory();
+    this.productCategoryInformation.sort((a, b) => (a.name > b.name) ? 1 : -1)
+    console.log('Sorted:   ' + this.productCategoryInformation);
+ 
+    var points = [5.0, 3.7, 1.0, 2.9, 3.4, 4.5];
+    var output :any  = [];
+    for (let i = 0; i < points.length; i++) {
+      	points.sort(function (a, b) {
+		    return b - a   
+	  });
+	  output += points[i] + "<br>";
+}
+    console.log(output);
+  }
+  
+
+  showToastOnSortingCategory() {
+    let loading = this.loadingController.create({
+      content: 'Please wait...'
+    });
+  
+    loading.present();
+    
+    setTimeout(() => {
+      loading.dismiss();
+    }, 700)
+
+}
 
 
 

@@ -27,6 +27,8 @@
 
 <ion-content >
 
+ 
+
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="chevron-down-circle-outline"
@@ -53,10 +55,16 @@
 
   <ng-template #other_content>
 
-  
-  
+   
+    <ion-item>
+      <ion-label>SORT BY </ion-label>
+      <ion-select placeholder="Please select" value="Name" okText="Okay" cancelText="Dismiss" (ionChange)="sortDropDownValue(productCategoryInformation)">
+        <ion-option value="Name"  >Name</ion-option>
+      
+      </ion-select>
+    </ion-item>
     
-    <ion-grid class="product-grid">
+    <ion-grid class="product-grid" >
       <ion-row class="rowgrid" text-center>
         <ion-col col-6
           class="columngrid"
@@ -79,21 +87,15 @@
 
            
 
-              <ion-item >
+              <div >
                 <h5 style="font-size: 11px;text-align: -webkit-center;"> {{productCategory.name}}</h5> 
-              </ion-item>
+              </div>
+              
   
               <div>
-                <div *ngIf="productCategory.regular_price">     <!--If "product" exists-->
-                  <h5 style="font-size: 12px;text-align: center;"  > <span class="priceicon">Price : </span>  <span class="priceicon">$</span> {{productCategory.regular_price}} </h5>  
-
-                  <!-- <h5 style="font-size: 12px;text-align: center;color: red;"  > <span class="priceicon">Price : </span> {{productCategory.regular_price}}  <span class="priceicon">$</span></h5>   -->
-                  <!-- <div class="rating" style="text-align: -webkit-center;margin-top: 8px;">
-                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                  </div> -->
-
-               <h5 style="font-size: 12px;text-align: center;color: red;"  > <span class="priceicon">Price : </span> {{productCategory.name}}  <span class="priceicon">$</span></h5>   
-
+                <div *ngIf="productCategory.regular_price">    
+                  <h5 style="font-size: 11px;text-align: center;"  > <span class="priceicon">Price : </span>  <span class="priceicon">$</span> {{productCategory.regular_price}} </h5>  
+                  <h5 style="font-size: 11px;text-align: center;color: black;"  >Make :{{strProductMake}}  </h5>   
       
                   <div class="rateing">
                     <div class="card-btn">
@@ -104,7 +106,7 @@
                           class="bg-thime btn-round btn-text"
                           style="margin-top: 3px; width: 125px;text-align: center;"
                           (click)="addToCart(productCategory.id,productCategory.name)">
-                          Read More
+                          Add To Cart
                         </button>
                       </p>
                     </div>
@@ -113,10 +115,10 @@
             
                 <div *ngIf="!productCategory.regular_price">     <!--If "product" not exists-->
                   <!-- <h5 style="font-size: 12px;text-align: center"  >  <span class="priceicon">$</span>Price Not Available</h5>   -->
-                  <h5 style="font-size: 12px;text-align: center"> Price Not Available</h5>  
+                  <h5 style="font-size: 11px;text-align: center;margin-top: 13px;"> Price Not Available</h5>  
                   <div class="rating" style="text-align: -webkit-center;margin-top: 11px;">
-                    <!-- <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span> -->
-                    <h5 style="font-size: 12px;text-align: center;color: black;"  >Make :{{strProductMake}}  </h5>   
+                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                    <!-- <h5 style="font-size: 12px;text-align: center;color: black;"  >Make :{{strProductMake}}  </h5>    -->
 
                   </div>
                   <div class="rateing">
@@ -149,6 +151,8 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+
+  
 
     
   </ng-template>

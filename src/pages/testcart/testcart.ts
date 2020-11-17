@@ -49,7 +49,7 @@ export class TestcartPage implements OnInit{
   async viewCartApi() {          
     this.presentLoading();
     try {
-      const service = this.apiProvider.getTest1();  
+      const service = this.apiProvider.getCartDetails();  
       service.subscribe(async (data) => {
         if (data) {
           const resultado = data;

@@ -5,268 +5,113 @@
     </button>
     <ion-title text-uppercase>AUTO PARTS
       <span float-right>
-        <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>
-        <ion-icon class="icon" (click)="cartPage()"><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>
+        <ion-icon class="icon" ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>
+        <ion-icon class="icon" ><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>
       </span>
     </ion-title>
-    <!-- <ion-title>{{'AUTO PARTS' | translate}}</ion-title>
-    <span float-right>
-      <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="30px" height="30px"></ion-icon>
-      <ion-icon class="icon" (click)="cartPage()"><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>
-    </span> -->
   </ion-navbar>
-  <ion-searchbar  placeholder="Search" (click)="searchPage()"></ion-searchbar>
-  <ion-list>
-    <ion-item   >
-      
-    </ion-item>    
-  </ion-list>  
-  <div class="tab-row">
-    <ion-row>
-      <ion-col (click)="categoryPage()">
-        <div class="img-box" text-center>
-          <img src="assets/imgs/first.png">
-          <small class="text-white">LORUM</small>
-        </div>
-      </ion-col>
-      <ion-col (click)="categoryPage()">
-        <div class="img-box" text-center>
-          <img src="assets/imgs/second.png">
-          <small class="text-white">LORUM</small>
-        </div>
-      </ion-col>
-      <ion-col (click)="categoryPage()">
-        <div class="img-box" text-center>
-          <img src="assets/imgs/third.png">
-          <small class="text-white">LORUM</small>
-        </div>
-      </ion-col>
-      <ion-col (click)="categoryPage()">
-        <div class="img-box" text-center>
-          <img src="assets/imgs/fourth.png">
-          <small class="text-white">LORUM</small>
-        </div>
-      </ion-col>
 
-      <ion-col (click)="categoryPage()">  
-        <div class="img-box" text-center>
-          <img src="assets/imgs/fifth.png">
-          <small class="text-white">LORUM</small>
-        </div>
-      </ion-col>
-      <!-- <ion-col (click)="categoryPage()">
-        <div class="img-box" text-center>
-          <img src="assets/imgs/more.png">
-          <small class="text-white">More</small>
-        </div>
-      </ion-col> -->
-    </ion-row>
-  </div>
 </ion-header>
 
 
 <ion-content class="bg-light">
-  <ion-slides pager>
-    <ion-slide *ngFor="let slide of slides">
-      <img [src]="slide.image" class="slide-image" />
-      <div class="banner-text">
-        <p [innerHTML]="slide.description"></p>
-        <small [innerHTML]="slide.smalltext"></small>
-        <h2 class="slide-title" [innerHTML]="slide.title"></h2>
-      </div>
-    </ion-slide>
-  </ion-slides>
+  <div class="col-md-4 col-xs-12">
+
+    <!-- <div >
+      <label>Select Country</label>
+      <select  (change)="onChangeCountry($event.target.value)">
+        <option *ngFor="let country of countryInfo; let i = index" value="{{i}}">{{country.CountryName}}</option>
+      </select>  
+    </div>
+
+    <div >
+        <label>Select State</label>
+        <select  (change)="onChangeState($event.target.value)">
+          <option *ngIf="stateInfo === ''" value="-1">--Select State--</option>
+          <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">{{state.StateName}}</option>
+        </select>  
+    </div>
+
+    <div >
+      <label>Select City</label>
+      <select >
+          <option *ngIf="cityInfo == ''" value="-1">--Select City--</option>
+        <option *ngFor="let city of cityInfo; let k = index" value="{{k}}">{{city}}</option>
+      </select>  
+  </div> -->
+
+
+
+  <div class="size" style="justify-content: center">
+    <ion-item>
+      <ion-label>Make</ion-label>
+      <ion-select
+        
+        value="sortpopular"
+        okText="Ok"
+        cancelText="Cancel"
+        (ionChange)="makeDropDownValue(makeValue)"
+        [(ngModel)]="makeValue"
+        >
+        <ion-option *ngFor="let key of makeList" >{{key}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </div>
+
+  <div class="size" style="justify-content: center">
+    <ion-item>
+      <ion-label>Model</ion-label>
+      <ion-select
+        value="sortpopular"
+        okText="Ok"
+        cancelText="Cancel"
+        (ionChange)="makeDropDownValue(modelValue)"
+        [(ngModel)]="modelValue"
+    >
+        <ion-option *ngFor="let key of modelList" >{{strMakeListSelectedValue}}</ion-option>
+      </ion-select>
+
+      
+    </ion-item>
+  </div>
+
+ 
+
+
+  <div class="size" style="justify-content: center">
+    <ion-item>
+      <ion-label>Engine</ion-label>
+      <ion-select
+        value="sortpopular"
+        okText="Ok"
+        cancelText="Cancel"
+        (ionChange)="makeDropDownValue(modelValue)"
+        [(ngModel)]="engineValue">
+        <ion-option *ngFor="let key of engineList" >{{strMakeListSelectedValue}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </div>
+  
 
   
 
-  <p> Featured Item
-    <small class="bg-thime btn-round text-white" float-right>View All</small>
-  </p>
-  <ion-row>
-    <ion-col>
-      <ion-card >
-        <ion-card-header>
-          <div class="img-box" (click)="itemdetailPage()">
-              <img src="assets/imgs/productimage.jpg" style="width: 130px;">
-          </div>
-          <ion-icon name="md-heart" class="text-light icon"></ion-icon>
-        </ion-card-header>
-        <ion-card-content (click)="itemdetailPage()" >
-          <h5>hi</h5>
-          <div class="rateing">
-            <div class="card-btn">
-              <p class="" float-left>
-                <span class="text-white bg-green small-text">4.2 <ion-icon name="md-star"></ion-icon></span>
-                <span class="text-light bold"> (125)</span>
-              </p>
-              <div style="display: flex;" float-right>
-                <div class="price text-light mr-5">
-                  <img src="assets/imgs/rupee-light.png" class="rupee-icon">500
-                </div>
-                <div class="price text-sky">
-                  <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300
-                </div>
-              </div>
-            </div>
-          </div>
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-    <ion-col>
-      <ion-card>
-        <ion-card-header>
-            <div class="img-box" (click)="itemdetailPage()">
-                <img src="assets/imgs/productimagenew.jpg" style="width: 130px;">
-            </div>
-            <ion-icon name="md-heart" class="text-light icon"></ion-icon>
-        </ion-card-header>
-        <ion-card-content (click)="itemdetailPage()">
-            <h5>Unique For Men Black Formal Slim Fit Shirt</h5>
-            <div class="rateing">
-                <div class="card-btn">
-                    <p class="" float-left>
-                        <span class="text-white bg-green small-text">4.2 <ion-icon name="md-star"></ion-icon></span>
-                        <span class="text-light bold"> (125)</span>
-                    </p>
-                    <div style="display: flex;" float-right>
-                        <div class="price text-light mr-5">
-                            <img src="assets/imgs/rupee-light.png" class="rupee-icon">500
-                        </div>
-                        <div class="price text-sky">
-                            <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </ion-card-content>
-      </ion-card>
-    </ion-col>  
-  </ion-row>  
+    
+  <div class="size" style="justify-content: center">
+    <ion-item>
+      <ion-label>Year</ion-label>
+      <ion-select
+        value="sortpopular"
+        okText="Ok"
+        cancelText="Cancel"
+        [(ngModel)]="yearValue"
+        (ionChange)="makeDropDownValue(yearValue)">
+        <ion-option *ngFor="let key of yearList" >{{strMakeListSelectedValue}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </div>
 
- <ion-row>   
-    <ion-col>
-      <ion-card>
-          <ion-card-header>
-              <div class="img-box" (click)="itemdetailPage()">
-                  <img src="assets/imgs/productimage.jpg" style="width: 130px;">
-              </div>
-              <ion-icon name="md-heart" class="text-light icon"></ion-icon>
-          </ion-card-header>
-          <ion-card-content (click)="itemdetailPage()">
-              <h5>Unique For Men Black Formal Slim Fit Shirt</h5>
-              <div class="rateing">
-                  <div class="card-btn">
-                      <p class="" float-left>
-                          <span class="text-white bg-green small-text">4.2 <ion-icon name="md-star"></ion-icon></span>
-                          <span class="text-light bold"> (125)</span>
-                      </p>
-                      <div style="display: flex;" float-right>
-                          <div class="price text-light mr-5">
-                              <img src="assets/imgs/rupee-light.png" class="rupee-icon">500
-                          </div>
-                          <div class="price text-sky">
-                              <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </ion-card-content>
-      </ion-card>
-    </ion-col>
-    <ion-col>
-      <ion-card>
-          <ion-card-header>
-              <div class="img-box" (click)="itemdetailPage()">
-                  <img src="assets/imgs/productimagenew.jpg" style="width: 130px;">
-              </div>
-              <ion-icon name="md-heart" class="text-light icon"></ion-icon>
-          </ion-card-header>
-          <ion-card-content (click)="itemdetailPage()">
-              <h5>Unique For Men Black Formal Slim Fit Shirt</h5>
-              <div class="rateing">
-                  <div class="card-btn">
-                      <p class="" float-left>
-                          <span class="text-white bg-green small-text">4.2 <ion-icon name="md-star"></ion-icon></span>
-                          <span class="text-light bold"> (125)</span>
-                      </p>
-                      <div style="display: flex;" float-right>
-                          <div class="price text-light mr-5">
-                              <img src="assets/imgs/rupee-light.png" class="rupee-icon">500
-                          </div>
-                          <div class="price text-sky">
-                              <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row> 
 
-  <ion-row>   
-    <ion-col>
-      <ion-card >
-          <ion-card-header >
-              <div class="img-box" (click)="itemdetailPage()">
-                  <img src="assets/imgs/productimage.jpg" style="width: 130px;">
-              </div>
-              <ion-icon name="md-heart" class="text-light icon"></ion-icon>
-          </ion-card-header>
-          <ion-card-content (click)="itemdetailPage()">
-            <ion-item >
-              <ion-label>Hiii value</ion-label>
-            </ion-item>  
-              <h5>Unique For Men Black Formal Slim Fit Shirt</h5>
-              <div class="rateing">
-                  <div class="card-btn">
-                      <p class="" float-left>
-                          <span class="text-white bg-green small-text">4.2 <ion-icon name="md-star"></ion-icon></span>
-                          <span class="text-light bold"> (125)</span>
-                      </p>
-                      <div style="display: flex;" float-right>
-                          <div class="price text-light mr-5">
-                              <img src="assets/imgs/rupee-light.png" class="rupee-icon">500
-                          </div>
-                          <div class="price text-sky">
-                              <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </ion-card-content>
-      </ion-card>
-    </ion-col>
-    <ion-col>
-      <ion-card>
-          <ion-card-header>
-              <div class="img-box" (click)="itemdetailPage()">
-                  <img src="assets/imgs/productimagenew.jpg" style="width: 130px;">
-              </div>
-              <ion-icon name="md-heart" class="text-light icon"></ion-icon>
-          </ion-card-header>
-          <ion-card-content (click)="itemdetailPage()">
-              <h5>Unique For Men Black Formal Slim Fit Shirt.</h5>
-              <div class="rateing">
-                  <div class="card-btn">
-                      <p class="" float-left>
-                          <span class="text-white bg-green small-text">4.2 <ion-icon name="md-star"></ion-icon></span>
-                          <span class="text-light bold"> (125)</span>
-                      </p>
-                      <div style="display: flex;" float-right>
-                          <div class="price text-light mr-5">
-                              <img src="assets/imgs/rupee-light.png" class="rupee-icon">500
-                          </div>
-                          <div class="price text-sky">
-                              <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row> 
+</div>   
  
   
 </ion-content>

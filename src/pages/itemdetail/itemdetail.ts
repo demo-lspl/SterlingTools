@@ -284,7 +284,7 @@ export class ItemdetailPage implements OnInit {
 
   async viewCartApi() {            
     try {
-      const service = this.apiProvider.getTest1();  
+      const service = this.apiProvider.getCartDetails();  
       service.subscribe(async (data) => {
         if (data) {
           const resultado = data;

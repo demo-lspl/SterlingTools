@@ -2,6 +2,8 @@
  *  Created By Lasting Erp
  */
 
+
+import { ViewcartPage } from './../viewcart/viewcart';
 import { HomePage } from "./../home/home";
 import { Storage } from "@ionic/storage";
 import { PaymentPage } from "./../payment/payment";
@@ -37,7 +39,7 @@ export class TestingPage implements OnInit {
   town= '';
   region= '';
   postcode= '';
-  
+             
      
   constructor(  
     public apiService: ApiProvider,
@@ -68,6 +70,10 @@ export class TestingPage implements OnInit {
       }
   });
   }  
+
+  cartPage() {
+    this.navCtrl.push(ViewcartPage);
+  }
 
   checkoutBtnClick(){
 

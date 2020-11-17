@@ -1,3 +1,4 @@
+import { ApiProvider } from './../providers/api/api';
 import { TestcartPage } from './../pages/testcart/testcart';
 import { Test1Page } from './../pages/test1/test1';
 import { TestingPage } from './../pages/testing/testing';
@@ -15,7 +16,7 @@ import { Home1Page } from './../pages/home1/home1';
 import { ProductcategoryPage } from './../pages/productcategory/productcategory';
 import { VieworderPage } from './../pages/vieworder/vieworder';
 import { DemoPage } from './../pages/demo/demo';
-import { Component, ViewChild,Inject } from '@angular/core';
+import { Component, ViewChild, Inject, OnInit } from '@angular/core';
 import { Nav, Platform, ToastController, LoadingController } from 'ionic-angular';
 
 import { HomePage } from '../pages/home/home';
@@ -23,7 +24,7 @@ import { CategoryPage } from '../pages/category/category';
 import { WishlistPage } from '../pages/wishlist/wishlist';
 import { My_accountPage } from '../pages/my_account/my_account';
 import { Myorder_1Page } from '../pages/myorder_1/myorder_1';
-import { Myorder_2Page } from '../pages/myorder_2/myorder_2';
+import { Myorder_2Page } from '../pages/myorder_2/myorder_2';  
 import { HelpPage } from '../pages/help/help';
 import { CartPage } from '../pages/cart/cart';
 import { ReviewPage } from '../pages/review/review'; 
@@ -36,51 +37,103 @@ import { WishlistupdatedPage } from '../pages/wishlistupdated/wishlistupdated';
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class MyApp implements OnInit{
   @ViewChild(Nav) nav: Nav;
 
  // rootPage: any = CreateaccountPage;
   // rootPage: any = DemoPage;
   rootPage: any = HomePage;
+  hideMe:boolean = false;
+  isSignedIn:boolean = false;
+  viewCartList:any = [];
+  obj;
+  checkStatus: boolean;
+  
     
 
-
+  
   constructor(@Inject(APP_CONFIG) private config: AppConfig, private globalization: Globalization,
     public platform: Platform, public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     public translate:TranslateService,
     public toastController: ToastController,
-    public loadingController: LoadingController) {
+    public loadingController: LoadingController,
+    public apiProvider: ApiProvider) {
     this.initializeApp();
+    this.checkStatus = this.localStorageItem();
   }
 
+
+  ngOnInit() {
+    
+  }
+ 
  
 
-  // initializeApp() {
-  //   this.platform.ready().then(() => {
-  //     this.statusBar.styleLightContent();
-  //     this.splashScreen.hide();
-      
-  //   });
-  // } 
+   
+  public localStorageItem(): boolean {
+    if (localStorage.getItem("isSigned") === "true") {
+      console.log('isSigned true');
+      return true
+    } else {
+      console.log('isSigned false');
+      return false;
+    };
+  }
 
 
   initializeApp() {
-    // if (localStorage.getItem('isSigned') === 'true') {
-    //   this.router.navigate(['/home1']);
-    // } else {
-    //   //this.showToastOnAlreadyLoggedIn();
-    //   this.router.navigate(['/home']);
-    // }
-    console.log('initalizeapp component ts called...');
+    this.checkLocalStorage();
+    this.viewCartApi();
+   // console.log('initalizeapp component ts called...');
     this.platform.ready().then(() => {
      // this.splashScreen.hide();
-     
-    });
+    });  
+
+    // if(this.hideMe){
+    //   if (localStorage.getItem("Userid value") === null) {
+    //     console.log('Current State' + this.hideMe + 'login');
+    //     this.hideMe=true; 
+    //   }  
+    // }
+  
+    // else {
+    //   console.log('Current State..' + this.hideMe  + 'not login');
+    //   this.hideMe=false;
+    // }
+  
+  
+    // if(this.isSignedIn){
+    //   // if (localStorage.getItem("Userid value") === null) {
+    //   //   this.isSignedIn=false;
+    //   //   console.log('Current State..' +  'not login');
+    //   // }  
+    //   console.log('Current State..' +  'not login');          
+    
+    // }
+    // else {
+    //   this.isSignedIn=true;
+    //   console.log('Current State' +  + 'login');
+    // }
+  
   }
+
+
+
+
+  // checkAccountStatus(){
+  //   if (localStorage.getItem("Userid value") === null) {
+     
+  //   }
+  // }
+
+
+
+
+
+
   selectItem(menuItem: any) {
     console.log(menuItem);
-    
   } 
 
 
@@ -137,14 +190,32 @@ export class MyApp {
   }
   
   helpPage() {
-    this.nav.setRoot(HelpPage);
+    this.nav.setRoot(HelpPage); 
   }
-  
-  phonenumberPage() {
+    
+  phonenumberPage() {     
     this.showLoaderOnSigningOut();
     localStorage.clear();
    this.nav.setRoot(DemoPage);
+  }  
+   
+
+  loginPage() {  
+    
+   this.nav.setRoot(DemoPage);
   }
+  
+  checkLocalStorage(){
+    if (localStorage.getItem("Userid value") === null) {
+      console.log('User not signed in');
+    }
+
+    else {
+      console.log('User signed in');
+    }
+  }
+
+
   
   testPageTushar() {
   // this.nav.setRoot(TestingPage);
@@ -178,6 +249,46 @@ export class MyApp {
     setTimeout(() => {
       loading.dismiss();
     }, 400);
+  } 
+
+  async viewCartApi() {            
+    try {
+      const service = this.apiProvider.getCartDetails();  
+      service.subscribe(async (data) => {
+        if (data) {
+          const resultado = data;
+          this.viewCartList = resultado;     
+          this.obj = JSON.stringify(data);
+          console.log('All Json Response' + this.obj);
+           
+    
+           console.log('All Json Response' + resultado);
+          // console.log('Length of cart ' + this.viewCartList.length);
+  
+            
+            
+       
+           if(this.viewCartList.length>=1) {
+            console.log('Cart Filled ');
+            
+           }
+  
+           else{
+            console.log('Cart Empty ');
+          
+  
+           }
+  
+  
+  
+         
+                                
+          
+        } else {
+        }
+  
+      });
+    } catch (error) {}
   }
 
 }

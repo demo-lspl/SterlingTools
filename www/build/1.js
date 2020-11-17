@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 756:
+/***/ 757:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26,7 +26,7 @@ LoginPageModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */]),
         ],
     })
 ], LoginPageModule);
@@ -72,7 +72,7 @@ LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-login',template:/*ion-inline-start:"D:\Visual Studio Apps\mobimall-ui-IONIC Source code\mobimall-ui\src\pages\login\login.html"*/'<ion-header>\n  <ion-img class="logo-img"\n  style="align-items: center;"\n  src="assets/sterlinglogo.png"\n></ion-img>\n</ion-header>\n\n<!-- <ion-content padding>\n  <div class="form" padding-left padding-right>\n    <p text-center padding-bottom margin-bottom>{{"sign_up_label" | translate}}</p>\n    <ion-list>\n      <ion-item>\n        <ion-label>{{"phone" | translate}}</ion-label>\n        <ion-input type="text" text-right value="+91 903 335 6708"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label>{{"full_name" | translate}}</ion-label>\n        <ion-input type="text" text-right value="Jhon Smith"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label>{{"email" | translate}}</ion-label>\n        <ion-input type="text" text-right value="jhonsmith8994@gmail.com"></ion-input>\n      </ion-item>\n      <div class="d-flex">\n        <ion-item>\n          <ion-label>{{"login_box2" | translate}}</ion-label>\n          <ion-input type="text" text-right value="******"></ion-input>\n        </ion-item>\n        <ion-icon name="ios-eye-outline" class="text-light eye-icon"></ion-icon>\n      </div>\n    </ion-list>\n    <button ion-button full class="bg-thime btn-round btn-text" (click)="homePage()">{{"continue" | translate}}</button>\n    <p text-center>\n      <small>\n        {{"tnc_prelabel" | translate}} \n        <span class="text-sky"> {{"tnc" | translate}} </span>\n      </small>\n    </p>\n  </div>\n</ion-content> -->\n'/*ion-inline-end:"D:\Visual Studio Apps\mobimall-ui-IONIC Source code\mobimall-ui\src\pages\login\login.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]])
 ], LoginPage);
 
 //# sourceMappingURL=login.js.map

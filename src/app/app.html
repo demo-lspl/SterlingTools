@@ -109,7 +109,7 @@
         </button> -->  
 
 
-        <button ion-item menuClose (click)="myorder_2Page()">
+        <button ion-item menuClose (click)="myorder_2Page()" *ngIf="checkStatus">
           <img src="assets/imgs/ic_my_cart.png " />
           {{"View Orders" | translate}}
         </button>
@@ -126,7 +126,7 @@
           <img src="assets/imgs/ic_my_wishlist.png " />
           {{"My wishlist" | translate}}
         </button>
-        <button ion-item menuClose (click)="my_accountPage()">
+        <button ion-item menuClose (click)="my_accountPage()" *ngIf="checkStatus">
           <img src="assets/imgs/ic_my_account.png " />
           My Account
         </button>
@@ -144,15 +144,48 @@
           <img src="assets/imgs/ic_logout.png " />
           Terms & Conditions
         </button>
-        <button ion-item menuClose (click)="phonenumberPage()">
-          <img src="assets/imgs/ic_logout.png " />
-          Logout
-        </button>
+       
+      
+          <button ion-item menuClose     *ngIf="checkStatus"  (click)="phonenumberPage()" >
+            <img src="assets/imgs/ic_logout.png " />
+            Logout
+          </button>
 
-        <!-- <button ion-item menuClose (click)="testPageTushar()">
-          <img src="assets/imgs/ic_logout.png " />
-          Test
-        </button> -->
+          <button ion-item menuClose     *ngIf="!checkStatus"  (click)="phonenumberPage()" >
+            <img src="assets/imgs/ic_logout.png " />
+            Login
+          </button>
+
+          <button ion-item menuClose       (click)="testPage()" >
+            <img src="assets/imgs/ic_logout.png " />
+            Test
+          </button>
+
+
+       
+
+
+
+
+
+        <!-- <ng-template #templateName>
+          Logout!!
+        </ng-template> -->
+
+
+        
+        <!-- if (localStorage.getItem("Userid value") === null) { -->
+     
+
+
+        <!-- <div *ngIf="checkAccountStatus">
+          It's Done!
+        </div>
+    
+       
+        <div *ngIf="!checkAccountStatus">
+          It's Not Done!
+        </div> -->
         
           
       </ion-list>

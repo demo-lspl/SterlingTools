@@ -1,4 +1,6 @@
-
+/**
+ *  Created By Lasting Erp
+ */
 
 
 
@@ -50,13 +52,10 @@ export class ViewcartPage implements OnInit{
   numberResult: number ;  
   numberresult:any;
   viewCartList: any = [];
-  counterCurrent:any;
   productsLocalCart :any = [];
   cart: any = [];
-  item_qty:number;
   itemsInCart: Object[] = [];
   id;
-  productQuantityTushar:number;   
   productsListInformation: any = [];
   dynamicId:string;
   strProductName:string;
@@ -73,12 +72,10 @@ export class ViewcartPage implements OnInit{
   strDynamicId:number | any ;
   strDynamicId1:number;
   strDynamicProductQuantity:number ;
-  strDynamicProductQuantity1: string = '';
   total1 : number;
   strQuantityUpdated:number;
   varNumber: -1;
   sum = 0;
-  strDynamicProductQuantityTushar:number;
   upperNames = [];
   upperCaseName: string;
   elements1 = document.getElementsByClassName("value") as HTMLCollectionOf<HTMLElement>;
@@ -106,17 +103,18 @@ export class ViewcartPage implements OnInit{
 
 
    
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public httpClient: HttpClient,
-    public loadingController: LoadingController,
-    public alertController: AlertController,
-    public toastController: ToastController,
-    public renderer: Renderer,
-    public apiProvider: ApiProvider,
-    public storage: Storage,
-    public platform: Platform,
-    public app: App) {    
-  }       
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public httpClient: HttpClient,
+              public loadingController: LoadingController,
+              public alertController: AlertController,
+              public toastController: ToastController,
+              public renderer: Renderer,
+              public apiProvider: ApiProvider,
+              public storage: Storage,
+              public platform: Platform,
+              public app: App) {    
+      }       
                 
   ngOnInit(){    
     this.buttonDisabled = true;   
@@ -139,7 +137,7 @@ export class ViewcartPage implements OnInit{
 
     else {  
       console.log('****** empty' + localStorage.getItem('products'));
-      this.strDataLocal = 'Cart is Empty.Please add items!';
+      // this.strDataLocal = 'Cart is Empty.Please add items!';
       //this.showToastOnEmptyCart();
     }
    
@@ -263,39 +261,10 @@ export class ViewcartPage implements OnInit{
   }
     
  
+
  
 
-  removeProductServer(product_id){    
-
-  //   const postParams = {product_id: product_id};
-  //   this.httpClient.post('http://busybanda.com/sterling-tools/api/remove_cart_item?', JSON.stringify(postParams)).subscribe(async (response: Response) => {
-  //     this.obj = JSON.stringify(response); 
-  //     console.log('Data' + this.obj);
-  //     this.showToastOnDeletingCart();
-  //     this.viewCartApi();
-  // });
-
-     //  this.showCartRemovalAlert1(product_id);
-      this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?'+'product_id='+ product_id).subscribe((jsonResponse) => {
-        this.obj = JSON.stringify(jsonResponse);
-        console.log('Data' + this.obj);
-        this.showToastOnDeletingCart();
-        this.viewCartApi();
-    });
-//     var myHeaders = new Headers();
-// myHeaders.append("Cookie", "wordpress_logged_in_66e0d731c7e497fda9051521dcb76862=wholeSale_user%7C1606220071%7Ct0WSLY3SVfJul0TkKibGMFAw460kawgLfU2aFvSNuav%7C05fcc3581c326b8157dcbb0d9fb0d5230b1e43e18c35d3d5fe535375849a5815; PHPSESSID=cec73fae9cec5a5ae0186876e8e52fe5");
-
-// var requestOptions = {  
-//   method: 'POST',
-//   headers: myHeaders,   
-//   redirect: 'follow'
-// };
-
-// fetch("http://busybanda.com/sterling-tools/api/remove_cart_item?product_id=161558", requestOptions)
-//   .then(response => response.text())
-//   .then(result => console.log(result))
-//   .catch(error => console.log('error', error));
-  }
+ 
 
     
            
@@ -470,13 +439,6 @@ console.log('testTushar incrementValue odd ' + this.testTushar);
   }
 }
 
-
-
-
-
-  
-
-
 // incrementValue(index: number) {  
 //   if(this.productsLocalCart[index].ProductId === this.eventCartNumber) {
 //     console.log('success even');
@@ -551,72 +513,55 @@ else {
   } 
 }  
    
+  /*
+      Update Shopping Cart button
+  */               
 updateShoppingCart(){
-
-  // elValue are the property values
-// for (let elValue of this.viewCartList) {
-//   console.log(elValue.product_id);
-
-//   this.strDynamicId1 += elValue.product_id;
-// }
-       
-          
-// for (leti = 0; i <= (n-1); i++) {
-//   var list = names[i];
-//   var myList = document.getElementById("list");
-//   myList.innerHTML += "<li class='list-group-item' id='listItem'>"+ list + "</li>" + "<br />";
-// }
-
-  // const ele = document.getElementById("searchTxt") as HTMLInputElement;
-  // ele.checked = false;
-  // console.log("Sent productsList response " + ele);
-  // this.valueQuantity1 = [{}];  
-  // console.log('Increased Quantity even ' +  this.viewCartList[index].quantity );
-  // this.testTushar = this.viewCartList[this.index].quantity;
-
- // this.testTushar =  this.viewCartList.quantity;
-  console.log('Updated  Product Quantity ' +  this.testTushar);
+   console.log('Updated  Product Quantity ' +  this.testTushar);
    console.log('Updated  Product Id ' +  this.strDynamicId);
-
-  
    this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + this.strTestProductId+ '&quantity=' + this.testTushar).subscribe((jsonResponse) => {
     this.obj = JSON.stringify(jsonResponse);
-   // console.log("Sent productsList response " + this.obj);
-    // console.log("Sent productsList id " + strDynamicId);
-   // console.log("Update productsList Quantity " + this.strDynamicProductQuantity);
    this.showToastOnAddingCart();
    this.viewCartApi();
   });
-   
-       
 }   
- 
 
-removeProductLocally(index,item,name){
-//   console.log('Local removed' + item);
-//   for(let i = 0; i < this.productsLocalCart.length; i++) {
-//     if(this.productsLocalCart[i] == item){
-//       this.productsLocalCart.splice(i, 1);
-//      localStorage.removeItem(this.productsLocalCart.splice(i, 1))
-//      this.productsLocalCart.splice(index, 1);
-// localStorage.setItem('questions', JSON.stringify(this.productsLocalCart));
+  /*
+      Remove Particular product from cart
+  */ 
 
-this.showCartRemovalAlert2(index,item,name);
+removeProductServer(product_id,name){  
+  this.showCartRemovalServer(product_id,name);
+
+//   const postParams = {product_id: product_id};
+//   this.httpClient.post('http://busybanda.com/sterling-tools/api/remove_cart_item?', JSON.stringify(postParams)).subscribe(async (response: Response) => {
+//     this.obj = JSON.stringify(response); 
+//     console.log('Data' + this.obj);
+//     this.showToastOnDeletingCart();
+//     this.viewCartApi();
+// });          
+}
+
+  /*
+      Remove Product from local storage cart
+  */
+
+removeProductLocally(index,item,name)
+{
+    this.showCartRemovalAlert2(index,item,name);
 }  
-
-
-
-            
-       
+  /*
+      viewCartApi
+  */
 
   async viewCartApi() {          
     this.presentLoading();
     try {
-      const service = this.apiProvider.getTest1();  
+      const service = this.apiProvider.getCartDetails();  
       service.subscribe(async (data) => {
         if (data) {
           const resultado = data;  
-           console.log(resultado);
+          // console.log(resultado);
           this.viewCartList = resultado;     
           this.obj = JSON.stringify(data);
            console.log('All Json Response' + this.obj);             
@@ -636,7 +581,7 @@ this.showCartRemovalAlert2(index,item,name);
           for (var i=0; i < this.viewCartList.length; i++) {
             result.push(this.strDynamicId);
       }
-      console.log(result);
+      console.log('Tushar garima' + result);
  
           //  console.log('Total Price of Products ' + this.total);
            this.strSubTotalAmount = this.total;  
@@ -659,8 +604,8 @@ this.showCartRemovalAlert2(index,item,name);
                 this.strPriceValue = priceValue;
                 this.strNumber = priceValue.concat('price');
               }
-            }
-          }
+            }    
+          }       
 
           for (keyProductId in this.viewCartList) {
             if (this.viewCartList.hasOwnProperty(keyProductId)) { 
@@ -792,11 +737,11 @@ this.showCartRemovalAlert2(index,item,name);
     alert1.present();
   }
 
-  private async showCartRemovalAlert1(product_id): Promise<void> {
+  public async showCartRemovalServer(product_id,name): Promise<void> {
     // omitted;
     const alert1 = this.alertController.create({
-      title: 'Remove Item! ' + product_id,
-      message: 'Do you want to remove items from cart!',
+      title: 'Remove Item! ' + name,
+      message: 'Do you want to remove item from cart!',
       enableBackdropDismiss: false,
   
       buttons: [
@@ -804,28 +749,30 @@ this.showCartRemovalAlert2(index,item,name);
           cssClass: 'my-custom-class',
           text: 'Ok',
           handler: (ok) => {
-            console.log('Confirm Ok');
-
-           
-           // this.strTestProductId = product_id;
-            console.log('Remove Product: ' + product_id);
-            if(localStorage.getItem('isSigned'))
-            {
-              console.log('isSigned status: ' + 'isSigned true');
-
-            this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?'+'product_id='+ product_id).subscribe((jsonResponse) => {
-              this.obj = JSON.stringify(jsonResponse);
-              console.log('Data' + this.obj);
-              this.showToastOnDeletingCart();
-              this.viewCartApi();
-              this.navCtrl.setRoot(HomePage);
-          });
-            }
+        
+        //     console.log('Remove Product: ' + product_id);
+        //     if(localStorage.getItem('isSigned'))
+        //     {
+        //     console.log('User Status ' + 'isSigned true');
+        //     this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?'+'product_id='+ product_id).subscribe((jsonResponse) => {
+        //     this.obj = JSON.stringify(jsonResponse);
+        //     console.log('Data' + this.obj);
+        //     this.showToastOnDeletingCart();
+        //     this.viewCartApi();
+        //  // this.navCtrl.setRoot(HomePage);
+        //   });
+        //     }
           
-            else {
-              console.log('isSigned status: ' + 'isSigned false');
-            }
-              // this.showCartRemovalAlert(strTestProductId);
+        //     else {
+        //       console.log('isSigned status: ' + 'isSigned false');
+        //     }
+
+        this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?'+'product_id='+ product_id).subscribe((jsonResponse) => {
+            this.obj = JSON.stringify(jsonResponse);
+            console.log('Data' + this.obj);
+            this.showToastOnDeletingCart();
+            this.viewCartApi();
+          });
             },
           },
           {

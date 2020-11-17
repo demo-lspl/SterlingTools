@@ -5,7 +5,7 @@ import { WishlistupdatedPage } from './../wishlistupdated/wishlistupdated';
  */
 
 import { HttpClient } from '@angular/common/http';
-import { ToastController } from 'ionic-angular';
+import { ToastController, LoadingController } from 'ionic-angular';
 import { HomePage } from './../home/home';
 import { ApiProvider } from './../../providers/api/api';
 import { Component, OnInit } from '@angular/core';
@@ -26,12 +26,13 @@ export class ProductcategoryPage implements OnInit{
   obj;
   productCategoryList: any = [];
   productCategoryGridList: any = [];
-  items = [];  
+  items = [];    
   productTitle:''  
   viewCartList:any = [];
   strData: string;
   countProducts:number|any; 
   buttonIcon: string ;
+  constresultado : string;
   
 
   constructor(public navCtrl: NavController,
@@ -41,7 +42,8 @@ export class ProductcategoryPage implements OnInit{
               public app: App,
               public platform: Platform,
               public toastController: ToastController,
-              public httpClient: HttpClient
+              public httpClient: HttpClient,
+              public loadingController: LoadingController
               ) {
 
                 this.getProductCategoriesApi();
@@ -52,7 +54,7 @@ export class ProductcategoryPage implements OnInit{
     console.log('ionViewDidLoad VieworderPage');
     this.getProductCategoriesApi();
   }
-
+  
   ngOnInit() {
     console.log('ngOnInit VieworderPage');
     this.viewCartApi();
@@ -71,13 +73,30 @@ export class ProductcategoryPage implements OnInit{
       }
   }); 
   }
+      
   
-
   cartPage() {
     this.navCtrl.push(ViewcartPage);
   }
-  
-     searchPage() {  
+
+  sortDropDownValue() {
+    console.log("Selected sortDropDownValue");
+    this.showToastOnSortingCategory();
+    this.productCategoryGridList.sort((a, b) => (a.name > b.name) ? 1 : -1)
+    console.log('Sorted:   ' + this.productCategoryGridList);
+ 
+    var points = [5.0, 3.7, 1.0, 2.9, 3.4, 4.5];
+    var output :any  = [];
+    for (let i = 0; i < points.length; i++) {
+      	points.sort(function (a, b) {
+		    return b - a   
+	  });
+	  output += points[i] + "<br>";
+}
+    console.log(output);
+  }
+
+searchPage() {  
   }
 
   wishlistPage() {
@@ -95,16 +114,14 @@ export class ProductcategoryPage implements OnInit{
 }  
 
 
-
   doRefresh(event) {
     console.log('Begin async operation');
-    this.getProductCategoriesApi();
+    this.getProductCategoriesApi1();
     setTimeout(() => {
       console.log('Async operation has ended');
       event.complete();
     }, 500);
   }
-
 
 
   getProductCategoriesApi(){
@@ -121,8 +138,8 @@ export class ProductcategoryPage implements OnInit{
     console.log('getProductCategoriesApi1 called    ');
     const service = this.apiProvider.getProductCategoriesGrid();
     service.subscribe((data) => {
-        const resultado = data;
-        this.productCategoryGridList = resultado;
+        this.constresultado = data;
+        this.productCategoryGridList = this.constresultado;
         this.productTitle = data.title;
        
     });
@@ -133,11 +150,11 @@ export class ProductcategoryPage implements OnInit{
       name:name
     });
     console.log('Sent productsList id ' + catId);
-  }
+  } 
 
   async viewCartApi() {            
     try {
-      const service = this.apiProvider.getTest1();  
+      const service = this.apiProvider.getCartDetails();  
       service.subscribe(async (data) => {
         if (data) {
           const resultado = data;
@@ -185,5 +202,21 @@ export class ProductcategoryPage implements OnInit{
     });   
     toast.present();  
   } 
+
+  showToastOnSortingCategory() {
+    let loading = this.loadingController.create({
+      content: 'Please wait...'
+    });
+  
+    loading.present();
+    
+    setTimeout(() => {
+      loading.dismiss();
+    }, 700)
+
 }
+
+}
+
+
 

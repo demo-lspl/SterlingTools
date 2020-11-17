@@ -11,10 +11,10 @@
         
     </ion-title>
   </ion-navbar>
-  <div class="custom-id">
+  <!-- <div class="custom-id">
    
     <ion-searchbar placeholder="Search any part here" ></ion-searchbar>
-  </div>
+  </div> -->
    
 </ion-header>
    
@@ -70,7 +70,7 @@
             <ion-icon
             name="md-close"
             style="margin-left: 10%; margin-top: 2%"
-            (click)="removeProductServer(viewCart.product_id)">
+            (click)="removeProductServer(viewCart.product_id,viewCart.name)">
           </ion-icon> 
             
           </div>
@@ -152,7 +152,7 @@
       </div>
       
   
-      <div class="card-main">
+      <!-- <div class="card-main">
         <ion-card >
           <ion-card-header (click)="toggleAccordion()">
             <ion-list>
@@ -203,9 +203,9 @@
             </div>
           </ion-card-content>
         </ion-card>
-      </div>
+      </div> -->
   
-      <div class="card-main" style="margin-top: 10px">
+      <!-- <div class="card-main" style="margin-top: 10px">
         <ion-card>
           <ion-card-header (click)="toggleAccordion1()">
             <ion-list>
@@ -229,32 +229,17 @@
                       class="size"
                       style="justify-content: left; padding-right: 30px"
                     >
-                      <!-- <h6 style="color: black">
-                        Enter your coupon code if you have one
-                      </h6> -->
+                      
                       Enter your destination to get your shipping estimate
                     </div>
-                    <!-- <div class="size" style="justify-content: center">
-                      <ion-input placeholder="Enter Coupon Code" style="width: 150px;margin-top: 9px;"></ion-input>
-                    </div>
-                    <div class="size" style="justify-content: center">
-                      <button ion-button  class="bg-sky btn-round btn-text" style="width: 100px;">Check</button>
-                    </div> -->
+                   
   
                     <p padding-top>
                       <span class="left-side">
-                        <!-- <ion-badge class="badges bg-green text-white">4<ion-icon name="md-star"></ion-icon></ion-badge>   -->
-                        <!-- <span class="bold">Discount Codes</span> -->
+                     
                         <ion-input placeholder="Enter Destination"></ion-input>
                       </span>
-                      <!-- <span class="right-side">
-                        <span class="text-light">16 May, 2017</span> -->
-                      <!-- <ion-icon name="md-star"></ion-icon> -->
-                      <!-- <button ion-button  class="bg-sky btn-round btn-text" style="width: 100px;">Check</button> 
-                      </span>-->
-  
-                      <!-- <button ion-button  class="bg-sky btn-round btn-text" style="width: 190px;justify-content: center;">Get Quote</button>   -->
-                    </p>
+                                         </p>
                   </div>
                 </ion-col>
               </ion-row>
@@ -267,14 +252,14 @@
                   full
                   class="bg-thime btn-round btn-text"
                   style="max-width: 420px"
-                  (click)="checkOutPage1()">
+                  (click)="checkOutPage()">
                   Get Quote
                 </button>
               </ion-row>
             </div>
           </ion-card-content>
         </ion-card>
-      </div>
+      </div> -->
   
       <div class="lick">
         <p padding-top>
@@ -327,14 +312,7 @@
 
    
 
-      <!-- <ion-item>
-        <ion-label style="color: black;">Shipping</ion-label>
-        <ion-select ([ngModel])="dropdown1"  placeholder="Local Pickup" >
-          <ion-option value="brown" style="color: black" (ionSelect)="clickOptionLocal()">Local Pickup</ion-option>
-          <ion-option value="blonde" style="float: right; color: black" (ionSelect)="clickOptionFlatRate()">Flat Rate: $5.00</ion-option>
-         
-        </ion-select>
-      </ion-item> -->
+    
 
       <div style="margin-top: 1px;">
         <ion-grid>
@@ -478,7 +456,7 @@
       </div>
       
   
-      <div class="card-main">
+      <!-- <div class="card-main">
         <ion-card >
           <ion-card-header (click)="toggleAccordion()">
             <ion-list>
@@ -555,32 +533,17 @@
                       class="size"
                       style="justify-content: left; padding-right: 30px"
                     >
-                      <!-- <h6 style="color: black">
-                        Enter your coupon code if you have one
-                      </h6> -->
+                    
                       Enter your destination to get your shipping estimate
                     </div>
-                    <!-- <div class="size" style="justify-content: center">
-                      <ion-input placeholder="Enter Coupon Code" style="width: 150px;margin-top: 9px;"></ion-input>
-                    </div>
-                    <div class="size" style="justify-content: center">
-                      <button ion-button  class="bg-sky btn-round btn-text" style="width: 100px;">Check</button>
-                    </div> -->
+                   
   
                     <p padding-top>
                       <span class="left-side">
-                        <!-- <ion-badge class="badges bg-green text-white">4<ion-icon name="md-star"></ion-icon></ion-badge>   -->
-                        <!-- <span class="bold">Discount Codes</span> -->
+                       
                         <ion-input placeholder="Enter Destination"></ion-input>
                       </span>
-                      <!-- <span class="right-side">
-                        <span class="text-light">16 May, 2017</span> -->
-                      <!-- <ion-icon name="md-star"></ion-icon> -->
-                      <!-- <button ion-button  class="bg-sky btn-round btn-text" style="width: 100px;">Check</button> 
-                      </span>-->
-  
-                      <!-- <button ion-button  class="bg-sky btn-round btn-text" style="width: 190px;justify-content: center;">Get Quote</button>   -->
-                    </p>
+                                          </p>
                   </div>
                 </ion-col>
               </ion-row>
@@ -600,36 +563,19 @@
             </div>
           </ion-card-content>
         </ion-card>
-      </div>
+      </div> -->
   
       <div class="lick">
         <p padding-top>
           <span class="left-side">
-            <!-- <ion-badge class="badges bg-green text-white">4<ion-icon name="md-star"></ion-icon></ion-badge>   -->
             <span class="bold">Read All Reviews</span>
           </span>
           <span class="right-side">
-            <!-- <span class="text-light">16 May, 2017</span> -->
             <ion-icon name="md-star"></ion-icon>
           </span>
         </p>
   
-        <!-- <h5>Must awaited product.Value for Money.</h5> -->
-        <!-- <label class="circle">Value for Money</label> -->
-  
-        <!-- <p class="border-bottom name-like" padding-bottom>
-          <span class="left-side"> Test User. </span>
-          <span class="right-side icon-box">
-            <ion-icon name="md-thumbs-up" text-right class="icon-lick"></ion-icon
-            ><small>2</small>
-            <ion-icon
-              name="md-thumbs-down"
-              text-right
-              class="icon-lick"
-            ></ion-icon
-            ><small>2</small>
-          </span>
-        </p> -->
+     
       </div>
   
       

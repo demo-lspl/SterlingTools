@@ -235,7 +235,7 @@ removeProduct() {
 
   async viewCartApi() {            
     try {
-      const service = this.apiProvider.getTest1();  
+      const service = this.apiProvider.getCartDetails();  
       service.subscribe(async (data) => {
         if (data) {
           const resultado = data;
@@ -328,7 +328,7 @@ async showLoadingControllerLaunch() {
   
   }
 
-
+  
 
    
 }
@@ -342,7 +342,7 @@ presentLoadingDefault() {
 
   setTimeout(() => {
     loading.dismiss();
-  }, 1500);
+  }, 500);
 }
 
 private async showNetworkAlert(): Promise<void> {

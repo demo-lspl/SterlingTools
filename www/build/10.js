@@ -26,7 +26,7 @@ Test1PageModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__test1__["a" /* Test1Page */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__test1__["a" /* Test1Page */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__test1__["a" /* Test1Page */]),
         ],
     })
 ], Test1PageModule);

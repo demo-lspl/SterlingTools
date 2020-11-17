@@ -26,7 +26,7 @@ PaymentpagePageModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__paymentpage__["a" /* PaymentpagePage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__paymentpage__["a" /* PaymentpagePage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__paymentpage__["a" /* PaymentpagePage */]),
         ],
     })
 ], PaymentpagePageModule);

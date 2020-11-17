@@ -16,7 +16,7 @@ import { ItemdetailPage } from '../itemdetail/itemdetail';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+ 
 @IonicPage()
 @Component({
   selector: 'page-home1',
@@ -24,119 +24,128 @@ import { ItemdetailPage } from '../itemdetail/itemdetail';
 })
 export class Home1Page implements OnInit{
 
-  driverDetailsList: any = [];
-  productsList: any = [];
+  stateInfo: string| any[] = [];   
+  countryInfo: any[] = [];
+  cityInfo: string |any[] = [];  
+  makeInfo: string |any= [];
+  modelInfo: string |any[] = [];
+  makeValue:string;
+  modelValue:string;
+  engineValue:string;
+  yearValue:string;
 
+  makeList: any = [];    
+  modelList: any = [];    
+  engineList: any = [];      
+  yearList: any = [];    
 
+  strMakeListValue:string;
+  strMakeListSelectedValue:string;
+  strModelListSelectedValue:string;
+  obj;
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public toastController: ToastController,
-    public apiProvider: ApiProvider,
+  constructor(private apiProvider:ApiProvider) { }
+
+  ngOnInit() {     
+    this.getCountries();
+    this.getMakeApi();    
+    }       
+            
+    
+    makeDropDownValue(){   
+    console.log("Selected make:  ", this.makeValue); 
+     this.strMakeListSelectedValue = this.makeValue;
+    // this.strModelListSelectedValue = this.modelValue;
+     this.getModelApi(this.strMakeListSelectedValue);
+     console.log("Selected make:  ", this.makeValue); 
+    }
+
+      
+  
+    
    
-  ) {
+    getMakeApi(){     
+      console.log('getMakeApi called    ');
+      const service = this.apiProvider.getMakeCategories();
+      service.subscribe((data) => {
+          const resultado = data;
+          this.makeList = resultado; 
+          this.strMakeListValue =  resultado;
+          //console.log('MakeApi response   ' + resultado);
+       });
+    }  
+      
+    getModelApi(strMakeListSelectedValue){     
+      console.log('getModelApi called    ');
+      const service = this.apiProvider.getModelCategories(strMakeListSelectedValue);
+      service.subscribe((data) => {
+          const resultado = data;
+          this.modelList = resultado; 
+          this.strMakeListSelectedValue =  resultado;
+          console.log('Selected model:  ' + resultado);
 
-  }
-  
-   slides = [
-    {
-     // title: "Under Rs. 699",
-      title: "",
-      description: "",
-      smalltext: "",
-      image: "assets/imgs/slider-12.jpg",
-    },
-    {
-      // title: "Under Rs. 699",
-      title: "",
-      description: "",
-      smalltext: "",
-      image: "assets/imgs/slider-13.jpg",
-    },
-    {
-     // title: "Under Rs. 699",
-      title: "",
-      description: "",
-      smalltext: "",
-      image: "assets/imgs/slider-12.jpg",
-    }
-  ];
-  
-   categoryPage(){
-    this.navCtrl.push(CategoryPage);
-    }
-    wishlistPage(){
-    this.navCtrl.push(WishlistPage);
-    }
-    
-    searchPage() {
-    let modal = this.modalCtrl.create(SearchPage);
-    modal.present();
-  }
-  
-   cartPage() {
-    let modal = this.modalCtrl.create(CartPage);
-    modal.present();
-  }
-  
-    itemdetailPage() {
-    this.navCtrl.push(ItemdetailPage);
-  }
+          this.obj = JSON.stringify(data);
 
-  ngOnInit(){
+          console.log('Selected model obj:   ' + this.obj);
 
-    console.log('****');
-    this.getAllProducts();
-    // this.platform.backButton.subscribeWithPriority(-1, () => {
-    //   if (!this.routerOutlet.canGoBack()) {
-    //     App.exitApp();
-    //   }
-    // });
-    
-
-  }
-
-  ionViewDidEnter(){
-    console.log('ionViewDidEnter');
-  }
-
-
-  ionViewWillEnter() {
-    console.log('ionViewWillEnter called****');
-    
-  }
-
-  
-
-  getAllProducts(){
-    console.log('getAllProducts called    ');
-    const service = this.apiProvider.getProducts();
-    service.subscribe((data) => {
-   
-        const resultado = data;
-        console.log('Get response: ' + resultado);
-        this.productsList = resultado;
-        // tslint:disable-next-line: one-variable-per-declaration
-        let size = 0, key;
-        for (key in this.productsList) {
-              if (this.productsList.hasOwnProperty(key)){
-               size++;
-               const strTitle = this.productsList[key].title;
-               this.productsList[key].title = strTitle;
-             }
+          for( let i=0;i<=this.modelList.length;i++){
+            console.log('Selected model obj:   ' + this.modelList[i]);
           }
-       // this.newSearch = resultado;
-    });
-  }
-
-   showToastOnAlreadyLoggedIn() {
-    const toast =  this.toastController.create({
-      message: 'User already logged in!',
-      duration: 1000,
-      position: 'bottom',
-    });
-    toast.present();
-  }
 
 
+          // this.getEngineApi(this.strMakeListSelectedValue,resultado);
+           // this.getYearApi(this.strMakeListSelectedValue,resultado);
+       });
+    }     
+
+    getEngineApi(strMakeListSelectedValue,strModelListSelectedValue){     
+      console.log('getEngineApi called    ');
+      const service = this.apiProvider.getEngineCategories(strMakeListSelectedValue,strModelListSelectedValue);
+      service.subscribe((data) => {
+          const resultado = data;
+          this.engineList = resultado; 
+          this.strMakeListSelectedValue =  resultado;
+          this.strModelListSelectedValue =  resultado;
+          console.log('Engine api response   ' + resultado);
+       });
+    } 
+
+    getYearApi(strMakeListSelectedValue,strModelListSelectedValue){     
+      console.log('getYearApi called    ');
+      const service = this.apiProvider.getEngineCategories(strMakeListSelectedValue,strModelListSelectedValue);
+      service.subscribe((data) => {
+          const resultado = data;
+          this.yearList = resultado; 
+          this.strMakeListSelectedValue =  resultado;
+          this.strModelListSelectedValue =  resultado;
+          console.log('Engine api response   ' + resultado);
+       });
+    } 
   
-}
+ 
+  
+  
+  getCountries(){
+    this.apiProvider.allCountries().subscribe(jsonResponse => {this.countryInfo=jsonResponse.Countries;
+        console.log('Data:', this.countryInfo);
+      },
+      err => console.log('jsonResponse error' + err),
+      () => console.log('jsonResponse complete')
+    )    
+  }    
 
+   
+
+  onChangeCountry(countryValue) {
+    this.stateInfo=this.countryInfo[countryValue].States;
+    this.cityInfo=this.stateInfo[0].Cities;
+  }
+  
+  onChangeState(stateValue) {
+    this.cityInfo=this.stateInfo[stateValue].Cities;
+  }
+    
+  onChangeCity(cityValue) {
+    this.cityInfo=this.stateInfo[cityValue].Cities;
+  }
+}

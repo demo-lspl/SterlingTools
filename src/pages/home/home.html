@@ -117,6 +117,8 @@
     <small class="bg-thime btn-round text-white" float-right> View All </small>
   </p>
 
+  
+
   <div class="card-main">
     <ion-card>
       <ion-card-header (click)="toggleAccordionVehicle()">
@@ -141,10 +143,12 @@
                     value="sortpopular"
                     okText="Ok"
                     cancelText="Cancel"
-                  >
-                    <ion-option value="sortpopular">popularity</ion-option>
+                    (ionChange)="makeDropDownValue(makeValue)"
+                    [(ngModel)]="makeValue">
+                    <ion-option *ngFor="let key of makeList" >{{key}}</ion-option>
+                    <!-- <ion-option value="sortpopular">popularity</ion-option>
                     <ion-option value="sortaveragerating">rating</ion-option>
-                    <ion-option value="sortlatest">latest</ion-option>
+                    <ion-option value="sortlatest">latest</ion-option> -->
                   </ion-select>
                 </ion-item>
               </div>
@@ -205,7 +209,7 @@
             style="2px 10px !important;"
           >
             <button ion-button full class="bg-thime btn-round btn-text">
-              Shop Now
+              Search 
             </button>
           </ion-row>
         </div>  
@@ -341,35 +345,13 @@
     </ion-card>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
 
-  <div class="shorting-bar">
+  <!-- <div class="shorting-bar">
     <ion-item>
       <div class="one">
          <div class="one1">
             <ion-icon name="code-working" style="margin-top: 10px;"></ion-icon>
-            <!-- SORT BY -->
              <ion-item class="custom short">
               <ion-select
                 placeholder="SORT BY"
@@ -378,24 +360,15 @@
                 cancelText="Cancel"
                 style="color: red;"
                 class="ion-select"
-              >
-                <ion-option value="POSITION" >POSITION</ion-option>
+                (ionChange)="sortDropDownValue(featuredProductCategoryList)">
                 <ion-option value="NAME">MODEL</ion-option>
                 <ion-option value="PRICE">PRICE</ion-option>
                 <ion-option value="BRAND">BRAND</ion-option>
+                <ion-option value="POSITION" >POSITION</ion-option>
               </ion-select>
         
               <ion-icon name="md-search" class="text-light icon"></ion-icon>
             </ion-item> 
-
-           
-             
-
-             
-           
-              
-           
-            
              </div>   
 
         
@@ -423,12 +396,7 @@
         ></ion-icon>
       </div>
     </ion-item>
-  </div>
-
-
-
-  <!-- <div *ngIf="hideMe" style="text-align: center"></div> -->
-
+  </div> -->
   <div class="select-section shadow-bottom" *ngIf="hideMe">
     <ion-row class="filter-bar">
       <ion-col col-3>
@@ -437,15 +405,9 @@
             <ion-select  interface="action-sheet">
               <ion-option selected value="mute">Brakes</ion-option>
               <ion-option value="enable">Suspensions</ion-option>
-           
           </ion-select>
-            
-            
           </ion-item>  
-         
         </div>
-        
-        
       </ion-col>
       <ion-col col-3>
         <div class="size">
@@ -454,13 +416,8 @@
               <ion-option selected value="mute">Brakes</ion-option>
               <ion-option value="enable">Suspensions</ion-option>
             </ion-select>
-            
-            
           </ion-item>  
-         
         </div>
-        
-        
       </ion-col>
       <ion-col col-3>
         <div class="size">
@@ -469,13 +426,8 @@
               <ion-option selected value="mute">Brakes</ion-option>
               <ion-option value="enable">Suspensions</ion-option>
             </ion-select>
-            
-            
           </ion-item>  
-         
         </div>
-        
-        
       </ion-col>
       <ion-col col-3>
         <div class="size">
@@ -484,24 +436,16 @@
               <ion-option selected value="mute">Brakes</ion-option>
               <ion-option value="enable">Suspensions</ion-option>
             </ion-select>
-            
-            
           </ion-item>  
-         
         </div>
-        
-        
       </ion-col>
     </ion-row>
   </div>
 
-  <!-- <span *ngIf="searchText">
-    <div *ngIf="searchText.length === 0">No records found</div>
- </span> -->
+ 
 
 
    <div *ngIf="featuredProductsList; else elseStatement" class="checkFeaturedProducts"> 
-    <!-- when condition is true.  -->
 </div> 
 <ng-template #elseStatement style="margin-top: 10px;"> 
     No Product Available
@@ -532,9 +476,7 @@
             </div>
             <ion-icon    name="md-heart" class="text-light icon" (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"></ion-icon>
          
-            <!-- <img src="{{myimage}}" name="md-heart" (click)="addEvent();" style="width: 20px;height: 20px;" class="text-light icon"> -->
-
-            <!-- <ion-img class="map" [src]="buttonIcon" (click)="changeView()"></ion-img> -->
+          
 
            
           </ion-card-header>
@@ -567,17 +509,9 @@
                 </div>
               </div>
 
-              <!-- (click)="addToCart(featuredProducts.id,featuredProducts.name)" -->
-
-
-              <!-- <ion-item>
-                <button #myButton ion-button icon-only (click)="toggleIcon()">
-                  <ion-icon [name]="buttonIcon"></ion-icon>
-              </button>
-              </ion-item> -->
+          
           
               <div *ngIf="!featuredProducts.regular_price">     <!--If "product" not exists-->
-                <!-- <h5 style="font-size: 12px;text-align: center"  >  <span class="priceicon">$</span>Price Not Available</h5>   -->
                 <h5 style="font-size: 12px;text-align: center"> Price Not Available</h5>  
 
                 <div class="rateing">
@@ -600,21 +534,7 @@
 
           
 
-            <!-- <div class="rateing">
-              <div class="card-btn">
-                <p class="" float-left>
-                  <button
-                    ion-button
-                    full
-                    class="bg-thime btn-round btn-text"
-                    style="margin-top: 3px; width: 150px;text-align: center;"
-                    (click)="addToCartLocal()"
-                  >
-                    Add To Cart
-                  </button>
-                </p>
-              </div>
-            </div> -->
+            
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -623,9 +543,36 @@
     </ion-row>
   </ion-grid>
 
-  <!-- <div *ngIf="!searchText">
-    No data found!!!
-   </div> -->
+  
+      <!-- <ion-item>
+        <ion-label>Make</ion-label>
+        <ion-select [(ngModel)]="makeValue"  (ionChange)="makeDropDownValue(makeValue)">
+          <ion-option *ngFor="let key of makeList" >{{key}}</ion-option>
+        </ion-select>
+    
+      </ion-item>
+
+
+     
+
+
+      <ion-item>
+        <ion-label>Model</ion-label>
+        <ion-select [(ngModel)]="modelValue" (ionChange)="modelDropDownValue(modelValue)" >
+          <ion-option *ngFor="let key of modelList">{{makeValue}}</ion-option>
+        </ion-select>
+      </ion-item> -->
+
+       <!-- <ion-item>
+        <ion-label>Model</ion-label>
+        <ion-select [(ngModel)]="makeValue" (ionChange)="modelDropDownValue(makeValue)">
+          <ion-option *ngFor="let key of makeList">{{makeValue}}</ion-option>
+          
+        </ion-select>
+        <ion-label>Length {{makeList.length}}</ion-label>
+      </ion-item> -->
+
  
-  <!-- <ion-nav #mycontent [root]="rootPage"></ion-nav> -->
+
+  
 </ion-content>

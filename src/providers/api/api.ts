@@ -3,21 +3,23 @@
 */
 
 
-
-import { LoadingController, Events } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {  map} from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
+import { Observable} from 'rxjs';
+
 
 
 @Injectable()
 export class ApiProvider {
    httpClientFetch = [];
+   urlCountries :string = "https://raw.githubusercontent.com/sagarshirbhate/Country-State-City-Database/master/Contries.json";
+   urlMake:string = 'http://busybanda.com/sterling-tools/api/mmey_make_search';
 
   constructor(public httpClient: HttpClient,
               public loadingController: LoadingController,
-              public events: Events,
               public storage: Storage) {
   }
 
@@ -40,8 +42,6 @@ export class ApiProvider {
     .pipe(map((res: any) => this.httpClientFetch = res.result));
   }
 
-
-
   getProductCategoriesGrid(){
     this.showProductCategoriesLoader();
     return this.httpClient.get('http://busybanda.com/sterling-tools/api/get_products_category_grid')
@@ -53,14 +53,28 @@ export class ApiProvider {
     return this.httpClient.get('http://busybanda.com/sterling-tools/api/get_products_category')
     .pipe(map((res: any) => this.httpClientFetch = res.result));
   }
+ 
+  getMakeCategories(){
+    return this.httpClient.get('http://busybanda.com/sterling-tools/api/mmey_make_search')
+    .pipe(map((res: any) => this.httpClientFetch = res.result));
+  }            
 
-
-  getProductCart(){
-    this.showProductCartLoader();
-    return this.httpClient.get('http://busybanda.com/sterling-tools/api/get_current_cart?id=3');
+  getModelCategories(make: string){
+    return this.httpClient.get('http://busybanda.com/sterling-tools/api/mmey_model_search?make=' + make )
+    .pipe(map((res: any) => this.httpClientFetch = res.result));
   }
 
+  getEngineCategories(make: string,model:string){
+    return this.httpClient.get('http://busybanda.com/sterling-tools/api/mmey_engine_search?make=' + make + '&model=' + model )
+    .pipe(map((res: any) => this.httpClientFetch = res.result));
+  }
 
+  getYearCategories(make: string,model:string,engine:string){
+    return this.httpClient.get('http://busybanda.com/sterling-tools/api/mmey_year_search?make=' + make + '&model=' + model + '&engine=' + engine )
+    .pipe(map((res: any) => this.httpClientFetch = res.result));
+  }
+
+ 
   getFeaturedProducts(){
      this.showFeaturedProductsLoader();
      return this.httpClient.get('http://busybanda.com/sterling-tools/api/get_featured_product').pipe(map((res: any) => this.httpClientFetch = res.result));
@@ -69,12 +83,18 @@ export class ApiProvider {
   getTest(){
     return this.httpClient.get('http://pridediesel.com/pridediesel/api/getdrivers').pipe(map((res: any) => this.httpClientFetch = res.results));
   }
-  getTest1(){
+  getCartDetails(){
     return this.httpClient.get('http://busybanda.com/sterling-tools/api/get_cart_items?' +  'custid=' + localStorage.getItem('Userid value')).pipe(map((res: any) => this.httpClientFetch = res.result));
   }
-  getTest2(){
-    return this.httpClient.get('http://busybanda.com/sterling-tools/api/get_cart_items?custid=831').pipe(map((res: any) => this.httpClientFetch = res.result));
+
+  allCountries(): Observable<any>{
+    return this.httpClient.get(this.urlCountries);
   }
+
+  allMake(): Observable<any>{
+    return this.httpClient.get(this.urlMake);
+  }
+  
 
 
   async showProductsLoader() {
@@ -97,8 +117,8 @@ export class ApiProvider {
   async showProductCategoriesLoader() {
     const loading = await this.loadingController.create({
       content: 'Please wait fetching Product Categories!',
-      duration: 600,
-    });
+      duration: 1500,
+    });  
     await loading.present();
   }
 
@@ -106,6 +126,14 @@ export class ApiProvider {
     const loading = await this.loadingController.create({
       content: 'Please wait fetching Cart!',
       duration: 600,
+    });
+    await loading.present();
+  }
+
+  async showMakeLoader() {
+    const loading = await this.loadingController.create({
+      content: 'Please wait fetching Make data!',
+      duration: 3600,
     });
     await loading.present();
   }
@@ -119,65 +147,4 @@ export class ApiProvider {
     });
     await loading.present();
   } 
-  
-// set a key/value
-async set(key: string, value: any): Promise<any> {
-  try {
-  const result = await this.storage.set(key, value);
-  console.log('set string in storage: ' + result);
-  return true;
-  } catch (reason) {
-  console.log(reason);
-  return false;
-  }
-  }
-  // to get a key/value pair
-  async get(key: string): Promise<any> {
-  try {
-  const result = await this.storage.get(key);
-  console.log('storageGET: ' + key + ': ' + result);
-  if (result != null) {
-  return result;
-  }
-  return null;
-  } catch (reason) {
-  console.log(reason);
-  return null;
-  }
-  }
-  // set a key/value object
-  async setObject(key: string, object: Object) {
-  try {
-  const result = await this.storage.set(key, JSON.stringify(object));
-  console.log('set Object in storage: ' + result);
-  return true;
-  } catch (reason) {
-  console.log(reason);
-  return false;
-  }
-  }
-  // get a key/value object
-  async getObject(key: string): Promise<any> {
-  try {
-  const result = await this.storage.get(key);
-  if (result != null) {
-  return JSON.parse(result);
-  }
-  return null;
-  } catch (reason) {
-  console.log(reason);
-  return null;
-  }
-  }
-  // remove a single key value:
-  remove(key: string) {
-  this.storage.remove(key);
-  }
-  //  delete all data from your application:
-  clear() 
-  {
-  this.storage.clear();
-  }
-    
-
 }
