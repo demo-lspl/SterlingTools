@@ -483,7 +483,7 @@ console.log(output);
                   
   getMakeApi(){
     console.log('getMakeApi called    ');
-    const service = this.apiProvider.getMakeCategories();
+    const service = this.apiProvider.searchMakeCategories();
     service.subscribe((data) => {
         const resultado = data;
         this.makeList = resultado; 
@@ -505,7 +505,7 @@ console.log(output);
 
   getModelApi(makeValue){
     console.log('getModelApi called    ');
-    const service = this.apiProvider.getModelCategories(makeValue);
+    const service = this.apiProvider.getMakeCategories(makeValue);
     service.subscribe((data) => {
         const resultado = data;
         this.modelList = resultado; 

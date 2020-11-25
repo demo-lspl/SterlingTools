@@ -9,6 +9,8 @@ import { SearchPage } from '../search/search';
 import { CartPage } from '../cart/cart';
 import { WishlistPage } from '../wishlist/wishlist';
 import { ItemdetailPage } from '../itemdetail/itemdetail';
+import { HttpClient } from '@angular/common/http';
+import { SearchproductsPage } from '../searchproducts/searchproducts';
 
 /**
  * Generated class for the Home1Page page.
@@ -34,39 +36,45 @@ export class Home1Page implements OnInit{
   engineValue:string;
   yearValue:string;
 
+  strTestValue:string;
+
   makeList: any = [];    
   modelList: any = [];    
   engineList: any = [];      
   yearList: any = [];    
+  productCategoryList: any = []; 
 
   strMakeListValue:string;
   strMakeListSelectedValue:string;
   strModelListSelectedValue:string;
+  strEngineListSelectedValue:string;
   obj;
+  companyName: any;
+  newid: any;
+  strDynamicId:string;
+ 
 
-  constructor(private apiProvider:ApiProvider) { }
+  constructor(public apiProvider:ApiProvider,
+              public httpClient: HttpClient,
+              public navCtrl: NavController) { }
 
   ngOnInit() {     
-    this.getCountries();
-    this.getMakeApi();    
+    this.getMakeApi(); 
     }       
-            
-    
-    makeDropDownValue(){   
-    console.log("Selected make:  ", this.makeValue); 
-     this.strMakeListSelectedValue = this.makeValue;
-    // this.strModelListSelectedValue = this.modelValue;
-     this.getModelApi(this.strMakeListSelectedValue);
-     console.log("Selected make:  ", this.makeValue); 
-    }
 
-      
   
-    
+    getOuterName(event){
+      console.log("companyName"+this.companyName);
+      this.strDynamicId = this.companyName;
+   }
+            
+      
+   
+
    
     getMakeApi(){     
       console.log('getMakeApi called    ');
-      const service = this.apiProvider.getMakeCategories();
+      const service = this.apiProvider.searchMakeCategories();
       service.subscribe((data) => {
           const resultado = data;
           this.makeList = resultado; 
@@ -77,42 +85,42 @@ export class Home1Page implements OnInit{
       
     getModelApi(strMakeListSelectedValue){     
       console.log('getModelApi called    ');
-      const service = this.apiProvider.getModelCategories(strMakeListSelectedValue);
+      const service = this.apiProvider.getMakeCategories(strMakeListSelectedValue);
       service.subscribe((data) => {
           const resultado = data;
           this.modelList = resultado; 
           this.strMakeListSelectedValue =  resultado;
-          console.log('Selected model:  ' + resultado);
+          this.strModelListSelectedValue =  resultado;
+          this.strEngineListSelectedValue =  resultado;
+         
 
           this.obj = JSON.stringify(data);
 
-          console.log('Selected model obj:   ' + this.obj);
-
-          for( let i=0;i<=this.modelList.length;i++){
-            console.log('Selected model obj:   ' + this.modelList[i]);
-          }
-
-
-          // this.getEngineApi(this.strMakeListSelectedValue,resultado);
-           // this.getYearApi(this.strMakeListSelectedValue,resultado);
+          console.log('Selected model tushar:  ' + this.strTestValue);
+            this.getEngineApi(strMakeListSelectedValue,this.strTestValue);
+           // this.getYearApi(strMakeListSelectedValue,this.strModelListSelectedValue,this.strEngineListSelectedValue);
        });
     }     
-
+ 
     getEngineApi(strMakeListSelectedValue,strModelListSelectedValue){     
-      console.log('getEngineApi called    ');
+      console.log('getEngineApi called    ' + this.strTestValue);
+      
       const service = this.apiProvider.getEngineCategories(strMakeListSelectedValue,strModelListSelectedValue);
       service.subscribe((data) => {
           const resultado = data;
           this.engineList = resultado; 
           this.strMakeListSelectedValue =  resultado;
           this.strModelListSelectedValue =  resultado;
-          console.log('Engine api response   ' + resultado);
+          this.strModelListSelectedValue =  this.modelValue;
+          console.log('Engine api response  make ' + strMakeListSelectedValue);
+          console.log('Engine api response  model ' + strModelListSelectedValue);
+
        });
     } 
 
-    getYearApi(strMakeListSelectedValue,strModelListSelectedValue){     
+    getYearApi(strMakeListSelectedValue,strModelListSelectedValue,strEngineListSelectedValue){     
       console.log('getYearApi called    ');
-      const service = this.apiProvider.getEngineCategories(strMakeListSelectedValue,strModelListSelectedValue);
+      const service = this.apiProvider.getYearCategories(strMakeListSelectedValue,strModelListSelectedValue,strEngineListSelectedValue);
       service.subscribe((data) => {
           const resultado = data;
           this.yearList = resultado; 
@@ -120,32 +128,57 @@ export class Home1Page implements OnInit{
           this.strModelListSelectedValue =  resultado;
           console.log('Engine api response   ' + resultado);
        });
-    } 
+    }    
+    
+    
+    makeDropDownValue(){   
+       this.strMakeListSelectedValue = this.makeValue;
+      // this.strModelListSelectedValue = this.modelValue;
+       this.getModelApi(this.strMakeListSelectedValue);
+       console.log("Selected make:  ", this.makeValue); 
+      }
+  
+      onChangeModel(modelValue){
+        console.info("Selected Model: ",this.modelValue);
+        this.strTestValue = modelValue;
+        // this.strModelListSelectedValue = modelValue;
+      }
+                   
+    searchData(strMakeListSelectedValue,strModelListSelectedValue,engine,year){
+
+      this.navCtrl.push(SearchproductsPage, 
+          {
+            make: this.makeValue,
+            model: this.modelValue,
+            engine:this.engineValue,
+            year:this.yearValue
+          });
+
+          console.log("Sent product make " + this.makeValue);
+          console.log("Sent product model " + this.modelValue);
+          console.log("Sent product engine " + this.engineValue);
+          console.log("Sent product year " + this.yearValue);
+      
+    }
+  
+
+    // productDetailPage(catId) {
+    //   this.navCtrl.push(SearchPage, {
+    //     catId: catId,
+       
+    //   });
+    //   console.log("Sent product id " + catId);
+      
+    // }
   
  
   
   
-  getCountries(){
-    this.apiProvider.allCountries().subscribe(jsonResponse => {this.countryInfo=jsonResponse.Countries;
-        console.log('Data:', this.countryInfo);
-      },
-      err => console.log('jsonResponse error' + err),
-      () => console.log('jsonResponse complete')
-    )    
-  }    
+   
 
    
 
-  onChangeCountry(countryValue) {
-    this.stateInfo=this.countryInfo[countryValue].States;
-    this.cityInfo=this.stateInfo[0].Cities;
-  }
   
-  onChangeState(stateValue) {
-    this.cityInfo=this.stateInfo[stateValue].Cities;
-  }
-    
-  onChangeCity(cityValue) {
-    this.cityInfo=this.stateInfo[cityValue].Cities;
-  }
+
+
 }

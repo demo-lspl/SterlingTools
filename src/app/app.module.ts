@@ -62,6 +62,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { IonicStorageModule } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { RouterModule, Routes } from '@angular/router';
+import { SearchproductsPage } from '../pages/searchproducts/searchproducts';
+import { ProductcategorydetaillistPage } from '../pages/productcategorydetaillist/productcategorydetaillist';
+import { ReadmorePage } from '../pages/readmore/readmore';
 
 
 
@@ -121,6 +124,9 @@ export function createTranslateLoader(http: HttpClient) {
     PaymentpagePage,
     TestcartPage,
     ViewallPage,
+    SearchproductsPage,
+    ProductcategorydetaillistPage,
+    ReadmorePage
     
   ],
   imports: [  
@@ -190,7 +196,10 @@ export function createTranslateLoader(http: HttpClient) {
     Test1Page,
     PaymentpagePage,
     TestcartPage,
-    ViewallPage
+    ViewallPage,
+    SearchproductsPage,
+    ProductcategorydetaillistPage,
+    ReadmorePage
   ],
   providers: [
     InAppBrowser,

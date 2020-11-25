@@ -10,7 +10,7 @@ import { ApiProvider } from './../../providers/api/api';
 import { Component, ViewChild, Input, Renderer, ElementRef, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ToastController, LoadingController, Platform, App } from 'ionic-angular';
 
-
+    
 /**
  * Generated class for the ViewallPage page.
  *
@@ -457,7 +457,7 @@ sortDropDownValue() {
                   
 getMakeApi(){     
     console.log('getMakeApi called    ');
-    const service = this.apiProvider.getMakeCategories();
+    const service = this.apiProvider.searchMakeCategories();
     service.subscribe((data) => {
         const resultado = data;
         this.makeList = resultado; 
@@ -488,14 +488,14 @@ makeDropDownValue(){
 
   modelDropDownValue(make) {
     console.log("Selected model:  ", this.makeValue); 
-    this.modelList = this.apiProvider.getModelCategories(this.makeValue).filter((item) => item.make == make);
+    this.modelList = this.apiProvider.getMakeCategories(this.makeValue).filter((item) => item.make == make);
   }
 
   
 
 getModelApi(makeValue){
     console.log('getModelApi called    ');
-    const service = this.apiProvider.getModelCategories(makeValue);
+    const service = this.apiProvider.getMakeCategories(makeValue);
     service.subscribe((data) => {
         const resultado = data;
         this.modelList = resultado; 
@@ -566,12 +566,12 @@ async viewCartApi() {
          if(this.viewCartList.length>=1) {
           console.log('Cart Filled ');
           this.countProducts = this.viewCartList.length;
-           this.buttonIcon = "cart";
+           //this.buttonIcon = "cart";
          }
 
          else{
           console.log('Cart Empty ');
-         this.countProducts = 'Empty';
+         //this.countProducts = 'Empty';
 
          }
 

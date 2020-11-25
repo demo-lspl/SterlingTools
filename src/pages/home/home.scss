@@ -1,4 +1,17 @@
 page-home {
+    .add-icon{color: white;
+        margin-top: 5px;
+        position: absolute;
+        top: -8px;
+        right: -7px;
+        font-size: 11px;
+        border-radius: 50%;
+        padding: 4px;
+        width: unset !important;
+        height: unset !important;}
+    .card-main h6 {
+        padding-left: 16px;
+    }
     .list {
         margin: 0 !important;
     }
@@ -96,6 +109,7 @@ page-home {
                 width: 85px;
                 margin: 0 auto;
             }
+
             .icon {
                 position: absolute;
                 top: 6px;
@@ -213,7 +227,7 @@ page-home {
         background-color: lightgray;
     }
     .custom-id .item-select   {    position: absolute;
-        width: 13%;
+        width: 30%;
         z-index: 99;
         padding: 0px;
         left: 11px;
@@ -230,7 +244,7 @@ page-home {
         left: unset !important;
     }
     .custom-id input.searchbar-input {
-        padding-left: 65px !important;
+        padding-left: 120px !important;
     }
     .custom-id .select-md{padding: 9px 8px;
         max-width: 100%;
@@ -351,7 +365,7 @@ page-home {
 
 
             .custom-id .item-select   {    position: absolute;
-                width: 13%;
+                width: 30%;
                 z-index: 99;
                 padding: 0px;
                 left: 11px;
@@ -463,6 +477,10 @@ page-home {
             margin-top: 11px;
         }
     }
+
+    // .add-bt-main{width: 100%;
+
+    // }
     }
                 
 }

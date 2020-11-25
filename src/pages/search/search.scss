@@ -1,4 +1,30 @@
 page-search {
+
+    .search-main {
+        background: #e8e8e8;
+    }
+    
+    .search-main ion-grid.product-grid.grid {
+        margin-top: 0px !important;
+    }
+    
+    .search-main button {
+        width: 100% !important;
+        padding: 20px 10px !important;
+    }
+    .search-main .img-box img {
+        width: auto !important;
+        height: auto !important;
+        float: unset !important;
+    }
+    
+    .search-main ion-icon.text-light.icon.icon-md.ion-md-heart {
+        position: absolute;
+        top: 35px;
+        font-size: 20px;
+    }
+    
+    .search-main ion-col.columngrid.col{box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);}
     .d-flex {
         display: flex;
         align-items: center;

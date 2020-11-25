@@ -17,7 +17,7 @@
       </span> -->
 
       <span float-right>
-        <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>
+        <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header> -->
         <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>
         <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon>
       </span>
@@ -108,7 +108,8 @@
    
    <ion-item>
     <ion-label>SORT BY </ion-label>
-    <ion-select placeholder="Please select" value="Name" okText="Okay" cancelText="Dismiss" (ionChange)="sortDropDownValue(productCategoryGridList)">
+    <ion-select placeholder="Please select" value="Name" okText="Okay" cancelText="Dismiss" (ionChange)="sortDropDownValue(productCategoryGridList)" style="width: 200px;
+    padding: 0px 10px;">
       <ion-option value="Name"  >Name</ion-option>
       <!-- <ion-option value="Price">Price</ion-option> -->
     
@@ -128,10 +129,10 @@
             >
               <!-- <img src="assets/imgs/productimage.jpg" style="width: 130px;float: left;" /> -->
 
-              <img  [src]="productCategoryGrid.thumbnail"  style="width:200px;height:120px ;">
+              <img  [src]="productCategoryGrid.thumbnail"  style="width:200px;height:100px ;">
 
             </div>
-            <ion-icon name="md-heart" class="text-light icon"></ion-icon>
+            <!-- <ion-icon name="md-heart" class="text-light icon"></ion-icon> -->
           </ion-card-header>
           <ion-card-content>
         
@@ -150,9 +151,9 @@
                 <span style="font-size: 12px;color: black;">{{productCategory.regular_price}}</span>
               </div>-->
 
-              <div class="rating" >
+              <!-- <div class="rating" >
                 <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-              </div>
+              </div> -->
   
             </div> 
 

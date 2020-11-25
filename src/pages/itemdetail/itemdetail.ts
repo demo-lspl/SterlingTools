@@ -73,7 +73,6 @@ export class ItemdetailPage implements OnInit {
     public loadingController: LoadingController,
     public toastController: ToastController,
     public apiProvider: ApiProvider,
-    public cartService: ApiProvider,
     public toastCtrl: ToastController,
     public app: App,
     public platform: Platform

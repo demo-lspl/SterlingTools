@@ -6,17 +6,9 @@
     <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>
   </button>
 
-    <!-- <ion-icon name="md-arrow-back"></ion-icon>
-    <ion-icon name="md-search" class="text-light icon"></ion-icon> -->
-
-
       <ion-title>Categories Details
-          <!-- <span float-right> 
-            <ion-icon class="icon" (click)="searchPage()"><img src="assets/imgs/ic_search.png" width="100%;"></ion-icon>
-            <ion-icon class="icon" (click)="cartPage()"><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>             
-          </span> -->
           <span float-right>
-            <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>
+            <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header> -->
             <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>
             <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon>
           </span>
@@ -58,7 +50,8 @@
    
     <ion-item>
       <ion-label>SORT BY </ion-label>
-      <ion-select placeholder="Please select" value="Name" okText="Okay" cancelText="Dismiss" (ionChange)="sortDropDownValue(productCategoryInformation)">
+      <ion-select placeholder="Please select" value="Name" okText="Okay" cancelText="Dismiss" (ionChange)="sortDropDownValue(productCategoryInformation)" style="width: 200px;
+      padding: 0px 10px;">
         <ion-option value="Name"  >Name</ion-option>
       
       </ion-select>
@@ -75,10 +68,10 @@
               <div
                 class="img-box"
               >
-                <img  [src]="productCategory.image"  style="width:200px;height:80px ;">
+                <img  [src]="productCategory.image"  style="width:200px;height:80px ;" (click)="productDetailPage(productCategory.id,productCategory.name,productCategory.image,productCategory.regular_price,productCategory.description)">
 
               </div>
-              <!-- <ion-icon name="md-heart" class="text-light icon"></ion-icon> -->
+              <ion-icon name="md-heart" class="text-light icon"></ion-icon>
             </ion-card-header>
             <ion-card-content>
           
@@ -90,22 +83,23 @@
               <div >
                 <h5 style="font-size: 11px;text-align: -webkit-center;"> {{productCategory.name}}</h5> 
               </div>
-              
-  
               <div>
-                <div *ngIf="productCategory.regular_price">    
-                  <h5 style="font-size: 11px;text-align: center;"  > <span class="priceicon">Price : </span>  <span class="priceicon">$</span> {{productCategory.regular_price}} </h5>  
-                  <h5 style="font-size: 11px;text-align: center;color: black;"  >Make :{{strProductMake}}  </h5>   
-      
+  
+             
+                <div *ngIf="productCategory.regular_price">     <!--If "product" exists-->
+                  <h5 style="font-size: 12px;text-align: center;color: red;"  > <span class="priceicon" style="color: red;">Price : </span> <span class="priceicon">$</span> {{productCategory.regular_price}}  </h5>  
                   <div class="rateing">
                     <div class="card-btn">
-                      <p class="" float-left>
+                      <p style="width: 100%;" float-left>
                         <button
                           ion-button
                           full
                           class="bg-thime btn-round btn-text"
-                          style="margin-top: 3px; width: 125px;text-align: center;"
-                          (click)="addToCart(productCategory.id,productCategory.name)">
+                          
+                          
+                          (click)="addToCart(productCategory.id,productCategory.name,productCategory.image,productCategory.description,productCategory.regular_price)"
+  
+                        >
                           Add To Cart
                         </button>
                       </p>
@@ -114,23 +108,26 @@
                 </div>
             
                 <div *ngIf="!productCategory.regular_price">     <!--If "product" not exists-->
-                  <!-- <h5 style="font-size: 12px;text-align: center"  >  <span class="priceicon">$</span>Price Not Available</h5>   -->
                   <h5 style="font-size: 11px;text-align: center;margin-top: 13px;"> Price Not Available</h5>  
                   <div class="rating" style="text-align: -webkit-center;margin-top: 11px;">
                     <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                    <!-- <h5 style="font-size: 12px;text-align: center;color: black;"  >Make :{{strProductMake}}  </h5>    -->
 
                   </div>
+              
+               
                   <div class="rateing">
                     <div class="card-btn">
-                      <p class="" float-left>
+                      <p style="width: 100%;" float-left>
                         <button
                           ion-button
                           full
                           class="bg-thime btn-round btn-text"
-                          style="margin-top: 3px; width: 125px;text-align: center;"
-                          (click)="addToCart(productCategory.id,productCategory.name)" >
-                       Read More
+                          
+                          
+                          (click)="addToCart(productCategory.id,productCategory.name,productCategory.image,productCategory.description,productCategory.regular_price)"
+  
+                        >
+                          Read More
                         </button>
                       </p>
                     </div>
@@ -166,20 +163,7 @@
 
 
 
-  <!-- <ng-template #other_content1>
-
-    <ion-card *ngFor="let productCategory of productCategoryInformation">
-
-      <ion-card-header >
-        <ion-item lines="none">
-          <ion-label style="color: black;margin-right: 8px;font-size: 13px;">{{productCategory.name}}</ion-label>
-        </ion-item> 
-    
-            
-      </ion-card-header>
-    </ion-card>
-
-  </ng-template> -->
+ 
 
 
  

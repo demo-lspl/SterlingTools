@@ -6,7 +6,11 @@ import { HttpClient } from '@angular/common/http';
 import { CartPage } from './../cart/cart';
 import { SearchPage } from './../search/search';
 import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController, NavParams, IonicPage, LoadingController, Platform, App, ToastController } from 'ionic-angular';
+import { NavController, ModalController, NavParams, IonicPage, LoadingController, Platform, App, ToastController, AlertController } from 'ionic-angular';
+import { ProductcategorydetaillistPage } from '../productcategorydetaillist/productcategorydetaillist';
+import { ReadmorePage } from '../readmore/readmore';
+import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
+
 
 /**
  * Generated class for the ProductcategorydetailPage page.
@@ -25,7 +29,7 @@ export class ProductcategorydetailPage implements OnInit{
   dynamicTermId:string;
   strId:string;
   productCategoryInformation: any = [];
-  strData:string;
+  strData:string; 
   strIdValue:string;
   strCommentStatus:string;
   strPingStatus:string;
@@ -34,10 +38,12 @@ export class ProductcategorydetailPage implements OnInit{
 
   strProductCategoryRegularPrice:string;
   strProductGuid:string;
-
+  
   viewCartList: any = [];
   countProducts:number|any;
   buttonIcon: string ;
+  networkStatus: NetworkStatus;
+  networkListener: PluginListenerHandle; 
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -47,7 +53,8 @@ export class ProductcategorydetailPage implements OnInit{
               public platform: Platform,
               public app: App,
               public toastController: ToastController,
-              public apiProvider: ApiProvider) {
+              public apiProvider: ApiProvider,
+              public alertController: AlertController) {
 
       this.strId = navParams.get('catId');
       this.dynamicTermId = this.strId;  
@@ -55,15 +62,10 @@ export class ProductcategorydetailPage implements OnInit{
       // console.log('Received productsList id ' + this.strId);
   }   
    
-  ionViewDidLoad() {  
-    console.log('ionViewDidLoad ProductcategorydetailPage');
-  }
+  
     
  
-  searchPage() {
-    // let modal = this.modalCtrl.create(SearchPage);
-    // modal.present();
-  }  
+ 
     
   cartPage() {
     // let modal = this.modalCtrl.create(CartPage);
@@ -84,25 +86,57 @@ export class ProductcategorydetailPage implements OnInit{
      // window.location.reload();
       // location.reload();
     }, 600);
-  }  
+  }    
 
 
   sortPopular(){
-    this.showLoadingControllerLaunch();  
+    this.showLoadingControllerLaunch();    
   }
-
+  
   addToCart(id,strProductAdded) {
     this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
       this.obj = JSON.stringify(jsonResponse);
       console.log("Sent productsList response " + this.obj);
       console.log("Sent productsList id " + id);
       this.showToastOnAddProductSingle(strProductAdded);
-    });
+    }); 
+}      
+ 
+readMore(id) {
+  // this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
+  //   this.obj = JSON.stringify(jsonResponse);
+  //   console.log("Sent productsList response " + this.obj);
+  //   console.log("Sent productsList id " + id);
+  //   this.showToastOnAddProductSingle(strProductAdded);
+  // });  
 
-    // this.showToastOnAddProductSingle(strProductAdded);
+  this.navCtrl.push(ReadmorePage, {
+    id: id,
+    
+  });
+  console.log("Read More Sent product id " + id);
+ 
+}
+  
+
+productDetailPage(id, name,image,regular_price,description) {
+  this.navCtrl.push(ProductcategorydetaillistPage, {
+    id: id,
+    name: name,
+    image:image,
+    regular_price:regular_price,
+    description:description
+  });
+  console.log("Sent product id " + id);
+  console.log("Sent product name " + name);
+  console.log("Sent product image " + image);
+  console.log("Sent product regular_price " + regular_price);
+
 }
 
+
   ngOnInit() {
+    this.checkNetwork();
     this.viewCartApi();
     this.platform.registerBackButtonAction(() => {
       // Catches the active view
@@ -244,6 +278,60 @@ export class ProductcategorydetailPage implements OnInit{
       loading.dismiss();
     }, 700)
 
+}
+
+public async checkNetwork() {
+  const { Network } = Plugins;
+    this.networkListener = Network.addListener(
+      'networkStatusChange',
+      (status) => {
+        console.log('Network status HomePage here', status);
+        this.networkStatus = status;
+      }
+    );
+
+    if ((await Network.getStatus()).connectionType === 'none') {
+      this.showNetworkAlert();
+      console.log('Network status not available', this.networkStatus);
+    } else {
+      this.networkStatus = await Network.getStatus();
+      // this.showAlert();
+      console.log('Network status available', this.networkStatus);
+      //this.router.navigate(['/invoices']);
+     // this.router.navigate(['/managecard']);
+    }
+  
+}
+
+
+private async showNetworkAlert(): Promise<void> {
+  // omitted;
+  const alert = await this.alertController.create({
+    title: 'Network Issues!',
+    message: 'There are issues in network connectivity',
+
+    buttons: [
+      {
+        text: 'Ok',
+        handler: (ok) => {
+          console.log('Confirm Ok');
+          // resolve('ok');
+        },
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (cancel) => {
+          console.log('Confirm Cancel');
+          alert.dismiss();
+          // resolve('cancel');
+        },
+      },
+    ],
+  });
+
+  alert.present();
 }
 
 

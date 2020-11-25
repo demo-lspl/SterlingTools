@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 757:
+/***/ 760:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(776);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(784);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -35,7 +35,7 @@ LoginPageModule = __decorate([
 
 /***/ }),
 
-/***/ 776:
+/***/ 784:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70,7 +70,7 @@ let LoginPage = class LoginPage {
 };
 LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-login',template:/*ion-inline-start:"D:\Visual Studio Apps\mobimall-ui-IONIC Source code\mobimall-ui\src\pages\login\login.html"*/'<ion-header>\n  <ion-img class="logo-img"\n  style="align-items: center;"\n  src="assets/sterlinglogo.png"\n></ion-img>\n</ion-header>\n\n<!-- <ion-content padding>\n  <div class="form" padding-left padding-right>\n    <p text-center padding-bottom margin-bottom>{{"sign_up_label" | translate}}</p>\n    <ion-list>\n      <ion-item>\n        <ion-label>{{"phone" | translate}}</ion-label>\n        <ion-input type="text" text-right value="+91 903 335 6708"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label>{{"full_name" | translate}}</ion-label>\n        <ion-input type="text" text-right value="Jhon Smith"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label>{{"email" | translate}}</ion-label>\n        <ion-input type="text" text-right value="jhonsmith8994@gmail.com"></ion-input>\n      </ion-item>\n      <div class="d-flex">\n        <ion-item>\n          <ion-label>{{"login_box2" | translate}}</ion-label>\n          <ion-input type="text" text-right value="******"></ion-input>\n        </ion-item>\n        <ion-icon name="ios-eye-outline" class="text-light eye-icon"></ion-icon>\n      </div>\n    </ion-list>\n    <button ion-button full class="bg-thime btn-round btn-text" (click)="homePage()">{{"continue" | translate}}</button>\n    <p text-center>\n      <small>\n        {{"tnc_prelabel" | translate}} \n        <span class="text-sky"> {{"tnc" | translate}} </span>\n      </small>\n    </p>\n  </div>\n</ion-content> -->\n'/*ion-inline-end:"D:\Visual Studio Apps\mobimall-ui-IONIC Source code\mobimall-ui\src\pages\login\login.html"*/,
+        selector: 'page-login',template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\login\login.html"*/'<ion-header>\n\n  <ion-img class="logo-img"\n\n  style="align-items: center;"\n\n  src="assets/sterlinglogo.png"\n\n></ion-img>\n\n</ion-header>\n\n\n\n<!-- <ion-content padding>\n\n  <div class="form" padding-left padding-right>\n\n    <p text-center padding-bottom margin-bottom>{{"sign_up_label" | translate}}</p>\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label>{{"phone" | translate}}</ion-label>\n\n        <ion-input type="text" text-right value="+91 903 335 6708"></ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label>{{"full_name" | translate}}</ion-label>\n\n        <ion-input type="text" text-right value="Jhon Smith"></ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label>{{"email" | translate}}</ion-label>\n\n        <ion-input type="text" text-right value="jhonsmith8994@gmail.com"></ion-input>\n\n      </ion-item>\n\n      <div class="d-flex">\n\n        <ion-item>\n\n          <ion-label>{{"login_box2" | translate}}</ion-label>\n\n          <ion-input type="text" text-right value="******"></ion-input>\n\n        </ion-item>\n\n        <ion-icon name="ios-eye-outline" class="text-light eye-icon"></ion-icon>\n\n      </div>\n\n    </ion-list>\n\n    <button ion-button full class="bg-thime btn-round btn-text" (click)="homePage()">{{"continue" | translate}}</button>\n\n    <p text-center>\n\n      <small>\n\n        {{"tnc_prelabel" | translate}} \n\n        <span class="text-sky"> {{"tnc" | translate}} </span>\n\n      </small>\n\n    </p>\n\n  </div>\n\n</ion-content> -->\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\login\login.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]])
 ], LoginPage);

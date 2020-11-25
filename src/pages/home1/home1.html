@@ -53,7 +53,7 @@
         (ionChange)="makeDropDownValue(makeValue)"
         [(ngModel)]="makeValue"
         >
-        <ion-option *ngFor="let key of makeList" >{{key}}</ion-option>
+        <ion-option *ngFor="let makeKey of makeList" >{{makeKey}}</ion-option>
       </ion-select>
     </ion-item>
   </div>
@@ -61,14 +61,14 @@
   <div class="size" style="justify-content: center">
     <ion-item>
       <ion-label>Model</ion-label>
-      <ion-select
+      <ion-select 
         value="sortpopular"
         okText="Ok"
         cancelText="Cancel"
-        (ionChange)="makeDropDownValue(modelValue)"
+        (ionChange)="onChangeModel(modelValue)"
         [(ngModel)]="modelValue"
     >
-        <ion-option *ngFor="let key of modelList" >{{strMakeListSelectedValue}}</ion-option>
+        <ion-option *ngFor="let modelKey of modelList" >{{modelKey}}</ion-option>
       </ion-select>
 
       
@@ -80,22 +80,18 @@
 
   <div class="size" style="justify-content: center">
     <ion-item>
-      <ion-label>Engine</ion-label>
+      <ion-label>SubModel</ion-label>
       <ion-select
         value="sortpopular"
         okText="Ok"
         cancelText="Cancel"
-        (ionChange)="makeDropDownValue(modelValue)"
+      
         [(ngModel)]="engineValue">
-        <ion-option *ngFor="let key of engineList" >{{strMakeListSelectedValue}}</ion-option>
+        <ion-option *ngFor="let engineKey of engineList" >{{engineKey}}</ion-option>
       </ion-select>
     </ion-item>
   </div>
-  
 
-  
-
-    
   <div class="size" style="justify-content: center">
     <ion-item>
       <ion-label>Year</ion-label>
@@ -103,13 +99,49 @@
         value="sortpopular"
         okText="Ok"
         cancelText="Cancel"
-        [(ngModel)]="yearValue"
-        (ionChange)="makeDropDownValue(yearValue)">
-        <ion-option *ngFor="let key of yearList" >{{strMakeListSelectedValue}}</ion-option>
+      
+        [(ngModel)]="yearValue">
+        <ion-option *ngFor="let yearKey of yearList" >{{yearKey}}</ion-option>
       </ion-select>
     </ion-item>
   </div>
+  
 
+  <button
+  ion-button
+  full
+  class="bg-thime btn-round btn-text"
+  style="max-width: 390px"
+  (click)="searchData(makeKey)">
+  Search data
+</button>
+
+
+
+
+
+<!-- <ion-item>
+  <ion-select  (ionChange)="getOuterName()" [(ngModel)]="companyName" placeholder = "Select company" >
+    <ion-option *ngFor="let companies of productCategoryList" [value]="companies.catId" >
+      {{companies.name}}
+    </ion-option>
+  </ion-select>
+</ion-item>
+
+
+<button
+ion-button
+full
+class="bg-thime btn-round btn-text"
+style="max-width: 390px"
+(click)="productDetailPage(companyName)">
+Search 
+</button> -->
+
+  
+
+    
+ 
 
 </div>   
  

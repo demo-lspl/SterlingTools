@@ -240,7 +240,7 @@ export class ViewcartPage implements OnInit{
     console.log("hello you clicked local" + this.strSubTotalAmount);
   }
 
-
+  
  
   doRefresh(event) {
     console.log('Begin async operation');
@@ -581,7 +581,6 @@ removeProductLocally(index,item,name)
           for (var i=0; i < this.viewCartList.length; i++) {
             result.push(this.strDynamicId);
       }
-      console.log('Tushar garima' + result);
  
           //  console.log('Total Price of Products ' + this.total);
            this.strSubTotalAmount = this.total;  

@@ -1,14 +1,14 @@
 webpackJsonp([23],{
 
-/***/ 751:
+/***/ 763:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AccordiantestPageModule", function() { return AccordiantestPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Home1PageModule", function() { return Home1PageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__accordiantest__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home1__ = __webpack_require__(185);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,20 +18,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-let AccordiantestPageModule = class AccordiantestPageModule {
+let Home1PageModule = class Home1PageModule {
 };
-AccordiantestPageModule = __decorate([
+Home1PageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__accordiantest__["a" /* AccordiantestPage */],
+            __WEBPACK_IMPORTED_MODULE_2__home1__["a" /* Home1Page */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__accordiantest__["a" /* AccordiantestPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__home1__["a" /* Home1Page */]),
         ],
     })
-], AccordiantestPageModule);
+], Home1PageModule);
 
-//# sourceMappingURL=accordiantest.module.js.map
+//# sourceMappingURL=home1.module.js.map
 
 /***/ })
 

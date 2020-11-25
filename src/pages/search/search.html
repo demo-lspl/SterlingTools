@@ -1,58 +1,110 @@
-<ion-content class="bg-light">
-  <div class="d-flex searchbar-section">
-    <ion-searchbar  placeholder="Search Brand of product"></ion-searchbar>
-    <!-- <ion-list>
-      <ion-item *ngFor="let item of items">
-        {{ item }}
-      </ion-item>
-    </ion-list> -->
-    <ion-icon name="md-close" class="close-icon" (click)="dismiss()"></ion-icon>
-  </div>
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle style="display: block !important">
+      <ion-icon class="menu-icon"
+        ><img src="assets/imgs/ic_menu.png"
+      /></ion-icon>
+    </button>
+    <ion-title
+      >Search
+      <span float-right>
+        <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header> -->
+        <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>
+      
+        <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon>
 
-  <div class="recent-search">
-    <ion-card>
-      <ion-card-header>
-        {{"recent_search" | translate}}
-        <span text-right class="right">{{"clear_history" | translate}}</span>
-      </ion-card-header>
-      <ion-card-content>
-        <p>
-          <ion-icon name="ios-time-outline"></ion-icon>Iphone7 in <strong class="text-sky">Mobile</strong>
-        </p>
-        <p>
-          <ion-icon name="ios-time-outline"></ion-icon>Shirt in <strong class="text-sky">Me,s Wear</strong>
-        </p>
-      </ion-card-content>
-    </ion-card>
-  </div>
+        
+         
+     
 
+      </span>
+    </ion-title>
+  </ion-navbar>
+</ion-header> 
+
+
+<ion-content padding class="search-main">
+
+
+  <ion-grid class="product-grid" style="margin-top: 40px;">
+    <ion-row class="rowgrid">
+      <ion-col
+        class="columngrid"
+        *ngFor="let featuredProducts of productCategoryInformation ">
+
+       
+        <ion-card >
+          
+
+          <ion-card-header style="justify-content: left">
+            <div 
+              class="img-box"
+            >
+              <img  [src]="featuredProducts.image"  style="width:200px;height:80px ;">
+            </div>
+            <ion-icon    name="md-heart" class="text-light icon" (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"></ion-icon>
+         
+          
+
+           
+          </ion-card-header>
+          <ion-card-content>
+
+           
+        
+            <ion-item >
+              <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5> 
+            </ion-item>
+            <div>
+              <div *ngIf="featuredProducts.regular_price">     <!--If "product" exists-->
+                <h5 style="font-size: 12px;text-align: center;color: red;"  > <span class="priceicon" style="color: red;">Price : </span> <span class="priceicon">$</span> {{featuredProducts.regular_price}}  </h5>  
+               
+                <ion-item>
+                  <button
+                  ion-button
+                  full
+                  class="bg-thime btn-round btn-text"
+                  style="margin-top: 3px; width: 150px;text-align: center;"
+                  
+                  (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"
+
+                >
+                  Add To Cart
+                </button>
+                </ion-item>
+                      
+                    
+              </div>
+
+          
+          
+              <div *ngIf="!featuredProducts.regular_price">     <!--If "product" not exists-->
+                <h5 style="font-size: 12px;text-align: center"> Price Not Available</h5>  
+
+                <ion-item >
+                  <!-- <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5>  -->
+                  <button
+                  ion-button
+                  full
+                  class="bg-thime btn-round btn-text"
+                  style="margin-top: 3px; width: 150px;text-align: center;"
+                  (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"
+                >
+                Read More
+                </button>
+                </ion-item>
+              
+              </div>
+          </div>
+
+          
+
+            
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
   
-  <div class="trending-search">
-    <ion-card>
-      <ion-card-header>
-        {{"search_trend" | translate}}
-      </ion-card-header>
-      <ion-card-content>
-        <p>
-          <ion-icon name="ios-trending-up-outline"></ion-icon>Sleevless kurti
-        </p>
-        <p>
-          <ion-icon name="ios-trending-up-outline"></ion-icon>Shoes
-        </p>
-        <p>
-          <ion-icon name="ios-trending-up-outline"></ion-icon>Watches
-        </p>
-        <p>
-          <ion-icon name="ios-trending-up-outline"></ion-icon>Tshirt
-        </p>
-        <p>
-          <ion-icon name="ios-trending-up-outline"></ion-icon>Headphones
-        </p>
-        <p>
-          <ion-icon name="ios-trending-up-outline"></ion-icon>Pendrive
-        </p>
-      </ion-card-content>
-    </ion-card>
-  </div>
+    </ion-row>
+  </ion-grid>
 </ion-content>

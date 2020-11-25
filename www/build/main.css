@@ -20969,7 +20969,6 @@ ion-navbar.toolbar {
 }
 
 .back-button.show-back-button {
-  /* display: inline-block; */
 }
 
 .back-button-text {
@@ -53282,8 +53281,7 @@ page-home .card-main .card-content {
 
 page-home .card-main {
   padding: 10px 10px;
-  margin-bottom: 15px;
-  margin-top: 20px;
+ 
 }
 
 page-home .shot-by {
@@ -57233,6 +57231,23 @@ page-home {
   /* Clear floats after the columns */
 }
 
+page-home .add-icon {
+  color: white;
+  margin-top: 5px;
+  position: absolute;
+  top: -8px;
+  right: -7px;
+  font-size: 11px;
+  border-radius: 50%;
+  padding: 4px;
+  width: unset !important;
+  height: unset !important;
+}
+
+page-home .card-main h6 {
+  padding-left: 16px;
+}
+
 page-home .list {
   margin: 0 !important;
 }
@@ -57476,7 +57491,7 @@ page-home .custom {
 
 page-home .custom-id .item-select {
   position: absolute;
-  width: 13%;
+  width: 30%;
   z-index: 99;
   padding: 0px;
   left: 11px;
@@ -57499,7 +57514,7 @@ page-home .custom-id .searchbar-search-icon {
 }
 
 page-home .custom-id input.searchbar-input {
-  padding-left: 65px !important;
+  padding-left: 120px !important;
 }
 
 page-home .custom-id .select-md {
@@ -57644,7 +57659,7 @@ page-home .card-main1 .card-header.card-header-md {
 
 page-home .custom-id .item-select {
   position: absolute;
-  width: 13%;
+  width: 30%;
   z-index: 99;
   padding: 0px;
   left: 11px;
@@ -57705,8 +57720,7 @@ page-home .card-main .card-content {
 
 page-home .card-main {
   padding: 10px 10px;
-  margin-bottom: 15px;
-  margin-top: 20px;
+ 
 }
 
 page-home .shot-by {
@@ -60330,6 +60344,36 @@ page-review .img-box {
   margin: 0 auto;
 }
 
+page-search .search-main {
+  background: #e8e8e8;
+}
+
+page-search .search-main ion-grid.product-grid.grid {
+  margin-top: 0px !important;
+}
+
+page-search .search-main button {
+  width: 100% !important;
+  padding: 20px 10px !important;
+}
+
+page-search .search-main .img-box img {
+  width: auto !important;
+  height: auto !important;
+  float: unset !important;
+}
+
+page-search .search-main ion-icon.text-light.icon.icon-md.ion-md-heart {
+  position: absolute;
+  top: 35px;
+  font-size: 20px;
+}
+
+page-search .search-main ion-col.columngrid.col {
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
 page-search .d-flex {
   display: -webkit-box;
   display: -webkit-flex;
@@ -61263,6 +61307,19 @@ page-verification .form ion-item .text-input {
 
 page-viewall {
   /* Clear floats after the columns */
+}
+
+page-viewall .add-icon {
+  color: white;
+  margin-top: 5px;
+  position: absolute;
+  top: -8px;
+  right: -7px;
+  font-size: 11px;
+  border-radius: 50%;
+  padding: 4px;
+  width: unset !important;
+  height: unset !important;
 }
 
 page-viewall .list {
@@ -62357,6 +62414,10 @@ page-viewallcategories .shorting-bar .short.item .shorting-bar .short.item .one1
   margin-top: 11px;
 }
 
+page-viewcart ion-col.right-main-bar.col {
+  text-align: left;
+}
+
 page-viewcart .my-custom-class {
   text-transform: none;
 }
@@ -62462,7 +62523,6 @@ page-viewcart .row {
 }
 
 page-viewcart .block {
-  width: 100px;
   /*float: left;*/
   display: inline-block;
   zoom: 1;

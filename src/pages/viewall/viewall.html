@@ -8,9 +8,15 @@
   
     <ion-title >Products
       <span float-right>
-        <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>
+        <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>
         <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>
-        <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon>
+        <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon> -->
+
+        <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>
+        <ion-icon class="icon"  (click)="cartPage()" >
+          <img src="assets/imgs/ic_my_cart.png" width="100%;" />
+          <ion-badge class="icon add-icon" >{{countProducts}}</ion-badge> 
+        </ion-icon>
       </span>
      
     </ion-title>
@@ -370,12 +376,12 @@
                 <h5 style="font-size: 12px;text-align: center;color: red;"  > <span class="priceicon" style="color: red;">Price : </span> <span class="priceicon">$</span> {{featuredProducts.regular_price}}  </h5>  
                 <div class="rateing">
                   <div class="card-btn">
-                    <p class="" float-left>
+                    <p style="width: 100%;" float-left>
                       <button
                         ion-button
                         full
                         class="bg-thime btn-round btn-text"
-                        style="margin-top: 3px; width: 150px;text-align: center;"
+                        
                         
                         (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"
 
@@ -386,7 +392,6 @@
                   </div>
                 </div>
               </div>
-
           
           
               <div *ngIf="!featuredProducts.regular_price">     <!--If "product" not exists-->
@@ -394,7 +399,7 @@
 
                 <div class="rateing">
                   <div class="card-btn">
-                    <p class="" float-left>
+                    <p style="width: 100%;" float-left>
                       <button
                         ion-button
                         full

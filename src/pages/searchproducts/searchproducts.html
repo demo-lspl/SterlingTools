@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle style="display: block !important">
+      <ion-icon class="menu-icon"
+        ><img src="assets/imgs/ic_menu.png"
+      /></ion-icon>
+    </button>
+    <ion-title
+      >Product Search
+      <span float-right>
+        <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header> -->
+        <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>
+      
+        <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon>
+      </span>
+    </ion-title>
+  </ion-navbar>
+</ion-header> 
+
+
+<ion-content padding>
+
+
+  <ion-grid class="product-grid" style="margin-top: 40px;">
+    <ion-row class="rowgrid">
+      <ion-col
+        class="columngrid"
+        *ngFor="let featuredProducts of featuredProductsList ">
+
+       
+        <ion-card >
+          
+
+          <ion-card-header style="justify-content: left">
+            <div 
+              class="img-box"
+            >
+              <img  [src]="featuredProducts.image"  style="width:200px;height:80px ;">
+            </div>
+            <ion-icon    name="md-heart" class="text-light icon" (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"></ion-icon>
+         
+          
+
+           
+          </ion-card-header>
+          <ion-card-content>
+
+           
+        
+            <ion-item >
+              <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5> 
+            </ion-item>
+            <div>
+              <div *ngIf="featuredProducts.regular_price">     <!--If "product" exists-->
+                <h5 style="font-size: 12px;text-align: center;color: red;"  > <span class="priceicon" style="color: red;">Price : </span> <span class="priceicon">$</span> {{featuredProducts.regular_price}}  </h5>  
+                <div class="rateing">
+                  <div class="card-btn">
+                    <p class="" float-left>
+                      <button
+                        ion-button
+                        full
+                        class="bg-thime btn-round btn-text"
+                        style="margin-top: 3px; width: 150px;text-align: center;"
+                        
+                        (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"
+
+                      >
+                        Add To Cart
+                      </button>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+          
+          
+              <div *ngIf="!featuredProducts.regular_price">     <!--If "product" not exists-->
+                <h5 style="font-size: 12px;text-align: center"> Price Not Available</h5>  
+
+                <ion-item >
+                  <!-- <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5>  -->
+                  <button
+                  ion-button
+                  full
+                  class="bg-thime btn-round btn-text"
+                  style="margin-top: 3px; width: 150px;text-align: center;"
+                  (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"
+                >
+                Read More
+                </button>
+                </ion-item>
+                <!-- <div class="rateing">
+                  <div class="card-btn">
+                    <p class="" float-left>
+                      <button
+                        ion-button
+                        full
+                        class="bg-thime btn-round btn-text"
+                        style="margin-top: 3px; width: 150px;text-align: center;"
+                        (click)="readMoreLocal(featuredProducts.id,featuredProducts.name,featuredProducts.regular_price)"
+                      >
+                        Read More
+                      </button>
+                    </p>
+                  </div>
+                </div> -->
+              </div>
+          </div>
+
+          
+
+            
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+  
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -138,7 +138,7 @@ export class WishlistupdatedPage implements OnInit {
 // }
   
 
-addToCartLocal(id, name,image,description,regular_price) {
+addToCart(id, name,image,description,regular_price) {
     
   let products = [];
   if (localStorage.getItem('products')) {

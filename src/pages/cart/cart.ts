@@ -14,7 +14,7 @@ export class CartPage {
     if (localStorage.getItem('cart')) {
       this.cart = JSON.parse(localStorage.getItem('cart'));
     }
-  }
+  }  
 
   removeFromCart(index: number) {
     this.cart.slice(index, 1);

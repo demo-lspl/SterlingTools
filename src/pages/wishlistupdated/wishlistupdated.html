@@ -109,23 +109,24 @@
             <label style="color: black;">Description:  {{productsLocal.ProductDescription}} </label>
           </div>
 
-          <!-- <div style="margin-top: 10%">
+          <div style="margin-top: 10%">
             <button
           ion-button
           full
           class="bg-thime btn-round btn-text"
           style="margin-top: 3px; width: 150px;text-align: center;"
-         
+          (click)="addToCart(productsLocal.id,productsLocal.name,productsLocal.image,productsLocal.description,productsLocal.regular_price)"
 
-          (click)="addToCartLocal(products.id,products.name,products.image,products.description,products.regular_price)"
+
 
         >
           Add To Cart
         </button>
-          </div> -->
+          </div>
 
           <!-- (click)="addToCart(products.ProductId)" -->
-        
+          <!-- (click)="addToCartLocal(products.ProductId,products.ProductName,products.ProductImage,products.ProductDescription,products.ProductRegularPrice)" -->
+
         
         </ion-col>
       </ion-row>

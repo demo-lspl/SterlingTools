@@ -6,9 +6,9 @@
   "webDir": "www",
   "plugins": {
     "SplashScreen": {
-      "launchShowDuration": 9000,
+      "launchShowDuration": 3000,
       "launchAutoHide": true,
-      "androidSplashResourceName": "splashnew"
+      "androidSplashResourceName": "splashupdated"
     }
   },
   "cordova": {}

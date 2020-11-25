@@ -1,5 +1,11 @@
 page-viewcart {
 
+
+    ion-col.right-main-bar.col {
+        text-align: left;
+    }
+
+
     .my-custom-class{
         text-transform: none;
     }
@@ -84,7 +90,7 @@ page-viewcart {
           text-align: center;
       }
       .block {
-        width: 100px;
+        // width: 100px;
         /*float: left;*/
           display: inline-block;
           zoom: 1;

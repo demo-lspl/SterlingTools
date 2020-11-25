@@ -1,14 +1,14 @@
 webpackJsonp([11],{
 
-/***/ 765:
+/***/ 773:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TermsandconditionsPageModule", function() { return TermsandconditionsPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Test1PageModule", function() { return Test1PageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__termsandconditions__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__test1__ = __webpack_require__(401);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,20 +18,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-let TermsandconditionsPageModule = class TermsandconditionsPageModule {
+let Test1PageModule = class Test1PageModule {
 };
-TermsandconditionsPageModule = __decorate([
+Test1PageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__termsandconditions__["a" /* TermsandconditionsPage */],
+            __WEBPACK_IMPORTED_MODULE_2__test1__["a" /* Test1Page */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__termsandconditions__["a" /* TermsandconditionsPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__test1__["a" /* Test1Page */]),
         ],
     })
-], TermsandconditionsPageModule);
+], Test1PageModule);
 
-//# sourceMappingURL=termsandconditions.module.js.map
+//# sourceMappingURL=test1.module.js.map
 
 /***/ })
 

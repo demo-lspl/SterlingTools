@@ -1,21 +1,24 @@
-import { WishlistupdatedPage } from './../wishlistupdated/wishlistupdated';
 
 /**
  *  Created By Lasting Erp 5/10/2020
  */
-
+ 
 import { HttpClient } from '@angular/common/http';
-import { ToastController, LoadingController } from 'ionic-angular';
+import { ToastController, LoadingController, AlertController } from 'ionic-angular';
 import { HomePage } from './../home/home';
 import { ApiProvider } from './../../providers/api/api';
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, App, Platform } from 'ionic-angular';
 import { ProductcategorydetailPage } from '../productcategorydetail/productcategorydetail';
 import { ViewcartPage } from '../viewcart/viewcart';
+import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
+import { WishlistupdatedPage } from './../wishlistupdated/wishlistupdated';
 
-  
+
+
+   
 @IonicPage()
-@Component({
+@Component({  
   selector: 'page-productcategory',
   templateUrl: 'productcategory.html',
 })
@@ -33,6 +36,9 @@ export class ProductcategoryPage implements OnInit{
   countProducts:number|any; 
   buttonIcon: string ;
   constresultado : string;
+  networkStatus: NetworkStatus;
+  networkListener: PluginListenerHandle; 
+
   
 
   constructor(public navCtrl: NavController,
@@ -43,7 +49,8 @@ export class ProductcategoryPage implements OnInit{
               public platform: Platform,
               public toastController: ToastController,
               public httpClient: HttpClient,
-              public loadingController: LoadingController
+              public loadingController: LoadingController,
+              public alertController: AlertController
               ) {
 
                 this.getProductCategoriesApi();
@@ -214,6 +221,60 @@ searchPage() {
       loading.dismiss();
     }, 700)
 
+}
+
+public async checkNetwork() {
+  const { Network } = Plugins;
+    this.networkListener = Network.addListener(
+      'networkStatusChange',
+      (status) => {
+        console.log('Network status HomePage here', status);
+        this.networkStatus = status;
+      }
+    );
+
+    if ((await Network.getStatus()).connectionType === 'none') {
+      this.showNetworkAlert();
+      console.log('Network status not available', this.networkStatus);
+    } else {
+      this.networkStatus = await Network.getStatus();
+      // this.showAlert();
+      console.log('Network status available', this.networkStatus);
+      //this.router.navigate(['/invoices']);
+     // this.router.navigate(['/managecard']);
+    }
+  
+}
+
+
+private async showNetworkAlert(): Promise<void> {
+  // omitted;
+  const alert = await this.alertController.create({
+    title: 'Network Issues!',
+    message: 'There are issues in network connectivity',
+
+    buttons: [
+      {
+        text: 'Ok',
+        handler: (ok) => {
+          console.log('Confirm Ok');
+          // resolve('ok');
+        },
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (cancel) => {
+          console.log('Confirm Cancel');
+          alert.dismiss();
+          // resolve('cancel');
+        },
+      },
+    ],
+  });
+
+  alert.present();
 }
 
 }

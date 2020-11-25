@@ -54,12 +54,12 @@ export class ApiProvider {
     .pipe(map((res: any) => this.httpClientFetch = res.result));
   }
  
-  getMakeCategories(){
+  searchMakeCategories(){
     return this.httpClient.get('http://busybanda.com/sterling-tools/api/mmey_make_search')
     .pipe(map((res: any) => this.httpClientFetch = res.result));
   }            
 
-  getModelCategories(make: string){
+  getMakeCategories(make: string){
     return this.httpClient.get('http://busybanda.com/sterling-tools/api/mmey_model_search?make=' + make )
     .pipe(map((res: any) => this.httpClientFetch = res.result));
   }
@@ -71,6 +71,11 @@ export class ApiProvider {
 
   getYearCategories(make: string,model:string,engine:string){
     return this.httpClient.get('http://busybanda.com/sterling-tools/api/mmey_year_search?make=' + make + '&model=' + model + '&engine=' + engine )
+    .pipe(map((res: any) => this.httpClientFetch = res.result));
+  }
+
+  getSearchData(make: string,model:string,engine:string,year:string){
+    return this.httpClient.get('http://busybanda.com/sterling-tools/api/get_products_mmey_search?make=' + make + '&model=' + model + '&engine=' + engine  + '&year=' + year)
     .pipe(map((res: any) => this.httpClientFetch = res.result));
   }
 

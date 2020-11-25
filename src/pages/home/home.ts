@@ -11,11 +11,15 @@ import { ViewcartPage } from "./../viewcart/viewcart";
 import { ViewallcategoriesPage } from "./../viewallcategories/viewallcategories";
 import { ApiProvider } from "./../../providers/api/api";
 import { Component, OnInit, ViewChild, Input, Renderer, ElementRef } from "@angular/core";
-import {NavController,ModalController,ToastController,LoadingController, Platform, App,} from "ionic-angular";
+import {NavController,ModalController,ToastController,LoadingController, Platform, App, AlertController,} from "ionic-angular";
 import { ItemdetailPage } from "../itemdetail/itemdetail";
 import { HttpClient } from "@angular/common/http";
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import {  map} from 'rxjs/operators';
+import { SearchPage } from '../search/search';
+import { SearchproductsPage } from '../searchproducts/searchproducts';
+import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
+
 
     
 @Component({  
@@ -52,7 +56,9 @@ export class HomePage implements OnInit {
   testStr = 'Hello, World,\nand all you beautiful people in it!';
   buttonIcon: string = "home";
   getIcon: string;
-  countProducts:number|any|string;
+  countProductsCart:number|any|string;
+  countProductsWishList:number|any|string;
+
   letclickCount = 0;
   clickedButtonWishlist:boolean ;
   count:string|any;
@@ -64,14 +70,34 @@ export class HomePage implements OnInit {
   modelList: any = [];  
   companyName: any;
   strMakeListValue:string;
-  strModelListValue:string;
+  strModelListValue:string; 
   zone;
   modeKeys:any=[];
   httpClientFetch = [];
   makeValue:string;
+  idValue:string;
+
   modelValue:string;
   varoutput :any = [] ;
-  
+  productCategoryList: any = [];  
+
+  strCateid:string;
+  engineValue:string;  
+  yearValue:string;
+  strMakeListSelectedValue:string;
+  strModelListSelectedValue:string; 
+  strEngineListSelectedValue:string;
+  engineList: any = [];  
+  yearList: any = [];  
+
+  picToView:string='cart';   
+  networkStatus: NetworkStatus;
+  networkListener: PluginListenerHandle; 
+
+  strProductName:string;
+  strDynamicId:string;
+  wishListlength:string | any;
+
   constructor(
     public navCtrl: NavController,
     public modalCtrl: ModalController,
@@ -85,13 +111,51 @@ export class HomePage implements OnInit {
     public inAppBrowser: InAppBrowser,
     public platform: Platform,
     public app: App,
+    public alertController: AlertController
   ) {
 
     // this.onSelect(this.selectedCountry.id);
   }   
+                
+   
+  ngOnInit() {    
+
+    
+    // var something = localStorage.getItem('products');
+    // console.log('Wishlist Filled***** ' + something);
+    // this.wishListlength  = something.length;
+
+    //  console.log('Wishlist Filled tushar***** ' + Object.keys('products').length);
+
+    
+    // if(something) {
+    //   console.log('Wishlist Filled ');
+    //   this.countProductsWishList = this.productsLocalCart.length;
+    //  }   
+
+    //  else{
+    //   console.log('Wishlist Empty ');
+    //  }
 
 
-  ngOnInit() {
+ 
+    this.checkNetwork();
+    this.getAllProductsCategoriesList(); 
+ 
+    if(this.viewCartList.length>=1) {
+      console.log('Cart Filled ');
+      this.countProductsCart = this.viewCartList.length;
+       this.buttonIcon = "cart";
+     }   
+
+     else{
+      console.log('Cart Empty ');
+     //this.countProducts = 'Empty';
+     this.buttonIcon = "home";
+
+     }
+
+   
     if(this.countClick>1){
       console.log('Clicked More than one');
       this.showToastOnWishlist();
@@ -108,7 +172,6 @@ export class HomePage implements OnInit {
      this.getCategoriesApi();
      this.viewCartApi();
       this.getMakeApi();
-     // this.getModelApi(this.makeValue);
 
    // this.callMakeApi();
      this.zone = {
@@ -230,16 +293,16 @@ addToCart(id, name,image,description,regular_price) {
           this.showToastOnAddProductSingle(this.strProductAdded);
         });
   }
-}
-
-
+} 
+  
+   
 
  changeView(){
   this.buttonIcon = "star";
 }
   
 
- 
+   
  cartPage() {
     this.navCtrl.push(ViewcartPage);
   }
@@ -254,7 +317,7 @@ addToCart(id, name,image,description,regular_price) {
     this.getAllFeaturedProductsCategories();
     this.viewCartApi();
     this.getMakeApi();
-    //this.getModelApi(this.makeValue);
+  
     
     setTimeout(() => {
       console.log('Async operation has ended');
@@ -287,6 +350,28 @@ addToCart(id, name,image,description,regular_price) {
   viewAllCategories() {
    // this.navCtrl.push(ViewallcategoriesPage);
     this.navCtrl.push(ViewallPage);
+  }
+
+
+  productDetailPage1(catId) {
+
+
+    if(this.companyName){
+      console.log('clicked');
+       this.navCtrl.push(SearchPage, {
+      catId: catId,
+     
+    });
+    console.log("Sent product id " + catId);
+    }
+
+    else {
+      console.log('clicked!!!!!!');
+      this.showToastOnEmptyProduct();
+    }
+
+   
+  
   }
 
   productDetailPage(id, name,regular_price) {
@@ -387,7 +472,7 @@ getAllFeaturedProducts() {
         else {
           // console.log('data available');
         }
-
+  
         
         
     });
@@ -413,6 +498,37 @@ getAllFeaturedProductsCategories() {
           //console.log('data available');
         }
     });
+  }  
+
+  getAllProductsCategoriesList() {
+    
+    const service = this.apiProvider.getProductCategories();
+    service.subscribe((jsonResponse) => {
+  
+      const resultado = jsonResponse;
+      this.productCategoryList = resultado;
+      this.obj = JSON.stringify(jsonResponse);
+
+      this.strData = 'No data available';
+
+        if(resultado === null){
+          this.showToastOnEmptyFeaturedProducts();
+        }
+        else {
+         // console.log('data available getAllProductsCategoriesList' + this.obj);
+        }
+
+
+        
+
+        for (const entry of this.productCategoryList) {
+          // console.log('Dynamic Ids ' + entry.catId);
+           this.strCateid = entry.catId;
+        }
+
+
+
+    });
   }
 
 
@@ -423,80 +539,154 @@ getCategoriesApi(){
         const resultado = data;
         this.featuredCategoryList = resultado;
         this.productTitle = data.title;
-    });
-  }
+    }); 
+  }   
   
-                     
+   
+                      
+    
  
 
-sortDropDownValue() {
-    console.log("Selected sortDropDownValue");
-    this.getCategoriesApi();
-    this.featuredProductCategoryList.sort(); 
-    var points = [5.0, 3.7, 1.0, 2.9, 3.4, 4.5];
-    var output :any  = [];
-    
-    for (let i = 0; i < points.length; i++) {
-      	points.sort(function (a, b) {
-		    return b - a
-	  });
-	  output += points[i] + "<br>";
-}
-    console.log(output);
-    console.log("Selected sortDropDownValue" + this.featuredProductCategoryList.sort());
+
+
+  getCategories(value){
+    console.info("Selected Product category : ",value);
+    console.info("Selected Product strCateid : ",this.strCateid);
+    // this.strModelListSelectedValue = modelValue;
   }
+
+  testValue(){
+    console.info('testValue');
+  }
+
+  testValue1(){
+    console.info('testValue1');
+  }
+
                   
-getMakeApi(){     
-    console.log('getMakeApi called    ');
-    const service = this.apiProvider.getMakeCategories();
-    service.subscribe((data) => {
-        const resultado = data;
-        this.makeList = resultado; 
-        this.strMakeListValue =  resultado;
-        console.log('MakeApi response   ' + resultado);
-        this.modeKeys =resultado;
+ 
   
-      //  if(this.makeList){
-      //   this.getModelApi(this.makeValue)
-      //   console.log('MakeApi response success ' + this.makeList.length);
-      //   //console.log("Selected model api:  ", this.makeValue);
-      //  }
-      //  else {
-      //   console.log('getMakeApi issue ');
-      //  }
-     });
+  makeDropDownValue(){   
+     this.strMakeListSelectedValue = this.makeValue;
+   // this.strModelListSelectedValue = this.modelValue;
+     this.getModelApi(this.strMakeListSelectedValue);
+     console.log("Selected make:  ", this.makeValue); 
+     //console.log("Selected model:  ", this.modelValue); 
+    }
+
+    
+   
+    getMakeApi(){       
+      console.log('getMakeApi called    ');
+      const service = this.apiProvider.searchMakeCategories();
+      service.subscribe((data) => {
+          const resultado = data;
+          this.makeList = resultado; 
+          this.strMakeListValue =  resultado;
+          //console.log('MakeApi response   ' + resultado);
+       });
+    }  
+          
+    getModelApi(strMakeListSelectedValue){    
+      console.log("Selected model:  ", strMakeListSelectedValue); 
+      this.showMakeLoader(); 
+      const service = this.apiProvider.getMakeCategories(strMakeListSelectedValue);
+      service.subscribe((data) => {
+          const resultado = data;
+          this.modelList = resultado; 
+          this.strMakeListSelectedValue =  resultado;
+           this.strModelListSelectedValue =  resultado;
+          // this.strEngineListSelectedValue =  resultado;
+          // console.log('Selected model:  ' + this.strModelListSelectedValue);
+          // console.log('Selected model:  ' + this.modelList);
+          // this.obj = JSON.stringify(data);
+          console.log('getModelApi called    ' + this.makeList);
+          console.log('getModelApi called    ' + this.makeValue);
+           this.getEngineApi(strMakeListSelectedValue,this.strModelListSelectedValue);
+           this.getYearApi(strMakeListSelectedValue,this.strModelListSelectedValue,this.strEngineListSelectedValue);
+       });
+    }  
+    
+    
+ 
+    getEngineApi(strMakeListSelectedValue,strModelListSelectedValue){     
+      console.log('getEngineApi called    ');
+      const service = this.apiProvider.getEngineCategories(strMakeListSelectedValue,strModelListSelectedValue);
+      service.subscribe((data) => {
+          const resultado = data;
+          this.engineList = resultado; 
+          this.strMakeListSelectedValue =  resultado;
+          this.strModelListSelectedValue =  resultado;
+          
+          console.log('Engine api response   ' + resultado);
+       });
+    } 
+
+    getYearApi(strMakeListSelectedValue,strModelListSelectedValue,strEngineListSelectedValue){     
+      console.log('getYearApi called    ');
+      const service = this.apiProvider.getYearCategories(strMakeListSelectedValue,strModelListSelectedValue,strEngineListSelectedValue);
+      service.subscribe((data) => {
+          const resultado = data;
+          this.yearList = resultado; 
+          this.strMakeListSelectedValue =  resultado;
+          this.strModelListSelectedValue =  resultado;
+          console.log('Engine api response   ' + resultado);
+       });
+    }      
+
+  
+  searchData1(catId){
+
+    // this.httpClient.get( "http://busybanda.com/sterling-tools/api/get_products_mmey_search?" + "make=" +this.makeValue + '&model=' + this.strModelListSelectedValue + '&engine=' + this.strEngineListSelectedValue)
+    // .subscribe((jsonResponse) => { 
+    //   this.obj = JSON.stringify(jsonResponse);
+    //   console.log('searchData api response   ' + jsonResponse);
+    // });
+
+ 
+    // this.navCtrl.push(SearchPage, {
+    //   catId: catId,
+           
+    //     });    
+
+        if(this.productCategoryList){
+          console.log("productCategoryList has data " + this.productCategoryList.length + catId );
+        }
+        else {
+          console.log("productCategoryList does not have data " );
+
+        }
+  
+         
+  }  
+
+  getOuterName(event){
+    console.log("companyName"+this.companyName);
+    this.strDynamicId = this.companyName;
+ }
+
+
+  itemdetailPage(catId) {
+    console.log("itemdetailPage called " );
+    // this.navCtrl.push(ProductcategorydetailPage, {
+    //   catId: catId,
+    //   name:name
+    // });
+    console.log('Sent productsList id ' + catId);
   } 
-  
-makeDropDownValue(){
-  console.log("Selected make:  ", this.makeValue); 
-  }
+ 
+  searchData2(strMakeListSelectedValue,strModelListSelectedValue,engine,year){
+    this.navCtrl.push(SearchproductsPage, {
+          make: this.makeValue,
+          model: this.modelValue,
+          engine:this.engineValue,
+          year:this.yearValue
+        });
 
-
-
-  // onSelect(make) {
-  //   this.modelList = this.apiProvider.getModelCategories(this.makeValue).filter((item) => item.make == make);
-  // }
-
-  modelDropDownValue(make) {
-    console.log("Selected model:  ", this.makeValue); 
-    this.modelList = this.apiProvider.getModelCategories(this.makeValue).filter((item) => item.make == make);
-  }
-
-  
-
-getModelApi(makeValue){
-    console.log('getModelApi called    ');
-    const service = this.apiProvider.getModelCategories(makeValue);
-    service.subscribe((data) => {
-        const resultado = data;
-        this.modelList = resultado; 
-       this.strModelListValue =  resultado;
-       console.log('getModelApi called tushar    ' + resultado);
-       console.log('getModelApi called tushar    ' + this.modelList);
-       console.log('getModelApi called tushar    ' + this.strModelListValue);
-       this.modeKeys = resultado;
-       console.log('modelkeys ' + this.modeKeys);
-    });
+        console.log("Sent product make " + this.makeValue);
+        console.log("Sent product model " + this.modelValue);
+        console.log("Sent product engine " + this.engineValue);
+        console.log("Sent product year " + this.yearValue);
   }
   
     
@@ -549,20 +739,19 @@ async viewCartApi() {
          this.strData = 'No Products in Cart';  
   
          console.log('All Json Response' + resultado);
-        // console.log('Length of cart ' + this.viewCartList.length);
-
-          
-          
+  
+            
+              
      
          if(this.viewCartList.length>=1) {
           console.log('Cart Filled ');
-          this.countProducts = this.viewCartList.length;
+          this.countProductsCart = this.viewCartList.length;
            this.buttonIcon = "cart";
          }
 
          else{
           console.log('Cart Empty ');
-         this.countProducts = 'Empty';
+         this.countProductsCart = 'Empty';
 
          }
 
@@ -669,6 +858,7 @@ async viewCartApi() {
     });   
     toast.present();  
   }  
+  
 
   showToastOnAddProductWishlist(strProductAdded) {
     const toast = this.toastController.create({
@@ -709,6 +899,16 @@ async showToastOnWishlist()
  });
  toast.present();
 } 
+
+async showToastOnEmptyProduct()
+{
+ const toast = await this.toastController.create({
+   message: 'Please select Product ',
+   duration: 3000,
+   position: 'bottom',
+ });
+ toast.present();
+} 
     
 callMakeApi() {
   //this.showMakeLoader();
@@ -736,6 +936,62 @@ async showMakeLoader() {
   });
   await loading.present();
 }
+
+public async checkNetwork() {
+  const { Network } = Plugins;
+    this.networkListener = Network.addListener(
+      'networkStatusChange',
+      (status) => {
+        console.log('Network status HomePage here', status);
+        this.networkStatus = status;
+      }
+    );
+
+    if ((await Network.getStatus()).connectionType === 'none') {
+      this.showNetworkAlert();
+      console.log('Network status not available', this.networkStatus);
+    } else {
+      this.networkStatus = await Network.getStatus();
+      // this.showAlert();
+      console.log('Network status available', this.networkStatus);
+      //this.router.navigate(['/invoices']);
+     // this.router.navigate(['/managecard']);
+    }
+  
+}
+
+
+private async showNetworkAlert(): Promise<void> {
+  // omitted;
+  const alert = await this.alertController.create({
+    title: 'Network Issues!',
+    message: 'There are issues in network connectivity',
+
+    buttons: [
+      {
+        text: 'Ok',
+        handler: (ok) => {
+          console.log('Confirm Ok');
+          // resolve('ok');
+        },
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (cancel) => {
+          console.log('Confirm Cancel');
+          alert.dismiss();
+          // resolve('cancel');
+        },
+      },
+    ],
+  });
+
+  alert.present();
+}
+
+
 
 
 

@@ -8,9 +8,11 @@ import { WishlistupdatedPage } from './../wishlistupdated/wishlistupdated';
 import { HomePage } from './../home/home';
 import { ApiProvider } from './../../providers/api/api';
 import { HttpClient } from '@angular/common/http';
-import { LoadingController, Platform, ToastController, App } from 'ionic-angular';
+import { LoadingController, Platform, ToastController, App, AlertController } from 'ionic-angular';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
+
 
 
 
@@ -51,6 +53,8 @@ export class MyaccountupdatedPage implements OnInit {
   userDataValue:number| string;
   strUserData: string;
   strId: string;
+  networkStatus: NetworkStatus;
+  networkListener: PluginListenerHandle; 
 
 
 
@@ -61,7 +65,8 @@ export class MyaccountupdatedPage implements OnInit {
               public platform: Platform,
               public toastController: ToastController,
               public apiProvider: ApiProvider,
-              public app: App
+              public app: App,
+              public alertController: AlertController
             ) {
   }
 
@@ -74,6 +79,7 @@ export class MyaccountupdatedPage implements OnInit {
     this.viewCartApi();
     this.showLoaderPageLoad();
     this.getProfileApi();
+    this.checkNetwork();
   } 
                         
 
@@ -347,6 +353,60 @@ async showLoadingControllerFailure()
     position: 'bottom',
   });
   toast.present();
+}
+
+public async checkNetwork() {
+  const { Network } = Plugins;
+    this.networkListener = Network.addListener(
+      'networkStatusChange',
+      (status) => {
+        console.log('Network status HomePage here', status);
+        this.networkStatus = status;
+      }
+    );
+
+    if ((await Network.getStatus()).connectionType === 'none') {
+      this.showNetworkAlert();
+      console.log('Network status not available', this.networkStatus);
+    } else {
+      this.networkStatus = await Network.getStatus();
+      // this.showAlert();
+      console.log('Network status available', this.networkStatus);
+      //this.router.navigate(['/invoices']);
+     // this.router.navigate(['/managecard']);
+    }
+  
+}
+
+
+private async showNetworkAlert(): Promise<void> {
+  // omitted;
+  const alert = await this.alertController.create({
+    title: 'Network Issues!',
+    message: 'There are issues in network connectivity',
+
+    buttons: [
+      {
+        text: 'Ok',
+        handler: (ok) => {
+          console.log('Confirm Ok');
+          // resolve('ok');
+        },
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (cancel) => {
+          console.log('Confirm Cancel');
+          alert.dismiss();
+          // resolve('cancel');
+        },
+      },
+    ],
+  });
+
+  alert.present();
 }
 
  
