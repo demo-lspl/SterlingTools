@@ -65,10 +65,9 @@
         value="sortpopular"
         okText="Ok"
         cancelText="Cancel"
-        (ionChange)="onChangeModel(modelValue)"
-        [(ngModel)]="modelValue"
+      
     >
-        <ion-option *ngFor="let modelKey of modelList" >{{modelKey}}</ion-option>
+        <ion-option *ngFor="let modelKey of modelList" [value] = "modelKey" (ionSelect)="triggerMeModel(modelKey)" >{{modelKey}}</ion-option>
       </ion-select>
 
       
@@ -85,9 +84,9 @@
         value="sortpopular"
         okText="Ok"
         cancelText="Cancel"
-      
+       
         [(ngModel)]="engineValue">
-        <ion-option *ngFor="let engineKey of engineList" >{{engineKey}}</ion-option>
+        <ion-option *ngFor="let engineKey of engineList" [value] = "engineKey" (ionSelect)="triggerMeEngine(engineKey)">{{engineKey}}</ion-option>
       </ion-select>
     </ion-item>
   </div>
@@ -101,8 +100,10 @@
         cancelText="Cancel"
       
         [(ngModel)]="yearValue">
-        <ion-option *ngFor="let yearKey of yearList" >{{yearKey}}</ion-option>
+        <ion-option *ngFor="let yearKey of yearList"  >{{yearKey}}</ion-option>
       </ion-select>
+
+
     </ion-item>
   </div>
   
@@ -112,7 +113,7 @@
   full
   class="bg-thime btn-round btn-text"
   style="max-width: 390px"
-  (click)="searchData(makeKey)">
+  (click)="searchData(makeValue,strTestValue2,strTestValue3)">
   Search data
 </button>
 
@@ -120,23 +121,10 @@
 
 
 
-<!-- <ion-item>
-  <ion-select  (ionChange)="getOuterName()" [(ngModel)]="companyName" placeholder = "Select company" >
-    <ion-option *ngFor="let companies of productCategoryList" [value]="companies.catId" >
-      {{companies.name}}
-    </ion-option>
-  </ion-select>
-</ion-item>
 
 
-<button
-ion-button
-full
-class="bg-thime btn-round btn-text"
-style="max-width: 390px"
-(click)="productDetailPage(companyName)">
-Search 
-</button> -->
+
+
 
   
 

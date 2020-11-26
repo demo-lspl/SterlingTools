@@ -37,6 +37,10 @@ export class Home1Page implements OnInit{
   yearValue:string;
 
   strTestValue:string;
+  strTestValue1:string;
+  strTestValue2:string;
+  strTestValue3:string;
+
 
   makeList: any = [];    
   modelList: any = [];    
@@ -52,21 +56,25 @@ export class Home1Page implements OnInit{
   companyName: any;
   newid: any;
   strDynamicId:string;
+  subject='';
+  body='';
+  to='';
  
 
   constructor(public apiProvider:ApiProvider,
               public httpClient: HttpClient,
-              public navCtrl: NavController) { }
+              public navCtrl: NavController,
+              public toastController: ToastController
+              ) { }
 
   ngOnInit() {     
     this.getMakeApi(); 
     }       
 
   
-    getOuterName(event){
-      console.log("companyName"+this.companyName);
-      this.strDynamicId = this.companyName;
-   }
+  
+
+  
             
       
    
@@ -79,7 +87,6 @@ export class Home1Page implements OnInit{
           const resultado = data;
           this.makeList = resultado; 
           this.strMakeListValue =  resultado;
-          //console.log('MakeApi response   ' + resultado);
        });
     }  
       
@@ -92,20 +99,35 @@ export class Home1Page implements OnInit{
           this.strMakeListSelectedValue =  resultado;
           this.strModelListSelectedValue =  resultado;
           this.strEngineListSelectedValue =  resultado;
-         
-
           this.obj = JSON.stringify(data);
-
           console.log('Selected model tushar:  ' + this.strTestValue);
-            this.getEngineApi(strMakeListSelectedValue,this.strTestValue);
-           // this.getYearApi(strMakeListSelectedValue,this.strModelListSelectedValue,this.strEngineListSelectedValue);
+           
        });
-    }     
- 
+    }       
+
+    triggerMeModel(value: string): void {
+      console.log("selected value", value);
+      this.strTestValue1 = value;
+      console.log("selected strTestValue1", this.strTestValue1);
+      this.getEngineApi(this.makeValue,this.strTestValue1);
+    }
+  
+    triggerMeEngine(value: string): void {
+      console.log("selected value", value);
+      this.strTestValue2 = value;
+      console.log("selected strTestValue2", this.strTestValue2);
+      this.getYearApi(this.makeValue,this.strTestValue1,this.strTestValue2);
+    }
+  
+    triggerMeYear(value: string): void {
+      console.log("selected value", value);
+      this.strTestValue3 = value;  
+      console.log("selected strTestValue3", this.strTestValue3);
+      this.getYearApi(this.makeValue,this.strTestValue2,this.strTestValue3);
+    }
     getEngineApi(strMakeListSelectedValue,strModelListSelectedValue){     
-      console.log('getEngineApi called    ' + this.strTestValue);
-      
-      const service = this.apiProvider.getEngineCategories(strMakeListSelectedValue,strModelListSelectedValue);
+      console.log('getEngineApi called    ' + this.strTestValue1);
+      const service = this.apiProvider.getEngineCategories(strMakeListSelectedValue,this.strTestValue1);
       service.subscribe((data) => {
           const resultado = data;
           this.engineList = resultado; 
@@ -129,56 +151,62 @@ export class Home1Page implements OnInit{
           console.log('Engine api response   ' + resultado);
        });
     }    
-    
-    
     makeDropDownValue(){   
        this.strMakeListSelectedValue = this.makeValue;
-      // this.strModelListSelectedValue = this.modelValue;
        this.getModelApi(this.strMakeListSelectedValue);
        console.log("Selected make:  ", this.makeValue); 
       }
   
-      onChangeModel(modelValue){
-        console.info("Selected Model: ",this.modelValue);
-        this.strTestValue = modelValue;
-        // this.strModelListSelectedValue = modelValue;
-      }
+     
                    
-    searchData(strMakeListSelectedValue,strModelListSelectedValue,engine,year){
+    searchData(makeValue,strTestValue2,strTestValue3,year){
 
+    
+
+    if(!this.makeValue ){
+      console.log('issue make');
+      this.showToastOnEmptyMake();
+    }
+     else if(!this.strTestValue1){
+      this.showToastOnEmptyModel();
+      console.log('issue model');
+    }
+
+    else {
+      console.log('success!!!!!!');
       this.navCtrl.push(SearchproductsPage, 
           {
             make: this.makeValue,
-            model: this.modelValue,
-            engine:this.engineValue,
+            model: this.strTestValue2,
+            engine:this.strTestValue1,
             year:this.yearValue
           });
 
           console.log("Sent product make " + this.makeValue);
-          console.log("Sent product model " + this.modelValue);
-          console.log("Sent product engine " + this.engineValue);
+          console.log("Sent product model " + this.strTestValue2);
+          console.log("Sent product engine " + this.strTestValue1);
           console.log("Sent product year " + this.yearValue);
-      
     }
-  
+    }
 
-    // productDetailPage(catId) {
-    //   this.navCtrl.push(SearchPage, {
-    //     catId: catId,
-       
-    //   });
-    //   console.log("Sent product id " + catId);
-      
-    // }
-  
- 
-  
-  
-   
+    async showToastOnEmptyMake()
+{  
+ const toast = await this.toastController.create({
+   message: 'Please select Make ',
+   duration: 3000,
+   position: 'bottom',
+ });
+ toast.present();
+} 
 
-   
-
-  
-
+async showToastOnEmptyModel()
+{
+ const toast = await this.toastController.create({
+   message: 'Please select Model ',
+   duration: 3000,
+   position: 'bottom',
+ });
+ toast.present();
+} 
 
 }

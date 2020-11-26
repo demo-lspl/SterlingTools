@@ -44,6 +44,8 @@ export class ProductcategorydetailPage implements OnInit{
   buttonIcon: string ;
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
+  countProductsCart:number|any|string;
+
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -145,8 +147,12 @@ productDetailPage(id, name,image,regular_price,description) {
       // Checks if can go back before show up the alert
       if(activeView.name === 'ProductcategorydetailPage') {
           if (nav.canGoBack()){                  
+              console.log('Tushar');
               this.navCtrl.setRoot(ProductcategoryPage);
+
           } else {
+            console.log('Tushar1');
+
           }
       }  
   }); 
@@ -234,13 +240,14 @@ productDetailPage(id, name,image,regular_price,description) {
            // this.strData = 'No Products in Cart';  
            if(this.viewCartList.length>=1) {
             console.log('Cart Filled ');
-            this.countProducts = this.viewCartList.length;
+            this.countProductsCart = this.viewCartList.length;
              this.buttonIcon = "cart";
            }
   
            else{
             console.log('Cart Empty ');
-           this.countProducts = 'Empty';
+           this.countProductsCart = 'Empty';
+  
            }
         } else {
         }

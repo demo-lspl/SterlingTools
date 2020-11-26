@@ -43,6 +43,8 @@ export class WishlistupdatedPage implements OnInit {
   count:string|any;
   viewCartList:any = [];
   buttonIcon: string ;
+  countProductsCart:number|any|string;
+
   
 
 
@@ -244,22 +246,20 @@ removeProduct() {
           console.log('All Json Response' + this.obj);
            this.strData = 'Wishlist empty!';  
     
-               
-          // console.log('Length of cart ' + this.viewCartList.length);
+          
   
               
            
        
-          if(this.viewCartList.length>=1) {
+           if(this.viewCartList.length>=1) {
             console.log('Cart Filled ');
-            this.countProducts = this.viewCartList.length;
+            this.countProductsCart = this.viewCartList.length;
              this.buttonIcon = "cart";
            }
   
            else{
             console.log('Cart Empty ');
-           //  this.buttonIcon = "cart";
-           this.countProducts = 'Empty';
+           this.countProductsCart = 'Empty';
   
            }
   

@@ -24,6 +24,8 @@ export class Myorder_2Page implements OnInit {
   viewCartList:any = [];
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
+  countProductsCart:number|any|string;
+  
 
 
   constructor(public navCtrl: NavController, 
@@ -115,17 +117,15 @@ export class Myorder_2Page implements OnInit {
   
             
            
-       
-           if(this.viewCartList.length>1) {
+          if(this.viewCartList.length>=1) {
             console.log('Cart Filled ');
-            this.countProducts = this.viewCartList.length;
+            this.countProductsCart = this.viewCartList.length;
              this.buttonIcon = "cart";
            }
   
            else{
             console.log('Cart Empty ');
-           //  this.buttonIcon = "cart";
-           this.countProducts = 'Empty';
+           this.countProductsCart = 'Empty';
   
            }
   

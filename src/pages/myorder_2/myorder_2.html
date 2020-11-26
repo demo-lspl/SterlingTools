@@ -9,10 +9,20 @@
               <ion-icon class="icon" (click)="cartPage()"><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>             
             </span> -->
             <span float-right>
-                <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>
-
+                <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>
                 <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>
-                <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon>
+                <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon> -->
+
+
+                <ion-icon class="icon"  (click)="wishlistPage()" >
+                    <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
+                    <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> 
+                  </ion-icon>
+          
+                  <ion-icon class="icon"  (click)="cartPage()" >
+                    <img src="assets/imgs/ic_my_cart.png" width="100%;" />
+                    <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> 
+                  </ion-icon>
               </span>
         </ion-title>
     </ion-navbar>

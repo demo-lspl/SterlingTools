@@ -8765,7 +8765,6 @@ ion-app.md [padding-top] {
 }
 
 ion-app.md [padding-left] {
-  padding-left: 16px;
 }
 
 ion-app.md [padding-right] {
@@ -53130,7 +53129,7 @@ page-home .card-main .card-md .card-header {
   /* background-color: #000; */
 }
 
-page-home .card-main ion-card-content.card-content.card-content-md {
+page-home .card-main ion-card-content.card-content.card-content-md,page-home .card-main ion-card-content.card-content.card-content-ios {
   padding: 0px !important;
 }
 
@@ -53281,7 +53280,7 @@ page-home .card-main .card-content {
 
 page-home .card-main {
   padding: 10px 10px;
- 
+  
 }
 
 page-home .shot-by {
@@ -57517,7 +57516,7 @@ page-home .custom-id input.searchbar-input {
   padding-left: 120px !important;
 }
 
-page-home .custom-id .select-md {
+page-home .custom-id .select-md, page-home .custom-id .select-ios {
   padding: 9px 8px;
   max-width: 100%;
   font-size: 12px;
@@ -57569,7 +57568,7 @@ page-home .card-main h6 {
   font-size: 15px;
 }
 
-page-home .card-header-md ion-item.item.item-block.item-md.item-md-primary {
+page-home .card-header-md ion-item.item.item-block.item-md.item-md-primary, page-home .card-header-ios ion-item.item.item-block.item-ios.item-ios-primary {
   background-color: #000;
 }
 
@@ -57577,16 +57576,17 @@ page-home .card-main ion-card-content.card-content.card-content-md {
   padding: 0px !important;
 }
 
-page-home .card-main ion-card.card.card-md {
+page-home .card-main ion-card.card.card-md, page-home .card-main ion-card.card.card-ios {
   width: calc(100% - 0px) !important;
   border-radius: 5px !important;
 }
 
-page-home .card-main ion-label.label.label-md {
+page-home .card-main ion-label.label.label-md, page-home .card-main ion-label.label.label-ios {
   margin: 0px;
 }
 
-page-home .card-main button.disable-hover.button.button-md.button-clear.button-clear-md.button-small.button-small-md {
+page-home .card-main button.disable-hover.button.button-md.button-clear.button-clear-md.button-small.button-small-md,
+page-home .card-main button.disable-hover.button.button-ios.button-clear.button-clear-ios.button-small.button-small-ios {
   margin: 0px !important;
   min-width: unset !important;
   padding: 0px !important;
@@ -57597,7 +57597,7 @@ page-home .card-main .card .card-header .icon {
   position: unset;
 }
 
-page-home .card-main .card-header.card-header-md {
+page-home .card-main .card-header.card-header-md, page-home .card-main .card-header.card-header-ios {
   padding: 3px !important;
 }
 
@@ -57621,28 +57621,29 @@ page-home .card-main1 h6 {
   font-size: 15px;
 }
 
-page-home .card-header-md ion-item.item.item-block.item-md.item-md-primary {
+page-home .card-header-md ion-item.item.item-block.item-md.item-md-primary, page-home .card-header-ios ion-item.item.item-block.item-ios.item-md-primary {
   background-color: #000;
 }
 
-page-home .card-main1 .card-md .card-header {
+page-home .card-main1 .card-md .card-header, page-home .card-main1 .card-ios .card-header {
   background-color: #000;
 }
 
-page-home .card-main1 ion-card-content.card-content.card-content-md {
+page-home .card-main1 ion-card-content.card-content.card-content-md, page-home .card-main1 ion-card-content.card-content.card-content-ios {
   padding: 0px !important;
 }
 
-page-home .card-main1 ion-card.card.card-md {
+page-home .card-main1 ion-card.card.card-md, page-home .card-main1 ion-card.card.card-ios {
   width: calc(100% - 0px) !important;
   border-radius: 5px !important;
 }
 
-page-home .card-main1 ion-label.label.label-md {
+page-home .card-main1 ion-label.label.label-md, page-home .card-main1 ion-label.label.label-ios {
   margin: 0px;
 }
 
-page-home .card-main1 button.disable-hover.button.button-md.button-clear.button-clear-md.button-small.button-small-md {
+page-home .card-main1 button.disable-hover.button.button-md.button-clear.button-clear-md.button-small.button-small-md,
+page-home .card-main1 button.disable-hover.button.button-ios.button-clear.button-clear-ios.button-small.button-small-ios {
   margin: 0px !important;
   min-width: unset !important;
   padding: 0px !important;
@@ -57697,7 +57698,7 @@ page-home .two ion-icon {
   font-size: 26px;
 }
 
-page-home .shorting-bar .item-md {
+page-home .shorting-bar .item-md, page-home .shorting-bar .item-ios {
   width: calc(95% - 0px) !important;
   padding: 0px !important;
   margin: 0px !important;
@@ -57706,7 +57707,7 @@ page-home .shorting-bar .item-md {
   margin-left: 10px !important;
 }
 
-page-home .shorting-bar .label-md {
+page-home .shorting-bar .label-md, page-home .shorting-bar .label-ios {
   margin: 0px;
 }
 
@@ -57740,12 +57741,12 @@ page-home .shorting-bar .short.item {
   margin-left: 0px !important;
 }
 
-page-home .shorting-bar .short.item .shorting-bar .short ion-select.select.select-md {
+page-home .shorting-bar .short.item .shorting-bar .short ion-select.select.select-md, page-home .shorting-bar .short.item .shorting-bar .short ion-select.select.select-ios {
   max-width: 100%;
   padding: 0px;
 }
 
-page-home .shorting-bar .short.item .shorting-bar .short ion-select.select.select-md .select-placeholder.select-text {
+page-home .shorting-bar .short.item .shorting-bar .short ion-select.select.select-md .select-placeholder.select-text, page-home .shorting-bar .short.item .shorting-bar .short ion-select.select.select-ios .select-placeholder.select-text {
   color: red;
 }
 
@@ -57753,7 +57754,7 @@ page-home .shorting-bar .short.item .shorting-bar .short .select-icon {
   display: none;
 }
 
-page-home .shorting-bar .short.item .one1 ion-icon.icon.icon-md.ion-md-code-working.item-icon {
+page-home .shorting-bar .short.item .one1 ion-icon.icon.icon-md.ion-md-code-working.item-icon, page-home .shorting-bar .short.item .one1 ion-icon.icon.icon-ios.ion-ios-code-working.item-icon {
   margin-top: 14px;
 }
 
@@ -57773,12 +57774,12 @@ page-home .shorting-bar .short.item .shorting-bar .short.item {
   margin-left: 0px !important;
 }
 
-page-home .shorting-bar .short.item .shorting-bar .short.item .shorting-bar .short ion-select.select.select-md {
+page-home .shorting-bar .short.item .shorting-bar .short.item .shorting-bar .short ion-select.select.select-md, page-home .shorting-bar .short.item .shorting-bar .short.item .shorting-bar .short ion-select.select.select-ios {
   max-width: 100%;
   padding: 0px;
 }
 
-page-home .shorting-bar .short.item .shorting-bar .short.item .shorting-bar .short ion-select.select.select-md .select-placeholder.select-text {
+page-home .shorting-bar .short.item .shorting-bar .short.item .shorting-bar .short ion-select.select.select-md .select-placeholder.select-text, page-home .shorting-bar .short.item .shorting-bar .short.item .shorting-bar .short ion-select.select.select-ios .select-placeholder.select-text {
   color: red;
 }
 
@@ -57786,7 +57787,7 @@ page-home .shorting-bar .short.item .shorting-bar .short.item .shorting-bar .sho
   display: none;
 }
 
-page-home .shorting-bar .short.item .shorting-bar .short.item .one1 ion-icon.icon.icon-md.ion-md-code-working.item-icon {
+page-home .shorting-bar .short.item .shorting-bar .short.item .one1 ion-icon.icon.icon-md.ion-md-code-working.item-icon, page-home .shorting-bar .short.item .shorting-bar .short.item .one1 ion-icon.icon.icon-ios.ion-ios-code-working.item-icon {
   float: left;
   margin-top: 11px;
 }
@@ -57996,6 +57997,19 @@ page-home img {
 
 page-home .back-button {
   display: none !important;
+}
+
+page-itemdetail .add-icon {
+  color: white;
+  margin-top: 5px;
+  position: absolute;
+  top: -8px;
+  right: -7px;
+  font-size: 11px;
+  border-radius: 50%;
+  padding: 4px;
+  width: unset !important;
+  height: unset !important;
 }
 
 page-itemdetail .img {
@@ -59436,6 +59450,19 @@ page-myorder_1 .border-bottom-none {
   border-bottom: none !important;
 }
 
+page-myorder_2 .add-icon {
+  color: white;
+  margin-top: 5px;
+  position: absolute;
+  top: -8px;
+  right: -7px;
+  font-size: 11px;
+  border-radius: 50%;
+  padding: 4px;
+  width: unset !important;
+  height: unset !important;
+}
+
 page-myorder_2 .card {
   margin: 5px;
   width: calc(100% - 10px);
@@ -60012,6 +60039,19 @@ page-productcategory {
   /* Clear floats after image containers */
 }
 
+page-productcategory .add-icon {
+  color: white;
+  margin-top: 5px;
+  position: absolute;
+  top: -8px;
+  right: -7px;
+  font-size: 11px;
+  border-radius: 50%;
+  padding: 4px;
+  width: unset !important;
+  height: unset !important;
+}
+
 page-productcategory .column {
   float: left;
   width: 50%;
@@ -60064,6 +60104,19 @@ page-productcategorydetail {
   /* Clear floats after the columns */
 }
 
+page-productcategorydetail .add-icon {
+  color: white;
+  margin-top: 5px;
+  position: absolute;
+  top: -8px;
+  right: -7px;
+  font-size: 11px;
+  border-radius: 50%;
+  padding: 4px;
+  width: unset !important;
+  height: unset !important;
+}
+
 page-productcategorydetail .product-grid .card-header {
   background-color: transparent;
 }
@@ -60091,6 +60144,32 @@ page-productcategorydetail .img-box {
 
 page-productcategorydetail .img-box small {
   font-size: .9rem !important;
+}
+
+page-productcategorydetaillist .add-icon {
+  color: white;
+  margin-top: 5px;
+  position: absolute;
+  top: -8px;
+  right: -7px;
+  font-size: 11px;
+  border-radius: 50%;
+  padding: 4px;
+  width: unset !important;
+  height: unset !important;
+}
+
+page-readmore .add-icon {
+  color: white;
+  margin-top: 5px;
+  position: absolute;
+  top: -8px;
+  right: -7px;
+  font-size: 11px;
+  border-radius: 50%;
+  padding: 4px;
+  width: unset !important;
+  height: unset !important;
 }
 
 page-register ion-img.md.hydrated.logo-img {
@@ -62627,4 +62706,17 @@ page-wishlist .card .card-content .card-btn small {
   page-wishlist h4 {
     font-size: 1.1rem !important;
   }
+}
+
+page-wishlistupdated .add-icon {
+  color: white;
+  margin-top: 5px;
+  position: absolute;
+  top: -8px;
+  right: -7px;
+  font-size: 11px;
+  border-radius: 50%;
+  padding: 4px;
+  width: unset !important;
+  height: unset !important;
 }

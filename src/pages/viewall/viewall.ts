@@ -8,7 +8,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { HttpClient } from '@angular/common/http';
 import { ApiProvider } from './../../providers/api/api';
 import { Component, ViewChild, Input, Renderer, ElementRef, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ToastController, LoadingController, Platform, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ToastController, LoadingController, Platform, App, AlertController } from 'ionic-angular';
+import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
+
 
     
 /**
@@ -38,12 +40,11 @@ export class ViewallPage implements OnInit{
     public inAppBrowser: InAppBrowser,
     public platform: Platform,
     public app: App,
+    public alertController: AlertController
   ) {
     
   }  
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ViewallPage');
-  }
+  
 
   productsLocalCart :any = [];
   viewCartList:any = [];
@@ -93,12 +94,15 @@ export class ViewallPage implements OnInit{
   makeValue:string;
   modelValue:string;
   varoutput :any = [] ;
+  networkStatus: NetworkStatus;
+  networkListener: PluginListenerHandle; 
   
   
  
 
 
   ngOnInit() {
+    this.checkNetwork();
     if(this.countClick>1){
       console.log('Clicked More than one');
       this.showToastOnWishlist();
@@ -744,6 +748,60 @@ async showMakeLoader() {
     duration: 600,
   });
   await loading.present();
+}
+
+public async checkNetwork() {
+  const { Network } = Plugins;
+    this.networkListener = Network.addListener(
+      'networkStatusChange',
+      (status) => {
+        console.log('Network status HomePage here', status);
+        this.networkStatus = status;
+      }
+    );
+
+    if ((await Network.getStatus()).connectionType === 'none') {
+      this.showNetworkAlert();
+      console.log('Network status not available', this.networkStatus);
+    } else {
+      this.networkStatus = await Network.getStatus();
+      // this.showAlert();
+      console.log('Network status available', this.networkStatus);
+      //this.router.navigate(['/invoices']);
+     // this.router.navigate(['/managecard']);
+    }
+  
+}
+
+
+private async showNetworkAlert(): Promise<void> {
+  // omitted;
+  const alert = await this.alertController.create({
+    title: 'Network Issues!',
+    message: 'There are issues in network connectivity',
+
+    buttons: [
+      {
+        text: 'Ok',
+        handler: (ok) => {
+          console.log('Confirm Ok');
+          // resolve('ok');
+        },
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (cancel) => {
+          console.log('Confirm Cancel');
+          alert.dismiss();
+          // resolve('cancel');
+        },
+      },
+    ],
+  });
+
+  alert.present();
 }
 
 

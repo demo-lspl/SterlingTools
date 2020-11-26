@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, App, IonicPage, NavController, NavParams, Platform, ToastController } from 'ionic-angular';
 import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
 import { ProductcategorydetailPage } from '../productcategorydetail/productcategorydetail';
+import { ApiProvider } from '../../providers/api/api';
 
 
 
@@ -27,6 +28,14 @@ export class ProductcategorydetaillistPage implements OnInit{
   currentNumber :any = 1;
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
+  countProductsCart:number|any|string;
+  viewCartList:any = [];
+  strData: string;
+  buttonIcon: string ;
+
+
+
+
 
 
 
@@ -36,7 +45,8 @@ export class ProductcategorydetaillistPage implements OnInit{
               public httpClient: HttpClient,
               public alertController: AlertController,
               public platform: Platform,
-              public app: App) {
+              public app: App,
+              public apiProvider: ApiProvider) {
 
     this.strProductId = navParams.get("id");  
     this.strProductName = navParams.get('name');
@@ -58,6 +68,8 @@ export class ProductcategorydetaillistPage implements OnInit{
   }
 
   ngOnInit() {
+
+    
 
     this.checkNetwork();
     this.platform.registerBackButtonAction(() => {
@@ -122,6 +134,46 @@ export class ProductcategorydetaillistPage implements OnInit{
           this.showToastOnAddProductSingle(this.strProductName);
         });
   }
+}
+
+async viewCartApi() {            
+  try {
+    const service = this.apiProvider.getCartDetails();  
+    service.subscribe(async (data) => {
+      if (data) {
+        const resultado = data;
+        this.viewCartList = resultado;     
+        this.obj = JSON.stringify(data);
+        console.log('All Json Response' + this.obj);
+         this.strData = 'No Products in Cart';  
+    
+         if(this.viewCartList.length>=1) {
+          console.log('Cart Filled ');
+          this.countProductsCart = this.viewCartList.length;
+           this.buttonIcon = "cart";
+         }
+
+         else{
+          console.log('Cart Empty ');
+         this.countProductsCart = 'Empty';
+
+         }
+  
+            
+         
+     
+       
+
+
+
+       
+                              
+       
+      } else {
+      }
+
+    });
+  } catch (error) {}
 }
 
 showToastOnAddProduct(strProductAdded) {

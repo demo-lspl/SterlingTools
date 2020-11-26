@@ -160,14 +160,14 @@
                     value="sortpopular"
                     okText="Ok"
                     cancelText="Cancel"
-                    [(ngModel)]="modelValue"
                   
                     >
                     <!-- <ion-option value="sortpopular">popularity</ion-option>
                     <ion-option value="sortaveragerating">rating</ion-option>
                     <ion-option value="sortlatest">latest</ion-option>
                     <ion-option value="sortpricelowhigh" style="max-width: 100%">low to high</ion-option > -->
-                      <ion-option *ngFor="let modelKey of modelList" >{{modelKey}}</ion-option>
+                      <!-- <ion-option *ngFor="let modelKey of modelList" >{{modelKey}}</ion-option> -->
+                      <ion-option *ngFor="let modelKey of modelList" [value] = "modelKey" (ionSelect)="triggerMeModel(modelKey)" >{{modelKey}}</ion-option>
 
                   </ion-select>
                 </ion-item>
@@ -191,7 +191,9 @@
                     <ion-option value="sortaveragerating">rating</ion-option>
                     <ion-option value="sortlatest">latest</ion-option>
                     <ion-option value="sortpricelowhigh" style="max-width: 100%">low to high</ion-option> -->
-                    <ion-option *ngFor="let engineKey of engineList" >{{engineKey}}</ion-option>
+                    <!-- <ion-option *ngFor="let engineKey of engineList" >{{engineKey}}</ion-option> -->
+
+                    <ion-option *ngFor="let engineKey of engineList" [value] = "engineKey" (ionSelect)="triggerMeEngine(engineKey)">{{engineKey}}</ion-option>
 
                   </ion-select>
                 </ion-item>
@@ -215,7 +217,8 @@
                     <ion-option value="sortaveragerating">rating</ion-option>
                     <ion-option value="sortlatest">latest</ion-option>
                     <ion-option value="sortpricelowhigh" style="max-width: 100%">low to high</ion-option> -->
-                    <ion-option *ngFor="let yearKey of yearList" >{{yearKey}}</ion-option>
+                    <!-- <ion-option *ngFor="let yearKey of yearList" >{{yearKey}}</ion-option> -->
+                    <ion-option *ngFor="let yearKey of yearList"  >{{yearKey}}</ion-option>
 
                   </ion-select>
                 </ion-item>
@@ -230,7 +233,7 @@
             style="2px 10px !important;"
           >
             <button ion-button full class="bg-thime btn-round btn-text"
-            (click)="searchData2(makeKey,modelKey,engineKey,yearKey)">
+            (click)="searchData(makeValue,strTestValue2,strTestValue3)">
               Search 
             </button>
           </ion-row>
@@ -279,7 +282,7 @@
 
                             <!-- <img src="assets/imgs/categoryfirst.png"  style="width:200px;height:80px ;"> -->
 
-                            <img  [src]="featuredProductCategories.thumbnail"  style="width:200px;height:80px;margin-top: 13px">
+                            <img  [src]="featuredProductCategories.thumbnail"  style="width:200px;height:80px;margin-top: 6px">
 
                          
                               

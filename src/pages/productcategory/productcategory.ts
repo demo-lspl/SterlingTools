@@ -38,6 +38,8 @@ export class ProductcategoryPage implements OnInit{
   constresultado : string;
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
+  countProductsCart:number|any|string;
+
 
   
 
@@ -63,6 +65,7 @@ export class ProductcategoryPage implements OnInit{
   }
   
   ngOnInit() {
+    this.checkNetwork();
     console.log('ngOnInit VieworderPage');
     this.viewCartApi();
     this.getProductCategoriesApi();
@@ -178,14 +181,13 @@ searchPage() {
        
           if(this.viewCartList.length>=1) {
             console.log('Cart Filled ');
-            this.countProducts = this.viewCartList.length;
+            this.countProductsCart = this.viewCartList.length;
              this.buttonIcon = "cart";
            }
   
            else{
             console.log('Cart Empty ');
-           //  this.buttonIcon = "cart";
-           this.countProducts = 'Empty';
+           this.countProductsCart = 'Empty';
   
            }
   

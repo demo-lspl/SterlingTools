@@ -9,8 +9,12 @@ import { ApiProvider } from './../../providers/api/api';
 import { ViewcartPage } from './../viewcart/viewcart';
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { NavController, ModalController, NavParams, LoadingController, ToastController } from "ionic-angular";
+import { NavController, ModalController, NavParams, LoadingController, ToastController, AlertController } from "ionic-angular";
 import { App, Platform } from 'ionic-angular';
+import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
+
+
+
 
 @Component({
   selector: "page-itemdetail ",
@@ -58,10 +62,12 @@ export class ItemdetailPage implements OnInit {
   strQuantityValue1: string = '';
   viewCartList:any = [];
   strData: string;
-  countProducts:number|any;
   buttonIcon: string ;
   picToView:string='/assets/imgs/ic_my_cart.png';
   strProductAdded:string;
+  countProductsCart:number|any|string;
+  networkStatus: NetworkStatus;
+  networkListener: PluginListenerHandle; 
 
     
 
@@ -75,7 +81,8 @@ export class ItemdetailPage implements OnInit {
     public apiProvider: ApiProvider,
     public toastCtrl: ToastController,
     public app: App,
-    public platform: Platform
+    public platform: Platform,
+    public alertController: AlertController
 
   ) {
     this.strId = navParams.get("id");
@@ -85,8 +92,12 @@ export class ItemdetailPage implements OnInit {
 
   ngOnInit() {
 
+    this.checkNetwork();
+
 
     this.viewCartApi();
+
+  
 
     this.showLoadingControllerLaunch();
 
@@ -292,36 +303,17 @@ export class ItemdetailPage implements OnInit {
           console.log('All Json Response' + this.obj);
            this.strData = 'No Products in Cart';  
       
-                
-    
-              
-           
-       
            if(this.viewCartList.length>=1) {
             console.log('Cart Filled ');
-            this.countProducts = this.viewCartList.length;
-             //this.buttonIcon = "cart";
-             // this.picToView = 'assets/imgs/ic_my_cart_filled.jpg';
-
-            //  this.picToView = "star";
-            //  this.buttonIcon ="star";
-
+            this.countProductsCart = this.viewCartList.length;
+             this.buttonIcon = "cart";
            }
   
            else{
             console.log('Cart Empty ');
-           //  this.buttonIcon = "cart";
-           this.countProducts = 'Empty';
-           this.picToView = 'assets/imgs/ic_my_cart.png';
-
+           this.countProductsCart = 'Empty';
   
            }
-  
-  
-  
-         
-                                
-         
         } else {
         }
   
@@ -331,39 +323,7 @@ export class ItemdetailPage implements OnInit {
 
  
 
-  // addToCart(dynamicId){
 
-  //     if(this.currentNumber<1)
-  //     {
-  //         this.showToastOnAddingEmptyCart();
-  //     }
-   
-  //     else {  
-  //       this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + dynamicId + '&quantity=' + this.currentNumber).subscribe((jsonResponse) => {
-  //         this.obj = JSON.stringify(jsonResponse);
-  //         console.log("Sent productsList response " + this.obj);
-  //         console.log("Sent productsList id " + dynamicId);
-  //        this.showToastOnAddingCart();
-
-    
-  //       });
-  //     }
-
-  //   }
-
-    // addToCart(id, name,image,description,regular_price) {
-    
-    //   let products = [];
-    //   if (localStorage.getItem('products')) {
-    //     products = JSON.parse(localStorage.getItem('products')); // get product list 
-    //   } 
-    //   console.log("Sent productsList id " + id);
-    //   console.log("Sent productsList name " + name);
-    //   products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': this.currentNumber ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
-    //   localStorage.setItem('products', JSON.stringify(products)); 
-    //   this.showToastOnAddProduct(name);
-      
-    // }
 
     addToCart(id, name,image,description,regular_price) {
       if (localStorage.getItem("Userid value") === null) {
@@ -462,6 +422,60 @@ export class ItemdetailPage implements OnInit {
     });   
     toast.present();  
   } 
+
+  public async checkNetwork() {
+    const { Network } = Plugins;
+      this.networkListener = Network.addListener(
+        'networkStatusChange',
+        (status) => {
+          console.log('Network status HomePage here', status);
+          this.networkStatus = status;
+        }
+      );
+  
+      if ((await Network.getStatus()).connectionType === 'none') {
+        this.showNetworkAlert();
+        console.log('Network status not available', this.networkStatus);
+      } else {
+        this.networkStatus = await Network.getStatus();
+        // this.showAlert();
+        console.log('Network status available', this.networkStatus);
+        //this.router.navigate(['/invoices']);
+       // this.router.navigate(['/managecard']);
+      }
+    
+  }
+  
+  
+  private async showNetworkAlert(): Promise<void> {
+    // omitted;
+    const alert = await this.alertController.create({
+      title: 'Network Issues!',
+      message: 'There are issues in network connectivity',
+  
+      buttons: [
+        {
+          text: 'Ok',
+          handler: (ok) => {
+            console.log('Confirm Ok');
+            // resolve('ok');
+          },
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (cancel) => {
+            console.log('Confirm Cancel');
+            alert.dismiss();
+            // resolve('cancel');
+          },
+        },
+      ],
+    });
+  
+    alert.present();
+  }
 
  
  

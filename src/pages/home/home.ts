@@ -97,6 +97,11 @@ export class HomePage implements OnInit {
   strProductName:string;
   strDynamicId:string;
   wishListlength:string | any;
+  strTestValue:string;
+
+  strTestValue1:string;
+  strTestValue2:string;
+  strTestValue3:string;
 
   constructor(
     public navCtrl: NavController,
@@ -137,7 +142,7 @@ export class HomePage implements OnInit {
     //   console.log('Wishlist Empty ');
     //  }
 
-
+  
  
     this.checkNetwork();
     this.getAllProductsCategoriesList(); 
@@ -145,13 +150,10 @@ export class HomePage implements OnInit {
     if(this.viewCartList.length>=1) {
       console.log('Cart Filled ');
       this.countProductsCart = this.viewCartList.length;
-       this.buttonIcon = "cart";
      }   
 
      else{
       console.log('Cart Empty ');
-     //this.countProducts = 'Empty';
-     this.buttonIcon = "home";
 
      }
 
@@ -415,10 +417,10 @@ toggleAccordionVehicle() {
         this.cardContentVehicle.nativeElement,
         "padding",
         "13px 16px"
-      );
+      ); 
     }
 
-    this.accordionExpandedVehicle = !this.accordionExpandedVehicle;
+    //this.accordionExpandedVehicle = !this.accordionExpandedVehicle;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
   }
 
@@ -433,7 +435,7 @@ toggleAccordionCategory() {
         this.cardContentCategory.nativeElement,
         "padding",
         "0px 16px"
-      );
+      ); 
     } else {
       this.rendererCategories.setElementStyle(
         this.cardContentCategory.nativeElement,
@@ -563,76 +565,121 @@ getCategoriesApi(){
     console.info('testValue1');
   }
 
-                  
- 
-  
+  getMakeApi(){     
+    console.log('getMakeApi called    ');
+    const service = this.apiProvider.searchMakeCategories();
+    service.subscribe((data) => {
+        const resultado = data;
+        this.makeList = resultado; 
+        this.strMakeListValue =  resultado;
+     });
+  }  
+    
+  getModelApi(strMakeListSelectedValue){     
+    console.log('getModelApi called    ');
+    const service = this.apiProvider.getMakeCategories(strMakeListSelectedValue);
+    service.subscribe((data) => {
+        const resultado = data;
+        this.modelList = resultado; 
+        this.strMakeListSelectedValue =  resultado;
+        this.strModelListSelectedValue =  resultado;
+        this.strEngineListSelectedValue =  resultado;
+        this.obj = JSON.stringify(data);
+        console.log('Selected model tushar:  ' + this.strTestValue);
+         
+     });
+  }       
+
+  triggerMeModel(value: string): void {
+    console.log("selected value", value);
+    this.strTestValue1 = value;
+    console.log("selected strTestValue1", this.strTestValue1);
+    this.getEngineApi(this.makeValue,this.strTestValue1);
+  }
+
+  triggerMeEngine(value: string): void {
+    console.log("selected value", value);
+    this.strTestValue2 = value;
+    console.log("selected strTestValue2", this.strTestValue2);
+    this.getYearApi(this.makeValue,this.strTestValue1,this.strTestValue2);
+  }
+
+  triggerMeYear(value: string): void {
+    console.log("selected value", value);
+    this.strTestValue3 = value;  
+    console.log("selected strTestValue3", this.strTestValue3);
+    this.getYearApi(this.makeValue,this.strTestValue2,this.strTestValue3);
+  }
+  getEngineApi(strMakeListSelectedValue,strModelListSelectedValue){     
+    console.log('getEngineApi called    ' + this.strTestValue1);
+    const service = this.apiProvider.getEngineCategories(strMakeListSelectedValue,this.strTestValue1);
+    service.subscribe((data) => {
+        const resultado = data;
+        this.engineList = resultado; 
+        this.strMakeListSelectedValue =  resultado;
+        this.strModelListSelectedValue =  resultado;
+        this.strModelListSelectedValue =  this.modelValue;
+        console.log('Engine api response  make ' + strMakeListSelectedValue);
+        console.log('Engine api response  model ' + strModelListSelectedValue);
+
+     });
+  } 
+
+  getYearApi(strMakeListSelectedValue,strModelListSelectedValue,strEngineListSelectedValue){     
+    console.log('getYearApi called    ');
+    const service = this.apiProvider.getYearCategories(strMakeListSelectedValue,strModelListSelectedValue,strEngineListSelectedValue);
+    service.subscribe((data) => {
+        const resultado = data;
+        this.yearList = resultado; 
+        this.strMakeListSelectedValue =  resultado;
+        this.strModelListSelectedValue =  resultado;
+        console.log('Engine api response   ' + resultado);
+     });
+  }    
   makeDropDownValue(){   
      this.strMakeListSelectedValue = this.makeValue;
-   // this.strModelListSelectedValue = this.modelValue;
      this.getModelApi(this.strMakeListSelectedValue);
      console.log("Selected make:  ", this.makeValue); 
-     //console.log("Selected model:  ", this.modelValue); 
     }
+
+   
+                 
+  searchData(makeValue,strTestValue2,strTestValue3,year){
+
+  
+
+  if(!this.makeValue ){
+    console.log('issue make');
+    this.showToastOnEmptyMake();
+  }
+   else if(!this.strTestValue1){
+    this.showToastOnEmptyModel();
+    console.log('issue model');
+  }
+
+  else {
+    console.log('success!!!!!!');
+    this.navCtrl.push(SearchproductsPage, 
+        {
+          make: this.makeValue,
+          model: this.strTestValue2,
+          engine:this.strTestValue1,
+          year:this.yearValue
+        });
+
+        console.log("Sent product make " + this.makeValue);
+        console.log("Sent product model " + this.strTestValue2);
+        console.log("Sent product engine " + this.strTestValue1);
+        console.log("Sent product year " + this.yearValue);
+  }
+  }        
+ 
+  
+
 
     
    
-    getMakeApi(){       
-      console.log('getMakeApi called    ');
-      const service = this.apiProvider.searchMakeCategories();
-      service.subscribe((data) => {
-          const resultado = data;
-          this.makeList = resultado; 
-          this.strMakeListValue =  resultado;
-          //console.log('MakeApi response   ' + resultado);
-       });
-    }  
-          
-    getModelApi(strMakeListSelectedValue){    
-      console.log("Selected model:  ", strMakeListSelectedValue); 
-      this.showMakeLoader(); 
-      const service = this.apiProvider.getMakeCategories(strMakeListSelectedValue);
-      service.subscribe((data) => {
-          const resultado = data;
-          this.modelList = resultado; 
-          this.strMakeListSelectedValue =  resultado;
-           this.strModelListSelectedValue =  resultado;
-          // this.strEngineListSelectedValue =  resultado;
-          // console.log('Selected model:  ' + this.strModelListSelectedValue);
-          // console.log('Selected model:  ' + this.modelList);
-          // this.obj = JSON.stringify(data);
-          console.log('getModelApi called    ' + this.makeList);
-          console.log('getModelApi called    ' + this.makeValue);
-           this.getEngineApi(strMakeListSelectedValue,this.strModelListSelectedValue);
-           this.getYearApi(strMakeListSelectedValue,this.strModelListSelectedValue,this.strEngineListSelectedValue);
-       });
-    }  
-    
-    
- 
-    getEngineApi(strMakeListSelectedValue,strModelListSelectedValue){     
-      console.log('getEngineApi called    ');
-      const service = this.apiProvider.getEngineCategories(strMakeListSelectedValue,strModelListSelectedValue);
-      service.subscribe((data) => {
-          const resultado = data;
-          this.engineList = resultado; 
-          this.strMakeListSelectedValue =  resultado;
-          this.strModelListSelectedValue =  resultado;
-          
-          console.log('Engine api response   ' + resultado);
-       });
-    } 
-
-    getYearApi(strMakeListSelectedValue,strModelListSelectedValue,strEngineListSelectedValue){     
-      console.log('getYearApi called    ');
-      const service = this.apiProvider.getYearCategories(strMakeListSelectedValue,strModelListSelectedValue,strEngineListSelectedValue);
-      service.subscribe((data) => {
-          const resultado = data;
-          this.yearList = resultado; 
-          this.strMakeListSelectedValue =  resultado;
-          this.strModelListSelectedValue =  resultado;
-          console.log('Engine api response   ' + resultado);
-       });
-    }      
+   
 
   
   searchData1(catId){
@@ -675,20 +722,7 @@ getCategoriesApi(){
     console.log('Sent productsList id ' + catId);
   } 
  
-  searchData2(strMakeListSelectedValue,strModelListSelectedValue,engine,year){
-    this.navCtrl.push(SearchproductsPage, {
-          make: this.makeValue,
-          model: this.modelValue,
-          engine:this.engineValue,
-          year:this.yearValue
-        });
-
-        console.log("Sent product make " + this.makeValue);
-        console.log("Sent product model " + this.modelValue);
-        console.log("Sent product engine " + this.engineValue);
-        console.log("Sent product year " + this.yearValue);
-  }
-  
+ 
     
 addToWishList(id, name,image,description,regular_price) {
   this.countClick++;
@@ -935,6 +969,26 @@ async showMakeLoader() {
     duration: 600,
   });
   await loading.present();
+}
+
+async showToastOnEmptyMake()
+{
+ const toast = await this.toastController.create({
+   message: 'Please select Make ',
+   duration: 3000,
+   position: 'bottom',
+ });
+ toast.present();
+} 
+
+async showToastOnEmptyModel()
+{
+ const toast = await this.toastController.create({
+   message: 'Please select Model ',
+   duration: 3000,
+   position: 'bottom',
+ });
+ toast.present();
 }
 
 public async checkNetwork() {

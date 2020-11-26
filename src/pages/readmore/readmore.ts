@@ -4,8 +4,12 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { App, IonicPage, LoadingController, NavController, NavParams, Platform } from 'ionic-angular';
+import { AlertController, App, IonicPage, LoadingController, NavController, NavParams, Platform } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
+import { ApiProvider } from '../../providers/api/api';
+import { ProductcategorydetailPage } from '../productcategorydetail/productcategorydetail';
+
 
 
 
@@ -37,6 +41,17 @@ obj;
   strProductModifiedDate: string;
   strImage:string;
   strStock:string;
+  networkStatus: NetworkStatus;
+  networkListener: PluginListenerHandle; 
+  buttonIcon: string ;
+  viewCartList:any = [];
+  countProductsCart:number|any|string;
+  strData: string;
+
+
+
+
+  
 
 
 
@@ -47,7 +62,9 @@ obj;
               public platform: Platform,
               public loadingController: LoadingController,
               public app: App,
-              public httpClient: HttpClient) {
+              public httpClient: HttpClient,
+              public alertController: AlertController,
+              public apiProvider: ApiProvider) {
 
                 this.strId = navParams.get("id");
                 this.dynamicId = this.strId;
@@ -56,6 +73,10 @@ obj;
 
 
   ngOnInit(){
+
+    this.checkNetwork();
+
+    this.viewCartApi();
 
 
   
@@ -68,7 +89,7 @@ obj;
         // Checks if can go back before show up the alert
         if(activeView.name === 'ReadmorePage') {
             if (nav.canGoBack()){  
-                this.navCtrl.setRoot(HomePage);
+                this.navCtrl.setRoot(ProductcategorydetailPage);
             } else {
             }
         }
@@ -207,6 +228,36 @@ obj;
     
   }
 
+
+  async viewCartApi() {            
+    try {
+      const service = this.apiProvider.getCartDetails();  
+      service.subscribe(async (data) => {
+        if (data) {
+          const resultado = data;
+          this.viewCartList = resultado;     
+          this.obj = JSON.stringify(data);
+          console.log('All Json Response' + this.obj);
+           this.strData = 'No Products in Cart';  
+      
+           if(this.viewCartList.length>=1) {
+            console.log('Cart Filled ');
+            this.countProductsCart = this.viewCartList.length;
+             this.buttonIcon = "cart";
+           }
+  
+           else{
+            console.log('Cart Empty ');
+           this.countProductsCart = 'Empty';
+  
+           }
+        } else {
+        }
+  
+      });
+    } catch (error) {}
+  }
+
   showLoadingControllerLaunch() {
     let loading = this.loadingController.create({
       content: 'Please wait loading product details!'
@@ -217,6 +268,60 @@ obj;
     setTimeout(() => {
       loading.dismiss();
     },600);
+  }
+
+  public async checkNetwork() {
+    const { Network } = Plugins;
+      this.networkListener = Network.addListener(
+        'networkStatusChange',
+        (status) => {
+          console.log('Network status HomePage here', status);
+          this.networkStatus = status;
+        }
+      );
+  
+      if ((await Network.getStatus()).connectionType === 'none') {
+        this.showNetworkAlert();
+        console.log('Network status not available', this.networkStatus);
+      } else {
+        this.networkStatus = await Network.getStatus();
+        // this.showAlert();
+        console.log('Network status available', this.networkStatus);
+        //this.router.navigate(['/invoices']);
+       // this.router.navigate(['/managecard']);
+      }
+    
+  }
+  
+  
+  private async showNetworkAlert(): Promise<void> {
+    // omitted;
+    const alert = await this.alertController.create({
+      title: 'Network Issues!',
+      message: 'There are issues in network connectivity',
+  
+      buttons: [
+        {
+          text: 'Ok',
+          handler: (ok) => {
+            console.log('Confirm Ok');
+            // resolve('ok');
+          },
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (cancel) => {
+            console.log('Confirm Cancel');
+            alert.dismiss();
+            // resolve('cancel');
+          },
+        },
+      ],
+    });
+  
+    alert.present();
   }
 
   

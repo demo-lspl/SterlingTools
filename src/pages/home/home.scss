@@ -246,7 +246,8 @@ page-home {
     .custom-id input.searchbar-input {
         padding-left: 120px !important;
     }
-    .custom-id .select-md{padding: 9px 8px;
+    .custom-id .select-md,.custom-id .select-ios
+    {padding: 9px 8px;
         max-width: 100%;
         font-size: 12px;}
         .custom-id .item-select .item-inner{height: 2em; border: 0px !important;}
@@ -280,30 +281,31 @@ page-home {
                 font-weight: 700;
                 font-size: 15px;
             }
-            .card-header-md ion-item.item.item-block.item-md.item-md-primary {
+            .card-header-md ion-item.item.item-block.item-md.item-md-primary,.card-header-ios ion-item.item.item-block.item-ios.item-ios-primary  {
                 background-color: #000;
             }
-            .card-main .card-md .card-header{
+            .card-main .card-md .card-header, .card-main .card-ios .card-header{
                 // background-color: #000;
             }
             .card-main ion-card-content.card-content.card-content-md {
                 padding: 0px !important;
             }
-            .card-main ion-card.card.card-md {
+            .card-main ion-card.card.card-md,  .card-main ion-card.card.card-ios {
                 width: calc(100% - 0px) !important;
                
                 border-radius: 5px !important;
             }
-            .card-main ion-label.label.label-md {
+            .card-main ion-label.label.label-md, .card-main ion-label.label.label-ios {
                 margin: 0px;
             }
-            .card-main button.disable-hover.button.button-md.button-clear.button-clear-md.button-small.button-small-md {
+            .card-main button.disable-hover.button.button-md.button-clear.button-clear-md.button-small.button-small-md,
+            .card-main button.disable-hover.button.button-ios.button-clear.button-clear-ios.button-small.button-small-ios {
                 margin: 0px !important;
                 min-width: unset !important;
                 padding: 0px !important;
             }
             .card-main .card .card-header .icon {font-size: 2.5rem !important;     position: unset;}
-            .card-main .card-header.card-header-md {
+            .card-main .card-header.card-header-md, .card-main .card-header.card-header-ios {
                 padding: 3px !important;
             }
 
@@ -322,24 +324,25 @@ page-home {
                 font-weight: 700;
                 font-size: 15px;
             }
-            .card-header-md ion-item.item.item-block.item-md.item-md-primary {
+            .card-header-md ion-item.item.item-block.item-md.item-md-primary, .card-header-ios ion-item.item.item-block.item-ios.item-md-primary {
                 background-color: #000;
             }
-            .card-main1 .card-md .card-header{
+            .card-main1 .card-md .card-header,.card-main1 .card-ios .card-header{
                 background-color: #000;
             }
-            .card-main1 ion-card-content.card-content.card-content-md {
+            .card-main1 ion-card-content.card-content.card-content-md,.card-main1 ion-card-content.card-content.card-content-ios {
                 padding: 0px !important;
             }
-            .card-main1 ion-card.card.card-md {
+            .card-main1 ion-card.card.card-md,.card-main1 ion-card.card.card-ios {
                 width: calc(100% - 0px) !important;
                
                 border-radius: 5px !important;
             }
-            .card-main1 ion-label.label.label-md {
+            .card-main1 ion-label.label.label-md,.card-main1 ion-label.label.label-ios {
                 margin: 0px;
             }
-            .card-main1 button.disable-hover.button.button-md.button-clear.button-clear-md.button-small.button-small-md {
+            .card-main1 button.disable-hover.button.button-md.button-clear.button-clear-md.button-small.button-small-md,
+            .card-main1 button.disable-hover.button.button-ios.button-clear.button-clear-ios.button-small.button-small-ios {
                 margin: 0px !important;
                 min-width: unset !important;
                 padding: 0px !important;
@@ -394,7 +397,7 @@ page-home {
                     color: #aeaaaa;
                     font-size: 26px;
                 }
-                .shorting-bar .item-md{
+                .shorting-bar .item-md, .shorting-bar .item-ios{
                     width: calc(95% - 0px) !important;
                     padding: 0px !important;
                     margin: 0px !important;
@@ -402,7 +405,7 @@ page-home {
                     border: 1px solid #f02727 !important;
                     margin-left: 10px !important;
                 }
-                    .shorting-bar .label-md {
+                    .shorting-bar .label-md,.shorting-bar .label-ios {
                         margin: 0px;
                     }
                     .product-grid .card-header {
@@ -437,17 +440,17 @@ page-home {
             float: right;
             width: 82% !important;
             margin-left: 0px !important;
-        .shorting-bar .short ion-select.select.select-md {
+        .shorting-bar .short ion-select.select.select-md,.shorting-bar .short ion-select.select.select-ios {
             max-width: 100%;
             padding: 0px;
         }
-         .shorting-bar .short ion-select.select.select-md .select-placeholder.select-text {
+         .shorting-bar .short ion-select.select.select-md .select-placeholder.select-text,.shorting-bar .short ion-select.select.select-ios .select-placeholder.select-text {
             color: red;
         }
          .shorting-bar .short .select-icon {
             display: none;
         }
-        .one1 ion-icon.icon.icon-md.ion-md-code-working.item-icon {
+        .one1 ion-icon.icon.icon-md.ion-md-code-working.item-icon,.one1 ion-icon.icon.icon-ios.ion-ios-code-working.item-icon {
             margin-top: 14px;
         }
         .short ion-select.select.select-md {
@@ -462,17 +465,17 @@ page-home {
             float: right;
             width: 82% !important;
             margin-left: 0px !important;
-        .shorting-bar .short ion-select.select.select-md {
+        .shorting-bar .short ion-select.select.select-md,.shorting-bar .short ion-select.select.select-ios {
             max-width: 100%;
             padding: 0px;
         }
-         .shorting-bar .short ion-select.select.select-md .select-placeholder.select-text {
+         .shorting-bar .short ion-select.select.select-md .select-placeholder.select-text,.shorting-bar .short ion-select.select.select-ios .select-placeholder.select-text {
             color: red;
         }
          .shorting-bar .short .select-icon {
             display: none;
         }
-        .one1 ion-icon.icon.icon-md.ion-md-code-working.item-icon {
+        .one1 ion-icon.icon.icon-md.ion-md-code-working.item-icon, .one1 ion-icon.icon.icon-ios.ion-ios-code-working.item-icon {
             float: left;
             margin-top: 11px;
         }

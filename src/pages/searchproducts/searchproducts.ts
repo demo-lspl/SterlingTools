@@ -6,10 +6,13 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams, Toast, ToastController } from 'ionic-angular';
+import { AlertController, App, IonicPage, LoadingController, NavController, NavParams, Platform, Toast, ToastController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { ViewcartPage } from '../viewcart/viewcart';
 import { WishlistupdatedPage } from '../wishlistupdated/wishlistupdated';
+import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
+import { HomePage } from '../home/home';
+
 
 
 
@@ -28,7 +31,9 @@ export class SearchproductsPage implements OnInit{
   strYear: string;  
   featuredProductsList: any = [];  
   strData: string;
-
+  networkStatus: NetworkStatus;
+  networkListener: PluginListenerHandle; 
+  strDataServer:string;
 
 
 
@@ -39,20 +44,45 @@ export class SearchproductsPage implements OnInit{
               public httpClient: HttpClient,
               public apiProvider: ApiProvider,
               public toastController: ToastController,
-              public loadingController: LoadingController) {
+              public loadingController: LoadingController,
+              public app: App,
+              public platform: Platform,
+              public alertController: AlertController) {
 
     this.strMake = navParams.get("make");
-    this.strModel = navParams.get("model");
-    this.strEngine = navParams.get("engine");
+    this.strModel = navParams.get("engine");
+    this.strEngine = navParams.get("model");
     this.strYear = navParams.get("year");
 
 
+
+
     console.log('ionViewDidLoad SearchproductsPage' + this.strMake);
+    console.log('ionViewDidLoad SearchproductsPage' + this.strModel);
+    console.log('ionViewDidLoad SearchproductsPage' + this.strEngine);
+    console.log('ionViewDidLoad SearchproductsPage' + this.strYear);
     
   }    
-
+   
 
   ngOnInit(){
+
+    this.strDataServer = 'No Data';
+
+    this.checkNetwork();
+
+    this.platform.registerBackButtonAction(() => {
+      // Catches the active view
+      let nav = this.app.getActiveNavs()[0];
+      let activeView = nav.getActive();                
+      // Checks if can go back before show up the alert
+      if(activeView.name === 'SearchproductsPage') {
+          if (nav.canGoBack()){  
+              this.navCtrl.setRoot(HomePage);
+          } else {
+          }
+      }
+  }); 
 
     this.showLoadingControllerLaunch();
      
@@ -64,7 +94,7 @@ export class SearchproductsPage implements OnInit{
         this.obj = JSON.stringify(jsonResponse);
   
   
-      
+        
    
           if(resultado === null){
             this.showToastOnEmptyFeaturedProducts();
@@ -152,4 +182,58 @@ export class SearchproductsPage implements OnInit{
     }, 600);
   }
 
+
+  public async checkNetwork() {
+    const { Network } = Plugins;
+      this.networkListener = Network.addListener(
+        'networkStatusChange',
+        (status) => {
+          console.log('Network status HomePage here', status);
+          this.networkStatus = status;
+        }
+      );
+  
+      if ((await Network.getStatus()).connectionType === 'none') {
+        this.showNetworkAlert();
+        console.log('Network status not available', this.networkStatus);
+      } else {
+        this.networkStatus = await Network.getStatus();
+        // this.showAlert();
+        console.log('Network status available', this.networkStatus);
+        //this.router.navigate(['/invoices']);
+       // this.router.navigate(['/managecard']);
+      }
+    
+  }
+  
+  
+  private async showNetworkAlert(): Promise<void> {
+    // omitted;
+    const alert = await this.alertController.create({
+      title: 'Network Issues!',
+      message: 'There are issues in network connectivity',
+  
+      buttons: [
+        {
+          text: 'Ok',
+          handler: (ok) => {
+            console.log('Confirm Ok');
+            // resolve('ok');
+          },
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (cancel) => {
+            console.log('Confirm Cancel');
+            alert.dismiss();
+            // resolve('cancel');
+          },
+        },
+      ],
+    });
+  
+    alert.present();
+  }
 }
