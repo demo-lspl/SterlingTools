@@ -58,7 +58,9 @@ export class HomePage implements OnInit {
   getIcon: string;
   countProductsCart:number|any|string;
   countProductsWishList:number|any|string;
+  countProductsCartLocal:number|any|string;
 
+ 
   letclickCount = 0;
   clickedButtonWishlist:boolean ;
   count:string|any;
@@ -66,6 +68,10 @@ export class HomePage implements OnInit {
   public myimage = 'https://aws1.discourse-cdn.com/ionicframework/original/3X/c/f/cf7af661f0bae7cca915258f2b8d6b3937fccda4.png';
   strUserId:number | any;
   countClick: number = 0;
+  countClickAddToCart: number = 0;
+  countClickAddToCartTushar: number = 0;
+
+
   makeList: any = [];  
   modelList: any = [];  
   companyName: any;
@@ -102,6 +108,8 @@ export class HomePage implements OnInit {
   strTestValue1:string;
   strTestValue2:string;
   strTestValue3:string;
+  checkStatus: boolean;
+
 
   constructor(
     public navCtrl: NavController,
@@ -119,30 +127,50 @@ export class HomePage implements OnInit {
     public alertController: AlertController
   ) {
 
-    // this.onSelect(this.selectedCountry.id);
+    this.checkStatus = this.localStorageItem();
   }   
                 
-   
+       
   ngOnInit() {    
+    
+     
+    var arrayFromStroage = JSON.parse(localStorage.getItem('products'));
+    var arrayLength = arrayFromStroage.length;
+    console.log('Wishlist Filled tushar***** ' + arrayLength);
+    this.countClickAddToCartTushar = arrayLength;
+    this.countProductsCartLocal = arrayLength;
+   
+    if (localStorage.getItem("products") === '') {
+
+      console.log('Local Storage is empty');
+
+   
+    }
+    else {
+      console.log('Local Storage is filled');
+      // var arrayFromStroage = JSON.parse(localStorage.getItem('products'));
+      // var arrayLength = arrayFromStroage.length;
+      // console.log('Wishlist Filled tushar***** ' + arrayLength);
+      // this.countClickAddToCartTushar = arrayLength;
+      // this.countProductsCartLocal = arrayLength;
+
+      //this.countProductsCartLocal
+
+    }
+
 
     
-    // var something = localStorage.getItem('products');
-    // console.log('Wishlist Filled***** ' + something);
-    // this.wishListlength  = something.length;
-
-    //  console.log('Wishlist Filled tushar***** ' + Object.keys('products').length);
-
-    
-    // if(something) {
-    //   console.log('Wishlist Filled ');
-    //   this.countProductsWishList = this.productsLocalCart.length;
-    //  }   
-
-    //  else{
-    //   console.log('Wishlist Empty ');
+    // if(localStorage.length>=1) {
+    //   console.log('Local Cart Filled ' + localStorage.length);
+    //   console.log('Local Cart Filled ' + JSON.stringify('products').length);
+    //   this.countProductsCartLocal = localStorage.length;
+    //  } 
+    //  else if (localStorage.getItem("products") === null) {
+    //   this.countProductsCartLocal = '';
     //  }
-
-  
+    //  else{
+    //   console.log('Local Cart Empty ' + localStorage.length);
+    //  }
  
     this.checkNetwork();
     this.getAllProductsCategoriesList(); 
@@ -199,6 +227,16 @@ export class HomePage implements OnInit {
   });  
 
    }
+
+   public localStorageItem(): boolean {
+    if (localStorage.getItem("isSigned") === "true") {
+      console.log('isSigned true');
+      return true
+    } else {
+      console.log('isSigned false');
+      return false;
+    };
+  }
 
 
    hide(){
@@ -284,7 +322,12 @@ addToCart(id, name,image,description,regular_price) {
     console.log("Sent productsList name " + name);
     products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
     localStorage.setItem('products', JSON.stringify(products)); 
-    this.showToastOnAddProduct(name);
+    this.showToastOnAddProductLocal(name);
+    this.countProductsCartLocal++;
+
+
+    //this.countClickAddToCartTushar = this.countProductsCartLocal;
+   
   }
   
   else { 
@@ -292,18 +335,11 @@ addToCart(id, name,image,description,regular_price) {
           this.obj = JSON.stringify(jsonResponse);
           console.log("Sent productsList response " + this.obj);
           console.log("Sent productsList id " + id);
-          this.showToastOnAddProductSingle(this.strProductAdded);
+          this.showToastOnAddProductServer(this.strProductAdded);
         });
   }
 } 
   
-   
-
- changeView(){
-  this.buttonIcon = "star";
-}
-  
-
    
  cartPage() {
     this.navCtrl.push(ViewcartPage);
@@ -420,7 +456,7 @@ toggleAccordionVehicle() {
       ); 
     }
 
-    //this.accordionExpandedVehicle = !this.accordionExpandedVehicle;
+    this.accordionExpandedVehicle = !this.accordionExpandedVehicle;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
   }
 
@@ -758,9 +794,9 @@ addToWishList(id, name,image,description,regular_price) {
 }
 readMoreLocal(id, name,image,description,regular_price){
   this.showToastOnPriceEmptyProducts();
-}
-             
-  
+}           
+              
+   
 async viewCartApi() {            
   try {
     const service = this.apiProvider.getCartDetails();  
@@ -883,10 +919,10 @@ async viewCartApi() {
   }
 
 
-  showToastOnAddProductSingle(strProductAdded) {
+  showToastOnAddProductLocal(strProductAdded) {
     const toast = this.toastController.create({
       // message: this.testStr,
-      message: 'Product Added in Cart : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+      message: 'Product Added in Local Cart : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
       duration: 3000,
       position: "bottom",
     });   
@@ -894,11 +930,22 @@ async viewCartApi() {
   }  
   
 
+  showToastOnAddProductServer(strProductAdded) {
+    const toast = this.toastController.create({
+      // message: this.testStr,
+      message: 'Product Added in Server : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+      duration: 1000,
+      position: "bottom",
+    });   
+    toast.present();  
+  }  
+
+
   showToastOnAddProductWishlist(strProductAdded) {
     const toast = this.toastController.create({
       // message: this.testStr,
       message: 'Product Added in Cart : \n ' + strProductAdded + '\n' ,
-      duration: 3000,
+      duration: 1000,
       position: "bottom",
     });   
     toast.present();  
@@ -908,7 +955,7 @@ async viewCartApi() {
     const toast = this.toastController.create({
       // message: this.testStr,
       message: 'Product Added in Cart : \n ' + strProductAdded + '\n' ,
-      duration: 3000,
+      duration: 1000,
       position: "bottom",
     });   
     toast.present();  

@@ -114,25 +114,36 @@ readMore(id) {
 
   this.navCtrl.push(ReadmorePage, {
     id: id,
-    
+      
   });
   console.log("Read More Sent product id " + id);
  
 }
-  
+    
 
-productDetailPage(id, name,image,regular_price,description) {
+productDetailPage(id, name,image,regular_price,description,make,model,year) {
   this.navCtrl.push(ProductcategorydetaillistPage, {
     id: id,
     name: name,
-    image:image,
+    image:image,  
     regular_price:regular_price,
-    description:description
+    description:description,
+    make:make,
+    model:model,
+    year:year,
+   
   });
   console.log("Sent product id " + id);
   console.log("Sent product name " + name);
   console.log("Sent product image " + image);
   console.log("Sent product regular_price " + regular_price);
+  console.log("Sent product description " + description);
+  console.log("Sent product make " + make);
+  console.log("Sent product model " + model);
+  console.log("Sent product year " + year);
+
+
+
 
 }
 
@@ -148,11 +159,11 @@ productDetailPage(id, name,image,regular_price,description) {
       if(activeView.name === 'ProductcategorydetailPage') {
           if (nav.canGoBack()){                  
               console.log('Tushar');
-              this.navCtrl.setRoot(ProductcategoryPage);
+              // this.navCtrl.setRoot(ProductcategoryPage);
 
           } else {
             console.log('Tushar1');
-
+            this.navCtrl.setRoot(ProductcategoryPage);
           }
       }  
   }); 

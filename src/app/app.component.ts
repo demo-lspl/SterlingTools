@@ -32,6 +32,8 @@ import { APP_CONFIG, AppConfig } from './app.config';
 import { TranslateService } from '../../node_modules/@ngx-translate/core';
 import { Globalization } from '@ionic-native/globalization';
 import { WishlistupdatedPage } from '../pages/wishlistupdated/wishlistupdated';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 
   
 @Component({
@@ -193,17 +195,33 @@ export class MyApp implements OnInit{
     this.nav.setRoot(HelpPage); 
   }
     
-  phonenumberPage() {     
-    this.showLoaderOnSigningOut();
-    localStorage.clear();
-   this.nav.setRoot(DemoPage);
-  }  
+  // phonenumberPage() {     
+  //   this.showLoaderOnSigningOut();
+  //   //localStorage.clear();
+  // // this.nav.setRoot(DemoPage);
+  // }  
    
 
   loginPage() {  
-    
    this.nav.setRoot(DemoPage);
   }
+
+  logoutPage(){
+    this.showLoaderOnSigningOut();
+    this.nav.setRoot(DemoPage);
+    localStorage.removeItem('isSigned');
+    localStorage.removeItem('products');
+    localStorage.removeItem('Userid value');
+    localStorage.removeItem('name');
+
+
+    
+    
+
+  }
+
+    
+
   
   checkLocalStorage(){
     if (localStorage.getItem("Userid value") === null) {

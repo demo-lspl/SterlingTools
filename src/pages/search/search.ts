@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Alert, AlertController, LoadingController, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
+import { Alert, AlertController, App, LoadingController, NavController, NavParams, Platform, ToastController, ViewController } from 'ionic-angular';
 import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
 import { WishlistupdatedPage } from '../wishlistupdated/wishlistupdated';
 import { ViewcartPage } from '../viewcart/viewcart';
+import { HomePage } from '../home/home';
 
 
 @Component({
@@ -37,7 +38,9 @@ export class SearchPage implements OnInit {
               public httpClient: HttpClient,
               public loadingController: LoadingController,
               public alertController: AlertController,
-              public toastController: ToastController) 
+              public toastController: ToastController,
+              public platform: Platform,
+              public app: App,) 
               {
                 this.strId = navParams.get("catId");
                 this.dynamicId = this.strId;
@@ -52,6 +55,19 @@ export class SearchPage implements OnInit {
     this.checkNetwork();
     this.showLoadingControllerLaunch();
     this.callProductCategoryDetail();
+
+    this.platform.registerBackButtonAction(() => {
+      // Catches the active view
+      let nav = this.app.getActiveNavs()[0];
+      let activeView = nav.getActive();                
+      // Checks if can go back before show up the alert
+      if(activeView.name === 'SearchPage') {
+          if (nav.canGoBack()){  
+              this.navCtrl.setRoot(HomePage);
+          } else {
+          }
+      }
+  }); 
 
   }
 

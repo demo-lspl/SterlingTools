@@ -92,7 +92,7 @@ export class ItemdetailPage implements OnInit {
 
   ngOnInit() {
 
-    this.checkNetwork();
+    this.checkNetwork();  
 
 
     this.viewCartApi();
@@ -169,21 +169,53 @@ export class ItemdetailPage implements OnInit {
           this.strProductModel = 'Model: ' + entry.attribute.pa_model; 
          }
 
-         if(this.strProductYear){
-          this.strProductYear = 'Year Empty: '; 
-         }
+        //  if(this.strProductYear){
+        //   this.strProductYear = 'Year Empty: '; 
+        //  }
 
-         else {
-          this.strProductYear = 'Year: ' + entry.attribute.pa_year; 
-         }
+        //  else {
+        //   this.strProductYear = 'Year: ' + entry.attribute.pa_year; 
+        //  }
 
-        if(this.strProductSalePrice){
-          this.strProductSalePrice = 'Product Sale Price: ' + entry.sale_price;
+
+         if (entry.attribute.pa_year === '') {
+          this.strProductYear = 'No Year  ';
         }
-
-        else {
-          this.strProductSalePrice = 'No Product Sale Price Specified';
+ 
+        else {                 
+          this.strProductYear = 'Year ' + entry.attribute.pa_year;
         }    
+
+
+
+        // if(this.strProductSalePrice){
+        //   this.strProductSalePrice = 'Product Sale Price: ' + entry.sale_price;
+        // }
+
+        // else {
+        //   this.strProductSalePrice = 'No Product Sale Price Specified';
+        // } 
+        
+        
+        if (entry.sale_price === '') {
+          this.strProductSalePrice = 'No Sale Price  ';
+        }
+ 
+        else {                 
+          this.strProductSalePrice = 'Sale Price ' + entry.sale_price;
+        } 
+
+
+        if (entry.regular_price === '') {
+          this.strProductRegularPrice = 'No Regular Price  ';
+        }
+ 
+        else {                 
+          this.strProductRegularPrice = 'Regular Price: ' + entry.regular_price;
+        } 
+
+
+        
           
   
         if (entry.description === '') {
@@ -203,7 +235,7 @@ export class ItemdetailPage implements OnInit {
         } 
         
         if (entry.stock === null) {
-          this.strStock = 'No Product Stock:  ';
+          this.strStock = 'No Product Stock  ';
         }
  
         else {

@@ -114,7 +114,7 @@ export class ViewcartPage implements OnInit{
               public storage: Storage,
               public platform: Platform,
               public app: App) {    
-      }       
+      }        
                 
   ngOnInit(){    
     this.buttonDisabled = true;   
@@ -141,7 +141,7 @@ export class ViewcartPage implements OnInit{
       //this.showToastOnEmptyCart();
     }
    
-     this.obj = JSON.stringify(this.productsLocalCart);
+     this.obj = JSON.stringify(this.productsLocalCart);  
     for(let i = 0; i < this.productsLocalCart.length; i++){   
       if(this.productsLocalCart[i].ProductQuantity && this.productsLocalCart[i].ProductRegularPrice && this.productsLocalCart[i].ProductDescription && this.productsLocalCart[i].ProductId ){
        // this.strProductQuantity;
@@ -149,22 +149,19 @@ export class ViewcartPage implements OnInit{
         this.strProductRegularPrice = this.productsLocalCart[i].ProductRegularPrice; 
         this.strProductDescription= this.productsLocalCart[i].ProductDescription; 
         this.strProductName= this.productsLocalCart[i].ProductName; 
-
+  
 
          this.strProductRegularPriceRevised1 = this.strProductRegularPriceRevised;
         // this.strproductpriceTushar = 'Product Price: ' + this.strProductRegularPrice * this.strProductQuantity;
-        console.log('All Product Price ' + this.productsLocalCart[i].ProductRegularPrice);
-        console.log('All Product Quantity ' + this.productsLocalCart[i].ProductQuantity);
+        // console.log('All Product Price ' + this.productsLocalCart[i].ProductRegularPrice);
+        // console.log('All Product Quantity ' + this.productsLocalCart[i].ProductQuantity);
           this.productTotalPrice = this.productsLocalCart[i].ProductRegularPrice;
           var sum = 0, nums = ['100','300','400','60','40'];
           for (i = 0; i < nums.length; i++) {
               sum += +nums[i];
-            //  console.log('All  TotalPrice ' + sum);
           }
 
           this.productsLocalCart = JSON.parse(localStorage.getItem('products'));
-          // console.log('All  TotalPrice--- ' +  localStorage.getItem('products'));
-//tempJSON.name is SomeName
       }
   
       else {
@@ -540,8 +537,8 @@ removeProductServer(product_id,name){
 //     this.showToastOnDeletingCart();
 //     this.viewCartApi();
 // });          
-}
-
+} 
+ 
   /*
       Remove Product from local storage cart
   */
@@ -550,6 +547,11 @@ removeProductLocally(index,item,name)
 {
     this.showCartRemovalAlert2(index,item,name);
 }  
+
+removeProductLocally1(index,item,name)
+{
+    this.showCartRemovalAlert3(index,item,name);
+}
   /*
       viewCartApi
   */
@@ -578,7 +580,7 @@ removeProductLocally(index,item,name)
            }
 
           // tslint:disable-next-line: no-duplicate-variable
-          for (var i=0; i < this.viewCartList.length; i++) {
+          for (var i=0; i < this.viewCartList.length; i++) { 
             result.push(this.strDynamicId);
       }
  
@@ -824,6 +826,45 @@ removeProductLocally(index,item,name)
 
 
              
+            }},
+          },
+          {
+            text: 'Cancel',
+            handler: data => {
+              let navTransition = alert1.dismiss();
+              //  navTransition.then(() => {
+              //    this.navCtrl.pop();
+              //  });
+             return false;
+           }
+        },
+      ],
+    }); 
+
+    alert1.present();
+  }
+
+  private async showCartRemovalAlert3(index,item,name): Promise<void> {
+    // omitted;
+    const alert1 = this.alertController.create({
+      title: 'Clear Item! ' + name,
+      message: 'Do you want to clear cart locally!',
+      enableBackdropDismiss: false,
+  
+      buttons: [
+        {  
+          cssClass: 'my-custom-class',
+          text: 'Ok',
+          handler: (ok) => {
+            console.log('Confirm Ok');
+            console.log('Remove Product: ' + item);
+            for(let i = 0; i < this.productsLocalCart.length; i++) {
+
+    if(this.productsLocalCart[i] == item){
+      this.productsLocalCart.splice(i, 1);
+      // localStorage.setItem('products', JSON.stringify(this.productsLocalCart));
+      localStorage.removeItem('products');
+    }
             }},
           },
           {

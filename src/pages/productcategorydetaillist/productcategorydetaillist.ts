@@ -2,7 +2,7 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AlertController, App, IonicPage, NavController, NavParams, Platform, ToastController } from 'ionic-angular';
+import { AlertController, App, IonicPage, LoadingController, NavController, NavParams, Platform, ToastController } from 'ionic-angular';
 import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
 import { ProductcategorydetailPage } from '../productcategorydetail/productcategorydetail';
 import { ApiProvider } from '../../providers/api/api';
@@ -21,8 +21,14 @@ export class ProductcategorydetaillistPage implements OnInit{
   
   obj;
   strProductId:string;
+  strProductMake:string;
+  strProductModel:string;
+  strProductYear:string;
+  strProductStock:string;
+
   strProductName:string;
   strProductImage:string;
+  strProductSalePrice:string;
   strProductRegularPrice:string;
   strProductDescription:string;
   currentNumber :any = 1;
@@ -46,15 +52,82 @@ export class ProductcategorydetaillistPage implements OnInit{
               public alertController: AlertController,
               public platform: Platform,
               public app: App,
-              public apiProvider: ApiProvider) {
+              public apiProvider: ApiProvider,
+              public loadingController: LoadingController) {
 
     this.strProductId = navParams.get("id");  
     this.strProductName = navParams.get('name');
     this.strProductImage = navParams.get('image');
     this.strProductRegularPrice = navParams.get('regular_price');
     this.strProductDescription = navParams.get('description');
+    this.strProductMake = navParams.get('make');
+    this.strProductModel = navParams.get('model');
+    this.strProductYear = navParams.get('year');
+    this.strProductStock = navParams.get('stock');
+  
 
 
+
+
+    if(this.strProductName === ''){
+      this.strProductName = 'No Product Name   ';
+    }
+
+    else {
+      this.strProductName = 'Product Name: ' + this.strProductName;
+    }
+
+
+
+    if(this.strProductDescription === ''){
+      this.strProductDescription = 'No Product Description   ';
+    }
+
+    else {
+      this.strProductDescription = 'Product Description: ' + this.strProductDescription;
+    }
+
+    if(this.strProductRegularPrice === ''){
+      this.strProductRegularPrice = 'No Regular Price   ';
+    }
+
+    else {
+      this.strProductRegularPrice = 'Regular Price: ' + this.strProductRegularPrice;
+    }
+
+    if(this.strProductMake === ''){
+      this.strProductMake = 'No Product Make   ';
+    }
+
+    else {
+      this.strProductMake = 'Product Make: ' + this.strProductMake;
+    }
+
+    if(this.strProductModel === ''){
+      this.strProductModel = 'No Product Model   ';
+    }
+
+    else {
+      this.strProductModel = 'Product Model: ' + this.strProductModel;
+    }
+    if(this.strProductYear === ''){
+      this.strProductYear = 'No Product Year   ';
+    }
+
+    else {
+      this.strProductYear = 'Product Year: ' + this.strProductYear;
+    }
+
+    // if(this.strProductStock === ''){
+    //   this.strProductStock = 'No Product Stock   ';
+    // }
+
+    // else {
+    //   this.strProductStock = 'Product Stock: ' + this.strProductStock;
+    // }
+
+      
+    
     
 
     
@@ -211,10 +284,11 @@ public async checkNetwork() {
       console.log('Network status not available', this.networkStatus);
     } else {
       this.networkStatus = await Network.getStatus();
-      // this.showAlert();
+    
       console.log('Network status available', this.networkStatus);
-      //this.router.navigate(['/invoices']);
-     // this.router.navigate(['/managecard']);
+
+      this.showLoadingControllerLaunch();
+   
     }
   
 }
@@ -248,6 +322,16 @@ private async showNetworkAlert(): Promise<void> {
   });
 
   alert.present();
+}
+
+showLoadingControllerLaunch() {
+  let loading = this.loadingController.create({
+    content: 'Please wait!'
+  });
+  loading.present();
+  setTimeout(() => {
+    loading.dismiss();
+  }, 800);
 }
   
 

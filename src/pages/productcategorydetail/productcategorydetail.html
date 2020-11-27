@@ -76,7 +76,7 @@
               <div
                 class="img-box"
               >
-                <img  [src]="productCategory.image"  style="width:200px;height:80px ;" (click)="productDetailPage(productCategory.id,productCategory.name,productCategory.image,productCategory.regular_price,productCategory.description)">
+                <img  [src]="productCategory.image"  style="width:200px;height:80px ;" (click)="productDetailPage(productCategory.id,productCategory.name,productCategory.image,productCategory.regular_price,productCategory.description,productCategory.attribute.pa_make,productCategory.attribute.pa_model,productCategory.attribute.pa_year)">
 
               </div>
               <ion-icon name="md-heart" class="text-light icon"></ion-icon>
@@ -132,8 +132,7 @@
                           class="bg-thime btn-round btn-text"
                           
                           
-                          (click)="addToCart(productCategory.id,productCategory.name,productCategory.image,productCategory.description,productCategory.regular_price)"
-  
+                          (click)="productDetailPage(productCategory.id,productCategory.name,productCategory.image,productCategory.regular_price,productCategory.description,productCategory.attribute.pa_make,productCategory.attribute.pa_model,productCategory.attribute.pa_year)"  
                         >
                           Read More
                         </button>

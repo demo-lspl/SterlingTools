@@ -56,19 +56,12 @@ export class Myorder_2Page implements OnInit {
   }
   
      cartPage() {
-    // let modal = this.modalCtrl.create(CartPage);
-    // modal.present();
-
     this.navCtrl.setRoot(ViewcartPage);
   }
   
      searchPage() {
-    // let modal = this.modalCtrl.create(SearchPage);
-    // modal.present();
+ 
   }
-    
-  
-  
 
 
   doRefresh(event) {

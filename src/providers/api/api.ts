@@ -12,7 +12,7 @@ import { Observable} from 'rxjs';
 
 
 
-@Injectable()
+@Injectable()   
 export class ApiProvider {
    httpClientFetch = [];
    urlCountries :string = "https://raw.githubusercontent.com/sagarshirbhate/Country-State-City-Database/master/Contries.json";

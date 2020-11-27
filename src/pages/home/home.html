@@ -5,21 +5,56 @@
         ><img src="assets/imgs/ic_menu.png"
       /></ion-icon>
     </button>
+
+    <!-- <p *ngIf="result.length === 0">No matching Result found</p>   -->
+    <!-- <div *ngIf="featuredProductsList; else elseStatement" class="checkFeaturedProducts">  -->
+      <!-- <ng-template *ngIf="role === 'admin';then asscom else unit"></ng-template> -->
+   
   
     <ion-title >Products
+
+     
+      <!-- <div *ngIf="countProductsCartLocal; else elseStatement1">
+        <span float-right>
+          <ion-icon class="icon"  (click)="wishlistPage()" >
+            <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
+            <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> 
+          </ion-icon>
+  
+          <ion-icon class="icon"  (click)="cartPage()" >
+            <img src="assets/imgs/ic_my_cart.png" width="100%;" />
+            <ion-badge class="icon add-icon" >{{countProductsCartLocal}}</ion-badge> 
+          </ion-icon>
+        </span> 
+      </div>
+
+      <ng-template #elseStatement1>
+        <ion-icon class="icon"  (click)="cartPage()" >
+          <img src="assets/imgs/ic_my_cart.png" width="100%;" />
+          <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> 
+        </ion-icon>
+      </ng-template> -->
+      
+
+        
+    
+     
+
+
+     
       <span float-right>
-      <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header> -->
-
-        <!-- <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon> -->
-
         <ion-icon class="icon"  (click)="wishlistPage()" >
           <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
           <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> 
         </ion-icon>
 
-        <ion-icon class="icon"  (click)="cartPage()" >
+        <!-- <ion-icon class="icon"  (click)="cartPage()" *ngIf="checkStatus;">
           <img src="assets/imgs/ic_my_cart.png" width="100%;" />
           <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> 
+        </ion-icon> -->
+        <ion-icon class="icon"  (click)="cartPage()"  >
+          <img src="assets/imgs/ic_my_cart.png" width="100%;" />
+          <ion-badge class="icon add-icon" >{{countProductsCartLocal}}</ion-badge> 
         </ion-icon>
       </span>
      

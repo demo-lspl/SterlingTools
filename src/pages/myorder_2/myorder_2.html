@@ -29,6 +29,16 @@
 </ion-header>
 
 <ion-content class="bg-light">
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="chevron-down-circle-outline"
+          pullingText="Pull to refresh"
+          refreshingSpinner="circles"
+          refreshingText="Refreshing Orders."
+        >
+        </ion-refresher-content>
+      </ion-refresher>
     <ion-card *ngFor="let vieworders of viewOrdersList" >
         <ion-card-content>
             <ion-row>

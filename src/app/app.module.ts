@@ -65,6 +65,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SearchproductsPage } from '../pages/searchproducts/searchproducts';
 import { ProductcategorydetaillistPage } from '../pages/productcategorydetaillist/productcategorydetaillist';
 import { ReadmorePage } from '../pages/readmore/readmore';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -133,9 +134,8 @@ export function createTranslateLoader(http: HttpClient) {
    
     IonicStorageModule.forRoot(),
     RouterModule.forRoot([]),
-    
-
     Ng2SearchPipeModule,
+    NgxPaginationModule,
     HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),   

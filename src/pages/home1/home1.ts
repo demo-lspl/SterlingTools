@@ -47,40 +47,37 @@ export class Home1Page implements OnInit{
   engineList: any = [];      
   yearList: any = [];    
   productCategoryList: any = []; 
+  products: any = []; 
+
 
   strMakeListValue:string;
   strMakeListSelectedValue:string;
   strModelListSelectedValue:string;
   strEngineListSelectedValue:string;
   obj;
-  companyName: any;
-  newid: any;
+  companyName: any; 
+  newid: any; 
   strDynamicId:string;
   subject='';
   body='';
   to='';
+  searchText;
+  showDataboolean = false;
+
  
 
   constructor(public apiProvider:ApiProvider,
               public httpClient: HttpClient,
               public navCtrl: NavController,
-              public toastController: ToastController
+              public toastController: ToastController,
+              public apiService: ApiProvider
               ) { }
 
   ngOnInit() {     
     this.getMakeApi(); 
-    }       
-
-  
-  
-
-  
-            
-      
-   
-
-   
-    getMakeApi(){     
+    this.getProducts();    
+    }        
+    getMakeApi(){       
       console.log('getMakeApi called    ');
       const service = this.apiProvider.searchMakeCategories();
       service.subscribe((data) => {
@@ -89,7 +86,7 @@ export class Home1Page implements OnInit{
           this.strMakeListValue =  resultado;
        });
     }  
-      
+        
     getModelApi(strMakeListSelectedValue){     
       console.log('getModelApi called    ');
       const service = this.apiProvider.getMakeCategories(strMakeListSelectedValue);
@@ -156,9 +153,6 @@ export class Home1Page implements OnInit{
        this.getModelApi(this.strMakeListSelectedValue);
        console.log("Selected make:  ", this.makeValue); 
       }
-  
-     
-                   
     searchData(makeValue,strTestValue2,strTestValue3,year){
 
     
@@ -208,5 +202,27 @@ async showToastOnEmptyModel()
  });
  toast.present();
 } 
+  
+                   
+getProducts(){ 
+  const service = this.apiService.getProducts();
+  service.subscribe((data) => {
+
+    if (data) {
+      const resultado = data;
+      console.log(resultado);
+      this.products = resultado;
+
+        
+      
+     }
+     
+    
+
+    else {
+      this.showDataboolean = false;
+    }
+  });
+}
 
 }
