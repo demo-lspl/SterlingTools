@@ -26,7 +26,7 @@ import { VieworderPage } from './../pages/vieworder/vieworder';
 import { DemoPage } from './../pages/demo/demo';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule, Pipe } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { Badge, IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -66,6 +66,7 @@ import { SearchproductsPage } from '../pages/searchproducts/searchproducts';
 import { ProductcategorydetaillistPage } from '../pages/productcategorydetaillist/productcategorydetaillist';
 import { ReadmorePage } from '../pages/readmore/readmore';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { AppconstantsPage } from '../pages/appconstants/appconstants';
 
 
 
@@ -127,7 +128,8 @@ export function createTranslateLoader(http: HttpClient) {
     ViewallPage,
     SearchproductsPage,
     ProductcategorydetaillistPage,
-    ReadmorePage
+    ReadmorePage,
+    AppconstantsPage
     
   ],
   imports: [  
@@ -199,7 +201,8 @@ export function createTranslateLoader(http: HttpClient) {
     ViewallPage,
     SearchproductsPage,
     ProductcategorydetaillistPage,
-    ReadmorePage
+    ReadmorePage,
+    AppconstantsPage
   ],
   providers: [
     InAppBrowser,
@@ -209,6 +212,7 @@ export function createTranslateLoader(http: HttpClient) {
     { provide: APP_CONFIG, useValue: BaseAppConfig },
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
+    Badge,
     
   ]
 })

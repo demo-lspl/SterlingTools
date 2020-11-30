@@ -211,6 +211,8 @@ export class MyApp implements OnInit{
     this.nav.setRoot(DemoPage);
     localStorage.removeItem('isSigned');
     localStorage.removeItem('products');
+    localStorage.removeItem('productsWishlist');
+
     localStorage.removeItem('Userid value');
     localStorage.removeItem('name');
 

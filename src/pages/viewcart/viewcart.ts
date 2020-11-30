@@ -81,7 +81,7 @@ export class ViewcartPage implements OnInit{
   elements1 = document.getElementsByClassName("value") as HTMLCollectionOf<HTMLElement>;
   valueQuantity:number ;
   valueQuantity1 = [];
-  myText :HTMLInputElement;
+  myText :HTMLInputElement;  
   public amount:number;
   testTushar:number;
   dropdown1 = "Local Pickup";
@@ -115,10 +115,10 @@ export class ViewcartPage implements OnInit{
               public platform: Platform,
               public app: App) {    
       }        
-                
+                    
   ngOnInit(){    
     this.buttonDisabled = true;   
-    this.dropdown1 = 'Test';
+    this.dropdown1 = 'Test';  
    // this.strData = 'No Products in Cart';
     this.viewCartApi();
     this.showLoadingControllerLaunch();
@@ -588,6 +588,9 @@ removeProductLocally1(index,item,name)
            this.strSubTotalAmount = this.total;  
            this.strQuantityUpdated = this.total1 * 2;
            localStorage.setItem('name', this.strSubTotalAmount);
+
+
+           console.log('Hey   ' + this.strSubTotalAmount);
          
 
           // tslint:disable-next-line: one-variable-per-declaration

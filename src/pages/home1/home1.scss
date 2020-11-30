@@ -1,4 +1,27 @@
 page-home {
+    
+    ion-card {
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+      
+        ion-icon {
+          width: 75%;
+          margin-top: 16px;
+          font-size: 5em;
+        }
+        ion-badge {
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            }
+     }
+
+
+
     .list {
         margin: 0 !important;
     }

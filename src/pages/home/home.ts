@@ -1,8 +1,8 @@
-import { ViewallPage } from './../viewall/viewall';
-/*
-    Dashboard Screen Lasting Erp 21/10/2020
-*/
 
+
+
+
+import { ViewallPage } from './../viewall/viewall';
 import { DemoPage } from './../demo/demo';
 import { WishlistupdatedPage } from './../wishlistupdated/wishlistupdated';
 import { ProductcategorydetailPage } from './../productcategorydetail/productcategorydetail';
@@ -19,6 +19,7 @@ import {  map} from 'rxjs/operators';
 import { SearchPage } from '../search/search';
 import { SearchproductsPage } from '../searchproducts/searchproducts';
 import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
+import { HelpPage } from '../help/help';
 
 
     
@@ -49,7 +50,7 @@ export class HomePage implements OnInit {
   items: any;
   val;
   featuredProductsList: any = [];  
-  featuredCategoryList: any = [];  
+  featuredCategoryList: any = [];    
   featuredProductCategoryList: any = [];
   productTitle:''
   strProductAdded:string;
@@ -57,12 +58,13 @@ export class HomePage implements OnInit {
   buttonIcon: string = "home";
   getIcon: string;
   countProductsCart:number|any|string;
-  countProductsWishList:number|any|string;
-  countProductsCartLocal:number|any|string;
+  countProductsWishList:number =0;
+  countProductsCartLocal:number = 0;
 
- 
-  letclickCount = 0;
-  clickedButtonWishlist:boolean ;
+  countProductsCartLocalUpdated:number = 0;
+  countProductsWishlistLocalUpdated:number = 0;
+     
+       
   count:string|any;
   strImagePath: string;
   public myimage = 'https://aws1.discourse-cdn.com/ionicframework/original/3X/c/f/cf7af661f0bae7cca915258f2b8d6b3937fccda4.png';
@@ -70,8 +72,7 @@ export class HomePage implements OnInit {
   countClick: number = 0;
   countClickAddToCart: number = 0;
   countClickAddToCartTushar: number = 0;
-
-
+  countClickAddToCartTushar1: number = 0;
   makeList: any = [];  
   modelList: any = [];  
   companyName: any;
@@ -128,86 +129,63 @@ export class HomePage implements OnInit {
   ) {
 
     this.checkStatus = this.localStorageItem();
-  }   
-                
+  }     
+                     
        
-  ngOnInit() {    
+  ngOnInit() {      
     
-     
-    var arrayFromStroage = JSON.parse(localStorage.getItem('products'));
-    var arrayLength = arrayFromStroage.length;
-    console.log('Wishlist Filled tushar***** ' + arrayLength);
-    this.countClickAddToCartTushar = arrayLength;
-    this.countProductsCartLocal = arrayLength;
+      /*
+          Local Wishlist
+      */
+      var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
+      if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
+        var arrayLength = productsWishlistarrayFromStorage.length;
+        this.countProductsWishList = arrayLength;
+        this.countProductsWishlistLocalUpdated = this.countProductsWishList;
+        console.log('Local Wishlist filled ' + this.countProductsWishlistLocalUpdated);
+  
+      }        
    
-    if (localStorage.getItem("products") === '') {
+      else {
+        console.log('Local Wishlist empty ' );
+      }
+      /*
+          Local Cart
+      */
+     var productsCartarrayFromStorage = JSON.parse(localStorage.getItem('products'));
+     if (productsCartarrayFromStorage != null && productsCartarrayFromStorage.length > 0) {
+       var arrayLength1 = productsCartarrayFromStorage.length;
+       this.countProductsCart = arrayLength1;
+       this.countProductsCartLocalUpdated = this.countProductsCart;
+       console.log('Local Cart filled ' + this.countProductsCartLocalUpdated);
+     }
+ 
+     else {
+       console.log('Local Cart empty ' );
+     }
+  
 
-      console.log('Local Storage is empty');
 
-   
-    }
-    else {
-      console.log('Local Storage is filled');
-      // var arrayFromStroage = JSON.parse(localStorage.getItem('products'));
-      // var arrayLength = arrayFromStroage.length;
-      // console.log('Wishlist Filled tushar***** ' + arrayLength);
-      // this.countClickAddToCartTushar = arrayLength;
-      // this.countProductsCartLocal = arrayLength;
-
-      //this.countProductsCartLocal
-
-    }
-
-
-    
-    // if(localStorage.length>=1) {
-    //   console.log('Local Cart Filled ' + localStorage.length);
-    //   console.log('Local Cart Filled ' + JSON.stringify('products').length);
-    //   this.countProductsCartLocal = localStorage.length;
-    //  } 
-    //  else if (localStorage.getItem("products") === null) {
-    //   this.countProductsCartLocal = '';
-    //  }
-    //  else{
-    //   console.log('Local Cart Empty ' + localStorage.length);
-    //  }
  
     this.checkNetwork();
     this.getAllProductsCategoriesList(); 
- 
-    if(this.viewCartList.length>=1) {
-      console.log('Cart Filled ');
-      this.countProductsCart = this.viewCartList.length;
-     }   
-
-     else{
-      console.log('Cart Empty ');
-
-     }
-
-   
     if(this.countClick>1){
       console.log('Clicked More than one');
       this.showToastOnWishlist();
     }
     else {
-     // console.log('Clicked one');
+    
   
     }
      this.rendererVehicle.setElementStyle(this._elRef.nativeElement, "webkitTransition","max-height 500px, padding 500ms");
      this.rendererCategories.setElementStyle(this._elRef.nativeElement, "webkitTransition","max-height 500px, padding 1200ms");
-
      this.getAllFeaturedProducts();
      this.getAllFeaturedProductsCategories();
      this.getCategoriesApi();
      this.viewCartApi();
-      this.getMakeApi();
+     this.getMakeApi();
 
-   // this.callMakeApi();
-     this.zone = {
-      kind: 'key2'
-    }
-    // this.modeKeys = [
+   
    
 
    
@@ -308,10 +286,10 @@ export class HomePage implements OnInit {
 //     console.log("Sent productsList response " + this.obj);
 //     console.log("Sent productsList id " + id);
 //     this.showToastOnAddProductSingle(strProductAdded);
-//   });
-// }
+//   }); 
+// }    
+      
   
-
 addToCart(id, name,image,description,regular_price) {
   if (localStorage.getItem("Userid value") === null) {
     let products = [];
@@ -323,10 +301,9 @@ addToCart(id, name,image,description,regular_price) {
     products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
     localStorage.setItem('products', JSON.stringify(products)); 
     this.showToastOnAddProductLocal(name);
-    this.countProductsCartLocal++;
+    this.countProductsCartLocalUpdated++;
 
 
-    //this.countClickAddToCartTushar = this.countProductsCartLocal;
    
   }
   
@@ -336,9 +313,40 @@ addToCart(id, name,image,description,regular_price) {
           console.log("Sent productsList response " + this.obj);
           console.log("Sent productsList id " + id);
           this.showToastOnAddProductServer(this.strProductAdded);
+          this.countProductsCart++;
         });
   }
 } 
+
+addToWishList(id, name,image,description,regular_price) {
+  // this.countClick++;
+
+  //   if(this.countClick>1){
+  //     console.log('Clicked More than one');
+  //     this.showToastOnWishlist();
+  //   }
+  //   else {
+  //   }
+  
+  let productsWishlist = [];
+  if (localStorage.getItem('productsWishlist')) {
+    productsWishlist = JSON.parse(localStorage.getItem('productsWishlist')); // get product list 
+  } 
+  console.log("Sent productsList id " + id);
+  console.log("Sent productsList name " + name);
+  productsWishlist.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+  localStorage.setItem('productsWishlist', JSON.stringify(productsWishlist)); 
+  this.buttonIcon = "home";
+  this.showToastOnAddProductWishlist(name);
+  this.countProductsWishlistLocalUpdated++;
+  if (typeof(Storage) !== "undefined") {
+    // Code for localStorage/sessionStorage.
+    console.log('Code for localStorage/sessionStorage.')
+  } else {
+    // Sorry! No Web Storage support..
+    console.log('Sorry! No Web Storage support..')
+  }
+}
   
    
  cartPage() {
@@ -346,7 +354,9 @@ addToCart(id, name,image,description,regular_price) {
   }
 
   wishlistPage() {
-    this.navCtrl.push(WishlistupdatedPage);
+    console.log('wishlistPage');
+     this.navCtrl.push(WishlistupdatedPage);
+   // this.navCtrl.push(HelpPage);
   }
   
  doRefresh(event) {  
@@ -602,7 +612,7 @@ getCategoriesApi(){
   }
 
   getMakeApi(){     
-    console.log('getMakeApi called    ');
+    //console.log('getMakeApi called    ');
     const service = this.apiProvider.searchMakeCategories();
     service.subscribe((data) => {
         const resultado = data;
@@ -759,44 +769,13 @@ getCategoriesApi(){
   } 
  
  
-    
-addToWishList(id, name,image,description,regular_price) {
-  this.countClick++;
-
-    if(this.countClick>1){
-      console.log('Clicked More than one');
-      this.showToastOnWishlist();
-    }
-    else {
-     // console.log('Clicked one');
-      let products = [];
-      if (localStorage.getItem('products')) {
-        products = JSON.parse(localStorage.getItem('products')); // get product list 
-      } 
-      console.log("Sent productsList id " + id);
-      console.log("Sent productsList name " + name);
-      products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
-      localStorage.setItem('products', JSON.stringify(products)); 
-      this.buttonIcon = "home";
-      this.showToastOnAddProductWishlist(name);
-      if (typeof(Storage) !== "undefined") {
-        // Code for localStorage/sessionStorage.
-        console.log('Code for localStorage/sessionStorage.')
-      } else {
-        // Sorry! No Web Storage support..
-        console.log('Sorry! No Web Storage support..')
-      }
-    }
-  
-  
      
- 
-}
+
 readMoreLocal(id, name,image,description,regular_price){
   this.showToastOnPriceEmptyProducts();
 }           
-              
-   
+               
+     
 async viewCartApi() {            
   try {
     const service = this.apiProvider.getCartDetails();  
@@ -814,14 +793,14 @@ async viewCartApi() {
               
      
          if(this.viewCartList.length>=1) {
-          console.log('Cart Filled ');
+          console.log('Live server Cart Filled ' + this.viewCartList.length );
           this.countProductsCart = this.viewCartList.length;
-           this.buttonIcon = "cart";
+          //  this.buttonIcon = "cart";
          }
 
          else{
-          console.log('Cart Empty ');
-         this.countProductsCart = 'Empty';
+          console.log('Live server Cart  Empty ');
+        // this.countProductsCart = 'Empty';
 
          }
 
@@ -944,7 +923,7 @@ async viewCartApi() {
   showToastOnAddProductWishlist(strProductAdded) {
     const toast = this.toastController.create({
       // message: this.testStr,
-      message: 'Product Added in Cart : \n ' + strProductAdded + '\n' ,
+      message: 'Product Added in Wishlist : \n ' + strProductAdded + '\n' ,
       duration: 1000,
       position: "bottom",
     });   
@@ -992,30 +971,21 @@ async showToastOnEmptyProduct()
 } 
     
 callMakeApi() {
-  //this.showMakeLoader();
-  // const service = this.apiProvider.getMakeCategories();
-  //   service.subscribe((data) => {
-  //       const resultado = data;
-  //       this.makeList = resultado; 
-  //      this.strMakeListValue =  resultado;
-  //      console.log('getMakeApi called    ' + resultado);
-  //      this.modeKeys =resultado;
-  //   });
-  // return this.httpClient.get('http://busybanda.com/sterling-tools/api/mmey_make_search').pipe(map((res: any) => this.httpClientFetch = res.result));
+
 
   this.httpClient.get('http://busybanda.com/sterling-tools/api/mmey_make_search').subscribe((response) => {
     const resultado = response;
     this.makeList = resultado; 
     this.modeKeys =resultado;
-});
-}  
-
+}); 
+}      
+     
 async showMakeLoader() {
   const loading = await this.loadingController.create({
     content: 'Please wait fetching Make!',
-    duration: 600,
-  });
-  await loading.present();
+    duration: 600,   
+  });     
+  await loading.present(); 
 }
 
 async showToastOnEmptyMake()

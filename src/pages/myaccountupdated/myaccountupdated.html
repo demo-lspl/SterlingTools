@@ -10,11 +10,28 @@
         <ion-icon padding-right name="ios-search-outline" width="100%;" ></ion-icon>
         <ion-icon name="ios-cart-outline" width="100%;"></ion-icon>              
       </span> -->
-      <span float-right>
+      <!-- <span float-right>
         <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>
         <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>
         <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon>
+      </span> -->
+
+      <span float-right>
+        <ion-icon class="icon"  (click)="wishlistPage()" >
+          <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
+          <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> 
+        </ion-icon>
+
+        <!-- <ion-icon class="icon"  (click)="cartPage()" *ngIf="checkStatus;">
+          <img src="assets/imgs/ic_my_cart.png" width="100%;" />
+          <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> 
+        </ion-icon> -->
+        <ion-icon class="icon"  (click)="cartPage()"  >
+          <img src="assets/imgs/ic_my_cart.png" width="100%;" />
+          <ion-badge class="icon add-icon" >{{countProductsCartLocal}}</ion-badge> 
+        </ion-icon>
       </span>
+
     </ion-title>
   </ion-navbar>
   <ion-list padding-left class="tab-bar main-tools">

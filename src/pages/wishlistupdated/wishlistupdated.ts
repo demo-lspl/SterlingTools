@@ -1,7 +1,5 @@
 /**
  * Generated class for the WishlistupdatedPage page.
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
  */
  
 
@@ -80,14 +78,14 @@ export class WishlistupdatedPage implements OnInit {
       }
   });
      this.viewCartApi();
-      if (localStorage.getItem('products')) {
-        this.productsLocalCart = JSON.parse(localStorage.getItem('products')); // get product list 
-          console.log('****** filled' + localStorage.getItem('products'));
+      if (localStorage.getItem('productsWishlist')) {
+        this.productsLocalCart = JSON.parse(localStorage.getItem('productsWishlist')); // get product list 
+          console.log('****** filled-----' + localStorage.getItem('productsWishlist'));
           this.strData = 'Wishlist is Empty.Please add items!';
         } 
   
       else {  
-        console.log('****** empty' + localStorage.getItem('products'));
+        console.log('****** empty' + localStorage.getItem('productsWishlist'));
         // this.strData = 'Wishlist is Empty.Please add items!';
         this.showToastOnEmptyCart();
       }
@@ -104,17 +102,16 @@ export class WishlistupdatedPage implements OnInit {
 
            this.strProductRegularPriceRevised1 = this.strProductRegularPriceRevised;
           // this.strproductpriceTushar = 'Product Price: ' + this.strProductRegularPrice * this.strProductQuantity;
-          console.log('All Product Price ' + this.productsLocalCart[i].ProductRegularPrice);
-          console.log('All Product Quantity ' + this.productsLocalCart[i].ProductQuantity);
+        //  console.log('All Product Price ' + this.productsLocalCart[i].ProductRegularPrice);
+        //  console.log('All Product Quantity ' + this.productsLocalCart[i].ProductQuantity);
             this.productTotalPrice = this.productsLocalCart[i].ProductRegularPrice;
             var sum = 0, nums = ['100','300','400','60','40'];
             for (i = 0; i < nums.length; i++) {
                 sum += +nums[i];
-                console.log('All  TotalPrice ' + sum);
+               // console.log('All  TotalPrice ' + sum);
             }
   
-            this.productsLocalCart = JSON.parse(localStorage.getItem('products'));
-            // console.log('All  TotalPrice--- ' +  localStorage.getItem('products'));
+            this.productsLocalCart = JSON.parse(localStorage.getItem('productsWishlist'));
   //tempJSON.name is SomeName
         }
     

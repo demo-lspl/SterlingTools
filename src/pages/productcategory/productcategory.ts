@@ -39,6 +39,10 @@ export class ProductcategoryPage implements OnInit{
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
   countProductsCart:number|any|string;
+  countProductsCartLocal:number|any|string;
+  countProductsCartLocalUpdated:number = 0;
+  countProductsWishlistLocalUpdated:number = 0;
+  countProductsWishList:number =0;
 
 
   
@@ -66,7 +70,6 @@ export class ProductcategoryPage implements OnInit{
   
   ngOnInit() {
     this.checkNetwork();
-    console.log('ngOnInit VieworderPage');
     this.viewCartApi();
     this.getProductCategoriesApi();
     this.getProductCategoriesApi1();  
@@ -82,6 +85,37 @@ export class ProductcategoryPage implements OnInit{
           }
       }
   }); 
+
+       /*
+          Local Wishlist
+      */
+     var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
+     if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
+       var arrayLength = productsWishlistarrayFromStorage.length;
+       this.countProductsWishList = arrayLength;
+       this.countProductsWishlistLocalUpdated = this.countProductsWishList;
+       console.log('Local Wishlist filled ' + this.countProductsWishlistLocalUpdated);
+ 
+     }        
+  
+     else {
+       console.log('Local Wishlist empty ' );
+     }
+     /*
+         Local Cart
+     */
+    var productsCartarrayFromStorage = JSON.parse(localStorage.getItem('products'));
+    if (productsCartarrayFromStorage != null && productsCartarrayFromStorage.length > 0) {
+      var arrayLength1 = productsCartarrayFromStorage.length;
+      this.countProductsCart = arrayLength1;
+      this.countProductsCartLocalUpdated = this.countProductsCart;
+      console.log('Local Cart filled ' + this.countProductsCartLocalUpdated);
+    }
+
+    else {
+      console.log('Local Cart empty ' );
+    }
+
   }
       
   
@@ -145,7 +179,6 @@ searchPage() {
   }
 
   getProductCategoriesApi1(){
-    console.log('getProductCategoriesApi1 called    ');
     const service = this.apiProvider.getProductCategoriesGrid();
     service.subscribe((data) => {
         this.constresultado = data;

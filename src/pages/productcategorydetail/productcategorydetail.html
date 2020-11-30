@@ -8,9 +8,8 @@
 
       <ion-title>Categories Details
           <span float-right>
-            <!-- <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>
-            <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon> -->
-            <ion-icon class="icon"  (click)="wishlistPage()" >
+         
+            <!-- <ion-icon class="icon"  (click)="wishlistPage()" >
               <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
               <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> 
             </ion-icon>
@@ -18,7 +17,17 @@
             <ion-icon class="icon"  (click)="cartPage()" >
               <img src="assets/imgs/ic_my_cart.png" width="100%;" />
               <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> 
-            </ion-icon>
+            </ion-icon> -->
+            <span float-right>
+              <ion-icon name="cart" style="margin-left: 12px;">
+                <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
+              </ion-icon> 
+              
+              <ion-icon name="cart" style="margin-left: 12px;">
+                <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
+              </ion-icon> 
+           
+            </span>
           </span>
       </ion-title>
   </ion-navbar>

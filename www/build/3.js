@@ -1,6 +1,6 @@
 webpackJsonp([3],{
 
-/***/ 783:
+/***/ 785:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26,7 +26,7 @@ WishlistupdatedPageModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__wishlistupdated__["a" /* WishlistupdatedPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__wishlistupdated__["a" /* WishlistupdatedPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__wishlistupdated__["a" /* WishlistupdatedPage */]),
         ],
     })
 ], WishlistupdatedPageModule);

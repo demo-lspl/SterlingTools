@@ -34,6 +34,10 @@ export class SearchproductsPage implements OnInit{
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
   strDataServer:string;
+  countProductsWishlistLocalUpdated:number = 0;
+  countProductsWishList:number =0;
+
+
 
 
 
@@ -67,6 +71,36 @@ export class SearchproductsPage implements OnInit{
 
   ngOnInit(){
 
+      /*
+          Local Wishlist
+      */
+     var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
+     if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
+       var arrayLength = productsWishlistarrayFromStorage.length;
+       this.countProductsWishList = arrayLength;
+       this.countProductsWishlistLocalUpdated = this.countProductsWishList;
+       console.log('Local Wishlist filled ' + this.countProductsWishlistLocalUpdated);
+ 
+     }        
+  
+     else {
+       console.log('Local Wishlist empty ' );
+     }
+     /*
+         Local Cart
+     */
+    var productsCartarrayFromStorage = JSON.parse(localStorage.getItem('products'));
+    if (productsCartarrayFromStorage != null && productsCartarrayFromStorage.length > 0) {
+      var arrayLength1 = productsCartarrayFromStorage.length;
+      this.countProductsCart = arrayLength1;
+      this.countProductsCartLocalUpdated = this.countProductsCart;
+      console.log('Local Cart filled ' + this.countProductsCartLocalUpdated);
+    }
+
+    else {
+      console.log('Local Cart empty ' );
+    }
+
     this.strDataServer = 'No Data';
 
     this.checkNetwork();
@@ -92,10 +126,6 @@ export class SearchproductsPage implements OnInit{
         const resultado = jsonResponse;
         this.featuredProductsList = resultado;
         this.obj = JSON.stringify(jsonResponse);
-  
-  
-        
-   
           if(resultado === null){
             this.showToastOnEmptyFeaturedProducts();
             console.log('data not available');
@@ -128,6 +158,36 @@ export class SearchproductsPage implements OnInit{
             console.log("Sent productsList id " + id);
             this.showToastOnAddProductSingle(this.strMake);
           });
+    }
+  }
+
+  addToWishList(id, name,image,description,regular_price) {
+    // this.countClick++;
+  
+    //   if(this.countClick>1){
+    //     console.log('Clicked More than one');
+    //     this.showToastOnWishlist();
+    //   }
+    //   else {
+    //   }
+    
+    let productsWishlist = [];
+    if (localStorage.getItem('productsWishlist')) {
+      productsWishlist = JSON.parse(localStorage.getItem('productsWishlist')); // get product list 
+    } 
+    console.log("Sent productsList id " + id);
+    console.log("Sent productsList name " + name);
+    productsWishlist.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+    localStorage.setItem('productsWishlist', JSON.stringify(productsWishlist)); 
+    ///this.buttonIcon = "home";
+    this.showToastOnAddProductWishlist(name);
+    this.countProductsWishlistLocalUpdated++;
+    if (typeof(Storage) !== "undefined") {
+      // Code for localStorage/sessionStorage.
+      console.log('Code for localStorage/sessionStorage.')
+    } else {
+      // Sorry! No Web Storage support..
+      console.log('Sorry! No Web Storage support..')
     }
   }
 
@@ -236,4 +296,15 @@ export class SearchproductsPage implements OnInit{
   
     alert.present();
   }
+
+  
+  showToastOnAddProductWishlist(strProductAdded) {
+    const toast = this.toastController.create({
+      // message: this.testStr,
+      message: 'Product Added in Wishlist : \n ' + strProductAdded + '\n' ,
+      duration: 1000,
+      position: "bottom",
+    });   
+    toast.present();  
+  } 
 }

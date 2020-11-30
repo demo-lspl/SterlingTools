@@ -8765,6 +8765,7 @@ ion-app.md [padding-top] {
 }
 
 ion-app.md [padding-left] {
+  padding-left: 16px;
 }
 
 ion-app.md [padding-right] {
@@ -53129,7 +53130,7 @@ page-home .card-main .card-md .card-header {
   /* background-color: #000; */
 }
 
-page-home .card-main ion-card-content.card-content.card-content-md,page-home .card-main ion-card-content.card-content.card-content-ios {
+page-home .card-main ion-card-content.card-content.card-content-md {
   padding: 0px !important;
 }
 
@@ -53280,7 +53281,7 @@ page-home .card-main .card-content {
 
 page-home .card-main {
   padding: 10px 10px;
-  
+ 
 }
 
 page-home .shot-by {
@@ -57234,8 +57235,8 @@ page-home .add-icon {
   color: white;
   margin-top: 5px;
   position: absolute;
-  top: -8px;
-  right: -7px;
+  top: -5px;
+  right: 36px;
   font-size: 11px;
   border-radius: 50%;
   padding: 4px;
@@ -57721,7 +57722,7 @@ page-home .card-main .card-content {
 
 page-home .card-main {
   padding: 10px 10px;
- 
+
 }
 
 page-home .shot-by {
@@ -62420,7 +62421,7 @@ page-viewallcategories .card-main .card-content {
 
 page-viewallcategories .card-main {
   padding: 10px 10px;
- 
+ =
 }
 
 page-viewallcategories .shot-by {

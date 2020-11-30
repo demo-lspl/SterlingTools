@@ -1,28 +1,20 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle style="display: block !important">
-      <ion-icon class="menu-icon"
-        ><img src="assets/imgs/ic_menu.png"
-      /></ion-icon>
+      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"/>
+    </ion-icon>
     </button>
-    <ion-title
-      >Product Detail
+    <ion-title>Product Detail
+     
       <span float-right>
-     
-
+        <ion-icon name="cart" style="margin-left: 12px;">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
+        </ion-icon> 
         
-        <ion-icon class="icon"  (click)="wishlistPage()" >
-          <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
-          <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> 
-        </ion-icon>
-
-        <ion-icon class="icon"  (click)="cartPage()" >
-          <img src="assets/imgs/ic_my_cart.png" width="100%;" />
-          <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> 
-        </ion-icon>
-         
+        <ion-icon name="cart" style="margin-left: 12px;">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
+        </ion-icon> 
      
-
       </span>
     </ion-title>
   </ion-navbar>

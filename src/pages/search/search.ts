@@ -48,7 +48,7 @@ export class SearchPage implements OnInit {
                 console.log('Received catId' + this.dynamicId)
 
 
-              }
+              }  
 
 
   ngOnInit() {

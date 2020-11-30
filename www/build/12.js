@@ -1,6 +1,6 @@
 webpackJsonp([12],{
 
-/***/ 771:
+/***/ 775:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26,7 +26,7 @@ TermsandconditionsPageModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__termsandconditions__["a" /* TermsandconditionsPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__termsandconditions__["a" /* TermsandconditionsPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__termsandconditions__["a" /* TermsandconditionsPage */]),
         ],
     })
 ], TermsandconditionsPageModule);

@@ -68,6 +68,13 @@ export class ItemdetailPage implements OnInit {
   countProductsCart:number|any|string;
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
+  countClickAddToCartTushar: number = 0;
+  countProductsCartLocal:number|any|string;
+  countProductsCartLocalUpdated:number = 0;
+  countProductsWishlistLocalUpdated:number = 0;
+  countProductsWishList:number =0;
+
+
 
     
 
@@ -91,6 +98,36 @@ export class ItemdetailPage implements OnInit {
   }
 
   ngOnInit() {
+
+          /*
+          Local Wishlist
+      */
+     var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
+     if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
+       var arrayLength = productsWishlistarrayFromStorage.length;
+       this.countProductsWishList = arrayLength;
+       this.countProductsWishlistLocalUpdated = this.countProductsWishList;
+       console.log('Local Wishlist filled ' + this.countProductsWishlistLocalUpdated);
+ 
+     }        
+  
+     else {
+       console.log('Local Wishlist empty ' );
+     }
+     /*
+         Local Cart
+     */
+    var productsCartarrayFromStorage = JSON.parse(localStorage.getItem('products'));
+    if (productsCartarrayFromStorage != null && productsCartarrayFromStorage.length > 0) {
+      var arrayLength1 = productsCartarrayFromStorage.length;
+      this.countProductsCart = arrayLength1;
+      this.countProductsCartLocalUpdated = this.countProductsCart;
+      console.log('Local Cart filled ' + this.countProductsCartLocalUpdated);
+    }
+
+    else {
+      console.log('Local Cart empty ' );
+    }
 
     this.checkNetwork();  
 
@@ -368,6 +405,8 @@ export class ItemdetailPage implements OnInit {
         products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
         localStorage.setItem('products', JSON.stringify(products)); 
         this.showToastOnAddProduct(name);
+        this.countProductsCartLocal++;
+
       }
       
       else { 

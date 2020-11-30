@@ -53,33 +53,18 @@ ngOnInit(){
         const parsedData = JSON.parse(this.obj);
         status = parsedData.Status;
 
-
-      
-
         this.strDataUserLogin = parsedData.result.data.user_login;
         this.strDataUserEmail = parsedData.result.data.user_email;
         this.strDataUserRegistered = parsedData.result.data.user_registered;
         this.strDisplayName = parsedData.result.data.display_name;
-        
 
         console.log('Dynamic Profile Response  UserId ' + localStorage.getItem('Userid value'));
-
         console.log('Dynamic Profile Response user_login  ' + this.strDataUserLogin);
-
         console.log('Dynamic Profile Response user_email  ' + this.strDataUserEmail);
-  
         console.log('Dynamic Profile Response strDataUserRegistered  ' + this.strDataUserRegistered);
-
         console.log('Dynamic Profile Response strDisplayName  ' + this.strDisplayName);
-
-  
-          
-      
         
       });
-    
-
-  
 }
 
 

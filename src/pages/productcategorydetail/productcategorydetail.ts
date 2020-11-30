@@ -45,6 +45,10 @@ export class ProductcategorydetailPage implements OnInit{
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
   countProductsCart:number|any|string;
+  countProductsCartLocal:number|any|string;
+  countProductsCartLocalUpdated:number = 0;
+  countProductsWishlistLocalUpdated:number = 0;
+  countProductsWishList:number =0;
 
 
   constructor(public navCtrl: NavController, 
@@ -90,18 +94,46 @@ export class ProductcategorydetailPage implements OnInit{
     }, 600);
   }    
 
-
+  
   sortPopular(){
     this.showLoadingControllerLaunch();    
   }
   
-  addToCart(id,strProductAdded) {
+//   addToCart(id,strProductAdded) {
+//     this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
+//       this.obj = JSON.stringify(jsonResponse);
+//       console.log("Sent productsList response " + this.obj);
+//       console.log("Sent productsList id " + id);
+//       this.showToastOnAddProductSingle(strProductAdded);
+//       this.countProductsCartLocalUpdated++;
+//     }); 
+// } 
+addToCart(id, name,image,description,regular_price) {
+  if (localStorage.getItem("Userid value") === null) {
+    let products = [];
+    if (localStorage.getItem('products')) {
+      products = JSON.parse(localStorage.getItem('products')); // get product list 
+    } 
+    console.log("Sent productsList id " + id);
+    console.log("Sent productsList name " + name);
+    products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+    localStorage.setItem('products', JSON.stringify(products)); 
+    this.showToastOnAddProductLocal(name);
+    this.countProductsCartLocalUpdated++;
+
+
+   
+  }
+  
+  else { 
     this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
-      this.obj = JSON.stringify(jsonResponse);
-      console.log("Sent productsList response " + this.obj);
-      console.log("Sent productsList id " + id);
-      this.showToastOnAddProductSingle(strProductAdded);
-    }); 
+          this.obj = JSON.stringify(jsonResponse);
+          console.log("Sent productsList response " + this.obj);
+          console.log("Sent productsList id " + id);
+          this.showToastOnAddProductServer(strProductAdded);
+          this.countProductsCart++;
+        });
+  }
 }      
  
 readMore(id) {
@@ -168,7 +200,38 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
       }  
   }); 
     this.showLoadingControllerLaunch();
-    this.callProductCategoryDetail()
+    this.callProductCategoryDetail();
+
+         /*
+          Local Wishlist
+      */
+     var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
+     if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
+       var arrayLength = productsWishlistarrayFromStorage.length;
+       this.countProductsWishList = arrayLength;
+       this.countProductsWishlistLocalUpdated = this.countProductsWishList;
+       console.log('Local Wishlist filled ' + this.countProductsWishlistLocalUpdated);
+ 
+     }        
+  
+     else {
+       console.log('Local Wishlist empty ' );
+     }
+     /*
+         Local Cart
+     */
+    var productsCartarrayFromStorage = JSON.parse(localStorage.getItem('products'));
+    if (productsCartarrayFromStorage != null && productsCartarrayFromStorage.length > 0) {
+      var arrayLength1 = productsCartarrayFromStorage.length;
+      this.countProductsCart = arrayLength1;
+      this.countProductsCartLocalUpdated = this.countProductsCart;
+      console.log('Local Cart filled ' + this.countProductsCartLocalUpdated);
+    }
+
+    else {
+      console.log('Local Cart empty ' );
+    }
+
   } 
   
   callProductCategoryDetail() {
@@ -352,6 +415,25 @@ private async showNetworkAlert(): Promise<void> {
   alert.present();
 }
 
+showToastOnAddProductLocal(strProductAdded) {
+  const toast = this.toastController.create({
+    // message: this.testStr,
+    message: 'Product Added in Local Cart : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+    duration: 3000,
+    position: "bottom",
+  });   
+  toast.present();  
+}  
+
+showToastOnAddProductServer(strProductAdded) {
+  const toast = this.toastController.create({
+    // message: this.testStr,
+    message: 'Product Added in Server : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+    duration: 1000,
+    position: "bottom",
+  });   
+  toast.present();  
+}
 
 
 

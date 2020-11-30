@@ -43,19 +43,41 @@
 
      
       <span float-right>
-        <ion-icon class="icon"  (click)="wishlistPage()" >
+        <!-- <ion-icon class="icon"  (click)="wishlistPage()" >
           <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
           <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> 
         </ion-icon>
-
-        <!-- <ion-icon class="icon"  (click)="cartPage()" *ngIf="checkStatus;">
-          <img src="assets/imgs/ic_my_cart.png" width="100%;" />
-          <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> 
-        </ion-icon> -->
         <ion-icon class="icon"  (click)="cartPage()"  >
           <img src="assets/imgs/ic_my_cart.png" width="100%;" />
           <ion-badge class="icon add-icon" >{{countProductsCartLocal}}</ion-badge> 
+        </ion-icon> -->
+        <!-- <ion-icon class="icon"  (click)="cartPage()"  >
+          <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
+          <ion-badge class="icon add-icon" >{{countProductsWishlistLocalUpdated}}</ion-badge> 
         </ion-icon>
+
+        <ion-icon class="icon"  (click)="cartPage()"  >
+          <img src="assets/imgs/ic_my_cart.png" width="100%;" />
+          <ion-badge class="icon add-icon" >{{countProductsWishlistLocalUpdated}}</ion-badge> 
+        </ion-icon> -->
+        <!-- <ion-badge>{{countProductsWishlistLocalUpdated}}</ion-badge>
+        <ion-badge>{{countProductsCartLocalUpdated}}</ion-badge> -->
+
+
+        <!-- <ion-label>{{viewCartList.length}}</ion-label> -->
+
+        <ion-icon name="cart" style="margin-left: 12px;" (click)="wishlistPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
+        </ion-icon> 
+        
+        <ion-icon name="cart" style="margin-left: 12px;" (click)="cartPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
+        </ion-icon> 
+
+
+
+      
+     
       </span>
      
     </ion-title>
@@ -147,6 +169,15 @@
     Featured Items
     <small class="bg-thime btn-round text-white" float-right> View All </small>
   </p>
+
+  <!-- <p (click)="viewAllCategories()">
+    Featured Items--
+    <small class="bg-thime btn-round text-white" float-right>{{countProductsWishlistLocalUpdated}} </small>
+  </p>
+  <p (click)="viewAllCategories()">
+    Featured Items--
+    <small class="bg-thime btn-round text-white" float-right>{{countProductsCartLocalUpdated}} </small>
+  </p> -->
 
   
 

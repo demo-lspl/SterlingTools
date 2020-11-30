@@ -53,11 +53,11 @@
            
         
             <ion-item >
-              <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5> 
+              <h5 style="font-size: 15px;text-align: -webkit-center;">{{featuredProducts.name}}</h5> 
             </ion-item>
             <div>
               <div *ngIf="featuredProducts.regular_price">     <!--If "product" exists-->
-                <h5 style="font-size: 12px;text-align: center;color: red;"  > <span class="priceicon" style="color: red;">Price : </span> <span class="priceicon">$</span> {{featuredProducts.regular_price}}  </h5>  
+                <h5 style="font-size: 13px;text-align: center;color: red;"  > <span class="priceicon" style="color: red;">Price : </span> <span class="priceicon">$</span> {{featuredProducts.regular_price}}  </h5>  
                
                 <ion-item>
                   <button
@@ -79,7 +79,7 @@
           
           
               <div *ngIf="!featuredProducts.regular_price">     <!--If "product" not exists-->
-                <h5 style="font-size: 12px;text-align: center"> Price Not Available</h5>  
+                <h5 style="font-size: 13px;text-align: center"> Price Not Available</h5>  
 
                 <ion-item >
                   <!-- <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5>  -->

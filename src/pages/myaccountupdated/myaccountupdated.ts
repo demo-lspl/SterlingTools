@@ -42,19 +42,28 @@ export class MyaccountupdatedPage implements OnInit {
   strAddress: string; 
   strCity:string
   strState:string;
-  strPostalCode:string;
+  strPostalCode:string;  
   strPhone:string;
   strAddressUpdated= '';  
   strCityUpdated='';
   strStateUpdated='';
   strPostalCodeUpdated='';
-  strPhoneNoUpdated='';
+  strPhoneNoUpdated='';  
   strResponseCode: string; 
   userDataValue:number| string;
   strUserData: string;
   strId: string;
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
+  countProductsCartLocal:number|any|string;
+  countClickAddToCartTushar: number = 0;
+  countProductsCartLocalUpdated:number = 0;
+  countProductsWishlistLocalUpdated:number = 0;
+  countProductsWishList:number =0;
+  countProductsCart:number|any|string;
+
+
+
 
 
 
@@ -80,6 +89,37 @@ export class MyaccountupdatedPage implements OnInit {
     this.showLoaderPageLoad();
     this.getProfileApi();
     this.checkNetwork();
+   
+  /*
+          Local Wishlist
+      */
+     var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
+     if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
+       var arrayLength = productsWishlistarrayFromStorage.length;
+       this.countProductsWishList = arrayLength;
+       this.countProductsWishlistLocalUpdated = this.countProductsWishList;
+       console.log('Local Wishlist filled ' + this.countProductsWishlistLocalUpdated);
+ 
+     }        
+  
+     else {
+       console.log('Local Wishlist empty ' );
+     }
+     /*
+         Local Cart
+     */
+    var productsCartarrayFromStorage = JSON.parse(localStorage.getItem('products'));
+    if (productsCartarrayFromStorage != null && productsCartarrayFromStorage.length > 0) {
+      var arrayLength1 = productsCartarrayFromStorage.length;
+      this.countProductsCart = arrayLength1;
+      this.countProductsCartLocalUpdated = this.countProductsCart;
+      console.log('Local Cart filled ' + this.countProductsCartLocalUpdated);
+    }
+
+    else {
+      console.log('Local Cart empty ' );
+    }
+
   } 
                         
 

@@ -1,6 +1,6 @@
 webpackJsonp([18],{
 
-/***/ 782:
+/***/ 769:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26,7 +26,7 @@ ProductcategoryPageModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__productcategory__["a" /* ProductcategoryPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__productcategory__["a" /* ProductcategoryPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__productcategory__["a" /* ProductcategoryPage */]),
         ],
     })
 ], ProductcategoryPageModule);
