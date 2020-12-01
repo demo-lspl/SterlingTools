@@ -548,14 +548,14 @@ removeProductLocally(index,item,name)
     this.showCartRemovalAlert2(index,item,name);
 }  
 
-removeProductLocally1(index,item,name)
+removeProductLocally1()
 {
-    this.showCartRemovalAlert3(index,item,name);
+    this.showCartRemovalAlert3();
 }
   /*
       viewCartApi
   */
-
+ 
   async viewCartApi() {          
     this.presentLoading();
     try {
@@ -567,7 +567,7 @@ removeProductLocally1(index,item,name)
           this.viewCartList = resultado;     
           this.obj = JSON.stringify(data);
            console.log('All Json Response' + this.obj);             
-           this.strDataServer = 'Cart is Empty.Please add items!';
+          //  this.strDataServer = 'Cart is Empty.Please add items!';
         var result=[];
  
         console.log('Tushar' + this.viewCartList[0].product_id);
@@ -847,10 +847,10 @@ removeProductLocally1(index,item,name)
     alert1.present();
   }
 
-  private async showCartRemovalAlert3(index,item,name): Promise<void> {
+  private async showCartRemovalAlert3(): Promise<void> {
     // omitted;
     const alert1 = this.alertController.create({
-      title: 'Clear Item! ' + name,
+      title: 'Clear Item! ' ,
       message: 'Do you want to clear cart locally!',
       enableBackdropDismiss: false,
   
@@ -858,17 +858,14 @@ removeProductLocally1(index,item,name)
         {  
           cssClass: 'my-custom-class',
           text: 'Ok',
-          handler: (ok) => {
+          handler: (ok) => { 
             console.log('Confirm Ok');
-            console.log('Remove Product: ' + item);
-            for(let i = 0; i < this.productsLocalCart.length; i++) {
-
-    if(this.productsLocalCart[i] == item){
-      this.productsLocalCart.splice(i, 1);
-      // localStorage.setItem('products', JSON.stringify(this.productsLocalCart));
+            console.log('Remove Product: ');
+      
+          
+      this.productsLocalCart = [];
       localStorage.removeItem('products');
-    }
-            }},
+          },
           },
           {
             text: 'Cancel',

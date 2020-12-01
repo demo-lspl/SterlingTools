@@ -3,7 +3,6 @@ import { NavController, ModalController } from 'ionic-angular';
 
 import { ShortPage } from '../short/short';
 import { CartPage } from '../cart/cart';
-import { FilterPage } from '../filter/filter';
 import { SearchPage } from '../search/search';
 import { ItemdetailPage } from '../itemdetail/itemdetail';
 import { WishlistPage } from '../wishlist/wishlist';
@@ -22,10 +21,7 @@ export class ShirtsPage {
     modal.present();
   }
           
-    filterPage() {
-    let modal = this.modalCtrl.create(FilterPage);
-    modal.present();
-  }
+ 
   
   searchPage() {
     let modal = this.modalCtrl.create(SearchPage);

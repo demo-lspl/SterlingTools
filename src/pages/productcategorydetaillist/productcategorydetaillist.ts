@@ -34,10 +34,14 @@ export class ProductcategorydetaillistPage implements OnInit{
   currentNumber :any = 1;
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
-  countProductsCart:number|any|string;
   viewCartList:any = [];
   strData: string;
   buttonIcon: string ;
+  countProductsCart:number|any|string;
+  countProductsWishList:number =0;
+  countProductsCartLocal:number = 0;
+  countProductsCartLocalUpdated:number = 0;
+  countProductsWishlistLocalUpdated:number = 0;
 
 
 
@@ -142,6 +146,38 @@ export class ProductcategorydetaillistPage implements OnInit{
 
   ngOnInit() {
 
+
+
+     /*
+          Local Wishlist
+      */
+     var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
+     if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
+       var arrayLength = productsWishlistarrayFromStorage.length;
+       this.countProductsWishList = arrayLength;
+       this.countProductsWishlistLocalUpdated = this.countProductsWishList;
+       console.log('Local Wishlist filled ' + this.countProductsWishlistLocalUpdated);
+ 
+     }        
+  
+     else {
+       console.log('Local Wishlist empty ' );
+     }
+     /*
+         Local Cart
+     */
+    var productsCartarrayFromStorage = JSON.parse(localStorage.getItem('products'));
+    if (productsCartarrayFromStorage != null && productsCartarrayFromStorage.length > 0) {
+      var arrayLength1 = productsCartarrayFromStorage.length;
+      this.countProductsCart = arrayLength1;
+      this.countProductsCartLocalUpdated = this.countProductsCart;
+      console.log('Local Cart filled ' + this.countProductsCartLocalUpdated);
+    }
+
+    else {
+      console.log('Local Cart empty ' );
+    }
+
     
 
     this.checkNetwork();
@@ -176,6 +212,35 @@ export class ProductcategorydetaillistPage implements OnInit{
   }   
 
 
+  addToCart(id, name,image,description,regular_price) {
+    if (localStorage.getItem("Userid value") === null) {
+      let products = [];
+      if (localStorage.getItem('products')) {
+        products = JSON.parse(localStorage.getItem('products')); // get product list 
+      } 
+      console.log("Sent productsList id " + id);
+      console.log("Sent productsList name " + name);
+      products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+      localStorage.setItem('products', JSON.stringify(products)); 
+      this.showToastOnAddProductLocal(name);
+      this.countProductsCartLocalUpdated++;
+  
+  
+     
+    }
+    
+    else { 
+      this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
+            this.obj = JSON.stringify(jsonResponse);
+            console.log("Sent productsList response " + this.obj);
+            console.log("Sent productsList id " + id);
+            this.showToastOnAddProductServer(name);
+            this.countProductsCart++;
+          });
+    }
+  } 
+
+
   async showToastOnCart()
   {
    const toast = await this.toastController.create({
@@ -186,28 +251,7 @@ export class ProductcategorydetaillistPage implements OnInit{
    toast.present();
  } 
 
- addToCart(id, name,image,description,regular_price) {
-  if (localStorage.getItem("Userid value") === null) {
-    let products = [];
-    if (localStorage.getItem('products')) {
-      products = JSON.parse(localStorage.getItem('products')); // get product list 
-    } 
-    console.log("Sent productsList id " + id);
-    console.log("Sent productsList name " + name);
-    products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
-    localStorage.setItem('products', JSON.stringify(products)); 
-    this.showToastOnAddProduct(name);
-  }
-  
-  else { 
-    this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
-          this.obj = JSON.stringify(jsonResponse);
-          console.log("Sent productsList response " + this.obj);
-          console.log("Sent productsList id " + id);
-          this.showToastOnAddProductSingle(this.strProductName);
-        });
-  }
-}
+
 
 async viewCartApi() {            
   try {
@@ -333,6 +377,22 @@ showLoadingControllerLaunch() {
     loading.dismiss();
   }, 800);
 }
-  
+
+showToastOnAddProductLocal(strProductAdded) {
+  const toast = this.toastController.create({
+    message: 'Product Added in Local Cart : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+    duration: 3000,
+    position: "bottom",
+  });   
+  toast.present();  
+} 
+showToastOnAddProductServer(strProductAdded) {
+  const toast = this.toastController.create({
+    message: 'Product Added in Server : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+    duration: 1000,
+    position: "bottom",
+  });   
+  toast.present();  
+}
 
 }

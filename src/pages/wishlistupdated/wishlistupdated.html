@@ -7,11 +7,11 @@
     /></ion-icon>
   </button>
     <ion-title style="text-align: left">My Wishlist
-      <span float-right>
+      
         <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>
         <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon> -->
 
-        <ion-icon class="icon"  (click)="wishlistPage()" >
+        <!-- <ion-icon class="icon"  (click)="wishlistPage()" >
           <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
           <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> 
         </ion-icon>
@@ -19,9 +19,17 @@
         <ion-icon class="icon"  (click)="cartPage()" >
           <img src="assets/imgs/ic_my_cart.png" width="100%;" />
           <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> 
-        </ion-icon>
+        </ion-icon> -->
+        <span float-right>
 
-      </span>
+          <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
+            <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
+          </ion-icon> 
+          
+          <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
+            <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
+          </ion-icon> 
+        </span>
     </ion-title>
   </ion-navbar>
   <div class="custom-id">
@@ -96,7 +104,7 @@
             <span class="icon" text-right>
               <ion-icon
                 name="md-close"
-                style="margin-left: 10%;margin-top: 5px;"
+                style="margin-left: 30px;margin-top: 5px;"
                 
                 
                 (click)="removeProductLocally(i,productsLocal,productsLocal.ProductName)">
@@ -105,7 +113,7 @@
             
             
           </div>
-  
+          <!-- (click)="removeProductLocally(i,productsLocal,productsLocal.ProductName)" -->
         
 
         

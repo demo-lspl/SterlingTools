@@ -1,5 +1,4 @@
 import { ProductcategorydetailPage } from './../productcategorydetail/productcategorydetail';
-import { FilterdataPage } from './../filterdata/filterdata';
 import { WishlistupdatedPage } from './../wishlistupdated/wishlistupdated';
 import { ViewcartPage } from './../viewcart/viewcart';
 import { HttpClient } from '@angular/common/http';
@@ -281,12 +280,7 @@ addToCart(id, name,image,description,regular_price) {
   
 
     
- toggleMenu() {
-      console.log('toggleMenu called here');
-    //  this.showLoadingControllerFilter();
-      this.featuredProductsList = this.featuredProductsList || [];
-       this.navCtrl.push(FilterdataPage);
-    }
+ 
 
  listView() {
       this.showLoadingControllerListView();

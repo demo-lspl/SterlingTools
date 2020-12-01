@@ -43,7 +43,7 @@ export class MyApp implements OnInit{
   @ViewChild(Nav) nav: Nav;
 
  // rootPage: any = CreateaccountPage;
-  // rootPage: any = DemoPage;
+  // rootPage: any = DemoPage; 
   rootPage: any = HomePage;
   hideMe:boolean = false;
   isSignedIn:boolean = false;
@@ -87,10 +87,14 @@ export class MyApp implements OnInit{
   initializeApp() {
     this.checkLocalStorage();
     this.viewCartApi();
-   // console.log('initalizeapp component ts called...');
     this.platform.ready().then(() => {
-     // this.splashScreen.hide();
-    });  
+      this.statusBar.styleDefault(); 
+      this.splashScreen.hide();
+    });
+   // console.log('initalizeapp component ts called...');
+    // this.platform.ready().then(() => {
+    //  // this.splashScreen.hide();
+    // });  
 
     // if(this.hideMe){
     //   if (localStorage.getItem("Userid value") === null) {

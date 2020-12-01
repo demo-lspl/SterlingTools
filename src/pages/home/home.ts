@@ -6,7 +6,6 @@ import { ViewallPage } from './../viewall/viewall';
 import { DemoPage } from './../demo/demo';
 import { WishlistupdatedPage } from './../wishlistupdated/wishlistupdated';
 import { ProductcategorydetailPage } from './../productcategorydetail/productcategorydetail';
-import { FilterdataPage } from './../filterdata/filterdata';
 import { ViewcartPage } from "./../viewcart/viewcart";
 import { ViewallcategoriesPage } from "./../viewallcategories/viewallcategories";
 import { ApiProvider } from "./../../providers/api/api";
@@ -60,11 +59,10 @@ export class HomePage implements OnInit {
   countProductsCart:number|any|string;
   countProductsWishList:number =0;
   countProductsCartLocal:number = 0;
-
   countProductsCartLocalUpdated:number = 0;
   countProductsWishlistLocalUpdated:number = 0;
      
-       
+        
   count:string|any;
   strImagePath: string;
   public myimage = 'https://aws1.discourse-cdn.com/ionicframework/original/3X/c/f/cf7af661f0bae7cca915258f2b8d6b3937fccda4.png';
@@ -110,6 +108,8 @@ export class HomePage implements OnInit {
   strTestValue2:string;
   strTestValue3:string;
   checkStatus: boolean;
+  visible = false;
+
 
 
   constructor(
@@ -205,6 +205,12 @@ export class HomePage implements OnInit {
   });  
 
    }
+
+
+   toggle() {
+    this.visible = !this.visible;
+   }
+
 
    public localStorageItem(): boolean {
     if (localStorage.getItem("isSigned") === "true") {
@@ -303,22 +309,24 @@ addToCart(id, name,image,description,regular_price) {
     this.showToastOnAddProductLocal(name);
     this.countProductsCartLocalUpdated++;
 
-
+  
    
-  }
+  }  
   
   else { 
     this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
           this.obj = JSON.stringify(jsonResponse);
           console.log("Sent productsList response " + this.obj);
           console.log("Sent productsList id " + id);
-          this.showToastOnAddProductServer(this.strProductAdded);
+          this.showToastOnAddProductServer(name);
           this.countProductsCart++;
         });
-  }
+  }   
 } 
 
-addToWishList(id, name,image,description,regular_price) {
+addToWishList(id, name,image,description,regular_price,x) {
+
+  this.visible = !this.visible;
   // this.countClick++;
 
   //   if(this.countClick>1){
@@ -327,6 +335,11 @@ addToWishList(id, name,image,description,regular_price) {
   //   }
   //   else {
   //   }
+
+  //x.classList.toggle("fa-thumbs-down");
+
+ // document.getElementById("myDIV").classList.add("mystyle");
+
   
   let productsWishlist = [];
   if (localStorage.getItem('productsWishlist')) {
@@ -346,8 +359,8 @@ addToWishList(id, name,image,description,regular_price) {
     // Sorry! No Web Storage support..
     console.log('Sorry! No Web Storage support..')
   }
-}
-  
+} 
+   
    
  cartPage() {
     this.navCtrl.push(ViewcartPage);
@@ -356,7 +369,7 @@ addToWishList(id, name,image,description,regular_price) {
   wishlistPage() {
     console.log('wishlistPage');
      this.navCtrl.push(WishlistupdatedPage);
-   // this.navCtrl.push(HelpPage);
+   
   }
   
  doRefresh(event) {  
@@ -371,15 +384,10 @@ addToWishList(id, name,image,description,regular_price) {
       console.log('Async operation has ended');
       event.complete();
     }, 500);
-  }
-     
+  }  
+      
     
- toggleMenu() {
-      console.log('toggleMenu called here');
-    //  this.showLoadingControllerFilter();
-      this.featuredProductsList = this.featuredProductsList || [];
-       this.navCtrl.push(FilterdataPage);
-    }
+
 
  listView() {
       this.showLoadingControllerListView();
@@ -916,8 +924,9 @@ async viewCartApi() {
       duration: 1000,
       position: "bottom",
     });   
-    toast.present();  
-  }  
+    toast.present();   
+  }   
+
 
 
   showToastOnAddProductWishlist(strProductAdded) {

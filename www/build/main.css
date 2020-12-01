@@ -52801,6 +52801,127 @@ page-home {
   /* Clear floats after the columns */
 }
 
+page-home .icon-add ion-badge#notifications-badge {
+  position: absolute;
+  top: -5px;
+  right: -11px;
+  font-size: 8px;
+  padding: 5px;
+}
+page-home .icon-add {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+}
+
+
+page-itemdetail .icon-add ion-badge#notifications-badge {
+  position: absolute;
+  top: -5px;
+  right: -11px;
+  font-size: 8px;
+  padding: 5px;
+}
+
+page-itemdetail .icon-add {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+}
+
+
+
+
+page-wishlistupdated .icon-add ion-badge#notifications-badge {
+  position: absolute;
+  top: -5px;
+  right: -11px;
+  font-size: 8px;
+  padding: 5px;
+}
+
+page-wishlistupdated .icon-add {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+}
+
+page-productcategory .icon-add ion-badge#notifications-badge {
+  position: absolute;
+  top: -5px;
+  right: -11px;
+  font-size: 8px;
+  padding: 5px;
+}
+
+page-productcategory .icon-add {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+}
+
+page-productcategorydetail .icon-add ion-badge#notifications-badge {
+  position: absolute;
+  top: -5px;
+  right: -11px;
+  font-size: 8px;
+  padding: 5px;
+}
+
+page-productcategorydetail .icon-add {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+}
+
+page-productcategorydetaillist .icon-add ion-badge#notifications-badge {
+  position: absolute;
+  top: -5px;
+  right: -11px;
+  font-size: 8px;
+  padding: 5px;
+}
+
+page-productcategorydetaillist .icon-add {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+}
+
+page-search .icon-add ion-badge#notifications-badge {
+  position: absolute;
+  top: -5px;
+  right: -11px;
+  font-size: 8px;
+  padding: 5px;
+}
+
+page-search .icon-add {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+}
+
+page-searchproducts .icon-add ion-badge#notifications-badge {
+  position: absolute;
+  top: -5px;
+  right: -11px;
+  font-size: 8px;
+  padding: 5px;
+}
+
+page-searchproducts .icon-add {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+}
+
+
+
+
+
+
+
 page-home .list {
   margin: 0 !important;
 }
@@ -57887,7 +58008,7 @@ page-home .card .card-header .icon {
 
 page-home .card .card-content {
   padding: 0 10px !important;
-  padding-bottom: 12px !important;
+  
 }
 
 page-home .card .card-content h5 {
@@ -62706,6 +62827,7 @@ page-wishlist .card .card-content .card-btn small {
     font-size: 1.1rem !important;
   }
 }
+
 
 page-wishlistupdated .add-icon {
   color: white;

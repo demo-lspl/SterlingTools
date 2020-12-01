@@ -4,7 +4,6 @@ import { WishlistPage } from './../wishlist/wishlist';
 import { ItemdetailPage } from './../itemdetail/itemdetail';
 import { CartPage } from './../cart/cart';
 import { SearchPage } from './../search/search';
-import { FilterPage } from './../filter/filter';
 import { ShortPage } from './../short/short';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ToastController } from 'ionic-angular';

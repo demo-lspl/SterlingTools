@@ -6,20 +6,30 @@
       /></ion-icon>
     </button>
     <ion-title
-      >Product Search
+      >Search
       <span float-right>
         <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header> -->
         <!-- <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>
         <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon> -->
 
       
-        <ion-icon name="cart" style="margin-left: 12px;" (click)="wishlistPage()">
+        <!-- <ion-icon name="cart" style="margin-left: 12px;" (click)="wishlistPage()">
           <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
         </ion-icon> 
         
         <ion-icon name="cart" style="margin-left: 12px;" (click)="cartPage()">
           <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
+        </ion-icon>  -->
+
+        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
         </ion-icon> 
+        
+        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
+        </ion-icon> 
+         
+     
 
       </span>
     </ion-title>
@@ -27,115 +37,100 @@
 </ion-header> 
 
 
-<ion-content padding>
+<ion-content padding class="search-main">
 
 
-  <ion-item *ngIf="featuredProductsList;else other_content" lines="none">
-    <ion-grid class="product-grid" style="margin-top: 15px;">
-      <ion-row class="rowgrid">
-        <ion-col
-          class="columngrid"
-          *ngFor="let featuredProducts of featuredProductsList ">
-  
-         
-          <ion-card >
-            
-  
-            <ion-card-header style="justify-content: left">
-              <div 
-                class="img-box"
-              >
-                <img  [src]="featuredProducts.image"  style="width:200px;height:80px ;">
-              </div>
-              <ion-icon    name="md-heart" class="text-light icon" (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"></ion-icon>
-           
-            
-  
-             
-            </ion-card-header>
-            <ion-card-content>
-  
-             
+  <ion-grid class="product-grid" style="margin-top: 40px;">
+    <ion-row class="rowgrid">
+      <ion-col
+        class="columngrid"
+        *ngFor="let featuredProducts of featuredProductsList ">
+
+       
+        <ion-card >
           
-              <ion-item >
-                <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5> 
-              </ion-item>
-              <div>
-                <div *ngIf="featuredProducts.regular_price">     <!--If "product" exists-->
-                  <h5 style="font-size: 12px;text-align: center;color: red;"  > <span class="priceicon" style="color: red;">Price : </span> <span class="priceicon">$</span> {{featuredProducts.regular_price}}  </h5>  
-                  <div class="rateing">
-                    <div class="card-btn">
-                      <p style="width: 100%;" float-left>
-                        <button
-                          ion-button
-                          full
-                          class="bg-thime btn-round btn-text"
-                          style="margin-top: 3px; width: 150px;text-align: center;"
-                          
-                          (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"
-  
-                        >
-                          Add To Cart
-                        </button>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-  
-            
-            
-                <div *ngIf="!featuredProducts.regular_price">     <!--If "product" not exists-->
-                  <h5 style="font-size: 12px;text-align: center"> Price Not Available</h5>  
-  
-                  <ion-item >
-                    <!-- <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5>  -->
-                    <p style="width: 100%;" float-left>
-                    <button
-                    ion-button
-                    full
-                    class="bg-thime btn-round btn-text"
-                    style="margin-top: 3px; width: 150px;text-align: center;height: 40px;"
-                  >
-                  Read More
-                  </button>
-                </p>
-                  </ion-item>
-                  <!-- <div class="rateing">
-                    <div class="card-btn">
-                      <p class="" float-left>
-                        <button
-                          ion-button
-                          full
-                          class="bg-thime btn-round btn-text"
-                          style="margin-top: 3px; width: 150px;text-align: center;"
-                          (click)="readMoreLocal(featuredProducts.id,featuredProducts.name,featuredProducts.regular_price)"
-                        >
-                          Read More
-                        </button>
-                      </p>
-                    </div>
-                  </div> -->
-                </div>
+
+          <ion-card-header style="justify-content: left">
+            <div 
+              class="img-box"
+            >
+              <img  [src]="featuredProducts.image"  style="width:200px;height:80px ;">
             </div>
-  
-            
-  
+            <ion-icon    name="md-heart" class="text-light icon" (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"></ion-icon>
+         
+          
+
+           
+          </ion-card-header>
+          <ion-card-content>
+
+           
+        
+            <ion-item >
+              <h5 style="font-size: 15px;text-align: -webkit-center;">{{featuredProducts.name}}</h5> 
+            </ion-item>
+            <div>
+              <div *ngIf="featuredProducts.regular_price">     <!--If "product" exists-->
+                <h5 style="font-size: 13px;text-align: center;color: red;"  > <span class="priceicon" style="color: red;">Price : </span> <span class="priceicon">$</span> {{featuredProducts.regular_price}}  </h5>  
+               
+                <ion-item>
+                  <button
+                  ion-button
+                  full
+                  class="bg-thime btn-round btn-text"
+                  style="margin-top: 3px; width: 150px;text-align: center;height: 40px;"
+                  
+                  (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"
+
+                >
+                  Add To Cart
+                </button>
+                </ion-item>
+                      
+                    
+              </div>
+
+          
+          
+              <!-- <div *ngIf="!featuredProducts.regular_price">     
+                <h5 style="font-size: 13px;text-align: center"> Price Not Available</h5>  
+
+                <ion-item >
+                  <button
+                  ion-button
+                  full
+                  class="bg-thime btn-round btn-text"
+                  style="margin-top: 3px; width: 150px;text-align: center;"
+                  (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"
+                >
+                Read More
+                </button>
+                </ion-item>
               
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
+              </div> -->
+
+              <ion-item *ngIf="!featuredProducts.regular_price">
+                <!-- <h5 style="font-size: 15px;text-align: center;">{{featuredProducts.name}}</h5>  -->
+                <button
+                ion-button
+                full
+                class="bg-thime btn-round btn-text"
+                style="margin-top: 3px; text-align: center;height: 40px;"
+                (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"
+              >
+              Read More
+              </button>
+              </ion-item>
+          </div>
+
+          
+
+            
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
   
-    
-      </ion-row>
-    </ion-grid>
-  
-  </ion-item>
-
-
-  <ng-template #other_content>
-    <h5 style="font-size: 12px;">{{strDataServer}}</h5> 
-  </ng-template>
-
-
- 
+    </ion-row>
+  </ion-grid>
 </ion-content>

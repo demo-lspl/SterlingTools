@@ -66,18 +66,15 @@
 
         <!-- <ion-label>{{viewCartList.length}}</ion-label> -->
 
-        <ion-icon name="cart" style="margin-left: 12px;" (click)="wishlistPage()">
+        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
           <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
         </ion-icon> 
         
-        <ion-icon name="cart" style="margin-left: 12px;" (click)="cartPage()">
+        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
           <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
         </ion-icon> 
 
 
-
-      
-     
       </span>
      
     </ion-title>
@@ -554,22 +551,17 @@
       <ion-col
         class="columngrid"
         *ngFor="let featuredProducts of featuredProductsList | filter:localSearchProduct">
-
-       
         <ion-card >
-          
-
           <ion-card-header style="justify-content: left">
             <div 
               class="img-box"
               (click)="productDetailPage(featuredProducts.id,featuredProducts.name,featuredProducts.regular_price)">
               <img  [src]="featuredProducts.image"  style="width:200px;height:80px ;">
             </div>
-            <ion-icon    name="md-heart" class="text-light icon" (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"></ion-icon>
+            <ion-icon   name="md-heart" class="text-light icon" (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"></ion-icon>
          
-          
-
-           
+            <!-- <ion-icon name="arrow-down" *ngIf="!visible" (click)="toggle()"></ion-icon>
+            <ion-icon name="arrow-up" *ngIf="visible" (click)="toggle()"></ion-icon> -->
           </ion-card-header>
           <ion-card-content>
   
@@ -629,6 +621,11 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
+
+      <!-- <ion-col>
+        <ion-icon name="arrow-down" *ngIf="!visible" (click)="toggle()"></ion-icon>
+        <ion-icon name="arrow-up" *ngIf="visible" (click)="toggle()"></ion-icon>
+      </ion-col> -->
 
   
     </ion-row>

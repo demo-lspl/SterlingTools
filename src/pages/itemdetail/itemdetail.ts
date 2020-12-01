@@ -58,7 +58,7 @@ export class ItemdetailPage implements OnInit {
   strImage:string;
   strStock:string;
   currentNumberUpdated :any ;  
-  productCount: number = 1;
+  productCount: number = 1; 
   strQuantityValue1: string = '';
   viewCartList:any = [];
   strData: string;
@@ -74,9 +74,9 @@ export class ItemdetailPage implements OnInit {
   countProductsWishlistLocalUpdated:number = 0;
   countProductsWishList:number =0;
 
+  
 
-
-    
+      
 
   constructor(
     public navCtrl: NavController,  
@@ -130,14 +130,8 @@ export class ItemdetailPage implements OnInit {
     }
 
     this.checkNetwork();  
-
-
     this.viewCartApi();
-
-  
-
     this.showLoadingControllerLaunch();
-
     this.platform.registerBackButtonAction(() => {
       // Catches the active view
       let nav = this.app.getActiveNavs()[0];

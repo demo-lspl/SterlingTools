@@ -69,7 +69,7 @@
             <div class="block">{{viewCart.name}}</div>
             <ion-icon
             name="md-close"
-            style="margin-left: 10%; margin-top: 2%"
+            style="margin-left: 30px;margin-top: 5px;"
             (click)="removeProductServer(viewCart.product_id,viewCart.name)">
           </ion-icon> 
             
@@ -139,14 +139,14 @@
               Update Cart
             </button>
   
-            <button
+            <!-- <button
               ion-button
               full
               class="bg-thime btn-round btn-text"
               style="max-width: 390px"
               (click)="removeProductLocally1(strTestProductId)" >
               Clear Cart
-            </button>
+            </button> -->
           </ion-row>
         </div>
       </div>
@@ -379,7 +379,7 @@
             <div class="block">{{productsLocal.ProductName}}</div>
             <ion-icon
             name="md-close"
-            style="margin-left: 10%; margin-top: 2%"
+            style="margin-left: 30px;margin-top: 5px;"
             (click)="removeProductLocally(i,productsLocal,productsLocal.ProductName)">
           </ion-icon> 
             
@@ -403,7 +403,6 @@
               </ion-icon>
           </span>
             <span  text-center style="margin-left: 10%;color: red;">{{productsLocal.ProductQuantity}}</span>
-            <!-- <span  text-center style="margin-left: 10%;color: red;">{{strValue}}</span> -->
 
             <span class="icon" text-right><ion-icon
                 name="md-add-circle"
@@ -446,7 +445,7 @@
               full
               class="bg-thime btn-round btn-text"
               style="max-width: 390px"
-            >
+              (click)="removeProductLocally1()" >
               Clear Cart
             </button>
           </ion-row>
@@ -563,7 +562,7 @@
         </ion-card>
       </div> -->
   
-      <div class="lick">
+      <!-- <div class="lick">
         <p padding-top>
           <span class="left-side">
             <span class="bold">Read All Reviews</span>
@@ -574,7 +573,7 @@
         </p>
   
      
-      </div>
+      </div> -->
   
       
   
@@ -588,10 +587,10 @@
         <ion-label style="float: right; color: red">-Rs25.10</ion-label>
       </ion-item> -->
   
-      <ion-item>
+      <!-- <ion-item>
         <ion-label style="float: left; font-size: 14px">Grand Total</ion-label>
         <ion-label style="float: right; color: red"> $ NZD {{strSubTotalAmount}}</ion-label>
-      </ion-item>
+      </ion-item> -->
 
    
 
@@ -605,17 +604,16 @@
       </ion-item> -->
 
 
-      <div *ngIf="viewCartList;else templateName">
+      <!-- <div *ngIf="viewCartList;else templateName">
           View cart empty
       </div>
 
         <ng-template #templateName>
           View cart filled
+        </ng-template> -->
 
-        </ng-template>
 
-
-      <div style="margin-top: 1px;">
+      <!-- <div style="margin-top: 1px;">
         <ion-grid>
           <ion-row  >
             <ion-col size="12" offset="4">
@@ -629,9 +627,12 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-      </div>
+      </div> -->
   
-      <ion-item>
+
+      <!-- <div *ngIf="featuredProductCategories.regular_price">  -->
+
+      <ion-item *ngIf="!productsLocalCart">
         <button
           ion-button
           full
@@ -640,7 +641,7 @@
           (click)="checkOutPage()">
 
         
-          Checkout
+          Checkout..
         </button>
       </ion-item>
   

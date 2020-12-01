@@ -1,7 +1,6 @@
 import { HomePage } from './../home/home';
 import { ProductcategorydetailPage } from './../productcategorydetail/productcategorydetail';
 import { ItemdetailPage } from './../itemdetail/itemdetail';
-import { FilterdataPage } from './../filterdata/filterdata';
 import { WishlistupdatedPage } from './../wishlistupdated/wishlistupdated';
 import { ViewcartPage } from './../viewcart/viewcart';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
@@ -276,12 +275,7 @@ addToCart(id, name,image,description,regular_price) {
   }
      
     
- toggleMenu() {
-      console.log('toggleMenu called here');
-    //  this.showLoadingControllerFilter();
-      this.featuredProductsList = this.featuredProductsList || [];
-       this.navCtrl.push(FilterdataPage);
-    }
+
 
  listView() {
       this.showLoadingControllerListView();

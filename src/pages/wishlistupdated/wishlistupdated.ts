@@ -21,6 +21,8 @@ import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
 export class WishlistupdatedPage implements OnInit {
 
   productsLocalCart :any = [];  
+  productsLocalWishList :any = [];  
+
   strProductQuantity: number ;
   obj;  
   strProductRegularPrice:any;
@@ -42,9 +44,12 @@ export class WishlistupdatedPage implements OnInit {
   viewCartList:any = [];
   buttonIcon: string ;
   countProductsCart:number|any|string;
+  countProductsCartLocal:number|any|string;
+  countProductsCartLocalUpdated:number = 0;
+  countProductsWishlistLocalUpdated:number = 0;
+  countProductsWishList:number =0;
 
   
-
 
 
   constructor(public navCtrl: NavController, 
@@ -57,12 +62,42 @@ export class WishlistupdatedPage implements OnInit {
               public app: App,
               public apiProvider: ApiProvider) {
   }    
-      
+        
   ionViewDidLoad() {
     console.log('ionViewDidLoad WishlistupdatedPage');
   }
      
   ngOnInit() {
+
+        /*
+          Local Wishlist
+      */
+     var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
+     if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
+       var arrayLength = productsWishlistarrayFromStorage.length;
+       this.countProductsWishList = arrayLength;
+       this.countProductsWishlistLocalUpdated = this.countProductsWishList;
+       console.log('Local Wishlist filled ' + this.countProductsWishlistLocalUpdated);
+ 
+     }        
+  
+     else {
+       console.log('Local Wishlist empty ' );
+     }
+     /*
+         Local Cart
+     */
+    var productsCartarrayFromStorage = JSON.parse(localStorage.getItem('products'));
+    if (productsCartarrayFromStorage != null && productsCartarrayFromStorage.length > 0) {
+      var arrayLength1 = productsCartarrayFromStorage.length;
+      this.countProductsCart = arrayLength1;
+      this.countProductsCartLocalUpdated = this.countProductsCart;
+      console.log('Local Cart filled ' + this.countProductsCartLocalUpdated);
+    }
+
+    else {
+      console.log('Local Cart empty ' );
+    }
     this.platform.registerBackButtonAction(() => {
       // Catches the active view
       let nav = this.app.getActiveNavs()[0];
@@ -160,6 +195,11 @@ cartPage() {
   this.navCtrl.push(ViewcartPage);
 }
 
+wishlistPage() {
+  console.log('wishlistPage');
+   this.navCtrl.push(WishlistupdatedPage);
+}
+
   
 doRefresh(event) {    
   console.log('Begin async operation');
@@ -176,49 +216,63 @@ doRefresh(event) {
 //   console.log(id);
 //   this.showCartWishlistRemovalAlert(item);
 // }
-removeProductLocally(index,item,name){
+removeProductLocally(index,item,name)
+{
+    this.showCartRemovalAlert2(index,item,name);
+}
 
-  
-  this.showCartRemovalAlert2(index,item,name);
-  } 
+private async showCartRemovalAlert2(index,item,name): Promise<void> {
+  // omitted;
+  const alert1 = this.alertController.create({
+    title: 'Remove Item! ' + name,
+    message: 'Do you want to remove item from wishlist locally!',
+    enableBackdropDismiss: false,
 
-  private async showCartRemovalAlert2(index,item,name): Promise<void> {
-    // omitted;
-    const alert1 = this.alertController.create({
-      title: 'Remove Item! ' + name,
-      message: 'Do you want to remove item from wishlist locally!',
-      enableBackdropDismiss: false,
-  
-      buttons: [
-        {  
-          cssClass: 'my-custom-class',
-          text: 'Ok',
-          handler: (ok) => {
-            console.log('Confirm Ok');
-            console.log('Remove Product: ' + item);
-            for(let i = 0; i < this.productsLocalCart.length; i++) {
+    buttons: [
+      {  
+        cssClass: 'my-custom-class',
+        text: 'Ok',
+        handler: (ok) => {
+          console.log('Confirm Ok');
+          console.log('Remove Product: ' + item);
+          for(let i = 0; i < this.productsLocalCart.length; i++) {
 
-    if(this.productsLocalCart[i] == item){
-      this.productsLocalCart.splice(i, 1);
-      localStorage.setItem('products', JSON.stringify(this.productsLocalCart));
-    }
-            }},
-          },
-          {
-            text: 'Cancel',
-            handler: data => {
-              let navTransition = alert1.dismiss();
-              //  navTransition.then(() => {
-              //    this.navCtrl.pop();
-              //  });
-             return false;
-           }
-        },
-      ],
-    }); 
-
-    alert1.present();
+  if(this.productsLocalCart[i] == item){
+    this.productsLocalCart.splice(i, 1);
+    localStorage.removeItem(item);
+   // localStorage.setItem('productsTushar', JSON.stringify(this.productsLocalCart));
   }
+
+ 
+          
+
+
+
+
+
+
+
+
+
+
+           
+          }},
+        },
+        {
+          text: 'Cancel',
+          handler: data => {
+            let navTransition = alert1.dismiss();
+            //  navTransition.then(() => {
+            //    this.navCtrl.pop();
+            //  });
+           return false;
+         }
+      },
+    ],
+  }); 
+
+  alert1.present();
+}
 removeProduct() {
     this.showCartWishlistRemovalAlert(this.strProductAdded);
   }
@@ -228,9 +282,9 @@ removeProduct() {
   }
 
   
-  clearWishlist(){
-    this.showCartWishlistRemovalAlert1();
-  }
+  // clearWishlist(){
+  //   this.showCartWishlistRemovalAlert1();
+  // }
 
   async viewCartApi() {            
     try {

@@ -34,14 +34,17 @@ export class SearchproductsPage implements OnInit{
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
   strDataServer:string;
-  countProductsWishlistLocalUpdated:number = 0;
+  countProductsCart:number|any|string;
   countProductsWishList:number =0;
+  countProductsCartLocal:number = 0;
+  countProductsCartLocalUpdated:number = 0;
+  countProductsWishlistLocalUpdated:number = 0;
 
+  
+    
+ 
 
-
-
-
-
+ 
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,

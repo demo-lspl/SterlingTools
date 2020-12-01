@@ -10,7 +10,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { TestingproductsPage } from './../pages/testingproducts/testingproducts';
 import { MyaccountupdatedPage } from './../pages/myaccountupdated/myaccountupdated';
 import { AccordiantestingComponent } from './../components/accordiantesting/accordiantesting';
-import { FilterdataPage } from './../pages/filterdata/filterdata';
 import { AccordiantestPage } from './../pages/accordiantest/accordiantest';
 import { ViewcartPage } from './../pages/viewcart/viewcart';
 import { ViewallcategoriesPage } from './../pages/viewallcategories/viewallcategories';
@@ -49,7 +48,6 @@ import { CartPage } from '../pages/cart/cart';
 import { ReviewPage } from '../pages/review/review';
 import { ShortPage } from '../pages/short/short';
 import { SearchPage } from '../pages/search/search';  
-import { FilterPage } from '../pages/filter/filter';
 
 
 import { Globalization } from '@ionic-native/globalization';
@@ -101,7 +99,6 @@ export function createTranslateLoader(http: HttpClient) {
     ReviewPage,
     ShortPage,
     SearchPage,
-    FilterPage,  
     DemoPage,
     VieworderPage,
     VieworderdetailsPage,
@@ -115,7 +112,6 @@ export function createTranslateLoader(http: HttpClient) {
     ViewallcategoriesPage,
     ViewcartPage,
     AccordiantestPage,
-    FilterdataPage,
     AccordiantestingComponent,
     MyaccountupdatedPage,
     TestingproductsPage,
@@ -174,7 +170,6 @@ export function createTranslateLoader(http: HttpClient) {
     ReviewPage,
     ShortPage,
     SearchPage,
-    FilterPage, 
     DemoPage,
     VieworderPage,
     VieworderdetailsPage,
@@ -188,7 +183,6 @@ export function createTranslateLoader(http: HttpClient) {
     ViewallcategoriesPage,
     ViewcartPage,
     AccordiantestPage,
-    FilterdataPage,
     AccordiantestingComponent,
     MyaccountupdatedPage,
     TestingproductsPage,

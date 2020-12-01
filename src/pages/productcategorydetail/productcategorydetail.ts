@@ -1,10 +1,14 @@
+/**
+ * Generated class for the ProductcategorydetailPage page.
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
 import { ApiProvider } from './../../providers/api/api';
 import { WishlistupdatedPage } from './../wishlistupdated/wishlistupdated';
 import { ProductcategoryPage } from './../productcategory/productcategory';
 import { ViewcartPage } from './../viewcart/viewcart';
 import { HttpClient } from '@angular/common/http';
-import { CartPage } from './../cart/cart';
-import { SearchPage } from './../search/search';
 import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController, NavParams, IonicPage, LoadingController, Platform, App, ToastController, AlertController } from 'ionic-angular';
 import { ProductcategorydetaillistPage } from '../productcategorydetaillist/productcategorydetaillist';
@@ -12,11 +16,7 @@ import { ReadmorePage } from '../readmore/readmore';
 import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
 
 
-/**
- * Generated class for the ProductcategorydetailPage page.
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -28,7 +28,7 @@ export class ProductcategorydetailPage implements OnInit{
   obj;
   dynamicTermId:string;
   strId:string;
-  productCategoryInformation: any = [];
+  productCategoryInformation: any = [];  
   strData:string; 
   strIdValue:string;
   strCommentStatus:string;
@@ -130,7 +130,7 @@ addToCart(id, name,image,description,regular_price) {
           this.obj = JSON.stringify(jsonResponse);
           console.log("Sent productsList response " + this.obj);
           console.log("Sent productsList id " + id);
-          this.showToastOnAddProductServer(strProductAdded);
+          this.showToastOnAddProductServer(name);
           this.countProductsCart++;
         });
   }
