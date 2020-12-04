@@ -114,7 +114,7 @@ export class ViewcartPage implements OnInit{
               public storage: Storage,
               public platform: Platform,
               public app: App) {    
-      }        
+      }          
                     
   ngOnInit(){    
     this.buttonDisabled = true;   
@@ -125,19 +125,18 @@ export class ViewcartPage implements OnInit{
     if (localStorage.getItem('products')) {
       this.productsLocalCart = JSON.parse(localStorage.getItem('products')); // get product list 
         console.log('****** filled' + localStorage.getItem('products'));
-        //this.showToastOnFilledCart();
-        this.showToastOnEmptyCart();
-        this.strDataLocal = 'Cart is Empty.Please add items!';
+       
+        //this.strDataLocal = 'Cart is Empty.Please add items!';
       } 
 
 
-      else if (!Array.isArray(this.productsLocalCart) || !this.productsLocalCart.length) {
+      else if (localStorage.getItem("products") === null) {
         this.showToastOnEmptyCart();
     }
 
     else {  
-      console.log('****** empty' + localStorage.getItem('products'));
-      // this.strDataLocal = 'Cart is Empty.Please add items!';
+      console.log('****** empty' );
+       // this.strDataLocal = 'Cart is Empty.Please add items!';
       //this.showToastOnEmptyCart();
     }
    
@@ -548,7 +547,7 @@ removeProductLocally(index,item,name)
     this.showCartRemovalAlert2(index,item,name);
 }  
 
-removeProductLocally1()
+clearCart()
 {
     this.showCartRemovalAlert3();
 }
@@ -566,6 +565,9 @@ removeProductLocally1()
           // console.log(resultado);
           this.viewCartList = resultado;     
           this.obj = JSON.stringify(data);
+
+          console.log('View cart length ' + this.viewCartList.length);
+
            console.log('All Json Response' + this.obj);             
           //  this.strDataServer = 'Cart is Empty.Please add items!';
         var result=[];
@@ -791,7 +793,7 @@ removeProductLocally1()
         },
       ],
     }); 
-
+  
     alert1.present();
   }
 

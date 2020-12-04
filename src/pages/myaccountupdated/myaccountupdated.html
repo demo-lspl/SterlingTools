@@ -16,20 +16,36 @@
         <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon>
       </span> -->
 
-      <span float-right>
+      <!-- <span float-right>
         <ion-icon class="icon"  (click)="wishlistPage()" >
           <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
           <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> 
         </ion-icon>
 
-        <!-- <ion-icon class="icon"  (click)="cartPage()" *ngIf="checkStatus;">
-          <img src="assets/imgs/ic_my_cart.png" width="100%;" />
-          <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> 
-        </ion-icon> -->
+       
         <ion-icon class="icon"  (click)="cartPage()"  >
           <img src="assets/imgs/ic_my_cart.png" width="100%;" />
           <ion-badge class="icon add-icon" >{{countProductsCartLocal}}</ion-badge> 
         </ion-icon>
+      </span> -->
+
+      <span float-right>
+
+        <!-- <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
+        </ion-icon> 
+        
+        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
+        </ion-icon>  -->
+
+        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
+        </ion-icon> 
+        
+        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
+        </ion-icon> 
       </span>
 
     </ion-title>

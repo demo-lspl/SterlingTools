@@ -30,7 +30,11 @@ export class ItemdetailPage implements OnInit {
   strProductSalePrice:string;
   strProductMake: string;
   strProductModel:string;   
-  strProductYear:string;
+  strProductSubModel:string;   
+
+  strProductYearEnd:string;
+  strProductYearStart:string;
+
   strProductDescription: string;
   strProductUrl: string;
   strProductStatus: string;
@@ -194,28 +198,38 @@ export class ItemdetailPage implements OnInit {
 
          if(this.strProductModel){
           this.strProductModel = 'Model Empty: '; 
-         }
+         }  
 
          else {
           this.strProductModel = 'Model: ' + entry.attribute.pa_model; 
          }
 
-        //  if(this.strProductYear){
-        //   this.strProductYear = 'Year Empty: '; 
-        //  }
+         if(this.strProductSubModel){
+          this.strProductSubModel = 'Sub Model Empty: '; 
+         }
 
-        //  else {
-        //   this.strProductYear = 'Year: ' + entry.attribute.pa_year; 
-        //  }
+         else {
+          this.strProductSubModel = 'SubModel: ' + entry.attribute.pa_sub_model; 
+         }
+
+        
 
 
-         if (entry.attribute.pa_year === '') {
-          this.strProductYear = 'No Year  ';
+         if (entry.attribute.pa_year_end === '') {
+          this.strProductYearEnd = 'Year End Empty ';
         }
  
         else {                 
-          this.strProductYear = 'Year ' + entry.attribute.pa_year;
-        }    
+          this.strProductYearEnd = 'Year End: ' + entry.attribute.pa_year_end;
+        }   
+        
+        if (entry.attribute.pa_year_end === '') {
+          this.strProductYearStart = 'Year Start Empty ';
+        }
+ 
+        else {                 
+          this.strProductYearStart = 'Year Start: ' + entry.attribute.pa_year_start;
+        }   
 
 
 

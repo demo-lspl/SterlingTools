@@ -79,7 +79,7 @@ export class WishlistupdatedPage implements OnInit {
        this.countProductsWishlistLocalUpdated = this.countProductsWishList;
        console.log('Local Wishlist filled ' + this.countProductsWishlistLocalUpdated);
  
-     }        
+     }         
   
      else {
        console.log('Local Wishlist empty ' );
@@ -172,7 +172,9 @@ export class WishlistupdatedPage implements OnInit {
 // }
   
 
-addToCart(id, name,image,description,regular_price) {
+addToCart(index,id, name,image,description,regular_price) {
+
+  console.log('Test' + id);
     
   let products = [];
   if (localStorage.getItem('products')) {
@@ -182,6 +184,10 @@ addToCart(id, name,image,description,regular_price) {
   console.log("Sent productsList name " + name);
   products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
   localStorage.setItem('products', JSON.stringify(products)); 
+  this.productsLocalCart.splice(index, 1);
+  localStorage.setItem('productsWishlist', JSON.stringify(this.productsLocalCart));
+
+  this.showToastOnAddProductLocal(name);
   if (typeof(Storage) !== "undefined") {
     // Code for localStorage/sessionStorage.
     console.log('Code for localStorage/sessionStorage.')
@@ -189,7 +195,18 @@ addToCart(id, name,image,description,regular_price) {
     // Sorry! No Web Storage support..
     console.log('Sorry! No Web Storage support..')
   }
+
 }
+
+showToastOnAddProductLocal(strProductAdded) {
+  const toast = this.toastController.create({
+    // message: this.testStr,
+    message: 'Product Added in Local Cart : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+    duration: 3000,
+    position: "bottom",
+  });   
+  toast.present();  
+}  
 
 cartPage() {
   this.navCtrl.push(ViewcartPage);
@@ -219,6 +236,11 @@ doRefresh(event) {
 removeProductLocally(index,item,name)
 {
     this.showCartRemovalAlert2(index,item,name);
+
+    
+   
+
+    
 }
 
 private async showCartRemovalAlert2(index,item,name): Promise<void> {
@@ -235,28 +257,11 @@ private async showCartRemovalAlert2(index,item,name): Promise<void> {
         handler: (ok) => {
           console.log('Confirm Ok');
           console.log('Remove Product: ' + item);
-          for(let i = 0; i < this.productsLocalCart.length; i++) {
+        
 
-  if(this.productsLocalCart[i] == item){
-    this.productsLocalCart.splice(i, 1);
-    localStorage.removeItem(item);
-   // localStorage.setItem('productsTushar', JSON.stringify(this.productsLocalCart));
-  }
-
- 
-          
-
-
-
-
-
-
-
-
-
-
-           
-          }},
+          this.productsLocalCart.splice(index, 1);
+          localStorage.setItem('productsWishlist', JSON.stringify(this.productsLocalCart));
+          },
         },
         {
           text: 'Cancel',

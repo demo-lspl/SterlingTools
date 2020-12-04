@@ -46,7 +46,7 @@
       pullingIcon="chevron-down-circle-outline"
       pullingText="Pull to refresh"
       refreshingSpinner="circles"
-      refreshingText="Refreshing Cart."
+      refreshingText="Refreshing Wishlist."
     >
     </ion-refresher-content>
   </ion-refresher>
@@ -114,6 +114,8 @@
             
           </div>
           <!-- (click)="removeProductLocally(i,productsLocal,productsLocal.ProductName)" -->
+
+         
         
 
         
@@ -131,7 +133,7 @@
           full
           class="bg-thime btn-round btn-text"
           style="margin-top: 3px; width: 150px;text-align: center;"
-          (click)="addToCart(productsLocal.id,productsLocal.name,productsLocal.image,productsLocal.description,productsLocal.regular_price)"
+          (click)="addToCart(i,productsLocal.ProductId,productsLocal.ProductName,productsLocal.ProductImage,productsLocal.ProductDescription,productsLocal.ProductRegularPrice)"
 
 
 

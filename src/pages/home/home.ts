@@ -293,7 +293,7 @@ export class HomePage implements OnInit {
 //     console.log("Sent productsList id " + id);
 //     this.showToastOnAddProductSingle(strProductAdded);
 //   }); 
-// }    
+// }      
       
   
 addToCart(id, name,image,description,regular_price) {
@@ -310,7 +310,7 @@ addToCart(id, name,image,description,regular_price) {
     this.countProductsCartLocalUpdated++;
 
   
-   
+    
   }  
   
   else { 
@@ -553,8 +553,8 @@ getAllFeaturedProductsCategories() {
         else {
           //console.log('data available');
         }
-    });
-  }  
+    });  
+  }   
 
   getAllProductsCategoriesList() {
     
@@ -566,6 +566,17 @@ getAllFeaturedProductsCategories() {
       this.obj = JSON.stringify(jsonResponse);
 
       this.strData = 'No data available';
+
+      if(this.productCategoryList.name = 'Uncategorized'){
+        console.log('Uncategorized available');
+        //this.productCategoryList.splice(0);
+        this.productCategoryList.filter(item => item !== "Uncategorized")
+
+      }
+
+      else {
+        console.log('Uncategorized not available');
+      }
 
         if(resultado === null){
           this.showToastOnEmptyFeaturedProducts();
@@ -794,24 +805,48 @@ async viewCartApi() {
         this.obj = JSON.stringify(data);
         console.log('All Json Response' + this.obj);
          this.strData = 'No Products in Cart';  
-  
+         console.log('View cart length ' + this.viewCartList.length);
          console.log('All Json Response' + resultado);
+
+   
+        //  this.countProductsCartLocalUpdated = this.viewCartList.length;
+
+
+        if(this.viewCartList){
+          this.countProductsCartLocalUpdated = this.viewCartList.length;
+
+          console.log('Tushar data server' );
+        }
+
+        else {
+          this.countProductsCartLocalUpdated = this.countProductsCart;
+
+          console.log('Tushar data local' );
+        }
   
             
               
      
-         if(this.viewCartList.length>=1) {
-          console.log('Live server Cart Filled ' + this.viewCartList.length );
-          this.countProductsCart = this.viewCartList.length;
-          //  this.buttonIcon = "cart";
-         }
+        //  if(this.viewCartList.length>=1) {
+        //   console.log('Live server Cart Filled ' + this.viewCartList.length );
+        //   this.countProductsCart = this.viewCartList.length;
+         
+        //  }
+ 
+        //  else{
+        //   console.log('Live server Cart  Empty ');
+        //  }
 
-         else{
-          console.log('Live server Cart  Empty ');
-        // this.countProductsCart = 'Empty';
 
-         }
+        // if(this.viewCartList){
+        //   console.log('Live server Cart Filled tushar' + this.viewCartList.length );
+        // }
 
+        // else {
+        //   console.log('Local server Cart Filled tushar' + this.countProductsCartLocalUpdated );
+        //   this.countProductsCartLocalUpdated = this.countProductsCartLocalUpdated;
+          
+        // }
 
 
        

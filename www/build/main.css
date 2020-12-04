@@ -34195,7 +34195,6 @@ ion-app.ios [padding-top] {
 }
 
 ion-app.ios [padding-left] {
-  padding-left: 16px;
 }
 
 ion-app.ios [padding-right] {
@@ -52809,6 +52808,32 @@ page-home .icon-add ion-badge#notifications-badge {
   padding: 5px;
 }
 page-home .icon-add {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+}
+
+page-myorder_2 .icon-add ion-badge#notifications-badge {
+  position: absolute;
+  top: -5px;
+  right: -11px;
+  font-size: 8px;
+  padding: 5px;
+}
+page-myorder_2 .icon-add {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+}
+
+page-myaccountupdated .icon-add ion-badge#notifications-badge {
+  position: absolute;
+  top: -5px;
+  right: -11px;
+  font-size: 8px;
+  padding: 5px;
+}
+page-myaccountupdated .icon-add {
   color: #fff;
   font-size: 20px;
   position: relative;

@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
 
 
-
+  
 
 @IonicPage()
 @Component({

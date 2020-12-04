@@ -1,33 +1,25 @@
-
 <ion-header class="bg-thime">
   <ion-navbar>
-  <button ion-button menuToggle style="display: block !important">
-    <ion-icon class="menu-icon"
-      ><img src="assets/imgs/ic_menu.png"
-    /></ion-icon>
-  </button>
-    <ion-title style="text-align: center"
-      >View Cart
-        
+    <button ion-button menuToggle style="display: block !important">
+      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png" /></ion-icon>
+    </button>
+    <ion-title style="text-align: center">View Cart
+
     </ion-title>
   </ion-navbar>
   <!-- <div class="custom-id">
    
     <ion-searchbar placeholder="Search any part here" ></ion-searchbar>
   </div> -->
-   
+
 </ion-header>
-   
-<ion-content class="bg-light"> 
+
+<ion-content class="bg-light">
 
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      pullingIcon="chevron-down-circle-outline"
-      pullingText="Pull to refresh"
-      refreshingSpinner="circles"
-      refreshingText="Refreshing Cart."
-    >
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
+      refreshingSpinner="circles" refreshingText="Refreshing Cart.">
     </ion-refresher-content>
   </ion-refresher>
 
@@ -36,636 +28,251 @@
     <h5 style="font-size: 12px;">{{strData}}</h5> 
   </ion-item> -->
 
-  <ion-item *ngIf="!viewCartList.length;else other_content" lines="none">
-    <h5 style="font-size: 12px;">{{strDataServer}}</h5> 
+  <ion-item *ngIf="!viewCartList.length && !productsLocalCart.length ;else other_content" lines="none">
+    <h5 style="font-size: 12px;">{{strDataServer}}</h5>
   </ion-item>
 
-  <ion-item *ngIf="!productsLocalCart.length ;else other_content1" lines="none">
-    <h5 style="font-size: 12px;">{{strDataLocal}}</h5> 
-  </ion-item>
+  <!-- <ion-item *ngIf="!productsLocalCart.length ;else other_content1" lines="none">
+    <h5 style="font-size: 12px;">{{strDataLocal}}</h5>
+  </ion-item> -->
 
 
 
   <ng-template #other_content>
 
+    <div class="pincod bg-white shadow-bottom cart-box" style=" padding: 16px 16px 16px 16px;margin-bottom: -31px">
+      <ion-row style="margin-top: 8px" *ngFor="let productsLocal of productsLocalCart;let i = index"
+        (click)="productcategoryDetailPage(productsLocal.ProductId,productsLocal.ProductName)">
 
-  
-
-    <div class="pincod bg-white shadow-bottom cart-box"  style=" padding: 16px 16px 16px 16px;"
-    >
-      <ion-row style="margin-top: 8px" *ngFor="let viewCart of viewCartList;let i = index"  
-      (click)="productcategoryDetailPage(viewCart.product_id,viewCart.name)" >
-    
         <ion-col col-4>
           <ion-list>
-            <ion-item lines="none">
-              <img  [src]="viewCart.product_thumbnail"  style="width:200px;height:80px ;">
+            <ion-item>
+              <img [src]="productsLocal.ProductImage" style="width:200px;height:80px ;">
             </ion-item>
           </ion-list>
         </ion-col>
         <ion-col col-8 class="right-main-bar">
-          
-          <div class="row"  >
-            <div class="block">{{viewCart.name}}</div>
-            <ion-icon
-            name="md-close"
-            style="margin-left: 30px;margin-top: 5px;"
-            (click)="removeProductServer(viewCart.product_id,viewCart.name)">
-          </ion-icon> 
-            
+
+          <div class="row">
+            <div class="block">{{productsLocal.ProductName}}</div>
+            <ion-icon name="md-close" style="margin-left: 100px;margin-top: 5px;"
+              (click)="removeProductLocally(i,productsLocal,productsLocal.ProductName)">
+            </ion-icon>
+
           </div>
-  
-     
 
-          <!-- <div   style="margin-top: 6% ">
-             <input   [value]="viewCart.quantity" [(ngModel)]="valueQuantity" id="myText" placeholder = "Input New Quantity"> 
-             <ion-input  type="number"   [(ngModel)]="valueQuantity" id="myText" placeholder = "Input New Quantity" >{{viewCart.quantity}}  </ion-input>
-             <input value="{{viewCart.quantity}}" class="form-control" style="text-align:center;" id="textbox" type="number"> 
-             <button (click)="decreament(viewCart.product_id)"  type="button" >-</button>
-              <button (click)="increament(viewCart.product_id)"  type="button" >+</button> 
-          </div> -->
-
-
-       
-
-          <div style="margin-top: 6% " >
-            QTY          
-            <span class="icon"
-              >
-              <ion-icon
-                name="md-remove-circle"
-                style="margin-left: 10%; margin-top: 2%"
-                (click)="decrementValue(i,strDynamicId)">
+          <div style="margin-top: 6% ">
+            QTY
+            <span class="icon">
+              <ion-icon name="md-remove-circle" style="margin-left: 10%; margin-top: 2%"
+                (click)="decrementValueLocal(i,productsLocal.ProductId)">
               </ion-icon>
-          </span>
-            <span  text-center style="margin-left: 10%;color: red;">{{viewCart.quantity}}</span>
-            <!-- <span  text-center style="margin-left: 10%;color: red;">{{strDynamicProductQuantity}}</span> -->
+            </span>
+            <span text-center style="margin-left: 10%;color: red;">{{productsLocal.ProductQuantity}}</span>
 
-            <span class="icon" text-right
-              ><ion-icon
-                name="md-add-circle"
-                (click)="incrementValue(i,viewCart.product_id)"
-                style="margin-left: 10%"
-              ></ion-icon
-            ></span>
+            <span class="icon" text-right>
+              <ion-icon name="md-add-circle" (click)="incrementValueLocal(i,productsLocal.ProductId)"
+                style="margin-left: 10%"></ion-icon>
+            </span>
           </div>
 
-        
+
           <div style="margin-top: 6%">
-            <label > <span class="priceicon">Product Regular Price   </span>{{viewCart.price}} <span class="priceicon">$</span></label>
-            <!-- <div class="block">Price: {{viewCart.name}} $ </div> -->
-        
+            <label> <span class="priceicon">Product Price </span>{{productsLocal.ProductRegularPrice}} <span
+                class="priceicon">$</span></label>
+
           </div>
         </ion-col>
       </ion-row>
-    
+
     </div>
-  
-    <div class="reating-review bg-white" padding style="margin-bottom: 15px" > 
+
+
+
+
+    <div class="pincod bg-white shadow-bottom cart-box" style=" padding: 16px 16px 16px 16px;">
+      <ion-row style="margin-top: 8px" *ngFor="let viewCart of viewCartList;let i = index"
+        (click)="productcategoryDetailPage(viewCart.product_id,viewCart.name)">
+
+        <ion-col col-4>
+          <ion-list>
+            <ion-item lines="none">
+              <img [src]="viewCart.product_thumbnail" style="width:200px;height:80px ;">
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col col-8 class="right-main-bar">
+
+          <div class="row">
+            <div class="block">{{viewCart.name}}</div>
+            <ion-icon name="md-close" style="margin-left: 37px;margin-top: 5px;"
+              (click)="removeProductServer(viewCart.product_id,viewCart.name)">
+            </ion-icon>
+
+          </div>
+
+
+
+
+
+
+          <div style="margin-top: 6% ">
+            QTY
+            <span class="icon">
+              <ion-icon name="md-remove-circle" style="margin-left: 10%; margin-top: 2%"
+                (click)="decrementValue(i,strDynamicId)">
+              </ion-icon>
+            </span>
+            <span text-center style="margin-left: 10%;color: red;">{{viewCart.quantity}}</span>
+
+            <span class="icon" text-right>
+              <ion-icon name="md-add-circle" (click)="incrementValue(i,viewCart.product_id)" style="margin-left: 10%">
+              </ion-icon>
+            </span>
+          </div>
+
+
+          <div style="margin-top: 6%">
+            <label> <span class="priceicon">Product Regular Price </span>{{viewCart.price}} <span
+                class="priceicon">$</span></label>
+
+          </div>
+        </ion-col>
+      </ion-row>
+
+    </div>
+
+    <div class="reating-review bg-white" padding style="margin-bottom: 15px">
       <div class="reating">
-        <div class="select-section shadow-bottom" style="text-align: center"
-        >
-          <ion-row
-            class="ion-justify-content-center"
-            style="justify-content: center"
-           >
-            <button
-              ion-button
-              full
-              class="bg-thime btn-round btn-text"
-              style="max-width: 390px"
-              (click)="updateShoppingCart(strTestProductId)"
-              [disabled]="buttonDisabled">
+        <div class="select-section shadow-bottom" style="text-align: center">
+          <ion-row class="ion-justify-content-center" style="justify-content: center">
+            <button ion-button full class="bg-thime btn-round btn-text" style="max-width: 390px"
+              (click)="updateShoppingCart(strTestProductId)" [disabled]="buttonDisabled">
               Update Cart
             </button>
-  
-            <!-- <button
-              ion-button
-              full
-              class="bg-thime btn-round btn-text"
-              style="max-width: 390px"
-              (click)="removeProductLocally1(strTestProductId)" >
-              Clear Cart
-            </button> -->
+
+
           </ion-row>
         </div>
       </div>
-      
-  
-      <!-- <div class="card-main">
-        <ion-card >
-          <ion-card-header (click)="toggleAccordion()">
-            <ion-list>
-              <ion-item lines="none">
-                <button ion-button clear small icon-only item-right>
-                  <ion-icon color="light" [name]="icon"></ion-icon>
-                </button>
-  
-                <h6 style="color: white; text-align: center;">Discount Codes</h6>
-              </ion-item>
-            </ion-list>  
-          </ion-card-header>
-          <ion-card-content #cc>
-            <div class="select-section shadow-bottom">
-              <ion-row class="ion-justify-content-center">
-                <ion-col size="12" offset="4">
-                  <div class="size" style="justify-content: center">
-                    <div
-                      class="size"
-                      style="justify-content: left; padding-right: 30px"
-                    >
-                 
-                      Enter your coupon code if you have one
-                    </div>
-                 
-                    <p padding-top>
-                      <span class="left-side">
-                        <ion-input placeholder="Enter Coupon Code"></ion-input>
-                      </span>
-                   
-                    </p>
-                  </div>
-                </ion-col>
-              </ion-row>
-            </div>
-  
-            <div class="select-section shadow-bottom">
-              <ion-row class="ion-justify-content-center">
-                <button
-                  ion-button
-                  full
-                  class="bg-thime btn-round btn-text"
-                  style="max-width: 420px"
-                >
-                  Check
-                </button>
-              </ion-row>
-            </div>
-          </ion-card-content>
-        </ion-card>
-      </div> -->
-  
-      <!-- <div class="card-main" style="margin-top: 10px">
-        <ion-card>
-          <ion-card-header (click)="toggleAccordion1()">
-            <ion-list>
-              <ion-item lines="none">
-                <button ion-button clear small icon-only item-right>
-                  <ion-icon color="light" [name]="icon"></ion-icon>
-                </button>
-  
-                <h6 style="color: white; text-align: center">
-                  Estimate Shipping Charges
-                </h6>
-              </ion-item>
-            </ion-list>
-          </ion-card-header>
-          <ion-card-content #cc1>
-            <div class="select-section shadow-bottom">
-              <ion-row class="ion-justify-content-center">
-                <ion-col size="12" offset="4">
-                  <div class="size" style="justify-content: center">
-                    <div
-                      class="size"
-                      style="justify-content: left; padding-right: 30px"
-                    >
-                      
-                      Enter your destination to get your shipping estimate
-                    </div>
-                   
-  
-                    <p padding-top>
-                      <span class="left-side">
-                     
-                        <ion-input placeholder="Enter Destination"></ion-input>
-                      </span>
-                                         </p>
-                  </div>
-                </ion-col>
-              </ion-row>
-            </div>
-  
-            <div class="select-section shadow-bottom">
-              <ion-row class="ion-justify-content-center">
-                <button
-                  ion-button
-                  full
-                  class="bg-thime btn-round btn-text"
-                  style="max-width: 420px"
-                  (click)="checkOutPage()">
-                  Get Quote
-                </button>
-              </ion-row>
-            </div>
-          </ion-card-content>
-        </ion-card>
-      </div> -->
-  
-      <div class="lick">
-        <p padding-top>
-          <span class="left-side">
-            <!-- <ion-badge class="badges bg-green text-white">4<ion-icon name="md-star"></ion-icon></ion-badge>   -->
-            <span class="bold">Read All Reviews</span>
-          </span>
-          <span class="right-side">
-            <!-- <span class="text-light">16 May, 2017</span> -->
-            <ion-icon name="md-star"></ion-icon>
-          </span>
-        </p>
-  
-        <!-- <h5>Must awaited product.Value for Money.</h5> -->
-        <!-- <label class="circle">Value for Money</label> -->
-  
-        <!-- <p class="border-bottom name-like" padding-bottom>
-          <span class="left-side"> Test User. </span>
-          <span class="right-side icon-box">
-            <ion-icon name="md-thumbs-up" text-right class="icon-lick"></ion-icon
-            ><small>2</small>
-            <ion-icon
-              name="md-thumbs-down"
-              text-right
-              class="icon-lick"
-            ></ion-icon
-            ><small>2</small>
-          </span>
-        </p> -->
-      </div>
-  
-      
-  
-      <!-- <ion-item>
-        <ion-label style="float: left; font-size: 14px">Subtotal</ion-label>
-        <ion-label style="float: right; color: red"> Rs 251.00</ion-label>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label style="float: left; font-size: 14px">Discount (Flat 10% Off)</ion-label>
-        <ion-label style="float: right; color: red">-Rs25.10</ion-label>
-      </ion-item> -->
-  
+
+
+
+
+     
+
+
+
       <ion-item>
         <ion-label style="float: left; font-size: 14px">Grand Total</ion-label>
         <ion-label style="float: right; color: red"> $ NZD {{strSubTotalAmount}}</ion-label>
       </ion-item>
 
-   
 
-    
+
+
 
       <div style="margin-top: 1px;">
         <ion-grid>
           <ion-row>
             <ion-col size="12" offset="4">
-                <ion-item>
-                  <ion-label style="color: black;float: left">Shipping Charges</ion-label>
-                  <ion-select okText="Ok" cancelText="Cancel">
-                      <ion-option selected value="brown" style="color: black" (ionSelect)="clickOptionLocal()">Local Pickup</ion-option>
-                      <ion-option value="blonde" style="float: right; color: black" (ionSelect)="clickOptionFlatRate()">Flat Rate: $5.00</ion-option>
-                  </ion-select>
+              <ion-item>
+                <ion-label style="color: black;float: left">Shipping Charges</ion-label>
+                <ion-select okText="Ok" cancelText="Cancel">
+                  <ion-option selected value="brown" style="color: black" (ionSelect)="clickOptionLocal()">Local Pickup
+                  </ion-option>
+                  <ion-option value="blonde" style="float: right; color: black" (ionSelect)="clickOptionFlatRate()">Flat
+                    Rate: $5.00</ion-option>
+                </ion-select>
               </ion-item>
             </ion-col>
           </ion-row>
         </ion-grid>
       </div>
-  
+
       <ion-item>
-        <button
-          ion-button
-          full
-          class="bg-thime btn-round btn-text"
-          style="max-width: 390px; float: none; height: 40px"
+        <button ion-button full class="bg-thime btn-round btn-text" style="max-width: 390px; float: none; height: 40px"
           (click)="checkOutPage()">
 
-        
-         Checkout
+
+          Checkout
         </button>
       </ion-item>
-  
-      <!-- <ion-item>
-        <button #myButton ion-button icon-only (click)="toggleIcon()">
-          <ion-icon [name]="buttonIcon"></ion-icon>
-      </button>
-      </ion-item> -->
 
-
-     <!-- <ion-item>
-        <button #myButton ion-button icon-only (click)="toggleIcon1()">
-          <ion-icon [name]="buttonIcon1"></ion-icon>
-      </button>
-      </ion-item> -->
-        
-   
-  
     </div>
 
   </ng-template>
 
-  <ng-template #other_content1 >
-    <div class="pincod bg-white shadow-bottom cart-box"  style=" padding: 16px 16px 16px 16px;"
-    >
-      <ion-row style="margin-top: 8px" *ngFor="let productsLocal of productsLocalCart;let i = index"  
-      (click)="productcategoryDetailPage(productsLocal.ProductId,productsLocal.ProductName)" >
-    
+  <ng-template #other_content1>
+    <div class="pincod bg-white shadow-bottom cart-box" style=" padding: 16px 16px 16px 16px;">
+      <ion-row style="margin-top: 8px" *ngFor="let productsLocal of productsLocalCart;let i = index"
+        (click)="productcategoryDetailPage(productsLocal.ProductId,productsLocal.ProductName)">
+
         <ion-col col-4>
           <ion-list>
             <ion-item>
-              <img  [src]="productsLocal.ProductImage"  style="width:200px;height:80px ;">
+              <img [src]="productsLocal.ProductImage" style="width:200px;height:80px ;">
             </ion-item>
           </ion-list>
         </ion-col>
         <ion-col col-8 class="right-main-bar">
-          
-          <div class="row"  >
+
+          <div class="row">
             <div class="block">{{productsLocal.ProductName}}</div>
-            <ion-icon
-            name="md-close"
-            style="margin-left: 30px;margin-top: 5px;"
-            (click)="removeProductLocally(i,productsLocal,productsLocal.ProductName)">
-          </ion-icon> 
-            
+            <ion-icon name="md-close" style="margin-left: 37px;margin-top: 5px;"
+              (click)="removeProductLocally(i,productsLocal,productsLocal.ProductName)">
+            </ion-icon>
+
           </div>
-  
-     
 
-       
-
-
-       
-
-          <div style="margin-top: 6% " >
-            QTY          
-            <span class="icon"
-              >
-              <ion-icon
-                name="md-remove-circle"
-                style="margin-left: 10%; margin-top: 2%"
+          <div style="margin-top: 6% ">
+            QTY
+            <span class="icon">
+              <ion-icon name="md-remove-circle" style="margin-left: 10%; margin-top: 2%"
                 (click)="decrementValueLocal(i,productsLocal.ProductId)">
               </ion-icon>
-          </span>
-            <span  text-center style="margin-left: 10%;color: red;">{{productsLocal.ProductQuantity}}</span>
+            </span>
+            <span text-center style="margin-left: 10%;color: red;">{{productsLocal.ProductQuantity}}</span>
 
-            <span class="icon" text-right><ion-icon
-                name="md-add-circle"
-                (click)="incrementValueLocal(i,productsLocal.ProductId)"
-                style="margin-left: 10%"
-              ></ion-icon
-            ></span>
+            <span class="icon" text-right>
+              <ion-icon name="md-add-circle" (click)="incrementValueLocal(i,productsLocal.ProductId)"
+                style="margin-left: 10%"></ion-icon>
+            </span>
           </div>
 
-        
+
           <div style="margin-top: 6%">
-            <label > <span class="priceicon">Product Price   </span>{{productsLocal.ProductRegularPrice}} <span class="priceicon">$</span></label>
-        
+            <label> <span class="priceicon">Product Price </span>{{productsLocal.ProductRegularPrice}} <span
+                class="priceicon">$</span></label>
+
           </div>
         </ion-col>
       </ion-row>
-    
+
     </div>
 
-    <div class="reating-review bg-white" padding style="margin-bottom: 15px" > 
+    <div class="reating-review bg-white" padding style="margin-top: 30px;">
       <div class="reating">
-        <div class="select-section shadow-bottom" style="text-align: center"
-        >
-          <ion-row
-            class="ion-justify-content-center"
-            style="justify-content: center"
-           >
-            <button
-              ion-button
-              full
-              class="bg-thime btn-round btn-text"
-              style="max-width: 390px"
-              (click)="updateShoppingCart(strTestProductId)"
-              [disabled]="buttonDisabled">
+        <div class="select-section shadow-bottom" style="text-align: center">
+          <ion-row class="ion-justify-content-center" style="justify-content: center">
+            <button ion-button full class="bg-thime btn-round btn-text" style="max-width: 390px"
+              (click)="updateShoppingCart(strTestProductId)" [disabled]="buttonDisabled">
               Update Cart
             </button>
-  
-            <button
-              ion-button
-              full
-              class="bg-thime btn-round btn-text"
-              style="max-width: 390px"
-              (click)="removeProductLocally1()" >
+
+            <button ion-button full class="bg-thime btn-round btn-text" style="max-width: 390px" (click)="clearCart()">
               Clear Cart
             </button>
           </ion-row>
         </div>
       </div>
-      
-  
-      <!-- <div class="card-main">
-        <ion-card >
-          <ion-card-header (click)="toggleAccordion()">
-            <ion-list>
-              <ion-item>
-                <button ion-button clear small icon-only item-right>
-                  <ion-icon color="light" [name]="icon"></ion-icon>
-                </button>
-  
-                <h6 style="color: white; text-align: center;">Discount Codes</h6>
-              </ion-item>
-            </ion-list>  
-          </ion-card-header>
-          <ion-card-content #cc>
-            <div class="select-section shadow-bottom">
-              <ion-row class="ion-justify-content-center">
-                <ion-col size="12" offset="4">
-                  <div class="size" style="justify-content: center">
-                    <div
-                      class="size"
-                      style="justify-content: left; padding-right: 30px"
-                    >
-                 
-                      Enter your coupon code if you have one
-                    </div>
-                 
-                    <p padding-top>
-                      <span class="left-side">
-                        <ion-input placeholder="Enter Coupon Code"></ion-input>
-                      </span>
-                   
-                    </p>
-                  </div>
-                </ion-col>
-              </ion-row>
-            </div>
-  
-            <div class="select-section shadow-bottom">
-              <ion-row class="ion-justify-content-center">
-                <button
-                  ion-button
-                  full
-                  class="bg-thime btn-round btn-text"
-                  style="max-width: 420px"
-                >
-                  Check
-                </button>
-              </ion-row>
-            </div>
-          </ion-card-content>
-        </ion-card>
-      </div>
-  
-      <div class="card-main" style="margin-top: 10px">
-        <ion-card>
-          <ion-card-header (click)="toggleAccordion1()">
-            <ion-list>
-              <ion-item>
-                <button ion-button clear small icon-only item-right>
-                  <ion-icon color="light" [name]="icon"></ion-icon>
-                </button>
-  
-                <h6 style="color: white; text-align: center">
-                  Estimate Shipping Charges
-                </h6>
-              </ion-item>
-            </ion-list>
-          </ion-card-header>
-          <ion-card-content #cc1>
-            <div class="select-section shadow-bottom">
-              <ion-row class="ion-justify-content-center">
-                <ion-col size="12" offset="4">
-                  <div class="size" style="justify-content: center">
-                    <div
-                      class="size"
-                      style="justify-content: left; padding-right: 30px"
-                    >
-                    
-                      Enter your destination to get your shipping estimate
-                    </div>
-                   
-  
-                    <p padding-top>
-                      <span class="left-side">
-                       
-                        <ion-input placeholder="Enter Destination"></ion-input>
-                      </span>
-                                          </p>
-                  </div>
-                </ion-col>
-              </ion-row>
-            </div>
-  
-            <div class="select-section shadow-bottom">
-              <ion-row class="ion-justify-content-center">
-                <button
-                  ion-button
-                  full
-                  class="bg-thime btn-round btn-text"
-                  style="max-width: 420px"
-                  (click)="checkOutPage()">
-                  Get Quote
-                </button>
-              </ion-row>
-            </div>
-          </ion-card-content>
-        </ion-card>
-      </div> -->
-  
-      <!-- <div class="lick">
-        <p padding-top>
-          <span class="left-side">
-            <span class="bold">Read All Reviews</span>
-          </span>
-          <span class="right-side">
-            <ion-icon name="md-star"></ion-icon>
-          </span>
-        </p>
-  
-     
-      </div> -->
-  
-      
-  
-      <!-- <ion-item>
-        <ion-label style="float: left; font-size: 14px">Subtotal</ion-label>
-        <ion-label style="float: right; color: red"> Rs 251.00</ion-label>
-      </ion-item>
-  
+
       <ion-item>
-        <ion-label style="float: left; font-size: 14px">Discount (Flat 10% Off)</ion-label>
-        <ion-label style="float: right; color: red">-Rs25.10</ion-label>
-      </ion-item> -->
-  
-      <!-- <ion-item>
         <ion-label style="float: left; font-size: 14px">Grand Total</ion-label>
         <ion-label style="float: right; color: red"> $ NZD {{strSubTotalAmount}}</ion-label>
-      </ion-item> -->
-
-   
-
-      <!-- <ion-item>
-        <ion-label style="color: black;">Shipping</ion-label>
-        <ion-select ([ngModel])="dropdown1"  placeholder="Local Pickup" >
-          <ion-option value="brown" style="color: black" (ionSelect)="clickOptionLocal()">Local Pickup</ion-option>
-          <ion-option value="blonde" style="float: right; color: black" (ionSelect)="clickOptionFlatRate()">Flat Rate: $5.00</ion-option>
-         
-        </ion-select>
-      </ion-item> -->
-
-
-      <!-- <div *ngIf="viewCartList;else templateName">
-          View cart empty
-      </div>
-
-        <ng-template #templateName>
-          View cart filled
-        </ng-template> -->
-
-
-      <!-- <div style="margin-top: 1px;">
-        <ion-grid>
-          <ion-row  >
-            <ion-col size="12" offset="4">
-                <ion-item>
-                  <ion-label style="color: black;float: left">Shipping Charges</ion-label>
-                  <ion-select okText="Ok" cancelText="Cancel">
-                      <ion-option selected value="brown" style="color: black" (ionSelect)="clickOptionLocal()">Local Pickup</ion-option>
-                      <ion-option value="blonde" style="float: right; color: black" (ionSelect)="clickOptionFlatRate()">Flat Rate: $5.00</ion-option>
-                  </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div> -->
-  
-
-      <!-- <div *ngIf="featuredProductCategories.regular_price">  -->
-
-      <ion-item *ngIf="!productsLocalCart">
-        <button
-          ion-button
-          full
-          class="bg-thime btn-round btn-text"
-          style="max-width: 390px; float: none; height: 40px"
-          (click)="checkOutPage()">
-
-        
-          Checkout..
-        </button>
       </ion-item>
-  
-      <!-- <ion-item>
-        <button #myButton ion-button icon-only (click)="toggleIcon()">
-          <ion-icon [name]="buttonIcon"></ion-icon>
-      </button>
-      </ion-item> -->
 
-
-     <!-- <ion-item>
-        <button #myButton ion-button icon-only (click)="toggleIcon1()">
-          <ion-icon [name]="buttonIcon1"></ion-icon>
-      </button>
-      </ion-item> -->
-        
-   
-  
     </div>
 
-
   </ng-template>
-
-
-
-
 </ion-content>

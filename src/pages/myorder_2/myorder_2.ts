@@ -8,7 +8,7 @@ import { NavController, ModalController, Platform, App, AlertController } from '
 import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
 
 
-
+  
 
 @Component({
   selector: 'page-myorder_2 ',
@@ -25,6 +25,10 @@ export class Myorder_2Page implements OnInit {
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
   countProductsCart:number|any|string;
+  countProductsCartLocal:number|any|string;
+  countProductsCartLocalUpdated:number = 0;
+  countProductsWishlistLocalUpdated:number = 0;
+  countProductsWishList:number =0;
   
 
 
@@ -53,7 +57,38 @@ export class Myorder_2Page implements OnInit {
           }
       }
   });
-  }
+    
+  
+        /*
+          Local Wishlist
+      */
+     var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
+     if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
+       var arrayLength = productsWishlistarrayFromStorage.length;
+       this.countProductsWishList = arrayLength;
+       this.countProductsWishlistLocalUpdated = this.countProductsWishList;
+       console.log('Local Wishlist filled ' + this.countProductsWishlistLocalUpdated);
+   
+     }        
+  
+     else {
+       console.log('Local Wishlist empty ' );
+     }
+     /*
+         Local Cart
+     */
+    var productsCartarrayFromStorage = JSON.parse(localStorage.getItem('products'));
+    if (productsCartarrayFromStorage != null && productsCartarrayFromStorage.length > 0) {
+      var arrayLength1 = productsCartarrayFromStorage.length;
+      this.countProductsCart = arrayLength1;
+      this.countProductsCartLocalUpdated = this.countProductsCart;
+      console.log('Local Cart filled ' + this.countProductsCartLocalUpdated);
+    }
+
+    else {
+      console.log('Local Cart empty ' );
+    }
+}
   
      cartPage() {
     this.navCtrl.setRoot(ViewcartPage);
