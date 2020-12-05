@@ -225,9 +225,9 @@ export class ProductcategorydetaillistPage implements OnInit{
       this.showToastOnAddProductLocal(name);
       this.countProductsCartLocalUpdated++;
   
-  
-     
-    }
+    
+      
+    }  
     
     else { 
       this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
@@ -237,8 +237,13 @@ export class ProductcategorydetaillistPage implements OnInit{
             this.showToastOnAddProductServer(name);
             this.countProductsCart++;
           });
-    }
-  } 
+    }   
+  }
+
+ 
+  
+
+
 
 
   async showToastOnCart()

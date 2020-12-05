@@ -1,0 +1,106 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle style="display: block !important">
+      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"/>
+    </ion-icon>
+    </button>
+    <ion-title>Category Detail
+      <span float-right>
+        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
+        </ion-icon> 
+        
+        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
+        </ion-icon> 
+      </span>
+     
+    </ion-title>
+  </ion-navbar>
+</ion-header> 
+
+
+<ion-content class="bg-light">
+  <div class="img-section shadow-bottom" text-center>
+  
+  
+
+
+    <img  [src]="strImage"  style="width:200px;height:150px;margin-top: 18px;">
+
+    <div class="tab-btn-box">
+      <!-- <div class="tab-btn">
+        <img  [src]="strImage"  style="width:150px;height:40px;"  >
+        
+      </div>
+      <div class="tab-btn">
+        <img  [src]="strImage"  style="width:150px;height:40px;">
+      </div>
+      <div class="tab-btn">
+        <img  [src]="strImage"  style="width:150px;height:40px;">
+      </div> -->
+    </div>
+    <div class="d-flex" style="align-items: start;margin-top: 5px;" >
+      <span>{{strName}}</span>
+      <span class="icon">
+        <ion-icon name="md-remove" (click)="decrementValue()"></ion-icon
+      ></span>
+      <span
+        class="text-sky small-text"
+        style="text-align: center; margin-left: 20%"
+      >
+        {{currentNumber}}</span
+      >
+      <span class="icon" style="margin-left: 20%"
+        ><ion-icon name="md-add" (click)="incrementValue()"></ion-icon
+      ></span>
+    </div>
+    <div class="card-btn">
+      <div class="d-flex" style="padding: 1rem">
+        <div class="review-box">
+          <span class="text-sky small-text" style="color: black;">Product Quantity</span>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="features bg-white shadow-bottom" padding>
+    <h6 class="heading">Key Features</h6>
+    <p><span class="circle"></span>{{strProductDescription}}</p>
+    <p><span class="circle"></span>{{strProductRegularPrice}} $ </p>
+    <p><span class="circle"></span>{{strProductMake}}</p>  
+    <p><span class="circle"></span>{{strProductModel}}</p>
+
+
+    
+  </div>
+
+  <div class="reating-review bg-white" padding >
+    <div class="reating"></div>
+
+    <div class="lick" >
+      <button
+      ion-button
+      full
+      class="btn-round green-shadow btn-text"
+      style="background-color: red; color: white;"
+     
+      (click)="addToCart(dynamicId,strProductName,strImage,strProductDescription,strProductRegularPrice)"
+
+      >
+
+    Add To Cart
+      
+    </button>
+    </div>
+
+    <!-- (click)="addToCart(dynamicId)" -->
+    
+
+  
+  </div>
+</ion-content>

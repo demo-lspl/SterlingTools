@@ -2,7 +2,7 @@
 import { DemoPage } from './../demo/demo';
 import { ApiProvider } from './../../providers/api/api';
 import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController, ToastController, IonicPage } from 'ionic-angular';
+import { NavController, ModalController, ToastController, IonicPage, LoadingController } from 'ionic-angular';
 
 import { CategoryPage } from '../category/category';
 import { SearchPage } from '../search/search';
@@ -11,6 +11,8 @@ import { WishlistPage } from '../wishlist/wishlist';
 import { ItemdetailPage } from '../itemdetail/itemdetail';
 import { HttpClient } from '@angular/common/http';
 import { SearchproductsPage } from '../searchproducts/searchproducts';
+import { FormControl } from '@angular/forms';
+import { CategorydetailPage } from '../categorydetail/categorydetail';
 
 /**
  * Generated class for the Home1Page page.
@@ -64,6 +66,26 @@ export class Home1Page implements OnInit{
   searchText;
   showDataboolean = false;
   badge;
+  strData:string;
+  strProductCategoryName:string;
+  strProductMake:string;
+  productCategoryInformation: any = [];  
+  productCategoryInformation1: any = [];  
+
+  searchProduct = ''; 
+  searchTerm: string = '';
+  searchTerm1: string = '';
+    searchControl: FormControl;
+    searchControl1: FormControl;
+    items: any;
+    items1: any;
+
+    searching: any = false;
+    isItemAvailable = false;
+     itemsTushar = [];
+     name:string;
+   
+
 
  
 
@@ -71,12 +93,33 @@ export class Home1Page implements OnInit{
               public httpClient: HttpClient,
               public navCtrl: NavController,
               public toastController: ToastController,
-              public apiService: ApiProvider
-              ) { }
+              public apiService: ApiProvider,
+              public loadingCtrl: LoadingController
+              
+              ) 
+              { 
+                this.items = [
+                  { title: "one" },
+                  { title: "two" },
+                  { title: "three" },
+                  { title: "four" },
+                  { title: "five" },
+                  { title: "six" }
+                ];
+
+                this.searchControl = new FormControl();
+                this.searchControl = new FormControl();
+
+                this.initializeItems();
+
+              
+              }
 
   ngOnInit() {     
-    this.getMakeApi(); 
-    this.getProducts();    
+   
+    this.callProductCategoryDetail();   
+    
+   
     }        
     getMakeApi(){       
       console.log('getMakeApi called    ');
@@ -205,84 +248,165 @@ async showToastOnEmptyModel()
 } 
   
                    
-getProducts(){ 
-  const service = this.apiService.getProducts();
-  service.subscribe((data) => {
 
-    if (data) {
-      const resultado = data;
-      console.log(resultado);
-      this.products = resultado;
 
-        
-      
+
+
+
+
+
+
+
+
+
+   
+
+
+callProductCategoryDetail() {
+  this.httpClient.get('http://busybanda.com/sterling-tools/api/get_products/').subscribe((jsonResponse) => {
+     if(jsonResponse){
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+      loading.present();
+      console.log('Got Json Response success' );
+      loading.dismiss();
+      this.productCategoryInformation1 = jsonResponse['result'];
+      this.obj = JSON.stringify(jsonResponse);
+      console.log('Particular product details json ' + this.obj );
+ 
+      localStorage.setItem('GetProducts', this.obj);
      }
-     
-    
 
-    else {
-      this.showDataboolean = false;
+     else {
+      console.log('Got Json Response failure' );
+     }
+
+     if (this.productCategoryInformation1 && this.productCategoryInformation1.length) {
+      console.log('Particular product details available ' );
+     }  
+    else 
+    {
+      this.strData = 'No data available';
+      console.log('Particular product empty ' + jsonResponse['result']);
     }
   });
 }
+ 
 
-async requestPermission() {
-  try {
-    let hasPermission = await this.badge.hasPermission();
-    console.log(hasPermission);
-    if (!hasPermission) {
-      let permission = await this.badge.registerPermission();
-      console.log(permission);
-    }
-  } catch (e) {
-    console.error(e);
-  }
-}
 
-async setBadges(badgeNumber: number) {
-  try {
-    let badges = await this.badge.set(badgeNumber);
-    console.log(badges);
-  } catch (e) {
-    console.error(e);
-  }
-}
+// productDetailPage(id, name,regular_price) {
+//   this.navCtrl.push(ItemdetailPage, {
+//     id: id,
+//     name: name,
+//     regular_price:regular_price
+//   });
+//   console.log("Sent product id " + id);
+//   console.log("Sent product name " + name); 
+//   console.log("Sent product name " + regular_price);
+//   console.log('data added '+this.val);
+// }
 
-async getBadges() {
-  try {
-    let badgeAmount = await this.badge.get();
-    console.log(badgeAmount);
-  }
-  catch (e) {
-    console.error(e);
-  }
-}
 
-async increaseBadges(badgeNumber: string) {
-  try {
-    let badge = await this.badge.increase(Number(badgeNumber));
-    console.log(badge);
-  } catch (e) {
-    console.error(e);
-  }
-}
-async decreaseBadges(badgeNumber: string) {
-  try {
-    let badge = await this.badge.decrease(Number(badgeNumber));
-    console.log(badge);
-  } catch (e) {
-    console.error(e);
-  }
-}
 
-async clearBadges(){
-  try {
-    let badge = await this.badge.clear();
-    console.log(badge);
-  }
-  catch(e){
-    console.error(e);
-  }
-}
+searchClick(id,description,regular_price,image,pa_make,pa_model) {
+
+  this.navCtrl.push(CategorydetailPage, {
+        id: id,
+        description: description,
+        regular_price:regular_price,
+        image:image,
+        make:pa_make,  
+        model:pa_model
+      });
+  console.log("Selected Product Id " + id);
+  console.log("Selected Product description " + description);
+  console.log("Selected Product regular_price " + regular_price);
+  console.log("Selected Product image " + image);
+  console.log("Selected Product make " + pa_make);
+  console.log("Selected Product model " + pa_model);
+
+  
+
+  
+
 
 }
+
+filterItems(searchTerm) {
+  return this.items.filter(item => {
+    return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+  });
+}
+
+filterItems1(searchTerm1) {
+  return this.productCategoryInformation.filter(item1 => {
+    return item1.name.toLowerCase().indexOf(searchTerm1.toLowerCase()) > -1;
+  });
+}
+
+
+initializeItems() {
+
+  
+  this.items = [
+    'Islamabad',
+    'Istanbul',
+    'Jakarta',
+    'Kiel',
+    'Kyoto',
+    'Le Havre',
+    'Lebanon',
+    'Lhasa',
+  ];
+}
+  
+getItems(ev) {
+  // Reset items back to all of the items
+  this.initializeItems();
+
+  // set val to the value of the ev target
+  var val = ev.target.value;
+
+  // if the value is an empty string don't filter the items
+  if (val && val.trim() != '') {
+    this.items = this.items.filter((item) => {
+      return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+    })
+  }  
+}
+getItems1(ev) {
+  // Reset items back to all of the items
+  // this.callProductCategoryDetail();
+
+  console.log('Tushar' + this.name + this.productCategoryInformation1.length);
+
+  // set val to the value of the ev target
+  var val = ev.target.value;
+
+  console.log('Tushar val' + val);
+
+
+  // var ans = 334;
+  // var temp = ans.toString().toLowerCase();
+  // alert(temp);
+
+  // if the value is an empty string don't filter the items
+  if (val && val.trim() != '') {
+    this.productCategoryInformation1 = this.productCategoryInformation1.filter((item) => {
+      return (item.toString().toLowerCase().indexOf(val.toString().toLowerCase()) > -1);
+    })
+  }
+}
+
+async showToastOnClick()
+{
+ const toast = await this.toastController.create({
+   message: 'Please select Model ',
+   duration: 3000,
+   position: 'bottom',
+ });
+ toast.present();
+}
+
+}    

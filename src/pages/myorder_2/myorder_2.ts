@@ -4,7 +4,7 @@ import { ViewcartPage } from './../viewcart/viewcart';
 import { ApiProvider } from './../../providers/api/api';
 import { VieworderdetailsPage } from './../vieworderdetails/vieworderdetails';
 import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController, Platform, App, AlertController } from 'ionic-angular';
+import { NavController, ModalController, Platform, App, AlertController, LoadingController } from 'ionic-angular';
 import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
 
 
@@ -37,7 +37,8 @@ export class Myorder_2Page implements OnInit {
               public apiProvider: ApiProvider,
               public platform: Platform,
               public app: App,
-              public alertController: AlertController) {
+              public alertController: AlertController,
+              public loadingController: LoadingController) {
   
   }
 
@@ -169,6 +170,19 @@ export class Myorder_2Page implements OnInit {
     } catch (error) {}
   }
 
+  showLoaderPageLoad() {
+    let loading = this.loadingController.create({
+      content: 'Please wait loading Orders!'
+    });
+  
+    loading.present();
+  
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 1700);
+  }
+
   public async checkNetwork() {
     const { Network } = Plugins;
       this.networkListener = Network.addListener(
@@ -186,8 +200,7 @@ export class Myorder_2Page implements OnInit {
         this.networkStatus = await Network.getStatus();
         // this.showAlert();
         console.log('Network status available', this.networkStatus);
-        //this.router.navigate(['/invoices']);
-       // this.router.navigate(['/managecard']);
+        this.showLoaderPageLoad();
       }
     
   }

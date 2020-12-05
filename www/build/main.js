@@ -1,4 +1,4 @@
-webpackJsonp([28],{
+webpackJsonp([30],{
 
 /***/ 105:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -263,7 +263,7 @@ RegisterPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_api_api__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__viewcart_viewcart__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__wishlistupdated_wishlistupdated__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__capacitor_core__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__capacitor_core__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__home_home__ = __webpack_require__(17);
 /**
  * Generated class for the SearchproductsPage page.
@@ -551,11 +551,12 @@ SearchproductsPage = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* unused harmony export SearchType */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__(345);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(67);
 /*
@@ -584,6 +585,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 
 
 
+// My Custom set of data 
+var SearchType;
+(function (SearchType) {
+    SearchType["all"] = "";
+    SearchType["movie"] = "movie";
+    SearchType["series"] = "series";
+    SearchType["episode"] = "episode";
+})(SearchType || (SearchType = {}));
 let ApiProvider = class ApiProvider {
     constructor(httpClient, loadingController, storage) {
         this.httpClient = httpClient;
@@ -592,6 +601,10 @@ let ApiProvider = class ApiProvider {
         this.httpClientFetch = [];
         this.urlCountries = "https://raw.githubusercontent.com/sagarshirbhate/Country-State-City-Database/master/Contries.json";
         this.urlMake = 'http://busybanda.com/sterling-tools/api/mmey_make_search';
+        // Storing the url from where I want to fetch the data
+        this.url = 'https://www.omdbapi.com/';
+        //The api key for it
+        this.apiKey = 'ee67e267';
     }
     getProducts() {
         this.showProductsLoader();
@@ -904,7 +917,7 @@ CategoryPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_in_app_browser_ngx__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__search_search__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__searchproducts_searchproducts__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__capacitor_core__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__capacitor_core__ = __webpack_require__(27);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1047,7 +1060,7 @@ let HomePage = class HomePage {
         this.rendererCategories.setElementStyle(this._elRef.nativeElement, "webkitTransition", "max-height 500px, padding 1200ms");
         this.getAllFeaturedProducts();
         this.getAllFeaturedProductsCategories();
-        this.getCategoriesApi();
+        // this.getCategoriesApi();
         this.viewCartApi();
         this.getMakeApi();
         this.platform.registerBackButtonAction(() => {
@@ -1297,7 +1310,8 @@ let HomePage = class HomePage {
             if (this.productCategoryList.name = 'Uncategorized') {
                 console.log('Uncategorized available');
                 //this.productCategoryList.splice(0);
-                this.productCategoryList.filter(item => item !== "Uncategorized");
+                //this.productCategoryList.filter(item => item !== "Uncategorized")
+                this.productCategoryList.splice(0, 1);
             }
             else {
                 console.log('Uncategorized not available');
@@ -1738,7 +1752,7 @@ __decorate([
 ], HomePage.prototype, "Elem", void 0);
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["n" /* Component */])({
-        selector: "page-home",template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\home\home.html"*/'<ion-header class="bg-thime">\n\n  <ion-navbar>\n\n    <button ion-button menuToggle style="display: block !important">\n\n      <ion-icon class="menu-icon"\n\n        ><img src="assets/imgs/ic_menu.png"\n\n      /></ion-icon>\n\n    </button>\n\n\n\n    <!-- <p *ngIf="result.length === 0">No matching Result found</p>   -->\n\n    <!-- <div *ngIf="featuredProductsList; else elseStatement" class="checkFeaturedProducts">  -->\n\n      <!-- <ng-template *ngIf="role === \'admin\';then asscom else unit"></ng-template> -->\n\n   \n\n  \n\n    <ion-title >Products\n\n\n\n     \n\n      <!-- <div *ngIf="countProductsCartLocal; else elseStatement1">\n\n        <span float-right>\n\n          <ion-icon class="icon"  (click)="wishlistPage()" >\n\n            <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />\n\n            <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> \n\n          </ion-icon>\n\n  \n\n          <ion-icon class="icon"  (click)="cartPage()" >\n\n            <img src="assets/imgs/ic_my_cart.png" width="100%;" />\n\n            <ion-badge class="icon add-icon" >{{countProductsCartLocal}}</ion-badge> \n\n          </ion-icon>\n\n        </span> \n\n      </div>\n\n\n\n      <ng-template #elseStatement1>\n\n        <ion-icon class="icon"  (click)="cartPage()" >\n\n          <img src="assets/imgs/ic_my_cart.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> \n\n        </ion-icon>\n\n      </ng-template> -->\n\n      \n\n\n\n        \n\n    \n\n     \n\n\n\n\n\n     \n\n      <span float-right>\n\n        <!-- <ion-icon class="icon"  (click)="wishlistPage()" >\n\n          <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> \n\n        </ion-icon>\n\n        <ion-icon class="icon"  (click)="cartPage()"  >\n\n          <img src="assets/imgs/ic_my_cart.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsCartLocal}}</ion-badge> \n\n        </ion-icon> -->\n\n        <!-- <ion-icon class="icon"  (click)="cartPage()"  >\n\n          <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsWishlistLocalUpdated}}</ion-badge> \n\n        </ion-icon>\n\n\n\n        <ion-icon class="icon"  (click)="cartPage()"  >\n\n          <img src="assets/imgs/ic_my_cart.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsWishlistLocalUpdated}}</ion-badge> \n\n        </ion-icon> -->\n\n        <!-- <ion-badge>{{countProductsWishlistLocalUpdated}}</ion-badge>\n\n        <ion-badge>{{countProductsCartLocalUpdated}}</ion-badge> -->\n\n\n\n\n\n        <!-- <ion-label>{{viewCartList.length}}</ion-label> -->\n\n\n\n        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n        \n\n        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n\n\n\n\n      </span>\n\n     \n\n    </ion-title>\n\n\n\n    \n\n  </ion-navbar>\n\n  <div class="custom-id"  >\n\n    <ion-item class="custom" >\n\n      <!-- <ion-select\n\n        placeholder="All"\n\n        value="value"\n\n        okText="Ok"\n\n        cancelText="Cancel"\n\n        style="margin-left: 1px"\n\n        (ionChange)="getCategories(value)"\n\n        [(ngModel)]="value"\n\n        (click)="testValue()"\n\n       >\n\n        <ion-option  *ngFor="let productKey of productCategoryList"  (click)="testValue1()" >{{productKey.name}}</ion-option>\n\n      </ion-select> -->\n\n      <ion-select  \n\n          (ionChange)="getOuterName()" \n\n          [(ngModel)]="companyName" \n\n          placeholder = "All Products" >\n\n        <ion-option *ngFor="let companies of productCategoryList" \n\n          [value]="companies.catId" >\n\n          {{companies.name}}\n\n        </ion-option>\n\n      </ion-select>\n\n      <ion-icon name="md-search" class="text-light icon"></ion-icon>\n\n    </ion-item>\n\n    <ion-searchbar  \n\n    \n\n      placeholder="Search Products"\n\n      (click)="productDetailPage1(companyName)">\n\n    </ion-searchbar>\n\n  </div>  \n\n\n\n\n\n  <!-- <ion-grid class="product-grid"  >\n\n    <ion-row class="rowgrid" text-center style="height: 300px;" *ngFor="let productCategoryGrid of productCategoryList">\n\n      <ion-col col-6\n\n        class="columngrid"\n\n        \n\n        (click)="itemdetailPage(productCategoryGrid.catId)">\n\n        <ion-card>  \n\n          <ion-card-header style="justify-content: left">\n\n            <div\n\n              class="img-box">\n\n              <ion-option  *ngFor="let productKey of productCategoryList"  >{{productKey.name}}</ion-option>\n\n            </div>\n\n          </ion-card-header>\n\n          <ion-card-content>\n\n           \n\n          </ion-card-content>\n\n        </ion-card>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid> -->\n\n\n\n  \n\n</ion-header>\n\n\n\n<ion-content class="bg-light">\n\n\n\n  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">\n\n    <ion-refresher-content\n\n      pullingIcon="chevron-down-circle-outline"\n\n      pullingText="Pull to refresh"\n\n      refreshingSpinner="circles"\n\n      refreshingText="Refreshing Products."\n\n    >\n\n    </ion-refresher-content>\n\n  </ion-refresher>\n\n\n\n\n\n  <ion-slides pager>\n\n    <ion-slide *ngFor="let slide of slides">\n\n      <img [src]="slide.image" class="slide-image" />\n\n      <div class="banner-text">\n\n        <p [innerHTML]="slide.description"></p>\n\n        <small [innerHTML]="slide.smalltext"></small>\n\n        <h2 class="slide-title" [innerHTML]="slide.title"></h2>\n\n      </div>\n\n    </ion-slide>\n\n  </ion-slides>\n\n\n\n  <p (click)="viewAllCategories()">\n\n    Featured Items\n\n    <small class="bg-thime btn-round text-white" float-right> View All </small>\n\n  </p>\n\n\n\n  <!-- <p (click)="viewAllCategories()">\n\n    Featured Items--\n\n    <small class="bg-thime btn-round text-white" float-right>{{countProductsWishlistLocalUpdated}} </small>\n\n  </p>\n\n  <p (click)="viewAllCategories()">\n\n    Featured Items--\n\n    <small class="bg-thime btn-round text-white" float-right>{{countProductsCartLocalUpdated}} </small>\n\n  </p> -->\n\n\n\n  \n\n\n\n  <div class="card-main">\n\n    <ion-card>\n\n      <ion-card-header (click)="toggleAccordionVehicle()">\n\n        <ion-list>\n\n          <ion-item>\n\n            <button ion-button clear small icon-only item-right>\n\n              <ion-icon color="light" [name]="icon"></ion-icon>\n\n            </button>\n\n\n\n            <h6 >SHOP BY VEHICLE</h6>\n\n          </ion-item>\n\n        </ion-list>\n\n      </ion-card-header>\n\n      <ion-card-content #cc>\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center">\n\n                <ion-item>\n\n                  <ion-select\n\n                    placeholder="MAKE"\n\n                    value="sortpopular"\n\n                    okText="Ok"\n\n                    cancelText="Cancel"\n\n                    (ionChange)="makeDropDownValue(makeValue)"\n\n                    [(ngModel)]="makeValue"\n\n                    >\n\n                    <ion-option *ngFor="let makeKey of makeList" >{{makeKey}}</ion-option>\n\n                  \n\n                  </ion-select>\n\n                </ion-item>\n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center">\n\n                <ion-item>\n\n                  <ion-select\n\n                    placeholder="MODEL"\n\n                    value="sortpopular"\n\n                    okText="Ok"\n\n                    cancelText="Cancel"\n\n                  \n\n                    >\n\n                    <!-- <ion-option value="sortpopular">popularity</ion-option>\n\n                    <ion-option value="sortaveragerating">rating</ion-option>\n\n                    <ion-option value="sortlatest">latest</ion-option>\n\n                    <ion-option value="sortpricelowhigh" style="max-width: 100%">low to high</ion-option > -->\n\n                      <!-- <ion-option *ngFor="let modelKey of modelList" >{{modelKey}}</ion-option> -->\n\n                      <ion-option *ngFor="let modelKey of modelList" [value] = "modelKey" (ionSelect)="triggerMeModel(modelKey)" >{{modelKey}}</ion-option>\n\n\n\n                  </ion-select>\n\n                </ion-item>\n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center">\n\n                <ion-item>\n\n                  <ion-select\n\n                    placeholder="SUB MODEL"\n\n                    value="sortpopular"\n\n                    okText="Ok"\n\n                    cancelText="Cancel"\n\n                    [(ngModel)]="engineValue">\n\n                    <!-- <ion-option value="sortpopular">popularity</ion-option>\n\n                    <ion-option value="sortaveragerating">rating</ion-option>\n\n                    <ion-option value="sortlatest">latest</ion-option>\n\n                    <ion-option value="sortpricelowhigh" style="max-width: 100%">low to high</ion-option> -->\n\n                    <!-- <ion-option *ngFor="let engineKey of engineList" >{{engineKey}}</ion-option> -->\n\n\n\n                    <ion-option *ngFor="let engineKey of engineList" [value] = "engineKey" (ionSelect)="triggerMeEngine(engineKey)">{{engineKey}}</ion-option>\n\n\n\n                  </ion-select>\n\n                </ion-item>\n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center">\n\n                <ion-item>\n\n                  <ion-select\n\n                    placeholder="YEAR"\n\n                    value="sortpopular"\n\n                    okText="Ok"\n\n                    cancelText="Cancel"\n\n                    [(ngModel)]="yearValue">\n\n                    <!-- <ion-option value="sortpopular">popularity</ion-option>\n\n                    <ion-option value="sortaveragerating">rating</ion-option>\n\n                    <ion-option value="sortlatest">latest</ion-option>\n\n                    <ion-option value="sortpricelowhigh" style="max-width: 100%">low to high</ion-option> -->\n\n                    <!-- <ion-option *ngFor="let yearKey of yearList" >{{yearKey}}</ion-option> -->\n\n                    <ion-option *ngFor="let yearKey of yearList"  >{{yearKey}}</ion-option>\n\n\n\n                  </ion-select>\n\n                </ion-item>\n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row\n\n            class="ion-justify-content-center"\n\n            style="2px 10px !important;"\n\n          >\n\n            <button ion-button full class="bg-thime btn-round btn-text"\n\n            (click)="searchData(makeValue,strTestValue2,strTestValue3)">\n\n              Search \n\n            </button>\n\n          </ion-row>\n\n        </div>  \n\n      </ion-card-content>\n\n    </ion-card>\n\n  </div>\n\n\n\n\n\n  <div class="card-main">\n\n    <ion-card>\n\n      <ion-card-header (click)="toggleAccordionCategory()">\n\n        <ion-list>\n\n          <ion-item>\n\n            <button ion-button clear small icon-only item-right>\n\n              <ion-icon color="light" [name]="icon"></ion-icon>\n\n            </button>\n\n\n\n            <h6>SHOP BY CATEGORY</h6>\n\n          </ion-item>\n\n        </ion-list>\n\n      </ion-card-header>\n\n      <ion-card-content #cc1>\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center;background: white;">\n\n\n\n                <ion-grid class="product-grid" style="margin-top: 8px;">\n\n                  <ion-row class="rowgrid">\n\n                    <ion-col\n\n                      class="columngrid"\n\n                      *ngFor="let featuredProductCategories of featuredProductCategoryList"\n\n                      (click)="productcategoryDetailPage(featuredProductCategories.catId,featuredProductCategories.url)"\n\n                      style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);">\n\n              \n\n                     \n\n                      <ion-card >\n\n                        \n\n              \n\n                        <ion-card-header style="justify-content: left">\n\n                          <div \n\n                            class="img-box"\n\n                           \n\n                           >\n\n\n\n                            <!-- <img src="assets/imgs/categoryfirst.png"  style="width:200px;height:80px ;"> -->\n\n\n\n                            <img  [src]="featuredProductCategories.thumbnail"  style="width:200px;height:80px;margin-top: 6px">\n\n\n\n                         \n\n                              \n\n                          </div>\n\n                        </ion-card-header>\n\n                        <ion-card-content>\n\n                      \n\n                          <ion-item >\n\n                            <h5 style="font-size: 14px;text-align: -webkit-center;margin-top: 7px;">{{featuredProductCategories.name}}</h5> \n\n                          </ion-item>\n\n                          <div>\n\n                            <div *ngIf="featuredProductCategories.regular_price">     <!--If "product" exists-->\n\n                              <h5 style="font-size: 12px;text-align: center;"  > <span class="priceicon">Price : </span>  <span class="priceicon">$</span> {{featuredProductCategories.regular_price}} </h5>  \n\n                              <!-- <div class="rateing">\n\n                                <div class="card-btn">  \n\n                                  <p class="" float-left>\n\n                                    <button\n\n                                      ion-button\n\n                                      full\n\n                                      class="bg-thime btn-round btn-text"\n\n                                      style="margin-top: 3px; width: 150px;text-align: center;"\n\n                                    >\n\n                                      Add To Cart\n\n                                    </button>\n\n                                  </p>\n\n                                </div>\n\n                              </div> -->\n\n                            </div>\n\n\n\n\n\n                             <!--If "product" not exists-->\n\n                        \n\n                            <div *ngIf="!featuredProductCategories.regular_price" style="text-align: -webkit-center;">    \n\n                              <!-- <span >☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span> -->\n\n                              <div class="rateing">\n\n                                <div class="card-btn">\n\n                                   <p class="" float-left>\n\n                                    <!-- <button\n\n                                      ion-button\n\n                                      full\n\n                                      class="bg-thime btn-round btn-text"\n\n                                      style="margin-top: 3px; width: 150px;text-align: center;"\n\n                                    >\n\n                                       More Info--\n\n                                    </button> -->\n\n                                    \n\n                                  </p> \n\n                                  <!-- <p style="font-size: 11px;text-align: -webkit-center;">{{featuredProductCategories.name}}</p> -->\n\n                                  <!-- <ion-item >\n\n                                    <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProductCategories.name}}</h5> \n\n                                  </ion-item> -->\n\n                                </div>\n\n                              </div>\n\n                            </div> \n\n                        </div>\n\n              \n\n                        \n\n              \n\n                         \n\n                        </ion-card-content>\n\n                      </ion-card>\n\n                    </ion-col>\n\n              \n\n                \n\n                  </ion-row>\n\n                </ion-grid>\n\n              \n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n     \n\n\n\n        <!-- <div class="select-section shadow-bottom">\n\n          <ion-row\n\n            class="ion-justify-content-center"\n\n           \n\n          >\n\n            <button ion-button full class="bg-thime btn-round btn-text">\n\n              Shop Now\n\n            </button>\n\n          </ion-row>\n\n        </div>   -->\n\n      </ion-card-content>\n\n    </ion-card>\n\n  </div>\n\n\n\n  \n\n\n\n  <!-- <div class="shorting-bar">\n\n    <ion-item>\n\n      <div class="one">\n\n         <div class="one1">\n\n            <ion-icon name="code-working" style="margin-top: 10px;"></ion-icon>\n\n             <ion-item class="custom short">\n\n              <ion-select\n\n                placeholder="SORT BY"\n\n                value="MAKE"\n\n                okText="Ok"\n\n                cancelText="Cancel"\n\n                style="color: red;"\n\n                class="ion-select"\n\n                (ionChange)="sortDropDownValue(featuredProductCategoryList)">\n\n                <ion-option value="NAME">MODEL</ion-option>\n\n                <ion-option value="PRICE">PRICE</ion-option>\n\n                <ion-option value="BRAND">BRAND</ion-option>\n\n                <ion-option value="POSITION" >POSITION</ion-option>\n\n              </ion-select>\n\n        \n\n              <ion-icon name="md-search" class="text-light icon"></ion-icon>\n\n            </ion-item> \n\n             </div>   \n\n\n\n        \n\n        <div class="two2" (click)="hide()">\n\n          <ion-icon\n\n            ios="ios-funnel"\n\n            md="md-funnel"\n\n            role="img"\n\n            class="icon icon-ios ion-ios-funnel item-icon"\n\n            aria-label="funnel"  \n\n            ng-reflect-ios="ios-funnel"\n\n            ng-reflect-md="md-funnel"\n\n          ></ion-icon\n\n          >FILTER \n\n        </div>\n\n        \n\n      </div>\n\n\n\n      <div class="two">\n\n        <ion-icon ios="ios-grid" md="md-grid" (click)="gridView()"></ion-icon>\n\n        <ion-icon\n\n          ios="ios-list-box"\n\n          md="md-list-box"\n\n          (click)="listView()"\n\n        ></ion-icon>\n\n      </div>\n\n    </ion-item>\n\n  </div> -->\n\n  <div class="select-section shadow-bottom" *ngIf="hideMe">\n\n    <ion-row class="filter-bar">\n\n      <ion-col col-3>\n\n        <div class="size">\n\n          <ion-item>\n\n            <ion-select  interface="action-sheet">\n\n              <ion-option selected value="mute">Brakes</ion-option>\n\n              <ion-option value="enable">Suspensions</ion-option>\n\n          </ion-select>\n\n          </ion-item>  \n\n        </div>\n\n      </ion-col>\n\n      <ion-col col-3>\n\n        <div class="size">\n\n          <ion-item>\n\n            <ion-select interface="action-sheet">\n\n              <ion-option selected value="mute">Brakes</ion-option>\n\n              <ion-option value="enable">Suspensions</ion-option>\n\n            </ion-select>\n\n          </ion-item>  \n\n        </div>\n\n      </ion-col>\n\n      <ion-col col-3>\n\n        <div class="size">\n\n          <ion-item>\n\n            <ion-select interface="action-sheet">\n\n              <ion-option selected value="mute">Brakes</ion-option>\n\n              <ion-option value="enable">Suspensions</ion-option>\n\n            </ion-select>\n\n          </ion-item>  \n\n        </div>\n\n      </ion-col>\n\n      <ion-col col-3>\n\n        <div class="size">\n\n          <ion-item>\n\n            <ion-select interface="action-sheet">\n\n              <ion-option selected value="mute">Brakes</ion-option>\n\n              <ion-option value="enable">Suspensions</ion-option>\n\n            </ion-select>\n\n          </ion-item>  \n\n        </div>\n\n      </ion-col>\n\n    </ion-row>\n\n  </div>\n\n\n\n \n\n\n\n\n\n   <div *ngIf="featuredProductsList; else elseStatement" class="checkFeaturedProducts"> \n\n</div> \n\n<ng-template #elseStatement style="margin-top: 10px;"> \n\n    No Product Available\n\n</ng-template> \n\n\n\n<ng-container *ngIf="( featuredProductsList | filter : localSearchProduct) as result">\n\n\n\n  \n\n  \n\n  <p *ngIf="result.length === 0">No matching Result found</p>  \n\n</ng-container>\n\n\n\n  <ion-grid class="product-grid" style="margin-top: 15px;">\n\n    <ion-row class="rowgrid">\n\n      <ion-col\n\n        class="columngrid"\n\n        *ngFor="let featuredProducts of featuredProductsList | filter:localSearchProduct">\n\n        <ion-card >\n\n          <ion-card-header style="justify-content: left">\n\n            <div \n\n              class="img-box"\n\n              (click)="productDetailPage(featuredProducts.id,featuredProducts.name,featuredProducts.regular_price)">\n\n              <img  [src]="featuredProducts.image"  style="width:200px;height:80px ;">\n\n            </div>\n\n            <ion-icon   name="md-heart" class="text-light icon" (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"></ion-icon>\n\n         \n\n            <!-- <ion-icon name="arrow-down" *ngIf="!visible" (click)="toggle()"></ion-icon>\n\n            <ion-icon name="arrow-up" *ngIf="visible" (click)="toggle()"></ion-icon> -->\n\n          </ion-card-header>\n\n          <ion-card-content>\n\n  \n\n           \n\n        \n\n            <ion-item >\n\n              <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5> \n\n            </ion-item>\n\n            <div>\n\n              <div *ngIf="featuredProducts.regular_price">     <!--If "product" exists-->\n\n                <h5 style="font-size: 12px;text-align: center;color: red;"  > <span class="priceicon" style="color: red;">Price : </span> <span class="priceicon">$</span> {{featuredProducts.regular_price}}  </h5>  \n\n                <div class="rateing">\n\n                  <div class="card-btn">\n\n                    <p style="width: 100%;" float-left>\n\n                      <button\n\n                        ion-button\n\n                        full\n\n                        class="bg-thime btn-round btn-text"\n\n                        \n\n                        \n\n                        (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"\n\n\n\n                      >\n\n                        Add To Cart\n\n                      </button>\n\n                    </p>\n\n                  </div>\n\n                </div>\n\n              </div>\n\n\n\n          \n\n          \n\n              <div *ngIf="!featuredProducts.regular_price">     <!--If "product" not exists-->\n\n                <h5 style="font-size: 12px;text-align: center"> Price Not Available</h5>  \n\n\n\n                <div class="rateing">\n\n                  <div class="card-btn">\n\n                    <p class="" float-left>\n\n                      <button\n\n                        ion-button\n\n                        full\n\n                        class="bg-thime btn-round btn-text"\n\n                        style="margin-top: 3px; width: 150px;text-align: center;"\n\n                        (click)="readMoreLocal(featuredProducts.id,featuredProducts.name,featuredProducts.regular_price)"\n\n                      >\n\n                        Read More\n\n                      </button>\n\n                    </p>\n\n                  </div>\n\n                </div>\n\n              </div>\n\n          </div>\n\n\n\n          \n\n\n\n            \n\n          </ion-card-content>\n\n        </ion-card>\n\n      </ion-col>\n\n\n\n      <!-- <ion-col>\n\n        <ion-icon name="arrow-down" *ngIf="!visible" (click)="toggle()"></ion-icon>\n\n        <ion-icon name="arrow-up" *ngIf="visible" (click)="toggle()"></ion-icon>\n\n      </ion-col> -->\n\n\n\n  \n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  \n\n      <!-- <ion-item>\n\n        <ion-label>Make</ion-label>\n\n        <ion-select [(ngModel)]="makeValue"  (ionChange)="makeDropDownValue(makeValue)">\n\n          <ion-option *ngFor="let key of makeList" >{{key}}</ion-option>\n\n        </ion-select>\n\n    \n\n      </ion-item>\n\n\n\n\n\n     \n\n\n\n\n\n      <ion-item>\n\n        <ion-label>Model</ion-label>\n\n        <ion-select [(ngModel)]="modelValue" (ionChange)="modelDropDownValue(modelValue)" >\n\n          <ion-option *ngFor="let key of modelList">{{makeValue}}</ion-option>\n\n        </ion-select>\n\n      </ion-item> -->\n\n\n\n       <!-- <ion-item>\n\n        <ion-label>Model</ion-label>\n\n        <ion-select [(ngModel)]="makeValue" (ionChange)="modelDropDownValue(makeValue)">\n\n          <ion-option *ngFor="let key of makeList">{{makeValue}}</ion-option>\n\n          \n\n        </ion-select>\n\n        <ion-label>Length {{makeList.length}}</ion-label>\n\n      </ion-item> -->\n\n\n\n \n\n\n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\home\home.html"*/,
+        selector: "page-home",template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\home\home.html"*/'<ion-header class="bg-thime">\n\n  <ion-navbar>\n\n    <button ion-button menuToggle style="display: block !important">\n\n      <ion-icon class="menu-icon"\n\n        ><img src="assets/imgs/ic_menu.png"\n\n      /></ion-icon>\n\n    </button>\n\n\n\n    <!-- <p *ngIf="result.length === 0">No matching Result found</p>   -->\n\n    <!-- <div *ngIf="featuredProductsList; else elseStatement" class="checkFeaturedProducts">  -->\n\n      <!-- <ng-template *ngIf="role === \'admin\';then asscom else unit"></ng-template> -->\n\n   \n\n  \n\n    <ion-title >Products\n\n\n\n     \n\n      <!-- <div *ngIf="countProductsCartLocal; else elseStatement1">\n\n        <span float-right>\n\n          <ion-icon class="icon"  (click)="wishlistPage()" >\n\n            <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />\n\n            <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> \n\n          </ion-icon>\n\n  \n\n          <ion-icon class="icon"  (click)="cartPage()" >\n\n            <img src="assets/imgs/ic_my_cart.png" width="100%;" />\n\n            <ion-badge class="icon add-icon" >{{countProductsCartLocal}}</ion-badge> \n\n          </ion-icon>\n\n        </span> \n\n      </div>\n\n\n\n      <ng-template #elseStatement1>\n\n        <ion-icon class="icon"  (click)="cartPage()" >\n\n          <img src="assets/imgs/ic_my_cart.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> \n\n        </ion-icon>\n\n      </ng-template> -->\n\n      \n\n\n\n        \n\n    \n\n     \n\n\n\n\n\n     \n\n      <span float-right>\n\n        <!-- <ion-icon class="icon"  (click)="wishlistPage()" >\n\n          <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> \n\n        </ion-icon>\n\n        <ion-icon class="icon"  (click)="cartPage()"  >\n\n          <img src="assets/imgs/ic_my_cart.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsCartLocal}}</ion-badge> \n\n        </ion-icon> -->\n\n        <!-- <ion-icon class="icon"  (click)="cartPage()"  >\n\n          <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsWishlistLocalUpdated}}</ion-badge> \n\n        </ion-icon>\n\n\n\n        <ion-icon class="icon"  (click)="cartPage()"  >\n\n          <img src="assets/imgs/ic_my_cart.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsWishlistLocalUpdated}}</ion-badge> \n\n        </ion-icon> -->\n\n        <!-- <ion-badge>{{countProductsWishlistLocalUpdated}}</ion-badge>\n\n        <ion-badge>{{countProductsCartLocalUpdated}}</ion-badge> -->\n\n\n\n\n\n        <!-- <ion-label>{{viewCartList.length}}</ion-label> -->\n\n\n\n        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n        \n\n        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n\n\n\n\n      </span>\n\n     \n\n    </ion-title>\n\n\n\n    \n\n  </ion-navbar>\n\n  <div class="custom-id"  >\n\n    <ion-item class="custom" >\n\n      \n\n      <ion-select  \n\n          (ionChange)="getOuterName()" \n\n          [(ngModel)]="companyName" \n\n          placeholder = "All Products"\n\n          okText="Ok"\n\n          cancelText="Cancel" \n\n          class="testing">\n\n        <ion-option *ngFor="let companies of productCategoryList" \n\n          [value]="companies.catId" >\n\n          {{companies.name}}\n\n        </ion-option>\n\n      </ion-select>\n\n\n\n\n\n      <!-- <div *ngIf="this.productCategoryList.name = \'Uncategorized\';then content else other_content">here is ignored</div>    \n\n<ng-template #content>content here...</ng-template>\n\n<ng-template #other_content>other content here...</ng-template> -->\n\n\n\n      <ion-icon name="md-search" class="text-light icon"></ion-icon>\n\n    </ion-item>\n\n    <ion-searchbar  \n\n    \n\n      placeholder="Search Products"\n\n      (click)="productDetailPage1(companyName)">\n\n    </ion-searchbar>\n\n  </div>  \n\n\n\n\n\n \n\n  \n\n</ion-header>\n\n\n\n<ion-content class="bg-light">\n\n\n\n  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">\n\n    <ion-refresher-content\n\n      pullingIcon="chevron-down-circle-outline"\n\n      pullingText="Pull to refresh"\n\n      refreshingSpinner="circles"\n\n      refreshingText="Refreshing Products."\n\n    >\n\n    </ion-refresher-content>\n\n  </ion-refresher>\n\n\n\n\n\n  <ion-slides pager>\n\n    <ion-slide *ngFor="let slide of slides">\n\n      <img [src]="slide.image" class="slide-image" />\n\n      <div class="banner-text">\n\n        <p [innerHTML]="slide.description"></p>\n\n        <small [innerHTML]="slide.smalltext"></small>\n\n        <h2 class="slide-title" [innerHTML]="slide.title"></h2>\n\n      </div>\n\n    </ion-slide>\n\n  </ion-slides>\n\n\n\n  <p (click)="viewAllCategories()">\n\n    Featured Items\n\n    <small class="bg-thime btn-round text-white" float-right> View All </small>\n\n  </p>\n\n\n\n  <!-- <p (click)="viewAllCategories()">\n\n    Featured Items--\n\n    <small class="bg-thime btn-round text-white" float-right>{{countProductsWishlistLocalUpdated}} </small>\n\n  </p>\n\n  <p (click)="viewAllCategories()">\n\n    Featured Items--\n\n    <small class="bg-thime btn-round text-white" float-right>{{countProductsCartLocalUpdated}} </small>\n\n  </p> -->\n\n\n\n  \n\n\n\n  <div class="card-main">\n\n    <ion-card>\n\n      <ion-card-header (click)="toggleAccordionVehicle()">\n\n        <ion-list>\n\n          <ion-item>\n\n            <button ion-button clear small icon-only item-right>\n\n              <ion-icon color="light" [name]="icon"></ion-icon>\n\n            </button>\n\n\n\n            <h6 >SHOP BY VEHICLE</h6>\n\n          </ion-item>\n\n        </ion-list>\n\n      </ion-card-header>\n\n      <ion-card-content #cc>\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center">\n\n                <ion-item>\n\n                  <ion-select\n\n                    placeholder="MAKE"\n\n                    value="sortpopular"\n\n                    okText="Ok"\n\n                    cancelText="Cancel"\n\n                    (ionChange)="makeDropDownValue(makeValue)"\n\n                    [(ngModel)]="makeValue"\n\n                    >\n\n                    <ion-option *ngFor="let makeKey of makeList" >{{makeKey}}</ion-option>\n\n                  \n\n                  </ion-select>\n\n                </ion-item>\n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center">\n\n                <ion-item>\n\n                  <ion-select\n\n                    placeholder="MODEL"\n\n                    value="sortpopular"\n\n                    okText="Ok"\n\n          cancelText="Cancel"\n\n                  \n\n                    >\n\n                    <!-- <ion-option value="sortpopular">popularity</ion-option>\n\n                    <ion-option value="sortaveragerating">rating</ion-option>\n\n                    <ion-option value="sortlatest">latest</ion-option>\n\n                    <ion-option value="sortpricelowhigh" style="max-width: 100%">low to high</ion-option > -->\n\n                      <!-- <ion-option *ngFor="let modelKey of modelList" >{{modelKey}}</ion-option> -->\n\n                      <ion-option *ngFor="let modelKey of modelList" [value] = "modelKey" (ionSelect)="triggerMeModel(modelKey)" >{{modelKey}}</ion-option>\n\n\n\n                  </ion-select>\n\n                </ion-item>\n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center">\n\n                <ion-item>\n\n                  <ion-select\n\n                    placeholder="SUB MODEL"\n\n                    value="sortpopular"\n\n                    okText="Ok"\n\n          cancelText="Cancel"\n\n                    [(ngModel)]="engineValue">\n\n                    <!-- <ion-option value="sortpopular">popularity</ion-option>\n\n                    <ion-option value="sortaveragerating">rating</ion-option>\n\n                    <ion-option value="sortlatest">latest</ion-option>\n\n                    <ion-option value="sortpricelowhigh" style="max-width: 100%">low to high</ion-option> -->\n\n                    <!-- <ion-option *ngFor="let engineKey of engineList" >{{engineKey}}</ion-option> -->\n\n\n\n                    <ion-option *ngFor="let engineKey of engineList" [value] = "engineKey" (ionSelect)="triggerMeEngine(engineKey)">{{engineKey}}</ion-option>\n\n\n\n                  </ion-select>\n\n                </ion-item>\n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center">\n\n                <ion-item>\n\n                  <ion-select\n\n                    placeholder="YEAR"\n\n                    value="sortpopular"\n\n                    okText="Ok"\n\n          cancelText="Cancel"\n\n                    [(ngModel)]="yearValue">\n\n                    <!-- <ion-option value="sortpopular">popularity</ion-option>\n\n                    <ion-option value="sortaveragerating">rating</ion-option>\n\n                    <ion-option value="sortlatest">latest</ion-option>\n\n                    <ion-option value="sortpricelowhigh" style="max-width: 100%">low to high</ion-option> -->\n\n                    <!-- <ion-option *ngFor="let yearKey of yearList" >{{yearKey}}</ion-option> -->\n\n                    <ion-option *ngFor="let yearKey of yearList"  >{{yearKey}}</ion-option>\n\n\n\n                  </ion-select>\n\n                </ion-item>\n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row\n\n            class="ion-justify-content-center"\n\n            style="2px 10px !important;"\n\n          >\n\n            <button ion-button full class="bg-thime btn-round btn-text"\n\n            (click)="searchData(makeValue,strTestValue2,strTestValue3)">\n\n              Search \n\n            </button>\n\n          </ion-row>\n\n        </div>  \n\n      </ion-card-content>\n\n    </ion-card>\n\n  </div>\n\n\n\n\n\n  <div class="card-main">\n\n    <ion-card>\n\n      <ion-card-header (click)="toggleAccordionCategory()">\n\n        <ion-list>\n\n          <ion-item>\n\n            <button ion-button clear small icon-only item-right>\n\n              <ion-icon color="light" [name]="icon"></ion-icon>\n\n            </button>\n\n\n\n            <h6>SHOP BY CATEGORY</h6>\n\n          </ion-item>\n\n        </ion-list>\n\n      </ion-card-header>\n\n      <ion-card-content #cc1>\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center;background: white;">\n\n\n\n                <ion-grid class="product-grid" style="margin-top: 8px;">\n\n                  <ion-row class="rowgrid">\n\n                    <ion-col\n\n                      class="columngrid"\n\n                      *ngFor="let featuredProductCategories of featuredProductCategoryList"\n\n                      (click)="productcategoryDetailPage(featuredProductCategories.catId,featuredProductCategories.url)"\n\n                      style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);">\n\n              \n\n                     \n\n                      <ion-card >\n\n                        \n\n              \n\n                        <ion-card-header style="justify-content: left">\n\n                          <div \n\n                            class="img-box"\n\n                           \n\n                           >\n\n\n\n                            <!-- <img src="assets/imgs/categoryfirst.png"  style="width:200px;height:80px ;"> -->\n\n\n\n                            <img  [src]="featuredProductCategories.thumbnail"  style="width:200px;height:80px;margin-top: 6px">\n\n\n\n                         \n\n                              \n\n                          </div>\n\n                        </ion-card-header>\n\n                        <ion-card-content>\n\n                      \n\n                          <ion-item >\n\n                            <h5 style="font-size: 14px;text-align: -webkit-center;margin-top: 7px;">{{featuredProductCategories.name}}</h5> \n\n                          </ion-item>\n\n                          <div>\n\n                            <div *ngIf="featuredProductCategories.regular_price">     <!--If "product" exists-->\n\n                              <h5 style="font-size: 12px;text-align: center;"  > <span class="priceicon">Price : </span>  <span class="priceicon">$</span> {{featuredProductCategories.regular_price}} </h5>  \n\n                              <!-- <div class="rateing">\n\n                                <div class="card-btn">  \n\n                                  <p class="" float-left>\n\n                                    <button\n\n                                      ion-button\n\n                                      full\n\n                                      class="bg-thime btn-round btn-text"\n\n                                      style="margin-top: 3px; width: 150px;text-align: center;"\n\n                                    >\n\n                                      Add To Cart\n\n                                    </button>\n\n                                  </p>\n\n                                </div>\n\n                              </div> -->\n\n                            </div>\n\n\n\n\n\n                             <!--If "product" not exists-->\n\n                        \n\n                            <div *ngIf="!featuredProductCategories.regular_price" style="text-align: -webkit-center;">    \n\n                              <!-- <span >☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span> -->\n\n                              <div class="rateing">\n\n                                <div class="card-btn">\n\n                                   <p class="" float-left>\n\n                                    <!-- <button\n\n                                      ion-button\n\n                                      full\n\n                                      class="bg-thime btn-round btn-text"\n\n                                      style="margin-top: 3px; width: 150px;text-align: center;"\n\n                                    >\n\n                                       More Info--\n\n                                    </button> -->\n\n                                    \n\n                                  </p> \n\n                                  <!-- <p style="font-size: 11px;text-align: -webkit-center;">{{featuredProductCategories.name}}</p> -->\n\n                                  <!-- <ion-item >\n\n                                    <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProductCategories.name}}</h5> \n\n                                  </ion-item> -->\n\n                                </div>\n\n                              </div>\n\n                            </div> \n\n                        </div>\n\n              \n\n                        \n\n              \n\n                         \n\n                        </ion-card-content>\n\n                      </ion-card>\n\n                    </ion-col>\n\n              \n\n                \n\n                  </ion-row>\n\n                </ion-grid>\n\n              \n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n     \n\n\n\n        <!-- <div class="select-section shadow-bottom">\n\n          <ion-row\n\n            class="ion-justify-content-center"\n\n           \n\n          >\n\n            <button ion-button full class="bg-thime btn-round btn-text">\n\n              Shop Now\n\n            </button>\n\n          </ion-row>\n\n        </div>   -->\n\n      </ion-card-content>\n\n    </ion-card>\n\n  </div>\n\n\n\n  \n\n\n\n  <!-- <div class="shorting-bar">\n\n    <ion-item>\n\n      <div class="one">\n\n         <div class="one1">\n\n            <ion-icon name="code-working" style="margin-top: 10px;"></ion-icon>\n\n             <ion-item class="custom short">\n\n              <ion-select\n\n                placeholder="SORT BY"\n\n                value="MAKE"\n\n                okText="Ok"\n\n                cancelText="Cancel"\n\n                style="color: red;"\n\n                class="ion-select"\n\n                (ionChange)="sortDropDownValue(featuredProductCategoryList)">\n\n                <ion-option value="NAME">MODEL</ion-option>\n\n                <ion-option value="PRICE">PRICE</ion-option>\n\n                <ion-option value="BRAND">BRAND</ion-option>\n\n                <ion-option value="POSITION" >POSITION</ion-option>\n\n              </ion-select>\n\n        \n\n              <ion-icon name="md-search" class="text-light icon"></ion-icon>\n\n            </ion-item> \n\n             </div>   \n\n\n\n        \n\n        <div class="two2" (click)="hide()">\n\n          <ion-icon\n\n            ios="ios-funnel"\n\n            md="md-funnel"\n\n            role="img"\n\n            class="icon icon-ios ion-ios-funnel item-icon"\n\n            aria-label="funnel"  \n\n            ng-reflect-ios="ios-funnel"\n\n            ng-reflect-md="md-funnel"\n\n          ></ion-icon\n\n          >FILTER \n\n        </div>\n\n        \n\n      </div>\n\n\n\n      <div class="two">\n\n        <ion-icon ios="ios-grid" md="md-grid" (click)="gridView()"></ion-icon>\n\n        <ion-icon\n\n          ios="ios-list-box"\n\n          md="md-list-box"\n\n          (click)="listView()"\n\n        ></ion-icon>\n\n      </div>\n\n    </ion-item>\n\n  </div> -->\n\n  <div class="select-section shadow-bottom" *ngIf="hideMe">\n\n    <ion-row class="filter-bar">\n\n      <ion-col col-3>\n\n        <div class="size">\n\n          <ion-item>\n\n            <ion-select  interface="action-sheet">\n\n              <ion-option selected value="mute">Brakes</ion-option>\n\n              <ion-option value="enable">Suspensions</ion-option>\n\n          </ion-select>\n\n          </ion-item>  \n\n        </div>\n\n      </ion-col>\n\n      <ion-col col-3>\n\n        <div class="size">\n\n          <ion-item>\n\n            <ion-select interface="action-sheet">\n\n              <ion-option selected value="mute">Brakes</ion-option>\n\n              <ion-option value="enable">Suspensions</ion-option>\n\n            </ion-select>\n\n          </ion-item>  \n\n        </div>\n\n      </ion-col>\n\n      <ion-col col-3>\n\n        <div class="size">\n\n          <ion-item>\n\n            <ion-select interface="action-sheet">\n\n              <ion-option selected value="mute">Brakes</ion-option>\n\n              <ion-option value="enable">Suspensions</ion-option>\n\n            </ion-select>\n\n          </ion-item>  \n\n        </div>\n\n      </ion-col>\n\n      <ion-col col-3>\n\n        <div class="size">\n\n          <ion-item>\n\n            <ion-select interface="action-sheet">\n\n              <ion-option selected value="mute">Brakes</ion-option>\n\n              <ion-option value="enable">Suspensions</ion-option>\n\n            </ion-select>\n\n          </ion-item>  \n\n        </div>\n\n      </ion-col>\n\n    </ion-row>\n\n  </div>\n\n\n\n \n\n\n\n\n\n   <div *ngIf="featuredProductsList; else elseStatement" class="checkFeaturedProducts"> \n\n</div> \n\n<ng-template #elseStatement style="margin-top: 10px;"> \n\n    No Product Available\n\n</ng-template> \n\n\n\n<ng-container *ngIf="( featuredProductsList | filter : localSearchProduct) as result">\n\n\n\n  \n\n  \n\n  <p *ngIf="result.length === 0">No matching Result found</p>  \n\n</ng-container>\n\n\n\n  <ion-grid class="product-grid" style="margin-top: 15px;">\n\n    <ion-row class="rowgrid">\n\n      <ion-col\n\n        class="columngrid"\n\n        *ngFor="let featuredProducts of featuredProductsList | filter:localSearchProduct">\n\n        <ion-card >\n\n          <ion-card-header style="justify-content: left">\n\n            <div \n\n              class="img-box"\n\n              (click)="productDetailPage(featuredProducts.id,featuredProducts.name,featuredProducts.regular_price)">\n\n              <img  [src]="featuredProducts.image"  style="width:200px;height:80px ;">\n\n            </div>\n\n            <ion-icon   name="md-heart" class="text-light icon" (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"></ion-icon>\n\n         \n\n            <!-- <ion-icon name="arrow-down" *ngIf="!visible" (click)="toggle()"></ion-icon>\n\n            <ion-icon name="arrow-up" *ngIf="visible" (click)="toggle()"></ion-icon> -->\n\n          </ion-card-header>\n\n          <ion-card-content>\n\n  \n\n           \n\n        \n\n            <ion-item >\n\n              <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5> \n\n            </ion-item>\n\n            <div>\n\n              <div *ngIf="featuredProducts.regular_price">     <!--If "product" exists-->\n\n                <h5 style="font-size: 12px;text-align: center;color: red;"  > <span class="priceicon" style="color: red;">Price : </span> <span class="priceicon">$</span> {{featuredProducts.regular_price}}  </h5>  \n\n                <div class="rateing">\n\n                  <div class="card-btn">\n\n                    <p style="width: 100%;" float-left>\n\n                      <button\n\n                        ion-button\n\n                        full\n\n                        class="bg-thime btn-round btn-text"\n\n                        \n\n                        \n\n                        (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"\n\n\n\n                      >\n\n                        Add To Cart\n\n                      </button>\n\n                    </p>\n\n                  </div>\n\n                </div>\n\n              </div>\n\n\n\n          \n\n          \n\n              <div *ngIf="!featuredProducts.regular_price">     <!--If "product" not exists-->\n\n                <h5 style="font-size: 12px;text-align: center"> Price Not Available</h5>  \n\n\n\n                <div class="rateing">\n\n                  <div class="card-btn">\n\n                    <p class="" float-left>\n\n                      <button\n\n                        ion-button\n\n                        full\n\n                        class="bg-thime btn-round btn-text"\n\n                        style="margin-top: 3px; width: 150px;text-align: center;"\n\n                        (click)="readMoreLocal(featuredProducts.id,featuredProducts.name,featuredProducts.regular_price)"\n\n                      >\n\n                        Read More\n\n                      </button>\n\n                    </p>\n\n                  </div>\n\n                </div>\n\n              </div>\n\n          </div>\n\n\n\n          \n\n\n\n            \n\n          </ion-card-content>\n\n        </ion-card>\n\n      </ion-col>\n\n\n\n      <!-- <ion-col>\n\n        <ion-icon name="arrow-down" *ngIf="!visible" (click)="toggle()"></ion-icon>\n\n        <ion-icon name="arrow-up" *ngIf="visible" (click)="toggle()"></ion-icon>\n\n      </ion-col> -->\n\n\n\n  \n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  \n\n      <!-- <ion-item>\n\n        <ion-label>Make</ion-label>\n\n        <ion-select [(ngModel)]="makeValue"  (ionChange)="makeDropDownValue(makeValue)">\n\n          <ion-option *ngFor="let key of makeList" >{{key}}</ion-option>\n\n        </ion-select>\n\n    \n\n      </ion-item>\n\n\n\n\n\n     \n\n\n\n\n\n      <ion-item>\n\n        <ion-label>Model</ion-label>\n\n        <ion-select [(ngModel)]="modelValue" (ionChange)="modelDropDownValue(modelValue)" >\n\n          <ion-option *ngFor="let key of modelList">{{makeValue}}</ion-option>\n\n        </ion-select>\n\n      </ion-item> -->\n\n\n\n       <!-- <ion-item>\n\n        <ion-label>Model</ion-label>\n\n        <ion-select [(ngModel)]="makeValue" (ionChange)="modelDropDownValue(makeValue)">\n\n          <ion-option *ngFor="let key of makeList">{{makeValue}}</ion-option>\n\n          \n\n        </ion-select>\n\n        <ion-label>Length {{makeList.length}}</ion-label>\n\n      </ion-item> -->\n\n\n\n \n\n\n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\home\home.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6_ionic_angular__["k" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["i" /* ModalController */],
@@ -1774,7 +1788,7 @@ HomePage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_api_api__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__capacitor_core__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__capacitor_core__ = __webpack_require__(27);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1847,6 +1861,9 @@ let ViewallPage = ViewallPage_1 = class ViewallPage {
         this.modeKeys = [];
         this.httpClientFetch = [];
         this.varoutput = [];
+        this.countProductsCartLocalUpdated = 0;
+        this.countProductsWishlistLocalUpdated = 0;
+        this.countProductsWishList = 0;
         this.slides = [
             {
                 // title: "Under Rs. 699",
@@ -1873,6 +1890,29 @@ let ViewallPage = ViewallPage_1 = class ViewallPage {
     }
     ngOnInit() {
         this.checkNetwork();
+        var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
+        if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
+            var arrayLength = productsWishlistarrayFromStorage.length;
+            this.countProductsWishList = arrayLength;
+            this.countProductsWishlistLocalUpdated = this.countProductsWishList;
+            console.log('Local Wishlist filled ' + this.countProductsWishlistLocalUpdated);
+        }
+        else {
+            console.log('Local Wishlist empty ');
+        }
+        /*
+            Local Cart
+        */
+        var productsCartarrayFromStorage = JSON.parse(localStorage.getItem('products'));
+        if (productsCartarrayFromStorage != null && productsCartarrayFromStorage.length > 0) {
+            var arrayLength1 = productsCartarrayFromStorage.length;
+            this.countProductsCart = arrayLength1;
+            this.countProductsCartLocalUpdated = this.countProductsCart;
+            console.log('Local Cart filled ' + this.countProductsCartLocalUpdated);
+        }
+        else {
+            console.log('Local Cart empty ');
+        }
         if (this.countClick > 1) {
             console.log('Clicked More than one');
             this.showToastOnWishlist();
@@ -1936,14 +1976,6 @@ let ViewallPage = ViewallPage_1 = class ViewallPage {
             this.buttonIcon = "star";
         }
     }
-    //  addToCart(id,strProductAdded) {
-    //   this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
-    //     this.obj = JSON.stringify(jsonResponse);
-    //     console.log("Sent productsList response " + this.obj);
-    //     console.log("Sent productsList id " + id);
-    //     this.showToastOnAddProductSingle(strProductAdded);
-    //   });
-    // }
     addToCart(id, name, image, description, regular_price) {
         if (localStorage.getItem("Userid value") === null) {
             let products = [];
@@ -1954,16 +1986,36 @@ let ViewallPage = ViewallPage_1 = class ViewallPage {
             console.log("Sent productsList name " + name);
             products.push({ 'ProductId': id, 'ProductName': name, 'ProductQuantity': '1', 'ProductImage': image, 'ProductDescription': description, 'ProductRegularPrice': regular_price });
             localStorage.setItem('products', JSON.stringify(products));
-            this.showToastOnAddProduct(name);
+            this.showToastOnAddProductLocal(name);
+            this.countProductsCartLocalUpdated++;
         }
         else {
             this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
                 this.obj = JSON.stringify(jsonResponse);
                 console.log("Sent productsList response " + this.obj);
                 console.log("Sent productsList id " + id);
-                this.showToastOnAddProductSingle(this.strProductAdded);
+                this.showToastOnAddProductServer(name);
+                this.countProductsCart++;
             });
         }
+    }
+    showToastOnAddProductLocal(strProductAdded) {
+        const toast = this.toastController.create({
+            // message: this.testStr,
+            message: 'Product Added in Local Cart : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+            duration: 3000,
+            position: "bottom",
+        });
+        toast.present();
+    }
+    showToastOnAddProductServer(strProductAdded) {
+        const toast = this.toastController.create({
+            // message: this.testStr,
+            message: 'Product Added in Server : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+            duration: 1000,
+            position: "bottom",
+        });
+        toast.present();
     }
     changeView() {
         this.buttonIcon = "star";
@@ -2142,32 +2194,35 @@ let ViewallPage = ViewallPage_1 = class ViewallPage {
             console.log('modelkeys ' + this.modeKeys);
         });
     }
-    addToWishList(id, name, image, description, regular_price) {
-        this.countClick++;
-        if (this.countClick > 1) {
-            console.log('Clicked More than one');
-            this.showToastOnWishlist();
+    addToWishList(id, name, image, description, regular_price, x) {
+        //this.visible = !this.visible;
+        // this.countClick++;
+        //   if(this.countClick>1){
+        //     console.log('Clicked More than one');
+        //     this.showToastOnWishlist();
+        //   }
+        //   else {
+        //   }
+        //x.classList.toggle("fa-thumbs-down");
+        // document.getElementById("myDIV").classList.add("mystyle");
+        let productsWishlist = [];
+        if (localStorage.getItem('productsWishlist')) {
+            productsWishlist = JSON.parse(localStorage.getItem('productsWishlist')); // get product list 
+        }
+        console.log("Sent productsList id " + id);
+        console.log("Sent productsList name " + name);
+        productsWishlist.push({ 'ProductId': id, 'ProductName': name, 'ProductQuantity': '1', 'ProductImage': image, 'ProductDescription': description, 'ProductRegularPrice': regular_price });
+        localStorage.setItem('productsWishlist', JSON.stringify(productsWishlist));
+        this.buttonIcon = "home";
+        this.showToastOnAddProductWishlist(name);
+        this.countProductsWishlistLocalUpdated++;
+        if (typeof (Storage) !== "undefined") {
+            // Code for localStorage/sessionStorage.
+            console.log('Code for localStorage/sessionStorage.');
         }
         else {
-            // console.log('Clicked one');
-            let products = [];
-            if (localStorage.getItem('products')) {
-                products = JSON.parse(localStorage.getItem('products')); // get product list 
-            }
-            console.log("Sent productsList id " + id);
-            console.log("Sent productsList name " + name);
-            products.push({ 'ProductId': id, 'ProductName': name, 'ProductQuantity': '1', 'ProductImage': image, 'ProductDescription': description, 'ProductRegularPrice': regular_price });
-            localStorage.setItem('products', JSON.stringify(products));
-            this.buttonIcon = "home";
-            this.showToastOnAddProductWishlist(name);
-            if (typeof (Storage) !== "undefined") {
-                // Code for localStorage/sessionStorage.
-                console.log('Code for localStorage/sessionStorage.');
-            }
-            else {
-                // Sorry! No Web Storage support..
-                console.log('Sorry! No Web Storage support..');
-            }
+            // Sorry! No Web Storage support..
+            console.log('Sorry! No Web Storage support..');
         }
     }
     readMoreLocal(id, name, image, description, regular_price) {
@@ -2411,7 +2466,7 @@ __decorate([
 ], ViewallPage.prototype, "Elem", void 0);
 ViewallPage = ViewallPage_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_8__angular_core__["n" /* Component */])({
-        selector: 'page-viewall',template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\viewall\viewall.html"*/'<ion-header class="bg-thime">\n\n  <ion-navbar>\n\n    <button ion-button menuToggle style="display: block !important">\n\n      <ion-icon class="menu-icon"\n\n        ><img src="assets/imgs/ic_menu.png"\n\n      /></ion-icon>\n\n    </button>\n\n  \n\n    <ion-title >Products\n\n      <span float-right>\n\n        <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>\n\n        <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>\n\n        <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon> -->\n\n\n\n        <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>\n\n        <ion-icon class="icon"  (click)="cartPage()" >\n\n          <img src="assets/imgs/ic_my_cart.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProducts}}</ion-badge> \n\n        </ion-icon>\n\n      </span>\n\n     \n\n    </ion-title>\n\n\n\n    <!-- <ion-title >\n\n      <span float-right>\n\n        <div style="font-size: 10px;color: black;text-align: end;">{{countProducts}}</div>\n\n      </span>\n\n    </ion-title> -->\n\n  </ion-navbar>\n\n  <div class="custom-id">\n\n    <!-- <ion-item class="custom">\n\n      <ion-select\n\n        placeholder="All"\n\n        value="MAKE"\n\n        okText="Ok"\n\n        cancelText="Cancel"\n\n        style="margin-left: 1px"\n\n      >\n\n        <ion-option value="MAKE" style="max-width: 60px">MAKE</ion-option>\n\n        <ion-option value="MODEL">MODEL</ion-option>\n\n        <ion-option value="YEAR">YEAR</ion-option>\n\n      </ion-select>\n\n\n\n      <ion-icon name="md-search" class="text-light icon"></ion-icon>\n\n    </ion-item> -->\n\n    <ion-searchbar\n\n      placeholder="Search Products"\n\n      [(ngModel)]="localSearchProduct"\n\n      \n\n    ></ion-searchbar>\n\n\n\n      \n\n    <!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" placeholder="&#61442;  Search Products"> -->\n\n\n\n  </div>  \n\n  <!-- <ion-list>\n\n    <ion-item > </ion-item>\n\n  </ion-list> -->\n\n  <!-- <div class="tab-row">\n\n    <ion-row>\n\n      <ion-col (click)="categoryPage()">\n\n        <div class="img-box" text-center>\n\n          <img src="assets/imgs/first.png">\n\n          <small class="text-white">LORUM</small>\n\n        </div>\n\n      </ion-col>\n\n      <ion-col (click)="categoryPage()">\n\n        <div class="img-box" text-center>\n\n          <img src="assets/imgs/second.png">\n\n          <small class="text-white">LORUM</small>\n\n        </div>\n\n      </ion-col>\n\n      <ion-col (click)="categoryPage()">\n\n        <div class="img-box" text-center>\n\n          <img src="assets/imgs/third.png">\n\n          <small class="text-white">LORUM</small>\n\n        </div>\n\n      </ion-col>\n\n      <ion-col (click)="categoryPage()">\n\n        <div class="img-box" text-center>\n\n          <img src="assets/imgs/fourth.png">\n\n          <small class="text-white">LORUM</small>\n\n        </div>\n\n      </ion-col>\n\n\n\n      <ion-col (click)="categoryPage()">  \n\n        <div class="img-box" text-center>\n\n          <img src="assets/imgs/fifth.png">\n\n          <small class="text-white">LORUM</small>\n\n        </div>\n\n      </ion-col>\n\n    \n\n    </ion-row>\n\n  </div> -->\n\n</ion-header>\n\n\n\n<ion-content class="bg-light">\n\n\n\n  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">\n\n    <ion-refresher-content\n\n      pullingIcon="chevron-down-circle-outline"\n\n      pullingText="Pull to refresh"\n\n      refreshingSpinner="circles"\n\n      refreshingText="Refreshing Products."\n\n    >\n\n    </ion-refresher-content>\n\n  </ion-refresher>\n\n\n\n\n\n  <ion-slides pager>\n\n    <ion-slide *ngFor="let slide of slides">\n\n      <img [src]="slide.image" class="slide-image" />\n\n      <div class="banner-text">\n\n        <p [innerHTML]="slide.description"></p>\n\n        <small [innerHTML]="slide.smalltext"></small>\n\n        <h2 class="slide-title" [innerHTML]="slide.title"></h2>\n\n      </div>\n\n    </ion-slide>\n\n  </ion-slides>\n\n\n\n  <!-- <p (click)="viewAllCategories()">\n\n    Featured Items\n\n    <small class="bg-thime btn-round text-white" float-right> View All </small>\n\n  </p> -->\n\n\n\n  <!-- <div class="card-main">\n\n    <ion-card>\n\n      <ion-card-header (click)="toggleAccordionVehicle()">\n\n        <ion-list>\n\n          <ion-item>\n\n            <button ion-button clear small icon-only item-right>\n\n              <ion-icon color="light" [name]="icon"></ion-icon>\n\n            </button>\n\n\n\n            <h6>SHOP BY VEHICLE</h6>\n\n          </ion-item>\n\n        </ion-list>\n\n      </ion-card-header>\n\n      <ion-card-content #cc>\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center">\n\n                <ion-item>\n\n                  <ion-select\n\n                    placeholder="MAKE"\n\n                    value="sortpopular"\n\n                    okText="Ok"\n\n                    cancelText="Cancel"\n\n                    (ionChange)="makeDropDownValue(makeValue)"\n\n                    [(ngModel)]="makeValue">\n\n                    <ion-option *ngFor="let key of makeList" >{{key}}</ion-option>\n\n                  \n\n                  </ion-select>\n\n                </ion-item>\n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center">\n\n                <ion-item>\n\n                  <ion-select\n\n                    placeholder="MODEL"\n\n                    value="sortpopular"\n\n                    okText="Ok"\n\n                    cancelText="Cancel"\n\n                  >\n\n                    <ion-option value="sortpopular">popularity</ion-option>\n\n                    <ion-option value="sortaveragerating">rating</ion-option>\n\n                    <ion-option value="sortlatest">latest</ion-option>\n\n                    <ion-option value="sortpricelowhigh" style="max-width: 100%"\n\n                      >low to high</ion-option\n\n                    >\n\n                  </ion-select>\n\n                </ion-item>\n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center">\n\n                <ion-item>\n\n                  <ion-select\n\n                    placeholder="YEAR"\n\n                    value="sortpopular"\n\n                    okText="Ok"\n\n                    cancelText="Cancel"\n\n                  >\n\n                    <ion-option value="sortpopular">popularity</ion-option>\n\n                    <ion-option value="sortaveragerating">rating</ion-option>\n\n                    <ion-option value="sortlatest">latest</ion-option>\n\n                    <ion-option value="sortpricelowhigh" style="max-width: 100%"\n\n                      >low to high</ion-option\n\n                    >\n\n                  </ion-select>\n\n                </ion-item>\n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row\n\n            class="ion-justify-content-center"\n\n            style="2px 10px !important;"\n\n          >\n\n            <button ion-button full class="bg-thime btn-round btn-text">\n\n              Search \n\n            </button>\n\n          </ion-row>\n\n        </div>  \n\n      </ion-card-content>\n\n    </ion-card>\n\n  </div> -->\n\n\n\n\n\n  <!-- <div class="card-main">\n\n    <ion-card>\n\n      <ion-card-header (click)="toggleAccordionCategory()">\n\n        <ion-list>\n\n          <ion-item>\n\n            <button ion-button clear small icon-only item-right>\n\n              <ion-icon color="light" [name]="icon"></ion-icon>\n\n            </button>\n\n\n\n            <h6>SHOP BY CATEGORY</h6>\n\n          </ion-item>\n\n        </ion-list>\n\n      </ion-card-header>\n\n      <ion-card-content #cc1>\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center;background: white;">\n\n\n\n                <ion-grid class="product-grid" style="margin-top: 40px;">\n\n                  <ion-row class="rowgrid">\n\n                    <ion-col\n\n                      class="columngrid"\n\n                      *ngFor="let featuredProductCategories of featuredProductCategoryList"\n\n                      (click)="productcategoryDetailPage(featuredProductCategories.catId,featuredProductCategories.url)"\n\n                      style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);">\n\n              \n\n                     \n\n                      <ion-card >\n\n                        \n\n              \n\n                        <ion-card-header style="justify-content: left">\n\n                          <div \n\n                            class="img-box"\n\n                           \n\n                           >\n\n\n\n\n\n                            <img  [src]="featuredProductCategories.thumbnail"  style="width:200px;height:80px;margin-top: 13px">\n\n\n\n                         \n\n                              \n\n                          </div>\n\n                        </ion-card-header>\n\n                        <ion-card-content>\n\n                      \n\n                          <ion-item >\n\n                            <h5 style="font-size: 14px;text-align: -webkit-center;margin-top: 7px;">{{featuredProductCategories.name}}</h5> \n\n                          </ion-item>\n\n                          <div>\n\n                            <div *ngIf="featuredProductCategories.regular_price">    \n\n                              <h5 style="font-size: 12px;text-align: center;"  > <span class="priceicon">Price : </span>  <span class="priceicon">$</span> {{featuredProductCategories.regular_price}} </h5>  \n\n                             \n\n                            </div>\n\n\n\n\n\n                        \n\n                            <div *ngIf="!featuredProductCategories.regular_price" style="text-align: -webkit-center;">    \n\n                              <div class="rateing">\n\n                                <div class="card-btn">\n\n                                   <p class="" float-left>\n\n                                  \n\n                                    \n\n                                  </p> \n\n                                 \n\n                                </div>\n\n                              </div>\n\n                            </div> \n\n                        </div>\n\n              \n\n                        \n\n              \n\n                         \n\n                        </ion-card-content>\n\n                      </ion-card>\n\n                    </ion-col>\n\n              \n\n                \n\n                  </ion-row>\n\n                </ion-grid>\n\n              \n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n     \n\n\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row\n\n            class="ion-justify-content-center"\n\n           \n\n          >\n\n            <button ion-button full class="bg-thime btn-round btn-text">\n\n              Shop Now\n\n            </button>\n\n          </ion-row>\n\n        </div>  \n\n      </ion-card-content>\n\n    </ion-card>\n\n  </div> -->\n\n\n\n  \n\n\n\n \n\n  \n\n\n\n \n\n\n\n\n\n   <div *ngIf="featuredProductsList; else elseStatement" class="checkFeaturedProducts"> \n\n</div> \n\n<ng-template #elseStatement style="margin-top: 10px;"> \n\n    No Product Available\n\n</ng-template> \n\n\n\n<ng-container *ngIf="( featuredProductsList | filter : localSearchProduct) as result">\n\n\n\n  \n\n  \n\n  <p *ngIf="result.length === 0">No matching Result found</p>  \n\n</ng-container>\n\n\n\n  <ion-grid class="product-grid" style="margin-top: 40px;">\n\n    <ion-row class="rowgrid">\n\n      <ion-col\n\n        class="columngrid"\n\n        *ngFor="let featuredProducts of featuredProductsList | filter:localSearchProduct">\n\n\n\n       \n\n        <ion-card >\n\n          \n\n\n\n          <ion-card-header style="justify-content: left">\n\n            <div \n\n              class="img-box"\n\n              (click)="productDetailPage(featuredProducts.id,featuredProducts.name,featuredProducts.regular_price)">\n\n              <img  [src]="featuredProducts.image"  style="width:200px;height:80px ;">\n\n            </div>\n\n            <ion-icon    name="md-heart" class="text-light icon" (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"></ion-icon>\n\n         \n\n          \n\n\n\n           \n\n          </ion-card-header>\n\n          <ion-card-content>\n\n\n\n           \n\n        \n\n            <ion-item >\n\n              <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5> \n\n            </ion-item>\n\n            <div>\n\n              <div *ngIf="featuredProducts.regular_price">     <!--If "product" exists-->\n\n                <h5 style="font-size: 12px;text-align: center;color: red;"  > <span class="priceicon" style="color: red;">Price : </span> <span class="priceicon">$</span> {{featuredProducts.regular_price}}  </h5>  \n\n                <div class="rateing">\n\n                  <div class="card-btn">\n\n                    <p style="width: 100%;" float-left>\n\n                      <button\n\n                        ion-button\n\n                        full\n\n                        class="bg-thime btn-round btn-text"\n\n                        \n\n                        \n\n                        (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"\n\n\n\n                      >\n\n                        Add To Cart\n\n                      </button>\n\n                    </p>\n\n                  </div>\n\n                </div>\n\n              </div>\n\n          \n\n          \n\n              <div *ngIf="!featuredProducts.regular_price">     <!--If "product" not exists-->\n\n                <h5 style="font-size: 12px;text-align: center"> Price Not Available</h5>  \n\n\n\n                <div class="rateing">\n\n                  <div class="card-btn">\n\n                    <p style="width: 100%;" float-left>\n\n                      <button\n\n                        ion-button\n\n                        full\n\n                        class="bg-thime btn-round btn-text"\n\n                        style="margin-top: 3px; width: 150px;text-align: center;"\n\n                        (click)="readMoreLocal(featuredProducts.id,featuredProducts.name,featuredProducts.regular_price)"\n\n                      >\n\n                        Read More\n\n                      </button>\n\n                    </p>\n\n                  </div>\n\n                </div>\n\n              </div>\n\n          </div>\n\n\n\n          \n\n\n\n            \n\n          </ion-card-content>\n\n        </ion-card>\n\n      </ion-col>\n\n\n\n  \n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  \n\n      <!-- <ion-item>\n\n        <ion-label>Make</ion-label>\n\n        <ion-select [(ngModel)]="makeValue"  (ionChange)="makeDropDownValue(makeValue)">\n\n          <ion-option *ngFor="let key of makeList" >{{key}}</ion-option>\n\n        </ion-select>\n\n    \n\n      </ion-item>\n\n\n\n\n\n     \n\n\n\n\n\n      <ion-item>\n\n        <ion-label>Model</ion-label>\n\n        <ion-select [(ngModel)]="modelValue" (ionChange)="modelDropDownValue(modelValue)" >\n\n          <ion-option *ngFor="let key of modelList">{{makeValue}}</ion-option>\n\n        </ion-select>\n\n      </ion-item> -->\n\n\n\n       <!-- <ion-item>\n\n        <ion-label>Model</ion-label>\n\n        <ion-select [(ngModel)]="makeValue" (ionChange)="modelDropDownValue(makeValue)">\n\n          <ion-option *ngFor="let key of makeList">{{makeValue}}</ion-option>\n\n          \n\n        </ion-select>\n\n        <ion-label>Length {{makeList.length}}</ion-label>\n\n      </ion-item> -->\n\n\n\n \n\n\n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\viewall\viewall.html"*/,
+        selector: 'page-viewall',template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\viewall\viewall.html"*/'<ion-header class="bg-thime">\n\n  <ion-navbar>\n\n    <button ion-button menuToggle style="display: block !important">\n\n      <ion-icon class="menu-icon"\n\n        ><img src="assets/imgs/ic_menu.png"\n\n      /></ion-icon>\n\n    </button>\n\n  \n\n    <ion-title >Products\n\n      <span float-right>\n\n        <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>\n\n        <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>\n\n        <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon> -->\n\n\n\n        <!-- <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>\n\n        <ion-icon class="icon"  (click)="cartPage()" >\n\n          <img src="assets/imgs/ic_my_cart.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProducts}}</ion-badge> \n\n        </ion-icon> -->\n\n        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n        \n\n        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n      </span>\n\n     \n\n    </ion-title>\n\n\n\n    <!-- <ion-title >\n\n      <span float-right>\n\n        <div style="font-size: 10px;color: black;text-align: end;">{{countProducts}}</div>\n\n      </span>\n\n    </ion-title> -->\n\n  </ion-navbar>\n\n  <div class="custom-id">\n\n    <!-- <ion-item class="custom">\n\n      <ion-select\n\n        placeholder="All"\n\n        value="MAKE"\n\n        okText="Ok"\n\n        cancelText="Cancel"\n\n        style="margin-left: 1px"\n\n      >\n\n        <ion-option value="MAKE" style="max-width: 60px">MAKE</ion-option>\n\n        <ion-option value="MODEL">MODEL</ion-option>\n\n        <ion-option value="YEAR">YEAR</ion-option>\n\n      </ion-select>\n\n\n\n      <ion-icon name="md-search" class="text-light icon"></ion-icon>\n\n    </ion-item> -->\n\n    <ion-searchbar\n\n      placeholder="Search Products"\n\n      [(ngModel)]="localSearchProduct"\n\n      \n\n    ></ion-searchbar>\n\n\n\n      \n\n    <!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" placeholder="&#61442;  Search Products"> -->\n\n\n\n  </div>  \n\n  <!-- <ion-list>\n\n    <ion-item > </ion-item>\n\n  </ion-list> -->\n\n  <!-- <div class="tab-row">\n\n    <ion-row>\n\n      <ion-col (click)="categoryPage()">\n\n        <div class="img-box" text-center>\n\n          <img src="assets/imgs/first.png">\n\n          <small class="text-white">LORUM</small>\n\n        </div>\n\n      </ion-col>\n\n      <ion-col (click)="categoryPage()">\n\n        <div class="img-box" text-center>\n\n          <img src="assets/imgs/second.png">\n\n          <small class="text-white">LORUM</small>\n\n        </div>\n\n      </ion-col>\n\n      <ion-col (click)="categoryPage()">\n\n        <div class="img-box" text-center>\n\n          <img src="assets/imgs/third.png">\n\n          <small class="text-white">LORUM</small>\n\n        </div>\n\n      </ion-col>\n\n      <ion-col (click)="categoryPage()">\n\n        <div class="img-box" text-center>\n\n          <img src="assets/imgs/fourth.png">\n\n          <small class="text-white">LORUM</small>\n\n        </div>\n\n      </ion-col>\n\n\n\n      <ion-col (click)="categoryPage()">  \n\n        <div class="img-box" text-center>\n\n          <img src="assets/imgs/fifth.png">\n\n          <small class="text-white">LORUM</small>\n\n        </div>\n\n      </ion-col>\n\n    \n\n    </ion-row>\n\n  </div> -->\n\n</ion-header>\n\n\n\n<ion-content class="bg-light">\n\n\n\n  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">\n\n    <ion-refresher-content\n\n      pullingIcon="chevron-down-circle-outline"\n\n      pullingText="Pull to refresh"\n\n      refreshingSpinner="circles"\n\n      refreshingText="Refreshing Products."\n\n    >\n\n    </ion-refresher-content>\n\n  </ion-refresher>\n\n\n\n\n\n  <ion-slides pager>\n\n    <ion-slide *ngFor="let slide of slides">\n\n      <img [src]="slide.image" class="slide-image" />\n\n      <div class="banner-text">\n\n        <p [innerHTML]="slide.description"></p>\n\n        <small [innerHTML]="slide.smalltext"></small>\n\n        <h2 class="slide-title" [innerHTML]="slide.title"></h2>\n\n      </div>\n\n    </ion-slide>\n\n  </ion-slides>\n\n\n\n  <!-- <p (click)="viewAllCategories()">\n\n    Featured Items\n\n    <small class="bg-thime btn-round text-white" float-right> View All </small>\n\n  </p> -->\n\n\n\n  <!-- <div class="card-main">\n\n    <ion-card>\n\n      <ion-card-header (click)="toggleAccordionVehicle()">\n\n        <ion-list>\n\n          <ion-item>\n\n            <button ion-button clear small icon-only item-right>\n\n              <ion-icon color="light" [name]="icon"></ion-icon>\n\n            </button>\n\n\n\n            <h6>SHOP BY VEHICLE</h6>\n\n          </ion-item>\n\n        </ion-list>\n\n      </ion-card-header>\n\n      <ion-card-content #cc>\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center">\n\n                <ion-item>\n\n                  <ion-select\n\n                    placeholder="MAKE"\n\n                    value="sortpopular"\n\n                    okText="Ok"\n\n                    cancelText="Cancel"\n\n                    (ionChange)="makeDropDownValue(makeValue)"\n\n                    [(ngModel)]="makeValue">\n\n                    <ion-option *ngFor="let key of makeList" >{{key}}</ion-option>\n\n                  \n\n                  </ion-select>\n\n                </ion-item>\n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center">\n\n                <ion-item>\n\n                  <ion-select\n\n                    placeholder="MODEL"\n\n                    value="sortpopular"\n\n                    okText="Ok"\n\n                    cancelText="Cancel"\n\n                  >\n\n                    <ion-option value="sortpopular">popularity</ion-option>\n\n                    <ion-option value="sortaveragerating">rating</ion-option>\n\n                    <ion-option value="sortlatest">latest</ion-option>\n\n                    <ion-option value="sortpricelowhigh" style="max-width: 100%"\n\n                      >low to high</ion-option\n\n                    >\n\n                  </ion-select>\n\n                </ion-item>\n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center">\n\n                <ion-item>\n\n                  <ion-select\n\n                    placeholder="YEAR"\n\n                    value="sortpopular"\n\n                    okText="Ok"\n\n                    cancelText="Cancel"\n\n                  >\n\n                    <ion-option value="sortpopular">popularity</ion-option>\n\n                    <ion-option value="sortaveragerating">rating</ion-option>\n\n                    <ion-option value="sortlatest">latest</ion-option>\n\n                    <ion-option value="sortpricelowhigh" style="max-width: 100%"\n\n                      >low to high</ion-option\n\n                    >\n\n                  </ion-select>\n\n                </ion-item>\n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row\n\n            class="ion-justify-content-center"\n\n            style="2px 10px !important;"\n\n          >\n\n            <button ion-button full class="bg-thime btn-round btn-text">\n\n              Search \n\n            </button>\n\n          </ion-row>\n\n        </div>  \n\n      </ion-card-content>\n\n    </ion-card>\n\n  </div> -->\n\n\n\n\n\n  <!-- <div class="card-main">\n\n    <ion-card>\n\n      <ion-card-header (click)="toggleAccordionCategory()">\n\n        <ion-list>\n\n          <ion-item>\n\n            <button ion-button clear small icon-only item-right>\n\n              <ion-icon color="light" [name]="icon"></ion-icon>\n\n            </button>\n\n\n\n            <h6>SHOP BY CATEGORY</h6>\n\n          </ion-item>\n\n        </ion-list>\n\n      </ion-card-header>\n\n      <ion-card-content #cc1>\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row class="ion-justify-content-center">\n\n            <ion-col size="12" offset="4">\n\n              <div class="size" style="justify-content: center;background: white;">\n\n\n\n                <ion-grid class="product-grid" style="margin-top: 40px;">\n\n                  <ion-row class="rowgrid">\n\n                    <ion-col\n\n                      class="columngrid"\n\n                      *ngFor="let featuredProductCategories of featuredProductCategoryList"\n\n                      (click)="productcategoryDetailPage(featuredProductCategories.catId,featuredProductCategories.url)"\n\n                      style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);">\n\n              \n\n                     \n\n                      <ion-card >\n\n                        \n\n              \n\n                        <ion-card-header style="justify-content: left">\n\n                          <div \n\n                            class="img-box"\n\n                           \n\n                           >\n\n\n\n\n\n                            <img  [src]="featuredProductCategories.thumbnail"  style="width:200px;height:80px;margin-top: 13px">\n\n\n\n                         \n\n                              \n\n                          </div>\n\n                        </ion-card-header>\n\n                        <ion-card-content>\n\n                      \n\n                          <ion-item >\n\n                            <h5 style="font-size: 14px;text-align: -webkit-center;margin-top: 7px;">{{featuredProductCategories.name}}</h5> \n\n                          </ion-item>\n\n                          <div>\n\n                            <div *ngIf="featuredProductCategories.regular_price">    \n\n                              <h5 style="font-size: 12px;text-align: center;"  > <span class="priceicon">Price : </span>  <span class="priceicon">$</span> {{featuredProductCategories.regular_price}} </h5>  \n\n                             \n\n                            </div>\n\n\n\n\n\n                        \n\n                            <div *ngIf="!featuredProductCategories.regular_price" style="text-align: -webkit-center;">    \n\n                              <div class="rateing">\n\n                                <div class="card-btn">\n\n                                   <p class="" float-left>\n\n                                  \n\n                                    \n\n                                  </p> \n\n                                 \n\n                                </div>\n\n                              </div>\n\n                            </div> \n\n                        </div>\n\n              \n\n                        \n\n              \n\n                         \n\n                        </ion-card-content>\n\n                      </ion-card>\n\n                    </ion-col>\n\n              \n\n                \n\n                  </ion-row>\n\n                </ion-grid>\n\n              \n\n              </div>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n     \n\n\n\n        <div class="select-section shadow-bottom">\n\n          <ion-row\n\n            class="ion-justify-content-center"\n\n           \n\n          >\n\n            <button ion-button full class="bg-thime btn-round btn-text">\n\n              Shop Now\n\n            </button>\n\n          </ion-row>\n\n        </div>  \n\n      </ion-card-content>\n\n    </ion-card>\n\n  </div> -->\n\n\n\n  \n\n\n\n \n\n  \n\n\n\n \n\n\n\n\n\n   <div *ngIf="featuredProductsList; else elseStatement" class="checkFeaturedProducts"> \n\n</div> \n\n<ng-template #elseStatement style="margin-top: 10px;"> \n\n    No Product Available\n\n</ng-template> \n\n\n\n<ng-container *ngIf="( featuredProductsList | filter : localSearchProduct) as result">\n\n\n\n  \n\n  \n\n  <p *ngIf="result.length === 0">No matching Result found</p>  \n\n</ng-container>\n\n\n\n  <ion-grid class="product-grid" style="margin-top: 40px;">\n\n    <ion-row class="rowgrid">\n\n      <ion-col\n\n        class="columngrid"\n\n        *ngFor="let featuredProducts of featuredProductsList | filter:localSearchProduct">\n\n\n\n       \n\n        <ion-card >\n\n          \n\n\n\n          <ion-card-header style="justify-content: left">\n\n            <div \n\n              class="img-box"\n\n              (click)="productDetailPage(featuredProducts.id,featuredProducts.name,featuredProducts.regular_price)">\n\n              <img  [src]="featuredProducts.image"  style="width:200px;height:80px ;">\n\n            </div>\n\n            <ion-icon    name="md-heart" class="text-light icon" (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"></ion-icon>\n\n         \n\n          \n\n\n\n           \n\n          </ion-card-header>\n\n          <ion-card-content>\n\n\n\n           \n\n        \n\n            <ion-item >\n\n              <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5> \n\n            </ion-item>\n\n            <div>\n\n              <div *ngIf="featuredProducts.regular_price">     <!--If "product" exists-->\n\n                <h5 style="font-size: 12px;text-align: center;color: red;"  > <span class="priceicon" style="color: red;">Price : </span> <span class="priceicon">$</span> {{featuredProducts.regular_price}}  </h5>  \n\n                <div class="rateing">\n\n                  <div class="card-btn">\n\n                    <p style="width: 100%;" float-left>\n\n                      <button\n\n                        ion-button\n\n                        full\n\n                        class="bg-thime btn-round btn-text"\n\n                        \n\n                        \n\n                        (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"\n\n\n\n                      >\n\n                        Add To Cart\n\n                      </button>\n\n                    </p>\n\n                  </div>\n\n                </div>\n\n              </div>\n\n          \n\n          \n\n              <div *ngIf="!featuredProducts.regular_price">     <!--If "product" not exists-->\n\n                <h5 style="font-size: 12px;text-align: center"> Price Not Available</h5>  \n\n\n\n                <div class="rateing">\n\n                  <div class="card-btn">\n\n                    <p style="width: 100%;" float-left>\n\n                      <button\n\n                        ion-button\n\n                        full\n\n                        class="bg-thime btn-round btn-text"\n\n                        style="margin-top: 3px; width: 150px;text-align: center;"\n\n                        (click)="readMoreLocal(featuredProducts.id,featuredProducts.name,featuredProducts.regular_price)"\n\n                      >\n\n                        Read More\n\n                      </button>\n\n                    </p>\n\n                  </div>\n\n                </div>\n\n              </div>\n\n          </div>\n\n\n\n          \n\n\n\n            \n\n          </ion-card-content>\n\n        </ion-card>\n\n      </ion-col>\n\n\n\n  \n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  \n\n      <!-- <ion-item>\n\n        <ion-label>Make</ion-label>\n\n        <ion-select [(ngModel)]="makeValue"  (ionChange)="makeDropDownValue(makeValue)">\n\n          <ion-option *ngFor="let key of makeList" >{{key}}</ion-option>\n\n        </ion-select>\n\n    \n\n      </ion-item>\n\n\n\n\n\n     \n\n\n\n\n\n      <ion-item>\n\n        <ion-label>Model</ion-label>\n\n        <ion-select [(ngModel)]="modelValue" (ionChange)="modelDropDownValue(modelValue)" >\n\n          <ion-option *ngFor="let key of modelList">{{makeValue}}</ion-option>\n\n        </ion-select>\n\n      </ion-item> -->\n\n\n\n       <!-- <ion-item>\n\n        <ion-label>Model</ion-label>\n\n        <ion-select [(ngModel)]="makeValue" (ionChange)="modelDropDownValue(makeValue)">\n\n          <ion-option *ngFor="let key of makeList">{{makeValue}}</ion-option>\n\n          \n\n        </ion-select>\n\n        <ion-label>Length {{makeList.length}}</ion-label>\n\n      </ion-item> -->\n\n\n\n \n\n\n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\viewall\viewall.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_9_ionic_angular__["k" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_9_ionic_angular__["i" /* ModalController */],
@@ -2662,11 +2717,496 @@ TestingPage = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchdetailsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__capacitor_core__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(12);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var _a, _b, _c, _d, _e, _f, _g, _h;
+
+
+
+
+
+let SearchdetailsPage = class SearchdetailsPage {
+    constructor(navCtrl, navParams, alertController, platform, app, toastController, httpClient, loadingController) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.alertController = alertController;
+        this.platform = platform;
+        this.app = app;
+        this.toastController = toastController;
+        this.httpClient = httpClient;
+        this.loadingController = loadingController;
+        this.currentNumber = 1;
+        this.countProductsCartLocalUpdated = 0;
+        this.countProductsWishlistLocalUpdated = 0;
+        this.countProductsWishList = 0;
+        this.strId = navParams.get("id");
+        this.strProductDescription = 'Product Description: ' + navParams.get("description");
+        this.strProductName = 'Product Name: ' + navParams.get("name");
+        this.strProductSize = 'Product Size: ' + navParams.get("size");
+        this.strImage = navParams.get("image");
+        this.strProductRegularPrice = 'Product Regular Price: ' + navParams.get("regular_price");
+        this.strProductMake = 'Product Make: ' + navParams.get("make");
+        this.strProductModel = 'Product Model: ' + navParams.get("model");
+    }
+    ngOnInit() {
+        this.checkNetwork();
+        this.platform.registerBackButtonAction(() => {
+            // Catches the active view
+            let nav = this.app.getActiveNavs()[0];
+            let activeView = nav.getActive();
+            // Checks if can go back before show up the alert
+            if (activeView.name === 'SearchdetailsPage') {
+                if (nav.canGoBack()) {
+                    this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+                }
+                else {
+                }
+            }
+        });
+        /*
+               Local Wishlist
+           */
+        var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
+        if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
+            var arrayLength = productsWishlistarrayFromStorage.length;
+            this.countProductsWishList = arrayLength;
+            this.countProductsWishlistLocalUpdated = this.countProductsWishList;
+            console.log('Local Wishlist filled ' + this.countProductsWishlistLocalUpdated);
+        }
+        else {
+            console.log('Local Wishlist empty ');
+        }
+        /*
+            Local Cart
+        */
+        var productsCartarrayFromStorage = JSON.parse(localStorage.getItem('products'));
+        if (productsCartarrayFromStorage != null && productsCartarrayFromStorage.length > 0) {
+            var arrayLength1 = productsCartarrayFromStorage.length;
+            this.countProductsCart = arrayLength1;
+            this.countProductsCartLocalUpdated = this.countProductsCart;
+            console.log('Local Cart filled ' + this.countProductsCartLocalUpdated);
+        }
+        else {
+            console.log('Local Cart empty ');
+        }
+    }
+    incrementValue() {
+        this.currentNumber++;
+    }
+    decrementValue() {
+        if (this.currentNumber <= 1) {
+            console.log('Issue in cart ');
+            this.showToastOnCart();
+        }
+        else {
+            console.log('success in cart ');
+            this.currentNumber--;
+        }
+    }
+    addToWishList(id, name, image, description, regular_price, x) {
+        // this.visible = !this.visible;
+        // this.countClick++;
+        //   if(this.countClick>1){
+        //     console.log('Clicked More than one');
+        //     this.showToastOnWishlist();
+        //   }
+        //   else {
+        //   }
+        //x.classList.toggle("fa-thumbs-down");
+        // document.getElementById("myDIV").classList.add("mystyle");
+        let productsWishlist = [];
+        if (localStorage.getItem('productsWishlist')) {
+            productsWishlist = JSON.parse(localStorage.getItem('productsWishlist')); // get product list 
+        }
+        console.log("Sent productsList id " + id);
+        console.log("Sent productsList name " + name);
+        productsWishlist.push({ 'ProductId': id, 'ProductName': name, 'ProductQuantity': '1', 'ProductImage': image, 'ProductDescription': description, 'ProductRegularPrice': regular_price });
+        localStorage.setItem('productsWishlist', JSON.stringify(productsWishlist));
+        // this.buttonIcon = "home";
+        this.showToastOnAddProductWishlist(name);
+        this.countProductsWishlistLocalUpdated++;
+        if (typeof (Storage) !== "undefined") {
+            // Code for localStorage/sessionStorage.
+            console.log('Code for localStorage/sessionStorage.');
+        }
+        else {
+            // Sorry! No Web Storage support..
+            console.log('Sorry! No Web Storage support..');
+        }
+    }
+    addToCart(id, name, image, description, regular_price) {
+        if (localStorage.getItem("Userid value") === null) {
+            let products = [];
+            if (localStorage.getItem('products')) {
+                products = JSON.parse(localStorage.getItem('products')); // get product list 
+            }
+            console.log("Sent productsList id " + id);
+            console.log("Sent productsList name " + name);
+            products.push({ 'ProductId': id, 'ProductName': name, 'ProductQuantity': '1', 'ProductImage': image, 'ProductDescription': description, 'ProductRegularPrice': regular_price });
+            localStorage.setItem('products', JSON.stringify(products));
+            this.showToastOnAddProductLocal(name);
+            this.countProductsCartLocalUpdated++;
+        }
+        else {
+            this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
+                this.obj = JSON.stringify(jsonResponse);
+                console.log("Sent productsList response " + this.obj);
+                console.log("Sent productsList id " + id);
+                this.showToastOnAddProductServer(name);
+                this.countProductsCart++;
+            });
+        }
+    }
+    showToastOnAddProductWishlist(strProductAdded) {
+        const toast = this.toastController.create({
+            // message: this.testStr,
+            message: 'Product Added in Wishlist : \n ' + strProductAdded + '\n',
+            duration: 1000,
+            position: "bottom",
+        });
+        toast.present();
+    }
+    showToastOnAddProductLocal(strProductAdded) {
+        const toast = this.toastController.create({
+            // message: this.testStr,
+            message: 'Product Added in Local Cart : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+            duration: 3000,
+            position: "bottom",
+        });
+        toast.present();
+    }
+    showToastOnAddProductServer(strProductAdded) {
+        const toast = this.toastController.create({
+            // message: this.testStr,
+            message: 'Product Added in Server : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+            duration: 1000,
+            position: "bottom",
+        });
+        toast.present();
+    }
+    showToastOnCart() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const toast = yield this.toastController.create({
+                message: 'Minimum product quantity cannot be less than 1 ',
+                duration: 400,
+                position: 'bottom',
+            });
+            toast.present();
+        });
+    }
+    showLoaderPageLoad() {
+        let loading = this.loadingController.create({
+            content: 'Please wait loading details!'
+        });
+        loading.present();
+        setTimeout(() => {
+            loading.dismiss();
+        }, 1700);
+    }
+    checkNetwork() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { Network } = __WEBPACK_IMPORTED_MODULE_2__capacitor_core__["a" /* Plugins */];
+            this.networkListener = Network.addListener('networkStatusChange', (status) => {
+                console.log('Network status HomePage here', status);
+                this.networkStatus = status;
+            });
+            if ((yield Network.getStatus()).connectionType === 'none') {
+                this.showNetworkAlert();
+                console.log('Network status not available', this.networkStatus);
+            }
+            else {
+                this.networkStatus = yield Network.getStatus();
+                // this.showAlert();
+                console.log('Network status available', this.networkStatus);
+                this.showLoaderPageLoad();
+            }
+        });
+    }
+    showNetworkAlert() {
+        return __awaiter(this, void 0, void 0, function* () {
+            // omitted;
+            const alert = yield this.alertController.create({
+                title: 'Network Issues!',
+                message: 'There are issues in network connectivity',
+                buttons: [
+                    {
+                        text: 'Ok',
+                        handler: (ok) => {
+                            console.log('Confirm Ok');
+                            // resolve('ok');
+                        },
+                    },
+                    {
+                        text: 'Cancel',
+                        role: 'cancel',
+                        cssClass: 'secondary',
+                        handler: (cancel) => {
+                            console.log('Confirm Cancel');
+                            alert.dismiss();
+                        },
+                    },
+                ],
+            });
+            alert.present();
+        });
+    }
+};
+SearchdetailsPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-searchdetails',template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\searchdetails\searchdetails.html"*/'\n\n<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle style="display: block !important">\n\n      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"/>\n\n    </ion-icon>\n\n    </button>\n\n    <ion-title>Product Detail\n\n      <span float-right>\n\n        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n        \n\n        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n      </span>\n\n     \n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header> \n\n\n\n\n\n<ion-content class="bg-light">\n\n  <div class="img-section shadow-bottom" text-center>\n\n  \n\n  \n\n\n\n\n\n    <img  [src]="strImage"  style="width:200px;height:150px;margin-top: 18px;">\n\n\n\n    <div class="tab-btn-box">\n\n      <!-- <div class="tab-btn">\n\n        <img  [src]="strImage"  style="width:150px;height:40px;"  >\n\n        \n\n      </div>\n\n      <div class="tab-btn">\n\n        <img  [src]="strImage"  style="width:150px;height:40px;">\n\n      </div>\n\n      <div class="tab-btn">\n\n        <img  [src]="strImage"  style="width:150px;height:40px;">\n\n      </div> -->\n\n    </div>\n\n    <div class="d-flex" style="align-items: start;margin-top: 5px;" >\n\n      <span>{{strName}}</span>\n\n      <span class="icon">\n\n        <ion-icon name="md-remove" (click)="decrementValue()"></ion-icon\n\n      ></span>\n\n      <span\n\n        class="text-sky small-text"\n\n        style="text-align: center; margin-left: 20%"\n\n      >\n\n        {{currentNumber}}</span\n\n      >\n\n      <span class="icon" style="margin-left: 20%"\n\n        ><ion-icon name="md-add" (click)="incrementValue()"></ion-icon\n\n      ></span>\n\n    </div>\n\n    <div class="card-btn" style="margin-top: 15px;">\n\n      <div class="d-flex" style="padding: 1rem">\n\n        <div class="review-box">\n\n          <span class="text-sky small-text" style="color: black;">Product Quantity</span>\n\n        </div>\n\n      \n\n      </div>\n\n    </div>\n\n  </div>\n\n\n\n\n\n\n\n  <div class="features bg-white shadow-bottom" padding>\n\n    <h6 class="heading">Key Features</h6>\n\n    \n\n    <p><span class="circle"></span>{{strProductName}}</p>\n\n    <p><span class="circle"></span>{{strProductDescription}}</p>\n\n    <p><span class="circle"></span>{{strProductRegularPrice}} $ </p>\n\n    <p><span class="circle"></span>{{strProductMake}}</p>  \n\n    <p><span class="circle"></span>{{strProductModel}}</p>\n\n    <p><span class="circle"></span>{{strProductSize}}</p>\n\n\n\n\n\n\n\n    \n\n  </div>\n\n\n\n  <div class="reating-review bg-white" padding >\n\n    <div class="reating"></div>\n\n\n\n    <div class="lick" >\n\n      <button\n\n      ion-button\n\n      full\n\n      class="btn-round green-shadow btn-text"\n\n      style="background-color: red; color: white;"\n\n     \n\n      (click)="addToCart(dynamicId,strProductName,strImage,strProductDescription,strProductRegularPrice)"\n\n\n\n      >\n\n\n\n    Add To Cart\n\n      \n\n    </button>\n\n    </div>\n\n\n\n    <!-- (click)="addToCart(dynamicId)" -->\n\n    \n\n\n\n  \n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\searchdetails\searchdetails.html"*/,
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" ? _d : Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]) === "function" ? _e : Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ToastController */]) === "function" ? _f : Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */]) === "function" ? _g : Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" ? _h : Object])
+], SearchdetailsPage);
+
+//# sourceMappingURL=searchdetails.js.map
+
+/***/ }),
+
+/***/ 182:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppconstantsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the AppconstantsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+let AppconstantsPage = class AppconstantsPage {
+    constructor(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    ngOnInit() {
+    }
+};
+AppconstantsPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-appconstants',template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\appconstants\appconstants.html"*/'\n\n<ion-header class="bg-thime">\n\n  <ion-navbar>\n\n    <button ion-button menuToggle style="display: block !important;">\n\n      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>\n\n    </button>\n\n    <ion-title text-uppercase>AUTO PARTS\n\n      <span float-right>\n\n        <ion-icon class="icon" ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>\n\n        <ion-icon class="icon" ><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>\n\n        \n\n\n\n           \n\n      </span>\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n  <ion-toolbar>\n\n  \n\n \n\n  \n\n  \n\n        <ion-toolbar>\n\n        <ion-searchbar\n\n        autocomplete="true"\n\n        debounce="500"\n\n        placeholder="Encuentra una película"\n\n        (ionInput)="onInput($event)"\n\n        (ionClear)="onClear($event)"\n\n        ></ion-searchbar>\n\n  \n\n  <ion-content [fullscreen]="true" >\n\n  \n\n   \n\n  \n\n    <!-- <app-Spinner name="Pagina1" ></app-Spinner> -->\n\n  \n\n    <ion-list>\n\n        <ion-item  *ngFor="let place of DataMovies" [routerLink]="[\'/MoviesDetails/\',place.id]"\n\n  (click)="DetallesPelicula(place.title)">\n\n          <ion-thumbnail slot="start">\n\n          <ion-img [src]="\'https://image.tmdb.org/t/p/w500\' + place.poster_path"></ion-img>\n\n          </ion-thumbnail>\n\n  \n\n  <div class="Principal_Descripcion">\n\n            <div class="itemD">\n\n                          <ion-label>\n\n                            {{place.title}}\n\n                          </ion-label>\n\n            </div>\n\n  \n\n            <div class="itemD">\n\n  \n\n              <ion-label>\n\n                {{place.release_date}}\n\n              </ion-label>\n\n              <ion-label>\n\n                {{place.vote_average}}/10\n\n                <ion-icon name="star" color="primary"></ion-icon>\n\n              </ion-label>\n\n            </div>\n\n  \n\n    </div>\n\n                </ion-item>\n\n            </ion-list>\n\n  </ion-content>\n\n  '/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\appconstants\appconstants.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]])
+], AppconstantsPage);
+
+//# sourceMappingURL=appconstants.js.map
+
+/***/ }),
+
+/***/ 183:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CategorydetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__capacitor_core__ = __webpack_require__(27);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+
+/**
+ * Generated class for the CategorydetailPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+let CategorydetailPage = class CategorydetailPage {
+    constructor(navCtrl, navParams, alertController, toastController) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.alertController = alertController;
+        this.toastController = toastController;
+        this.currentNumber = 1;
+        this.countProductsCartLocalUpdated = 0;
+        this.countProductsWishlistLocalUpdated = 0;
+        this.countProductsWishList = 0;
+        this.strId = navParams.get("id");
+        this.strProductDescription = 'Product Description: ' + navParams.get("description");
+        this.strImage = navParams.get("image");
+        this.strProductRegularPrice = 'Product Regular Price: ' + navParams.get("regular_price");
+        this.strProductMake = 'Product Make: ' + navParams.get("make");
+        this.strProductModel = 'Product Model: ' + navParams.get("model");
+        console.log("Received Product Id " + this.strId);
+        console.log("Received Product description " + this.strProductDescription);
+        console.log("Received Product image " + this.strImage);
+    }
+    ngOnInit() {
+        this.checkNetwork();
+        /*
+         Local Wishlist
+     */
+        var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
+        if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
+            var arrayLength = productsWishlistarrayFromStorage.length;
+            this.countProductsWishList = arrayLength;
+            this.countProductsWishlistLocalUpdated = this.countProductsWishList;
+            console.log('Local Wishlist filled ' + this.countProductsWishlistLocalUpdated);
+        }
+        else {
+            console.log('Local Wishlist empty ');
+        }
+        /*
+            Local Cart
+        */
+        var productsCartarrayFromStorage = JSON.parse(localStorage.getItem('products'));
+        if (productsCartarrayFromStorage != null && productsCartarrayFromStorage.length > 0) {
+            var arrayLength1 = productsCartarrayFromStorage.length;
+            this.countProductsCart = arrayLength1;
+            this.countProductsCartLocalUpdated = this.countProductsCart;
+            console.log('Local Cart filled ' + this.countProductsCartLocalUpdated);
+        }
+        else {
+            console.log('Local Cart empty ');
+        }
+    }
+    incrementValue() {
+        this.currentNumber++;
+    }
+    decrementValue() {
+        if (this.currentNumber <= 1) {
+            console.log('Issue in cart ');
+            this.showToastOnCart();
+        }
+        else {
+            console.log('success in cart ');
+            this.currentNumber--;
+        }
+    }
+    checkNetwork() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { Network } = __WEBPACK_IMPORTED_MODULE_2__capacitor_core__["a" /* Plugins */];
+            this.networkListener = Network.addListener('networkStatusChange', (status) => {
+                console.log('Network status HomePage here', status);
+                this.networkStatus = status;
+            });
+            if ((yield Network.getStatus()).connectionType === 'none') {
+                this.showNetworkAlert();
+                console.log('Network status not available', this.networkStatus);
+            }
+            else {
+                this.networkStatus = yield Network.getStatus();
+                // this.showAlert();
+                console.log('Network status available', this.networkStatus);
+                //this.router.navigate(['/invoices']);
+                // this.router.navigate(['/managecard']);
+            }
+        });
+    }
+    showNetworkAlert() {
+        return __awaiter(this, void 0, void 0, function* () {
+            // omitted;
+            const alert = yield this.alertController.create({
+                title: 'Network Issues!',
+                message: 'There are issues in network connectivity',
+                buttons: [
+                    {
+                        text: 'Ok',
+                        handler: (ok) => {
+                            console.log('Confirm Ok');
+                            // resolve('ok');
+                        },
+                    },
+                    {
+                        text: 'Cancel',
+                        role: 'cancel',
+                        cssClass: 'secondary',
+                        handler: (cancel) => {
+                            console.log('Confirm Cancel');
+                            alert.dismiss();
+                            // resolve('cancel');
+                        },
+                    },
+                ],
+            });
+            alert.present();
+        });
+    }
+    showToastOnCart() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const toast = yield this.toastController.create({
+                message: 'Minimum product quantity cannot be less than 1 ',
+                duration: 400,
+                position: 'bottom',
+            });
+            toast.present();
+        });
+    }
+};
+CategorydetailPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-categorydetail',template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\categorydetail\categorydetail.html"*/'\n\n<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle style="display: block !important">\n\n      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"/>\n\n    </ion-icon>\n\n    </button>\n\n    <ion-title>Category Detail\n\n      <span float-right>\n\n        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n        \n\n        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n      </span>\n\n     \n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header> \n\n\n\n\n\n<ion-content class="bg-light">\n\n  <div class="img-section shadow-bottom" text-center>\n\n  \n\n  \n\n\n\n\n\n    <img  [src]="strImage"  style="width:200px;height:150px;margin-top: 18px;">\n\n\n\n    <div class="tab-btn-box">\n\n      <!-- <div class="tab-btn">\n\n        <img  [src]="strImage"  style="width:150px;height:40px;"  >\n\n        \n\n      </div>\n\n      <div class="tab-btn">\n\n        <img  [src]="strImage"  style="width:150px;height:40px;">\n\n      </div>\n\n      <div class="tab-btn">\n\n        <img  [src]="strImage"  style="width:150px;height:40px;">\n\n      </div> -->\n\n    </div>\n\n    <div class="d-flex" style="align-items: start;margin-top: 5px;" >\n\n      <span>{{strName}}</span>\n\n      <span class="icon">\n\n        <ion-icon name="md-remove" (click)="decrementValue()"></ion-icon\n\n      ></span>\n\n      <span\n\n        class="text-sky small-text"\n\n        style="text-align: center; margin-left: 20%"\n\n      >\n\n        {{currentNumber}}</span\n\n      >\n\n      <span class="icon" style="margin-left: 20%"\n\n        ><ion-icon name="md-add" (click)="incrementValue()"></ion-icon\n\n      ></span>\n\n    </div>\n\n    <div class="card-btn">\n\n      <div class="d-flex" style="padding: 1rem">\n\n        <div class="review-box">\n\n          <span class="text-sky small-text" style="color: black;">Product Quantity</span>\n\n        </div>\n\n      \n\n      </div>\n\n    </div>\n\n  </div>\n\n\n\n\n\n\n\n  <div class="features bg-white shadow-bottom" padding>\n\n    <h6 class="heading">Key Features</h6>\n\n    <p><span class="circle"></span>{{strProductDescription}}</p>\n\n    <p><span class="circle"></span>{{strProductRegularPrice}} $ </p>\n\n    <p><span class="circle"></span>{{strProductMake}}</p>  \n\n    <p><span class="circle"></span>{{strProductModel}}</p>\n\n\n\n\n\n    \n\n  </div>\n\n\n\n  <div class="reating-review bg-white" padding >\n\n    <div class="reating"></div>\n\n\n\n    <div class="lick" >\n\n      <button\n\n      ion-button\n\n      full\n\n      class="btn-round green-shadow btn-text"\n\n      style="background-color: red; color: white;"\n\n     \n\n      (click)="addToCart(dynamicId,strProductName,strImage,strProductDescription,strProductRegularPrice)"\n\n\n\n      >\n\n\n\n    Add To Cart\n\n      \n\n    </button>\n\n    </div>\n\n\n\n    <!-- (click)="addToCart(dynamicId)" -->\n\n    \n\n\n\n  \n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\categorydetail\categorydetail.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ToastController */]])
+], CategorydetailPage);
+
+//# sourceMappingURL=categorydetail.js.map
+
+/***/ }),
+
+/***/ 184:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductcategorydetaillistPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__capacitor_core__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__capacitor_core__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__productcategorydetail_productcategorydetail__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_api_api__ = __webpack_require__(14);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2974,7 +3514,7 @@ let ProductcategorydetaillistPage = class ProductcategorydetaillistPage {
 };
 ProductcategorydetaillistPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'page-productcategorydetaillist',template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\productcategorydetaillist\productcategorydetaillist.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle style="display: block !important">\n\n      <ion-icon class="menu-icon"\n\n        ><img src="assets/imgs/ic_menu.png"\n\n      /></ion-icon>\n\n    </button>\n\n    <ion-title\n\n      >Product Detail\n\n      <span float-right>\n\n        <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>\n\n        <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>\n\n        <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon> -->\n\n\n\n       \n\n        <!-- <ion-icon class="icon"  (click)="wishlistPage()" >\n\n          <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> \n\n        </ion-icon>\n\n\n\n        <ion-icon class="icon"  (click)="cartPage()" >\n\n          <img src="assets/imgs/ic_my_cart.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> \n\n        </ion-icon> -->\n\n        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n        \n\n        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n     \n\n\n\n      </span>\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header> \n\n\n\n<!--<select size & color>-->\n\n<ion-content class="bg-light">\n\n  <div class="img-section shadow-bottom" text-center>\n\n  \n\n  \n\n\n\n\n\n    <img  [src]="strProductImage"  style="width:200px;height:150px;margin-top: 8px;">\n\n\n\n    \n\n   \n\n  </div>\n\n\n\n  \n\n\n\n  <div class="features bg-white shadow-bottom" padding style="margin-top: 15px;">\n\n    <h6 class="heading">Key Features</h6>\n\n    <p><span class="circle"></span>{{strProductName}}</p>\n\n    <p><span class="circle"></span>{{strProductRegularPrice}}  </p>\n\n    <p><span class="circle"></span>{{strProductDescription}}</p>\n\n     <p><span class="circle"></span>{{strProductMake}}</p>  \n\n    <p><span class="circle"></span>{{strProductModel}}</p>\n\n    <p><span class="circle"></span>{{strProductYear}}</p>\n\n  \n\n  </div>\n\n\n\n  \n\n\n\n  <div *ngIf="strProductRegularPrice"> \n\n    <div class="reating-review bg-white" padding >\n\n      <div class="reating"></div>\n\n  \n\n      <div class="d-flex" style="align-items: start" style="margin-top: 48px;">\n\n        <span>{{strName}}</span>\n\n        <span class="icon">\n\n          <ion-icon name="md-remove" (click)="decrementValue()"></ion-icon\n\n        ></span>\n\n        <span\n\n          class="text-sky small-text"\n\n          style="text-align: center; margin-left: 20%"\n\n        >\n\n          {{currentNumber}}</span\n\n        >\n\n        <span class="icon" style="margin-left: 20%"\n\n          ><ion-icon name="md-add" (click)="incrementValue()"></ion-icon\n\n        ></span>\n\n      </div>\n\n      <div class="card-btn" style="margin-top: 8px;">\n\n        <div class="d-flex" style="padding: 1rem">\n\n          <div class="review-box">\n\n            <span class="text-sky small-text" style="color: black;">Product Quantity</span>\n\n          </div>\n\n         \n\n        </div>\n\n      </div>\n\n      <div class="lick" >\n\n        <button\n\n        ion-button\n\n        full\n\n        class="btn-round green-shadow btn-text"\n\n        style="background-color: red; color: white;"\n\n        (click)="addToCart(dynamicId,strProductName,strImage,strProductDescription,strProductRegularPrice)"\n\n        >\n\n  \n\n      Add To Cart\n\n        \n\n      </button>\n\n      </div>\n\n  \n\n    \n\n    </div>\n\n  </div>\n\n\n\n  <div *ngIf="strProductRegularPrice;else test" class="lick">\n\n    available\n\n  </div>\n\n  <ng-template #test class="lick">\n\n    not available\n\n  </ng-template>\n\n</ion-content>\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\productcategorydetaillist\productcategorydetaillist.html"*/,
+        selector: 'page-productcategorydetaillist',template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\productcategorydetaillist\productcategorydetaillist.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle style="display: block !important">\n\n      <ion-icon class="menu-icon"\n\n        ><img src="assets/imgs/ic_menu.png"\n\n      /></ion-icon>\n\n    </button>\n\n    <ion-title\n\n      >Product Detail\n\n      <span float-right>\n\n        <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>\n\n        <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>\n\n        <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon> -->\n\n\n\n       \n\n        <!-- <ion-icon class="icon"  (click)="wishlistPage()" >\n\n          <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> \n\n        </ion-icon>\n\n\n\n        <ion-icon class="icon"  (click)="cartPage()" >\n\n          <img src="assets/imgs/ic_my_cart.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> \n\n        </ion-icon> -->\n\n        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n        \n\n        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n     \n\n\n\n      </span>\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header> \n\n\n\n<!--<select size & color>-->\n\n<ion-content class="bg-light">\n\n  <div class="img-section shadow-bottom" text-center>\n\n  \n\n  \n\n\n\n\n\n    <img  [src]="strProductImage"  style="width:200px;height:150px;margin-top: 18px;">\n\n\n\n    \n\n   \n\n  </div>\n\n\n\n  \n\n\n\n  <div class="features bg-white shadow-bottom" padding style="margin-top: 15px;">\n\n    <h6 class="heading">Key Features</h6>\n\n    <p><span class="circle"></span>{{strProductName}}</p>\n\n    <p><span class="circle"></span>{{strProductDescription}}</p>\n\n     <p><span class="circle"></span>{{strProductMake}}</p>  \n\n    <p><span class="circle"></span>{{strProductModel}}</p>\n\n    <p><span class="circle"></span>{{strProductYear}}</p>\n\n    <p><span class="circle"></span>{{strProductRegularPrice}}  </p>\n\n  \n\n  </div>\n\n\n\n  \n\n\n\n  <div *ngIf="strProductRegularPrice"> \n\n    <div class="reating-review bg-white" padding >\n\n      <div class="reating"></div>\n\n  \n\n      <!-- <div class="d-flex" style="align-items: start" style="margin-top: 48px;">\n\n        <span>{{strName}}</span>\n\n        <span class="icon">\n\n          <ion-icon name="md-remove" (click)="decrementValue()"></ion-icon\n\n        ></span>\n\n        <span\n\n          class="text-sky small-text"\n\n          style="text-align: center; margin-left: 20%"\n\n        >\n\n          {{currentNumber}}</span\n\n        >\n\n        <span class="icon" style="margin-left: 20%"\n\n          ><ion-icon name="md-add" (click)="incrementValue()"></ion-icon\n\n        ></span>\n\n      </div>\n\n      <div class="card-btn" style="margin-top: 8px;">\n\n        <div class="d-flex" style="padding: 1rem">\n\n          <div class="review-box">\n\n            <span class="text-sky small-text" style="color: black;">Product Quantity</span>\n\n          </div>\n\n         \n\n        </div>\n\n      </div> -->\n\n      <div class="lick" >\n\n        <button\n\n        ion-button\n\n        full\n\n        class="btn-round green-shadow btn-text"\n\n        style="background-color: red; color: white;"\n\n        (click)="addToCart(dynamicId,strProductName,strImage,strProductDescription,strProductRegularPrice)"\n\n        >\n\n  \n\n      Add To Cart\n\n        \n\n      </button>\n\n      </div>\n\n  \n\n    \n\n    </div>\n\n  </div>\n\n\n\n  <!-- <div *ngIf="strProductRegularPrice;else test" class="lick">\n\n    available\n\n  </div>\n\n  <ng-template #test class="lick">\n\n    not available\n\n  </ng-template> -->\n\n</ion-content>\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\productcategorydetaillist\productcategorydetaillist.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavParams */],
@@ -2991,7 +3531,7 @@ ProductcategorydetaillistPage = __decorate([
 
 /***/ }),
 
-/***/ 182:
+/***/ 185:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2999,7 +3539,7 @@ ProductcategorydetaillistPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__capacitor_core__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__capacitor_core__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_api_api__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__productcategorydetail_productcategorydetail__ = __webpack_require__(49);
 /*
@@ -3368,7 +3908,7 @@ ReadmorePage = __decorate([
 
 /***/ }),
 
-/***/ 183:
+/***/ 186:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3378,6 +3918,8 @@ ReadmorePage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__searchproducts_searchproducts__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__categorydetail_categorydetail__ = __webpack_require__(183);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3401,6 +3943,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 
 
 
+
+
 /**
  * Generated class for the Home1Page page.
  *
@@ -3408,12 +3952,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
  * Ionic pages and navigation.
  */
 let Home1Page = class Home1Page {
-    constructor(apiProvider, httpClient, navCtrl, toastController, apiService) {
+    constructor(apiProvider, httpClient, navCtrl, toastController, apiService, loadingCtrl) {
         this.apiProvider = apiProvider;
         this.httpClient = httpClient;
         this.navCtrl = navCtrl;
         this.toastController = toastController;
         this.apiService = apiService;
+        this.loadingCtrl = loadingCtrl;
         this.stateInfo = [];
         this.countryInfo = [];
         this.cityInfo = [];
@@ -3429,10 +3974,28 @@ let Home1Page = class Home1Page {
         this.body = '';
         this.to = '';
         this.showDataboolean = false;
+        this.productCategoryInformation = [];
+        this.productCategoryInformation1 = [];
+        this.searchProduct = '';
+        this.searchTerm = '';
+        this.searchTerm1 = '';
+        this.searching = false;
+        this.isItemAvailable = false;
+        this.itemsTushar = [];
+        this.items = [
+            { title: "one" },
+            { title: "two" },
+            { title: "three" },
+            { title: "four" },
+            { title: "five" },
+            { title: "six" }
+        ];
+        this.searchControl = new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormControl */]();
+        this.searchControl = new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormControl */]();
+        this.initializeItems();
     }
     ngOnInit() {
-        this.getMakeApi();
-        this.getProducts();
+        this.callProductCategoryDetail();
     }
     getMakeApi() {
         console.log('getMakeApi called    ');
@@ -3546,106 +4109,138 @@ let Home1Page = class Home1Page {
             toast.present();
         });
     }
-    getProducts() {
-        const service = this.apiService.getProducts();
-        service.subscribe((data) => {
-            if (data) {
-                const resultado = data;
-                console.log(resultado);
-                this.products = resultado;
+    callProductCategoryDetail() {
+        this.httpClient.get('http://busybanda.com/sterling-tools/api/get_products/').subscribe((jsonResponse) => {
+            if (jsonResponse) {
+                let loading = this.loadingCtrl.create({
+                    content: 'Please wait...'
+                });
+                loading.present();
+                console.log('Got Json Response success');
+                loading.dismiss();
+                this.productCategoryInformation1 = jsonResponse['result'];
+                this.obj = JSON.stringify(jsonResponse);
+                console.log('Particular product details json ' + this.obj);
+                localStorage.setItem('GetProducts', this.obj);
             }
             else {
-                this.showDataboolean = false;
+                console.log('Got Json Response failure');
+            }
+            if (this.productCategoryInformation1 && this.productCategoryInformation1.length) {
+                console.log('Particular product details available ');
+            }
+            else {
+                this.strData = 'No data available';
+                console.log('Particular product empty ' + jsonResponse['result']);
             }
         });
     }
-    requestPermission() {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                let hasPermission = yield this.badge.hasPermission();
-                console.log(hasPermission);
-                if (!hasPermission) {
-                    let permission = yield this.badge.registerPermission();
-                    console.log(permission);
-                }
-            }
-            catch (e) {
-                console.error(e);
-            }
+    // productDetailPage(id, name,regular_price) {
+    //   this.navCtrl.push(ItemdetailPage, {
+    //     id: id,
+    //     name: name,
+    //     regular_price:regular_price
+    //   });
+    //   console.log("Sent product id " + id);
+    //   console.log("Sent product name " + name); 
+    //   console.log("Sent product name " + regular_price);
+    //   console.log('data added '+this.val);
+    // }
+    searchClick(id, description, regular_price, image, pa_make, pa_model) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__categorydetail_categorydetail__["a" /* CategorydetailPage */], {
+            id: id,
+            description: description,
+            regular_price: regular_price,
+            image: image,
+            make: pa_make,
+            model: pa_model
+        });
+        console.log("Selected Product Id " + id);
+        console.log("Selected Product description " + description);
+        console.log("Selected Product regular_price " + regular_price);
+        console.log("Selected Product image " + image);
+        console.log("Selected Product make " + pa_make);
+        console.log("Selected Product model " + pa_model);
+    }
+    filterItems(searchTerm) {
+        return this.items.filter(item => {
+            return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
         });
     }
-    setBadges(badgeNumber) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                let badges = yield this.badge.set(badgeNumber);
-                console.log(badges);
-            }
-            catch (e) {
-                console.error(e);
-            }
+    filterItems1(searchTerm1) {
+        return this.productCategoryInformation.filter(item1 => {
+            return item1.name.toLowerCase().indexOf(searchTerm1.toLowerCase()) > -1;
         });
     }
-    getBadges() {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                let badgeAmount = yield this.badge.get();
-                console.log(badgeAmount);
-            }
-            catch (e) {
-                console.error(e);
-            }
-        });
+    initializeItems() {
+        this.items = [
+            'Islamabad',
+            'Istanbul',
+            'Jakarta',
+            'Kiel',
+            'Kyoto',
+            'Le Havre',
+            'Lebanon',
+            'Lhasa',
+        ];
     }
-    increaseBadges(badgeNumber) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                let badge = yield this.badge.increase(Number(badgeNumber));
-                console.log(badge);
-            }
-            catch (e) {
-                console.error(e);
-            }
-        });
+    getItems(ev) {
+        // Reset items back to all of the items
+        this.initializeItems();
+        // set val to the value of the ev target
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.items = this.items.filter((item) => {
+                return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            });
+        }
     }
-    decreaseBadges(badgeNumber) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                let badge = yield this.badge.decrease(Number(badgeNumber));
-                console.log(badge);
-            }
-            catch (e) {
-                console.error(e);
-            }
-        });
+    getItems1(ev) {
+        // Reset items back to all of the items
+        // this.callProductCategoryDetail();
+        console.log('Tushar' + this.name + this.productCategoryInformation1.length);
+        // set val to the value of the ev target
+        var val = ev.target.value;
+        console.log('Tushar val' + val);
+        // var ans = 334;
+        // var temp = ans.toString().toLowerCase();
+        // alert(temp);
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.productCategoryInformation1 = this.productCategoryInformation1.filter((item) => {
+                return (item.toString().toLowerCase().indexOf(val.toString().toLowerCase()) > -1);
+            });
+        }
     }
-    clearBadges() {
+    showToastOnClick() {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                let badge = yield this.badge.clear();
-                console.log(badge);
-            }
-            catch (e) {
-                console.error(e);
-            }
+            const toast = yield this.toastController.create({
+                message: 'Please select Model ',
+                duration: 3000,
+                position: 'bottom',
+            });
+            toast.present();
         });
     }
 };
 Home1Page = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'page-home1',template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\home1\home1.html"*/'<ion-header class="bg-thime">\n\n  <ion-navbar>\n\n    <button ion-button menuToggle style="display: block !important;">\n\n      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>\n\n    </button>\n\n    <ion-title text-uppercase>AUTO PARTS\n\n      <span float-right>\n\n        <ion-icon class="icon" ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>\n\n        <ion-icon class="icon" ><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>\n\n        <!-- <ion-badge  color="primary" style="width: 100px;">\n\n          <ion-icon name="cart"></ion-icon>\n\n              {{7}}\n\n          </ion-badge>\n\n\n\n          <ion-badge  color="primary" style="width: 30px;">\n\n            <ion-icon name="mail"></ion-icon>\n\n                {{3}}\n\n            </ion-badge> -->\n\n            <!-- <ion-icon class="icon" ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>\n\n            <ion-badge color="dark">99</ion-badge> -->\n\n\n\n           \n\n      </span>\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content class="bg-light">\n\n  <div class="col-md-4 col-xs-12">\n\n\n\n   \n\n\n\n\n\n\n\n  <!-- <div class="size" style="justify-content: center">\n\n    <ion-item>\n\n      <ion-label>Make</ion-label>\n\n      <ion-select\n\n        \n\n        value="sortpopular"\n\n        okText="Ok"\n\n        cancelText="Cancel"\n\n        (ionChange)="makeDropDownValue(makeValue)"\n\n        [(ngModel)]="makeValue"\n\n        >\n\n        <ion-option *ngFor="let makeKey of makeList" >{{makeKey}}</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n  </div>\n\n\n\n  <div class="size" style="justify-content: center">\n\n    <ion-item>\n\n      <ion-label>Model</ion-label>\n\n      <ion-select \n\n        value="sortpopular"\n\n        okText="Ok"\n\n        cancelText="Cancel">\n\n        <ion-option *ngFor="let modelKey of modelList" [value] = "modelKey" (ionSelect)="triggerMeModel(modelKey)" >{{modelKey}}</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n  </div>\n\n  <div class="size" style="justify-content: center">\n\n    <ion-item>\n\n      <ion-label>SubModel</ion-label>\n\n      <ion-select\n\n        value="sortpopular"\n\n        okText="Ok"\n\n        cancelText="Cancel"\n\n        [(ngModel)]="engineValue">\n\n        <ion-option *ngFor="let engineKey of engineList" [value] = "engineKey" (ionSelect)="triggerMeEngine(engineKey)">{{engineKey}}</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n  </div>\n\n\n\n  <div class="size" style="justify-content: center">\n\n    <ion-item>\n\n      <ion-label>Year</ion-label>\n\n      <ion-select\n\n        value="sortpopular"\n\n        okText="Ok"\n\n        cancelText="Cancel"\n\n        [(ngModel)]="yearValue">\n\n        <ion-option *ngFor="let yearKey of yearList"  >{{yearKey}}</ion-option>\n\n      </ion-select>\n\n\n\n\n\n    </ion-item>\n\n  </div> -->\n\n  \n\n\n\n   \n\n\n\n      \n\n  <!-- <div class="list">\n\n		<ul>\n\n			<li *ngFor="let item of collection | paginate: { itemsPerPage: 5, currentPage: p }">{{ makeList }}</li>\n\n    </ul>\n\n    <ion-card>\n\n      <ion-label>{{makeList.result}}</ion-label>\n\n    </ion-card>\n\n\n\n		<pagination-controls (pageChange)="p = $event"></pagination-controls>\n\n</div> -->\n\n\n\n\n\n<!-- <ion-item>\n\n  <ion-label floating>Badge Number</ion-label>\n\n  <ion-input type="number" [(ngModel)]="badgeNumber">\n\n  </ion-input>\n\n</ion-item>\n\n\n\n<button ion-button (click)="setBadges(badgeNumber)">Set Badges to {{badgeNumber}}</button>\n\n<button ion-button (click)="increaseBadges(badgeNumber)">Increase Badges by {{badgeNumber}}</button>\n\n<button ion-button (click)="decreaseBadges(badgeNumber)">Decrease Badges by {{badgeNumber}}</button>\n\n<button ion-button (click)="getBadges()">Get Badges</button>\n\n<button ion-button (click)="clearBadges()">Clear Badges</button>\n\n<button ion-button (click)="requestPermission()">Request Permission</button> -->\n\n\n\n\n\n<ion-badge>Jami Bot</ion-badge>\n\n<ion-badge color="secondary" mode="ios">Jami Bot</ion-badge>\n\n<ion-badge color="tertiary">Jami Bot</ion-badge>\n\n\n\n<ion-list>\n\n  <ion-item>\n\n    <ion-label>hello world</ion-label>\n\n    <ion-badge>100</ion-badge>\n\n  </ion-item>\n\n</ion-list>\n\n\n\n\n\n\n\n\n\n  \n\n\n\n    \n\n \n\n\n\n</div>   \n\n \n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\home1\home1.html"*/,
+        selector: 'page-home1',template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\home1\home1.html"*/'<ion-header class="bg-thime">\n\n  <ion-navbar>\n\n    <button ion-button menuToggle style="display: block !important;">\n\n      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>\n\n    </button>\n\n    <ion-title text-uppercase>AUTO PARTS\n\n      <span float-right>\n\n        <ion-icon class="icon" ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>\n\n        <ion-icon class="icon" ><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>\n\n        <!-- <ion-badge  color="primary" style="width: 100px;">\n\n          <ion-icon name="cart"></ion-icon>\n\n              {{7}}\n\n          </ion-badge>\n\n\n\n          <ion-badge  color="primary" style="width: 30px;">\n\n            <ion-icon name="mail"></ion-icon>\n\n                {{3}}\n\n            </ion-badge> -->\n\n            <!-- <ion-icon class="icon" ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>\n\n            <ion-badge color="dark">99</ion-badge> -->\n\n\n\n           \n\n      </span>\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content class="bg-light">\n\n  <div class="col-md-4 col-xs-12">\n\n\n\n   \n\n\n\n\n\n\n\n  <!-- <div class="size" style="justify-content: center">\n\n    <ion-item>\n\n      <ion-label>Make</ion-label>\n\n      <ion-select\n\n        \n\n        value="sortpopular"\n\n        okText="Ok"\n\n        cancelText="Cancel"\n\n        (ionChange)="makeDropDownValue(makeValue)"\n\n        [(ngModel)]="makeValue"\n\n        >\n\n        <ion-option *ngFor="let makeKey of makeList" >{{makeKey}}</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n  </div>\n\n\n\n  <div class="size" style="justify-content: center">\n\n    <ion-item>\n\n      <ion-label>Model</ion-label>\n\n      <ion-select \n\n        value="sortpopular"\n\n        okText="Ok"\n\n        cancelText="Cancel">\n\n        <ion-option *ngFor="let modelKey of modelList" [value] = "modelKey" (ionSelect)="triggerMeModel(modelKey)" >{{modelKey}}</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n  </div>\n\n  <div class="size" style="justify-content: center">\n\n    <ion-item>\n\n      <ion-label>SubModel</ion-label>\n\n      <ion-select\n\n        value="sortpopular"\n\n        okText="Ok"\n\n        cancelText="Cancel"\n\n        [(ngModel)]="engineValue">\n\n        <ion-option *ngFor="let engineKey of engineList" [value] = "engineKey" (ionSelect)="triggerMeEngine(engineKey)">{{engineKey}}</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n  </div>\n\n\n\n  <div class="size" style="justify-content: center">\n\n    <ion-item>\n\n      <ion-label>Year</ion-label>\n\n      <ion-select\n\n        value="sortpopular"\n\n        okText="Ok"\n\n        cancelText="Cancel"\n\n        [(ngModel)]="yearValue">\n\n        <ion-option *ngFor="let yearKey of yearList"  >{{yearKey}}</ion-option>\n\n      </ion-select>\n\n\n\n\n\n    </ion-item>\n\n  </div> -->\n\n  \n\n\n\n   \n\n\n\n      \n\n  <!-- <div class="list">\n\n		<ul>\n\n			<li *ngFor="let item of collection | paginate: { itemsPerPage: 5, currentPage: p }">{{ makeList }}</li>\n\n    </ul>\n\n    <ion-card>\n\n      <ion-label>{{makeList.result}}</ion-label>\n\n    </ion-card>\n\n\n\n		<pagination-controls (pageChange)="p = $event"></pagination-controls>\n\n</div> -->\n\n\n\n\n\n<!-- <ion-item>\n\n  <ion-label floating>Badge Number</ion-label>\n\n  <ion-input type="number" [(ngModel)]="badgeNumber">\n\n  </ion-input>\n\n</ion-item>\n\n\n\n<button ion-button (click)="setBadges(badgeNumber)">Set Badges to {{badgeNumber}}</button>\n\n<button ion-button (click)="increaseBadges(badgeNumber)">Increase Badges by {{badgeNumber}}</button>\n\n<button ion-button (click)="decreaseBadges(badgeNumber)">Decrease Badges by {{badgeNumber}}</button>\n\n<button ion-button (click)="getBadges()">Get Badges</button>\n\n<button ion-button (click)="clearBadges()">Clear Badges</button>\n\n<button ion-button (click)="requestPermission()">Request Permission</button> -->\n\n\n\n\n\n\n\n\n\n\n\n<ion-searchbar (ionInput)="getItems($event)" ></ion-searchbar>\n\n<ion-list>\n\n  <ion-item *ngFor="let item of items">\n\n    {{ item }}\n\n  </ion-item>\n\n</ion-list>\n\n\n\n\n\n\n\n\n\n<ion-searchbar (ionInput)="getItems1($event)"  [(ngModel)]="name" ></ion-searchbar>\n\n<ion-list>\n\n  <ion-item *ngFor="let item of productCategoryInformation1" (click)="searchClick(item.id,item.description,item.regular_price,item.image,item.attribute.pa_make,item.attribute.pa_model)">\n\n    {{ item.name }}\n\n  </ion-item>\n\n</ion-list>\n\n\n\n\n\n\n\n    \n\n \n\n\n\n</div>   \n\n \n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\home1\home1.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__providers_api_api__["a" /* ApiProvider */],
         __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */],
         __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* ToastController */],
-        __WEBPACK_IMPORTED_MODULE_0__providers_api_api__["a" /* ApiProvider */]])
+        __WEBPACK_IMPORTED_MODULE_0__providers_api_api__["a" /* ApiProvider */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* LoadingController */]])
 ], Home1Page);
 
 //# sourceMappingURL=home1.js.map
 
 /***/ }),
 
-/***/ 184:
+/***/ 187:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3657,7 +4252,7 @@ Home1Page = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__capacitor_core__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__capacitor_core__ = __webpack_require__(27);
 /**
  *  Created By Lasting Erp
  */
@@ -3679,7 +4274,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 
 
 
@@ -4013,14 +4607,22 @@ MyaccountupdatedPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_6__angular_core__["n" /* Component */])({
         selector: 'page-myaccountupdated',template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\myaccountupdated\myaccountupdated.html"*/'<ion-header class="bg-thime ">\n\n  <ion-navbar>\n\n  <button ion-button menuToggle>\n\n    <ion-icon class="menu-icon">\n\n      <img src="assets/imgs/ic_menu.png">\n\n    </ion-icon>\n\n  </button>\n\n    <ion-title>My Account\n\n      <!-- <span float-right> \n\n        <ion-icon padding-right name="ios-search-outline" width="100%;" ></ion-icon>\n\n        <ion-icon name="ios-cart-outline" width="100%;"></ion-icon>              \n\n      </span> -->\n\n      <!-- <span float-right>\n\n        <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>\n\n        <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>\n\n        <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon>\n\n      </span> -->\n\n\n\n      <!-- <span float-right>\n\n        <ion-icon class="icon"  (click)="wishlistPage()" >\n\n          <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> \n\n        </ion-icon>\n\n\n\n       \n\n        <ion-icon class="icon"  (click)="cartPage()"  >\n\n          <img src="assets/imgs/ic_my_cart.png" width="100%;" />\n\n          <ion-badge class="icon add-icon" >{{countProductsCartLocal}}</ion-badge> \n\n        </ion-icon>\n\n      </span> -->\n\n\n\n      <span float-right>\n\n\n\n        <!-- <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n        \n\n        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>\n\n        </ion-icon>  -->\n\n\n\n        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n        \n\n        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n      </span>\n\n\n\n    </ion-title>\n\n  </ion-navbar>\n\n  <ion-list padding-left class="tab-bar main-tools">\n\n    <ion-item padding-left padding-right style="background: red;">\n\n      <ion-avatar item-start>\n\n        <img src="assets/imgs/profile_pix.png">\n\n      </ion-avatar>\n\n      <!-- <h2 class="">{{strDataUserLogin}}\n\n        <small class="" style="float: right;"> Edit Profile</small>\n\n      </h2>\n\n      <p class="text-dark" style="color: black;">+91 908 765 4321\n\n      </p> -->\n\n    </ion-item>\n\n  </ion-list>\n\n  <ion-toolbar no-border-top class="tab-bar menu-bar">\n\n    <ion-segment [(ngModel)]="account">\n\n      <ion-segment-button value="profile" style="text-transform: none;color: black;">\n\n        Profile\n\n      </ion-segment-button>\n\n      <!-- <ion-segment-button value="card" style="text-transform: none;color: black;">\n\n        My Cards\n\n      </ion-segment-button>\n\n      <ion-segment-button value="address" style="text-transform: none;color: black;">\n\n       My Address\n\n      </ion-segment-button> -->\n\n    </ion-segment>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <div [ngSwitch]="account">\n\n    <div *ngSwitchCase="\'profile\'" class="profile-section">\n\n      <ion-list>\n\n        <!-- <ion-item>\n\n          <ion-label floating>Name</ion-label>\n\n          <ion-input type="text" [(ngModel)]="strDataUserLogin" ></ion-input>\n\n        </ion-item>\n\n        <ion-item>\n\n          <ion-label floating>Email</ion-label>\n\n          <ion-input type="email" [(ngModel)]="strDataUserEmail"></ion-input>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-label floating>UserRegistered On</ion-label>\n\n          <ion-input type="text" [(ngModel)]="strDataUserRegistered"></ion-input>\n\n        </ion-item> -->\n\n        <ion-item>\n\n          <ion-label floating>Address</ion-label>\n\n          <ion-input type="text" [(ngModel)]="strAddress"></ion-input>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-label floating>City</ion-label>\n\n          <ion-input type="text" [(ngModel)]="strCity"></ion-input>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-label floating>State</ion-label>\n\n          <ion-input type="text" [(ngModel)]="strState"></ion-input>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n          <ion-label floating>Postal Code</ion-label>\n\n          <ion-input type="number" [(ngModel)]="strPostalCode"></ion-input>\n\n        </ion-item>\n\n        <ion-item>\n\n          <ion-label floating>Phone</ion-label>\n\n          <ion-input type="number" [(ngModel)]="strPhone"></ion-input>\n\n        </ion-item>\n\n      \n\n\n\n        <ion-row>  \n\n          <ion-col class="signup-col">\n\n            <button ion-button class="submit-btn" full type="submit" style="text-transform: none;" class="bg-thime btn-round btn-text" (click)="loginBtnClick()">Update</button>\n\n\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-list>\n\n    </div>\n\n\n\n    <div *ngSwitchCase="\'card\'" class="card-section bg-light">\n\n      <ion-card>\n\n        <ion-card-content>\n\n          <div class="card-row">XXXX XXXX XXXX 5887\n\n            <img src="assets/imgs/visa.png">\n\n          </div>\n\n        </ion-card-content>\n\n      </ion-card>\n\n      <ion-card>\n\n        <ion-card-content>\n\n          <div class="card-row">XXXX XXXX XXXX 5887\n\n            <img src="assets/imgs/master-card.png">\n\n          </div>\n\n        </ion-card-content>\n\n      </ion-card>\n\n      <ion-card>\n\n        <div class="form" padding-left padding-right>\n\n          <p padding-bottom margin-bottom>\n\n            <!-- <ion-icon name="ios-add-circle-outline" style="float: left;">\n\n\n\n            </ion-icon> -->\n\n            \n\n            Add New Card \n\n          <span style="float: right;">Save</span></p>\n\n          <ion-list>\n\n            <ion-item>\n\n              <ion-label>Card Type</ion-label>\n\n              <ion-input type="text" text-right value="Visa Express"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <ion-label>Card Number</ion-label>\n\n              <ion-input type="text" text-right value="1234-1234-1234-1234"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <ion-label>Name on Card</ion-label>\n\n              <ion-input type="text" text-right value="John Smith"></ion-input>\n\n            </ion-item>\n\n            <div class="date-cvc-row">\n\n              <div class="date">\n\n                <ion-item>\n\n                  <ion-label>Expiry Date</ion-label>\n\n                  <ion-input type="text" text-right value="10/23"></ion-input>\n\n                </ion-item>\n\n              </div>\n\n              <div class="cvc">\n\n                <ion-item>\n\n                  <ion-label>CVV</ion-label>\n\n                  <ion-input type="text" text-right value="234"></ion-input>\n\n                </ion-item>\n\n              </div>\n\n            </div>\n\n            <ion-item class="border-none">\n\n              <ion-label text-right style="color: black;">Save Card Details</ion-label>\n\n              <ion-toggle checked="false"></ion-toggle>\n\n            </ion-item>\n\n          </ion-list>\n\n        </div>\n\n      </ion-card>\n\n    </div>\n\n\n\n    <div *ngSwitchCase="\'address\'" class="address-section bg-light">\n\n      <ion-card>\n\n        <ion-card-content>\n\n          <div class="addres-detail">\n\n            <h3> \n\n              <ion-icon name="ios-pin-outline" class="icon-position"> </ion-icon>\n\n              John Smith \n\n              <span style="float: right;">Change\n\n                <ion-icon name="ios-arrow-forward"></ion-icon>\n\n              </span>\n\n            </h3>\n\n            <p>DE234 Mapleridge Drive Plano,<br> Texas 743A US.</p>\n\n            <p>+91 908765432</p>\n\n          </div>\n\n        </ion-card-content>\n\n      </ion-card>\n\n      <ion-card>\n\n        <div class="form" padding-left padding-right>\n\n          <p padding-bottom margin-bottom>\n\n            <!-- <ion-icon name="ios-add-circle-outline" >\n\n            </ion-icon> -->\n\n            Add New Card\n\n            <span style="float: right;">Save</span>\n\n          </p>\n\n          <ion-list>\n\n            <ion-item>\n\n              <ion-label>Pincode</ion-label>\n\n              <ion-input type="text" text-right value="110092"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <ion-label>Address</ion-label>\n\n              <ion-input type="text" text-right value="DE234 Map Drive Plano,"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <ion-label>Phone number</ion-label>\n\n              <ion-input type="text" text-right value="+91 908 765 4321"></ion-input>\n\n            </ion-item>\n\n            <div class="date-cvc-row">\n\n              <div class="city">\n\n                <ion-item>\n\n                  <ion-label>City</ion-label>\n\n                  <ion-input type="text" text-right value="Delhi"></ion-input>\n\n                </ion-item>\n\n              </div>\n\n              <div class="State">\n\n                <ion-item>\n\n                  <ion-label>State</ion-label>\n\n                  <ion-input type="text" text-right value="Delhi"></ion-input>\n\n                </ion-item>\n\n              </div>\n\n            </div>\n\n            <ion-item class="border-none">\n\n              <ion-label text-right>Make this my default address</ion-label>\n\n              <ion-toggle checked="true" (ionChange)="update($event)"></ion-toggle>\n\n            </ion-item>\n\n          </ion-list>\n\n        </div>\n\n      </ion-card>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\myaccountupdated\myaccountupdated.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["k" /* NavController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["l" /* NavParams */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["h" /* LoadingController */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */]) === "function" ? _d : Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["m" /* Platform */]) === "function" ? _e : Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["n" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["n" /* ToastController */]) === "function" ? _f : Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_api_api__["a" /* ApiProvider */]) === "function" ? _g : Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["b" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["b" /* App */]) === "function" ? _h : Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["a" /* AlertController */]) === "function" ? _j : Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["k" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["l" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */],
+        __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["m" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["n" /* ToastController */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_api_api__["a" /* ApiProvider */],
+        __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["b" /* App */],
+        __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["a" /* AlertController */]])
 ], MyaccountupdatedPage);
 
 //# sourceMappingURL=myaccountupdated.js.map
 
 /***/ }),
 
-/***/ 185:
+/***/ 188:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4086,7 +4688,7 @@ PrivacypolicyPage = __decorate([
 
 /***/ }),
 
-/***/ 186:
+/***/ 189:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4150,7 +4752,7 @@ TermsandconditionsPage = __decorate([
 
 /***/ }),
 
-/***/ 187:
+/***/ 190:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4348,7 +4950,7 @@ TestcartPage = __decorate([
 
 /***/ }),
 
-/***/ 199:
+/***/ 202:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -4361,7 +4963,7 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 199;
+webpackEmptyAsyncContext.id = 202;
 
 /***/ }),
 
@@ -4378,7 +4980,7 @@ webpackEmptyAsyncContext.id = 199;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__capacitor_core__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__capacitor_core__ = __webpack_require__(27);
 /**
  *  Created By Lasting Erp
  */
@@ -4828,7 +5430,7 @@ let ViewcartPage = class ViewcartPage {
                                 else {
                                     this.strProductIdValue = productIdValue;
                                     //this.strNumber = priceValue.concat('price');
-                                    console.log('Value got ' + productIdValue);
+                                    // console.log('Value got ' + productIdValue);
                                 }
                             }
                         }
@@ -4940,27 +5542,26 @@ let ViewcartPage = class ViewcartPage {
                         cssClass: 'my-custom-class',
                         text: 'Ok',
                         handler: (ok) => {
-                            //     console.log('Remove Product: ' + product_id);
-                            //     if(localStorage.getItem('isSigned'))
-                            //     {
-                            //     console.log('User Status ' + 'isSigned true');
-                            //     this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?'+'product_id='+ product_id).subscribe((jsonResponse) => {
+                            console.log('Remove Product: ' + product_id);
+                            if (localStorage.getItem('isSigned')) {
+                                console.log('User Status ' + 'isSigned true');
+                                this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?' + 'product_id=' + product_id).subscribe((jsonResponse) => {
+                                    this.obj = JSON.stringify(jsonResponse);
+                                    console.log('Data' + this.obj);
+                                    this.showToastOnDeletingCart();
+                                    this.viewCartApi();
+                                    // this.navCtrl.setRoot(HomePage);
+                                });
+                            }
+                            else {
+                                console.log('isSigned status: ' + 'isSigned false');
+                            }
+                            // this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?'+'product_id='+ product_id).subscribe((jsonResponse) => {
                             //     this.obj = JSON.stringify(jsonResponse);
                             //     console.log('Data' + this.obj);
                             //     this.showToastOnDeletingCart();
                             //     this.viewCartApi();
-                            //  // this.navCtrl.setRoot(HomePage);
                             //   });
-                            //     }
-                            //     else {
-                            //       console.log('isSigned status: ' + 'isSigned false');
-                            //     }
-                            this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?' + 'product_id=' + product_id).subscribe((jsonResponse) => {
-                                this.obj = JSON.stringify(jsonResponse);
-                                console.log('Data' + this.obj);
-                                this.showToastOnDeletingCart();
-                                this.viewCartApi();
-                            });
                         },
                     },
                     {
@@ -5216,7 +5817,7 @@ ViewcartPage = __decorate([
 
 /***/ }),
 
-/***/ 242:
+/***/ 245:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -5225,111 +5826,119 @@ var map = {
 		2
 	],
 	"../pages/accordiantest/accordiantest.module": [
-		756,
-		27
+		758,
+		29
 	],
 	"../pages/appconstants/appconstants.module": [
-		755,
-		26
+		759,
+		28
+	],
+	"../pages/categorydetail/categorydetail.module": [
+		760,
+		27
 	],
 	"../pages/categoryupdated/categoryupdated.module": [
-		758,
-		25
+		761,
+		26
 	],
 	"../pages/demo/demo.module": [
-		759,
-		24
+		768,
+		25
 	],
 	"../pages/home1/home1.module": [
-		761,
-		23
+		762,
+		24
 	],
 	"../pages/login/login.module": [
-		760,
+		763,
 		1
 	],
 	"../pages/myaccountupdated/myaccountupdated.module": [
-		762,
-		22
+		764,
+		23
 	],
 	"../pages/paymentpage/paymentpage.module": [
-		763,
-		21
+		765,
+		22
 	],
 	"../pages/privacypolicy/privacypolicy.module": [
-		764,
-		20
+		766,
+		21
 	],
 	"../pages/product-category-detail-grid/product-category-detail-grid.module": [
-		765,
-		19
+		767,
+		20
 	],
 	"../pages/productcategory/productcategory.module": [
-		766,
-		18
+		782,
+		19
 	],
 	"../pages/productcategorydetail/productcategorydetail.module": [
-		767,
-		17
+		769,
+		18
 	],
 	"../pages/productcategorydetaillist/productcategorydetaillist.module": [
-		768,
-		16
+		770,
+		17
 	],
 	"../pages/readmore/readmore.module": [
-		769,
-		15
+		771,
+		16
 	],
 	"../pages/register/register.module": [
-		770,
+		772,
+		15
+	],
+	"../pages/searchdetails/searchdetails.module": [
+		773,
 		14
 	],
 	"../pages/searchproducts/searchproducts.module": [
-		771,
+		774,
 		13
 	],
 	"../pages/termsandconditions/termsandconditions.module": [
-		772,
+		775,
 		12
 	],
 	"../pages/test1/test1.module": [
-		773,
+		776,
 		11
 	],
 	"../pages/testcart/testcart.module": [
-		774,
+		777,
 		10
 	],
 	"../pages/testing/testing.module": [
-		775,
+		778,
 		9
 	],
 	"../pages/testingproducts/testingproducts.module": [
-		776,
+		779,
 		8
 	],
 	"../pages/viewall/viewall.module": [
-		777,
+		780,
 		7
 	],
 	"../pages/viewallcategories/viewallcategories.module": [
-		779,
+		781,
 		6
 	],
 	"../pages/viewallcategoriesupdated/viewallcategoriesupdated.module": [
-		778,
+		785,
 		0
 	],
 	"../pages/viewcart/viewcart.module": [
-		781,
+		783,
 		5
 	],
 	"../pages/vieworder/vieworder.module": [
-		780,
+		784,
 		4
 	],
 	"../pages/wishlistupdated/wishlistupdated.module": [
-		782,
+		786,
 		3
 	]
 };
@@ -5344,7 +5953,7 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 242;
+webpackAsyncContext.id = 245;
 module.exports = webpackAsyncContext;
 
 /***/ }),
@@ -5360,7 +5969,7 @@ module.exports = webpackAsyncContext;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__capacitor_core__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__capacitor_core__ = __webpack_require__(27);
 /**
  * Generated class for the WishlistupdatedPage page.
  */
@@ -5839,7 +6448,7 @@ WishlistupdatedPage = WishlistupdatedPage_1 = __decorate([
 
 /***/ }),
 
-/***/ 343:
+/***/ 346:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5963,7 +6572,7 @@ VieworderdetailsPage = __decorate([
 
 /***/ }),
 
-/***/ 385:
+/***/ 388:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5974,7 +6583,7 @@ VieworderdetailsPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_api_api__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__capacitor_core__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__capacitor_core__ = __webpack_require__(27);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5993,7 +6602,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var _a, _b, _c, _d, _e, _f;
+var _a, _b, _c, _d, _e, _f, _g;
 
 
 
@@ -6002,13 +6611,14 @@ var _a, _b, _c, _d, _e, _f;
 
 
 let Myorder_2Page = class Myorder_2Page {
-    constructor(navCtrl, modalCtrl, apiProvider, platform, app, alertController) {
+    constructor(navCtrl, modalCtrl, apiProvider, platform, app, alertController, loadingController) {
         this.navCtrl = navCtrl;
         this.modalCtrl = modalCtrl;
         this.apiProvider = apiProvider;
         this.platform = platform;
         this.app = app;
         this.alertController = alertController;
+        this.loadingController = loadingController;
         this.viewOrdersList = [];
         this.viewCartList = [];
         this.countProductsCartLocalUpdated = 0;
@@ -6115,6 +6725,15 @@ let Myorder_2Page = class Myorder_2Page {
             catch (error) { }
         });
     }
+    showLoaderPageLoad() {
+        let loading = this.loadingController.create({
+            content: 'Please wait loading Orders!'
+        });
+        loading.present();
+        setTimeout(() => {
+            loading.dismiss();
+        }, 1700);
+    }
     checkNetwork() {
         return __awaiter(this, void 0, void 0, function* () {
             const { Network } = __WEBPACK_IMPORTED_MODULE_6__capacitor_core__["a" /* Plugins */];
@@ -6130,8 +6749,7 @@ let Myorder_2Page = class Myorder_2Page {
                 this.networkStatus = yield Network.getStatus();
                 // this.showAlert();
                 console.log('Network status available', this.networkStatus);
-                //this.router.navigate(['/invoices']);
-                // this.router.navigate(['/managecard']);
+                this.showLoaderPageLoad();
             }
         });
     }
@@ -6169,14 +6787,14 @@ Myorder_2Page = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["n" /* Component */])({
         selector: 'page-myorder_2 ',template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\myorder_2\myorder_2.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>\n\n    </button>\n\n        <ion-title>My Order\n\n            <!-- <span float-right> \n\n              <ion-icon class="icon" (click)="searchPage()"><img src="assets/imgs/ic_search.png" width="100%;"></ion-icon>\n\n              <ion-icon class="icon" (click)="cartPage()"><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>             \n\n            </span> -->\n\n            <span float-right>\n\n                <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>\n\n                <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>\n\n                <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon> -->\n\n\n\n\n\n                <!-- <ion-icon class="icon"  (click)="wishlistPage()" >\n\n                    <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />\n\n                    <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> \n\n                  </ion-icon>\n\n          \n\n                  <ion-icon class="icon"  (click)="cartPage()" >\n\n                    <img src="assets/imgs/ic_my_cart.png" width="100%;" />\n\n                    <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> \n\n                  </ion-icon>\n\n              </span> -->\n\n              <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">\n\n                <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>\n\n              </ion-icon> \n\n              \n\n              <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">\n\n                <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>\n\n              </ion-icon> \n\n            </span>\n\n        </ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="bg-light">\n\n\n\n    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">\n\n        <ion-refresher-content\n\n          pullingIcon="chevron-down-circle-outline"\n\n          pullingText="Pull to refresh"\n\n          refreshingSpinner="circles"\n\n          refreshingText="Refreshing Orders."\n\n        >\n\n        </ion-refresher-content>\n\n      </ion-refresher>\n\n    <ion-card *ngFor="let vieworders of viewOrdersList" >\n\n        <ion-card-content>\n\n            <ion-row>\n\n                <ion-col col-3>\n\n                    <div class="img-box">\n\n                        <!-- <img src="assets/imgs/suit_PNG8132.png"> -->\n\n                        <!-- <img src="assets/imgs/productimage.jpg"> -->\n\n                         <img src="assets/imgs/productimage.jpg" style="width: 130px;float: left;" /> \n\n\n\n                    </div>\n\n                </ion-col>\n\n                <ion-col col-9>\n\n                    <!-- <h4>Unique For Men Black Formal Slim Fit Shirt</h4> -->\n\n                    <!-- <h4>{{vieworders.post_title}}</h4> -->\n\n                    <div >\n\n                      \n\n                        <p style="color: black;">Order Id: {{vieworders.orderId}}</p>\n\n                        <!-- <p style="color: black;">Order Status {{vieworders.orderStatus}}</p> -->\n\n                    </div>\n\n                    <div   padding-top>\n\n                        <!-- <small class="text-sky ">Cancel Order</small> -->\n\n                        <!-- <small class="text-white bg-green green-shadow">Track Order</small> -->\n\n                        <p style="color: black;">Date: {{vieworders.created.date}}</p>\n\n                    </div>\n\n                    <div class="card-btn"  padding-top>\n\n                        <!-- <small class="text-sky ">Cancel Order</small> -->\n\n                        <!-- <small class="text-white bg-green green-shadow">Track Order</small> -->\n\n                        <p style="color: black;">Status: {{vieworders.orderStatus}}</p>\n\n                    </div>\n\n                    <div class="card-btn"  padding-top>\n\n                        <!-- <small class="text-sky ">Cancel Order</small> -->\n\n                        <!-- <small class="text-white bg-green green-shadow">Track Order</small> -->\n\n                        <p style="color: black;">Total: {{vieworders.total}}</p>\n\n                    </div>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-card-content>\n\n    </ion-card>\n\n\n\n    <!-- <ion-card>\n\n        <ion-card-content>\n\n            <ion-row>\n\n                <ion-col col-3>\n\n                    <div class="img-box">\n\n                        <img src="assets/imgs/productimage.jpg">\n\n                    </div>\n\n                </ion-col>\n\n                <ion-col col-9>\n\n                    <h4>Skybags Leo 26 ltrs Red Casual Backpack</h4>\n\n                    <div class="rate">\n\n                        <p class=text-light>Delivered on 12-March-2017</p> <div style="display: flex;">\n\n                            <div class="price text-light mr-5">\n\n                                <img src="assets/imgs/rupee-light.png" class="rupee-icon">500\n\n                            </div>\n\n                            <div class="price text-sky">\n\n                                <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300\n\n                            </div>\n\n                        </div>\n\n                    </div>\n\n                    <div class="card-btn" float-right padding-top>\n\n                        <small class="text-sky ">Return Item</small>\n\n                        <small class="text-white bg-thime sky-shadow">Rate Now</small>\n\n                    </div>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-card-content>\n\n    </ion-card>\n\n\n\n    <ion-card>\n\n        <ion-card-content>\n\n            <ion-row>\n\n                <ion-col col-3>\n\n                    <div class="img-box">\n\n                        <img src="assets/imgs/productimage.jpg">\n\n                    </div>\n\n                </ion-col>\n\n                <ion-col col-9>\n\n                    <h4>Skmei Analog-Digital Multicolor Dil Men\'s Watch</h4>\n\n                    <div class="rate">\n\n                        <p class=text-light>{{"deliver_on" | translate}} 12-March-017</p>\n\n                        <div style="display: flex;">\n\n                            <div class="price text-light mr-5">\n\n                                <img src="assets/imgs/rupee-light.png" class="rupee-icon">500\n\n                            </div>\n\n                            <div class="price text-sky">\n\n                                <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300\n\n                            </div>\n\n                        </div>\n\n                    </div>\n\n                    <div class="card-btn" float-right padding-top>\n\n                        <small class="text-sky ">Share Product</small>\n\n                        <small class="text-white bg-gray gray-shadow">Rated 4\n\n                         <ion-icon name="md-star"></ion-icon>\n\n                        </small>\n\n                    </div>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-card-content>\n\n    </ion-card> -->\n\n</ion-content>\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\myorder_2\myorder_2.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["k" /* NavController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["i" /* ModalController */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_api_api__["a" /* ApiProvider */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["m" /* Platform */]) === "function" ? _d : Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["b" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["b" /* App */]) === "function" ? _e : Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["a" /* AlertController */]) === "function" ? _f : Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["k" /* NavController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["i" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["i" /* ModalController */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_api_api__["a" /* ApiProvider */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["m" /* Platform */]) === "function" ? _d : Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["b" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["b" /* App */]) === "function" ? _e : Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["a" /* AlertController */]) === "function" ? _f : Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["h" /* LoadingController */]) === "function" ? _g : Object])
 ], Myorder_2Page);
 
 //# sourceMappingURL=myorder_2.js.map
 
 /***/ }),
 
-/***/ 386:
+/***/ 389:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6272,7 +6890,7 @@ HelpPage = __decorate([
 
 /***/ }),
 
-/***/ 387:
+/***/ 390:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6306,7 +6924,7 @@ ReviewPage = __decorate([
 
 /***/ }),
 
-/***/ 388:
+/***/ 391:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6359,14 +6977,14 @@ const BaseAppConfig = {
 
 /***/ }),
 
-/***/ 391:
+/***/ 394:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PasswordPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__verification_verification__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__verification_verification__ = __webpack_require__(395);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6398,14 +7016,14 @@ PasswordPage = __decorate([
 
 /***/ }),
 
-/***/ 392:
+/***/ 395:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerificationPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__createaccount_createaccount__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__createaccount_createaccount__ = __webpack_require__(396);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6437,7 +7055,7 @@ VerificationPage = __decorate([
 
 /***/ }),
 
-/***/ 393:
+/***/ 396:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6476,7 +7094,7 @@ CreateaccountPage = __decorate([
 
 /***/ }),
 
-/***/ 394:
+/***/ 397:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6514,50 +7132,7 @@ ShortPage = __decorate([
 
 /***/ }),
 
-/***/ 395:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppconstantsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/**
- * Generated class for the AppconstantsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-let AppconstantsPage = class AppconstantsPage {
-    constructor(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-    }
-    ngOnInit() {
-    }
-};
-AppconstantsPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-appconstants',template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\appconstants\appconstants.html"*/'<!--\n\n  Generated template for the AppconstantsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>appconstants</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\appconstants\appconstants.html"*/,
-    }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]])
-], AppconstantsPage);
-
-//# sourceMappingURL=appconstants.js.map
-
-/***/ }),
-
-/***/ 396:
+/***/ 398:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6630,7 +7205,7 @@ AccordiantestPage = __decorate([
 
 /***/ }),
 
-/***/ 397:
+/***/ 399:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6778,10 +7353,11 @@ CategoryupdatedPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__capacitor_core__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__capacitor_core__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__wishlistupdated_wishlistupdated__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__viewcart_viewcart__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_home__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__searchdetails_searchdetails__ = __webpack_require__(181);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6800,6 +7376,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+
 
 
 
@@ -6952,6 +7529,21 @@ let SearchPage = class SearchPage {
             console.log('Sorry! No Web Storage support..');
         }
     }
+    productDetailPage(id, name, image, description, regular_price, make, model, size) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__searchdetails_searchdetails__["a" /* SearchdetailsPage */], {
+            id: id,
+            name: name,
+            image: image,
+            regular_price: regular_price,
+            description: description,
+            make: make,
+            model: model,
+            size: size
+        });
+        console.log("Sent product id " + id);
+        console.log("Sent product name " + name);
+        console.log("Sent product name " + regular_price);
+    }
     showToastOnAddProduct(strProductAdded) {
         const toast = this.toastController.create({
             // message: this.testStr,
@@ -7063,7 +7655,7 @@ let SearchPage = class SearchPage {
 };
 SearchPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'page-search ',template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\search\search.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle style="display: block !important">\n\n      <ion-icon class="menu-icon"\n\n        ><img src="assets/imgs/ic_menu.png"\n\n      /></ion-icon>\n\n    </button>\n\n    <ion-title\n\n      >Search\n\n      <span float-right>\n\n        <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header> -->\n\n        <!-- <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>\n\n        <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon> -->\n\n\n\n      \n\n        <!-- <ion-icon name="cart" style="margin-left: 12px;" (click)="wishlistPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n        \n\n        <ion-icon name="cart" style="margin-left: 12px;" (click)="cartPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>\n\n        </ion-icon>  -->\n\n\n\n        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n        \n\n        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n         \n\n     \n\n\n\n      </span>\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header> \n\n\n\n\n\n<ion-content padding class="search-main">\n\n\n\n\n\n  <ion-grid class="product-grid" style="margin-top: 40px;">\n\n    <ion-row class="rowgrid">\n\n      <ion-col\n\n        class="columngrid"\n\n        *ngFor="let featuredProducts of productCategoryInformation ">\n\n\n\n       \n\n        <ion-card >\n\n          \n\n\n\n          <ion-card-header style="justify-content: left">\n\n            <div \n\n              class="img-box"\n\n            >\n\n              <img  [src]="featuredProducts.image"  style="width:200px;height:80px ;">\n\n            </div>\n\n            <ion-icon    name="md-heart" class="text-light icon" (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"></ion-icon>\n\n         \n\n          \n\n\n\n           \n\n          </ion-card-header>\n\n          <ion-card-content>\n\n\n\n           \n\n        \n\n            <ion-item >\n\n              <h5 style="font-size: 15px;text-align: -webkit-center;">{{featuredProducts.name}}</h5> \n\n            </ion-item>\n\n            <div>\n\n              <div *ngIf="featuredProducts.regular_price">     <!--If "product" exists-->\n\n                <h5 style="font-size: 13px;text-align: center;color: red;"  > <span class="priceicon" style="color: red;">Price : </span> <span class="priceicon">$</span> {{featuredProducts.regular_price}}  </h5>  \n\n               \n\n                <ion-item>\n\n                  <button\n\n                  ion-button\n\n                  full\n\n                  class="bg-thime btn-round btn-text"\n\n                  style="margin-top: 3px;text-align: center;height: 40px;"\n\n                  \n\n                  (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"\n\n\n\n                >\n\n                  Add To Cart\n\n                </button>\n\n                </ion-item>\n\n                      \n\n                    \n\n              </div>\n\n\n\n          \n\n          \n\n              <div *ngIf="!featuredProducts.regular_price">     <!--If "product" not exists-->\n\n                <h5 style="font-size: 13px;text-align: center"> Price Not Available</h5>  \n\n\n\n                <ion-item >\n\n                  <!-- <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5>  -->\n\n                  <button\n\n                  ion-button\n\n                  full\n\n                  class="bg-thime btn-round btn-text"\n\n                  style="margin-top: 3px; text-align: center;height: 40px;"\n\n                  (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"\n\n                >\n\n                Read More\n\n                </button>\n\n                </ion-item>\n\n              \n\n              </div>\n\n          </div>\n\n\n\n          \n\n\n\n            \n\n          </ion-card-content>\n\n        </ion-card>\n\n      </ion-col>\n\n\n\n  \n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\search\search.html"*/
+        selector: 'page-search ',template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\pages\search\search.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle style="display: block !important">\n\n      <ion-icon class="menu-icon"\n\n        ><img src="assets/imgs/ic_menu.png"\n\n      /></ion-icon>\n\n    </button>\n\n    <ion-title\n\n      >Search.\n\n      <span float-right>\n\n        \n\n\n\n        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n        \n\n        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">\n\n          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>\n\n        </ion-icon> \n\n         \n\n     \n\n\n\n      </span>\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header> \n\n\n\n\n\n<ion-content padding class="search-main">\n\n\n\n\n\n  <ion-grid class="product-grid" style="margin-top: 40px;">\n\n    <ion-row class="rowgrid">\n\n      <ion-col\n\n        class="columngrid"\n\n        *ngFor="let featuredProducts of productCategoryInformation ">\n\n\n\n       \n\n        <ion-card >\n\n          \n\n\n\n          <ion-card-header style="justify-content: left">\n\n            <div \n\n              class="img-box"\n\n            >\n\n              <img  [src]="featuredProducts.image"  style="width:200px;height:80px ;" (click)="productDetailPage(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price,featuredProducts.attribute.pa_make,featuredProducts.attribute.pa_model,featuredProducts.attribute.pa_size)">\n\n            </div>\n\n            <ion-icon    name="md-heart" class="text-light icon" (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"></ion-icon>\n\n         \n\n          \n\n\n\n           \n\n          </ion-card-header>\n\n          <ion-card-content>\n\n\n\n           \n\n        \n\n            <ion-item >\n\n              <h5 style="font-size: 15px;text-align: -webkit-center;">{{featuredProducts.name}}</h5> \n\n            </ion-item>\n\n            <div>\n\n              <div *ngIf="featuredProducts.regular_price">     <!--If "product" exists-->\n\n                <h5 style="font-size: 13px;text-align: center;color: red;"  > <span class="priceicon" style="color: red;">Price : </span> <span class="priceicon">$</span> {{featuredProducts.regular_price}}  </h5>  \n\n               \n\n                <ion-item>\n\n                  <button\n\n                  ion-button\n\n                  full\n\n                  class="bg-thime btn-round btn-text"\n\n                  style="margin-top: 3px;text-align: center;height: 40px;"\n\n                  \n\n                  (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"\n\n\n\n                >\n\n                  Add To Cart\n\n                </button>\n\n                </ion-item>\n\n                      \n\n                    \n\n              </div>\n\n\n\n          \n\n          \n\n              <div *ngIf="!featuredProducts.regular_price">     <!--If "product" not exists-->\n\n                <h5 style="font-size: 13px;text-align: center"> Price Not Available</h5>  \n\n\n\n                <ion-item >\n\n                  <!-- <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5>  -->\n\n                  <button\n\n                  ion-button\n\n                  full\n\n                  class="bg-thime btn-round btn-text"\n\n                  style="margin-top: 3px; text-align: center;height: 40px;"\n\n                  (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"\n\n                >\n\n                Read More\n\n                </button>\n\n                </ion-item>\n\n              \n\n              </div>\n\n          </div>\n\n\n\n          \n\n\n\n            \n\n          </ion-card-content>\n\n        </ion-card>\n\n      </ion-col>\n\n\n\n  \n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\pages\search\search.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* ViewController */],
@@ -7080,7 +7672,7 @@ SearchPage = __decorate([
 
 /***/ }),
 
-/***/ 400:
+/***/ 402:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7364,7 +7956,7 @@ PaymentpagePage = __decorate([
 
 /***/ }),
 
-/***/ 401:
+/***/ 403:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7412,7 +8004,7 @@ ProductCategoryDetailGridPage = __decorate([
 
 /***/ }),
 
-/***/ 402:
+/***/ 404:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7591,7 +8183,7 @@ Test1Page = __decorate([
 
 /***/ }),
 
-/***/ 403:
+/***/ 405:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7696,7 +8288,7 @@ TestingproductsPage = __decorate([
 
 /***/ }),
 
-/***/ 404:
+/***/ 406:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8307,13 +8899,13 @@ ViewallcategoriesPage = ViewallcategoriesPage_1 = __decorate([
 
 /***/ }),
 
-/***/ 405:
+/***/ 407:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VieworderPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__viewcart_viewcart__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vieworderdetails_vieworderdetails__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vieworderdetails_vieworderdetails__ = __webpack_require__(346);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
@@ -8436,13 +9028,13 @@ VieworderPage = __decorate([
 
 /***/ }),
 
-/***/ 406:
+/***/ 408:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(407);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(411);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(409);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(413);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -8450,82 +9042,86 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 411:
+/***/ 413:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export createTranslateLoader */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_viewall_viewall__ = __webpack_require__(179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_testcart_testcart__ = __webpack_require__(187);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_paymentpage_paymentpage__ = __webpack_require__(400);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_test1_test1__ = __webpack_require__(402);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_testcart_testcart__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_paymentpage_paymentpage__ = __webpack_require__(402);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_test1_test1__ = __webpack_require__(404);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_testing_testing__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_wishlistupdated_wishlistupdated__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_product_category_detail_grid_product_category_detail_grid__ = __webpack_require__(401);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(383);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__ = __webpack_require__(384);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_testingproducts_testingproducts__ = __webpack_require__(403);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_myaccountupdated_myaccountupdated__ = __webpack_require__(184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_accordiantesting_accordiantesting__ = __webpack_require__(744);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_accordiantest_accordiantest__ = __webpack_require__(396);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_product_category_detail_grid_product_category_detail_grid__ = __webpack_require__(403);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__ = __webpack_require__(387);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_testingproducts_testingproducts__ = __webpack_require__(405);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_myaccountupdated_myaccountupdated__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_accordiantesting_accordiantesting__ = __webpack_require__(746);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_accordiantest_accordiantest__ = __webpack_require__(398);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_viewcart_viewcart__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_viewallcategories_viewallcategories__ = __webpack_require__(404);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_categoryupdated_categoryupdated__ = __webpack_require__(397);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_termsandconditions_termsandconditions__ = __webpack_require__(186);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_privacypolicy_privacypolicy__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_viewallcategories_viewallcategories__ = __webpack_require__(406);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_categoryupdated_categoryupdated__ = __webpack_require__(399);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_termsandconditions_termsandconditions__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_privacypolicy_privacypolicy__ = __webpack_require__(188);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_productcategorydetail_productcategorydetail__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_home1_home1__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_home1_home1__ = __webpack_require__(186);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_productcategory_productcategory__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_register_register__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_vieworderdetails_vieworderdetails__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_vieworder_vieworder__ = __webpack_require__(405);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_vieworderdetails_vieworderdetails__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_vieworder_vieworder__ = __webpack_require__(407);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_demo_demo__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__angular_platform_browser__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__app_component__ = __webpack_require__(745);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__app_component__ = __webpack_require__(747);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_home_home__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_phonenumber_phonenumber__ = __webpack_require__(746);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_password_password__ = __webpack_require__(391);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_verification_verification__ = __webpack_require__(392);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_createaccount_createaccount__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_phonenumber_phonenumber__ = __webpack_require__(748);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_password_password__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_verification_verification__ = __webpack_require__(395);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_createaccount_createaccount__ = __webpack_require__(396);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_category_category__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_shirts_shirts__ = __webpack_require__(747);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__pages_shirts_shirts__ = __webpack_require__(749);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__pages_itemdetail_itemdetail__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_shippining_shippining__ = __webpack_require__(748);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_shippining_shippining__ = __webpack_require__(750);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_payment_payment__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_placed_placed__ = __webpack_require__(749);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_placed_placed__ = __webpack_require__(751);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_wishlist_wishlist__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_my_account_my_account__ = __webpack_require__(750);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_myorder_1_myorder_1__ = __webpack_require__(751);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_myorder_2_myorder_2__ = __webpack_require__(385);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_help_help__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_my_account_my_account__ = __webpack_require__(752);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_myorder_1_myorder_1__ = __webpack_require__(753);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_myorder_2_myorder_2__ = __webpack_require__(388);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_help_help__ = __webpack_require__(389);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__pages_cart_cart__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__pages_review_review__ = __webpack_require__(387);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__pages_short_short__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__pages_review_review__ = __webpack_require__(390);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__pages_short_short__ = __webpack_require__(397);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__pages_search_search__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__ionic_native_globalization__ = __webpack_require__(390);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__ionic_native_globalization__ = __webpack_require__(393);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__angular_common_http__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__ngx_translate_core__ = __webpack_require__(389);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__ngx_translate_http_loader__ = __webpack_require__(752);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__app_config__ = __webpack_require__(388);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__ngx_translate_core__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__ngx_translate_http_loader__ = __webpack_require__(754);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__app_config__ = __webpack_require__(391);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__providers_api_api__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55_ng2_search_filter__ = __webpack_require__(399);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55_ng2_search_filter__ = __webpack_require__(401);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__ionic_storage__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__ionic_native_in_app_browser_ngx__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__angular_router__ = __webpack_require__(754);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__angular_router__ = __webpack_require__(756);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__pages_searchproducts_searchproducts__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__pages_productcategorydetaillist_productcategorydetaillist__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__pages_readmore_readmore__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62_ngx_pagination__ = __webpack_require__(398);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__pages_appconstants_appconstants__ = __webpack_require__(395);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__pages_productcategorydetaillist_productcategorydetaillist__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__pages_readmore_readmore__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62_ngx_pagination__ = __webpack_require__(400);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__pages_appconstants_appconstants__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__pages_categorydetail_categorydetail__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__pages_searchdetails_searchdetails__ = __webpack_require__(181);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -8645,7 +9241,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_59__pages_searchproducts_searchproducts__["a" /* SearchproductsPage */],
             __WEBPACK_IMPORTED_MODULE_60__pages_productcategorydetaillist_productcategorydetaillist__["a" /* ProductcategorydetaillistPage */],
             __WEBPACK_IMPORTED_MODULE_61__pages_readmore_readmore__["a" /* ReadmorePage */],
-            __WEBPACK_IMPORTED_MODULE_63__pages_appconstants_appconstants__["a" /* AppconstantsPage */]
+            __WEBPACK_IMPORTED_MODULE_63__pages_appconstants_appconstants__["a" /* AppconstantsPage */],
+            __WEBPACK_IMPORTED_MODULE_64__pages_categorydetail_categorydetail__["a" /* CategorydetailPage */],
+            __WEBPACK_IMPORTED_MODULE_65__pages_searchdetails_searchdetails__["a" /* SearchdetailsPage */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_56__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
@@ -8656,22 +9254,23 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_25__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_27_ionic_angular__["f" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_28__app_component__["a" /* MyApp */], {}, {
                 links: [
-                    { loadChildren: '../pages/appconstants/appconstants.module#AppconstantsPageModule', name: 'AppconstantsPage', segment: 'appconstants', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/accordiantest/accordiantest.module#AccordiantestPageModule', name: 'AccordiantestPage', segment: 'accordiantest', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/aboutus/aboutus.module#AboutusPageModule', name: 'AboutusPage', segment: 'aboutus', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/accordiantest/accordiantest.module#AccordiantestPageModule', name: 'AccordiantestPage', segment: 'accordiantest', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/appconstants/appconstants.module#AppconstantsPageModule', name: 'AppconstantsPage', segment: 'appconstants', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/categorydetail/categorydetail.module#CategorydetailPageModule', name: 'CategorydetailPage', segment: 'categorydetail', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/categoryupdated/categoryupdated.module#CategoryupdatedPageModule', name: 'CategoryupdatedPage', segment: 'categoryupdated', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/demo/demo.module#DemoPageModule', name: 'DemoPage', segment: 'demo', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/home1/home1.module#Home1PageModule', name: 'Home1Page', segment: 'home1', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/myaccountupdated/myaccountupdated.module#MyaccountupdatedPageModule', name: 'MyaccountupdatedPage', segment: 'myaccountupdated', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/paymentpage/paymentpage.module#PaymentpagePageModule', name: 'PaymentpagePage', segment: 'paymentpage', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/privacypolicy/privacypolicy.module#PrivacypolicyPageModule', name: 'PrivacypolicyPage', segment: 'privacypolicy', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/product-category-detail-grid/product-category-detail-grid.module#ProductCategoryDetailGridPageModule', name: 'ProductCategoryDetailGridPage', segment: 'product-category-detail-grid', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/productcategory/productcategory.module#ProductcategoryPageModule', name: 'ProductcategoryPage', segment: 'productcategory', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/demo/demo.module#DemoPageModule', name: 'DemoPage', segment: 'demo', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/productcategorydetail/productcategorydetail.module#ProductcategorydetailPageModule', name: 'ProductcategorydetailPage', segment: 'productcategorydetail', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/productcategorydetaillist/productcategorydetaillist.module#ProductcategorydetaillistPageModule', name: 'ProductcategorydetaillistPage', segment: 'productcategorydetaillist', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/readmore/readmore.module#ReadmorePageModule', name: 'ReadmorePage', segment: 'readmore', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/searchdetails/searchdetails.module#SearchdetailsPageModule', name: 'SearchdetailsPage', segment: 'searchdetails', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/searchproducts/searchproducts.module#SearchproductsPageModule', name: 'SearchproductsPage', segment: 'searchproducts', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/termsandconditions/termsandconditions.module#TermsandconditionsPageModule', name: 'TermsandconditionsPage', segment: 'termsandconditions', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/test1/test1.module#Test1PageModule', name: 'Test1Page', segment: 'test1', priority: 'low', defaultHistory: [] },
@@ -8679,10 +9278,11 @@ AppModule = __decorate([
                     { loadChildren: '../pages/testing/testing.module#TestingPageModule', name: 'TestingPage', segment: 'testing', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/testingproducts/testingproducts.module#TestingproductsPageModule', name: 'TestingproductsPage', segment: 'testingproducts', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/viewall/viewall.module#ViewallPageModule', name: 'ViewallPage', segment: 'viewall', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/viewallcategoriesupdated/viewallcategoriesupdated.module#ViewallcategoriesupdatedPageModule', name: 'ViewallcategoriesupdatedPage', segment: 'viewallcategoriesupdated', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/viewallcategories/viewallcategories.module#ViewallcategoriesPageModule', name: 'ViewallcategoriesPage', segment: 'viewallcategories', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/vieworder/vieworder.module#VieworderPageModule', name: 'VieworderPage', segment: 'vieworder', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/productcategory/productcategory.module#ProductcategoryPageModule', name: 'ProductcategoryPage', segment: 'productcategory', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/viewcart/viewcart.module#ViewcartPageModule', name: 'ViewcartPage', segment: 'viewcart', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/vieworder/vieworder.module#VieworderPageModule', name: 'VieworderPage', segment: 'vieworder', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/viewallcategoriesupdated/viewallcategoriesupdated.module#ViewallcategoriesupdatedPageModule', name: 'ViewallcategoriesupdatedPage', segment: 'viewallcategoriesupdated', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/wishlistupdated/wishlistupdated.module#WishlistupdatedPageModule', name: 'WishlistupdatedPage', segment: 'wishlistupdated', priority: 'low', defaultHistory: [] }
                 ]
             }),
@@ -8743,7 +9343,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_59__pages_searchproducts_searchproducts__["a" /* SearchproductsPage */],
             __WEBPACK_IMPORTED_MODULE_60__pages_productcategorydetaillist_productcategorydetaillist__["a" /* ProductcategorydetaillistPage */],
             __WEBPACK_IMPORTED_MODULE_61__pages_readmore_readmore__["a" /* ReadmorePage */],
-            __WEBPACK_IMPORTED_MODULE_63__pages_appconstants_appconstants__["a" /* AppconstantsPage */]
+            __WEBPACK_IMPORTED_MODULE_63__pages_appconstants_appconstants__["a" /* AppconstantsPage */],
+            __WEBPACK_IMPORTED_MODULE_64__pages_categorydetail_categorydetail__["a" /* CategorydetailPage */],
+            __WEBPACK_IMPORTED_MODULE_65__pages_searchdetails_searchdetails__["a" /* SearchdetailsPage */]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_57__ionic_native_in_app_browser_ngx__["a" /* InAppBrowser */],
@@ -8813,9 +9415,9 @@ CartPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__productcategorydetaillist_productcategorydetaillist__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__readmore_readmore__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__capacitor_core__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__productcategorydetaillist_productcategorydetaillist__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__readmore_readmore__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__capacitor_core__ = __webpack_require__(27);
 /**
  * Generated class for the ProductcategorydetailPage page.
  * See https://ionicframework.com/docs/components/#navigation for more info on
@@ -8965,7 +9567,7 @@ let ProductcategorydetailPage = class ProductcategorydetailPage {
             if (activeView.name === 'ProductcategorydetailPage') {
                 if (nav.canGoBack()) {
                     console.log('Tushar');
-                    // this.navCtrl.setRoot(ProductcategoryPage);
+                    //this.navCtrl.setRoot(ProductcategoryPage);
                 }
                 else {
                     console.log('Tushar1');
@@ -9208,7 +9810,7 @@ ProductcategorydetailPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__capacitor_core__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__capacitor_core__ = __webpack_require__(27);
 /**
  *  Created By Lasting Erp 5/10/2020
  */
@@ -9510,17 +10112,36 @@ let ItemdetailPage = ItemdetailPage_1 = class ItemdetailPage {
             console.log("Sent productsList name " + name);
             products.push({ 'ProductId': id, 'ProductName': name, 'ProductQuantity': '1', 'ProductImage': image, 'ProductDescription': description, 'ProductRegularPrice': regular_price });
             localStorage.setItem('products', JSON.stringify(products));
-            this.showToastOnAddProduct(name);
-            this.countProductsCartLocal++;
+            this.showToastOnAddProductLocal(name);
+            this.countProductsCartLocalUpdated++;
         }
         else {
             this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
                 this.obj = JSON.stringify(jsonResponse);
                 console.log("Sent productsList response " + this.obj);
                 console.log("Sent productsList id " + id);
-                this.showToastOnAddProductSingle(this.strProductAdded);
+                this.showToastOnAddProductServer(name);
+                this.countProductsCart++;
             });
         }
+    }
+    showToastOnAddProductLocal(strProductAdded) {
+        const toast = this.toastController.create({
+            // message: this.testStr,
+            message: 'Product Added in Local Cart : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+            duration: 3000,
+            position: "bottom",
+        });
+        toast.present();
+    }
+    showToastOnAddProductServer(strProductAdded) {
+        const toast = this.toastController.create({
+            // message: this.testStr,
+            message: 'Product Added in Server : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+            duration: 1000,
+            position: "bottom",
+        });
+        toast.present();
     }
     showLoadingControllerCart() {
         let loading = this.loadingController.create({
@@ -9701,7 +10322,7 @@ WishlistPage = __decorate([
 
 /***/ }),
 
-/***/ 744:
+/***/ 746:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9739,19 +10360,19 @@ AccordiantestingComponent = __decorate([
 
 /***/ }),
 
-/***/ 745:
+/***/ 747:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_api_api__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_testcart_testcart__ = __webpack_require__(187);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_splash_screen__ = __webpack_require__(383);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(384);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_myaccountupdated_myaccountupdated__ = __webpack_require__(184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_termsandconditions_termsandconditions__ = __webpack_require__(186);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_privacypolicy_privacypolicy__ = __webpack_require__(185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home1_home1__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_testcart_testcart__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_splash_screen__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(387);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_myaccountupdated_myaccountupdated__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_termsandconditions_termsandconditions__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_privacypolicy_privacypolicy__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home1_home1__ = __webpack_require__(186);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_productcategory_productcategory__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_demo_demo__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_core__ = __webpack_require__(0);
@@ -9759,14 +10380,15 @@ AccordiantestingComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_category_category__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_wishlist_wishlist__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_myorder_2_myorder_2__ = __webpack_require__(385);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_help_help__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_myorder_2_myorder_2__ = __webpack_require__(388);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_help_help__ = __webpack_require__(389);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_cart_cart__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_review_review__ = __webpack_require__(387);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_config__ = __webpack_require__(388);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__node_modules_ngx_translate_core__ = __webpack_require__(389);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_globalization__ = __webpack_require__(390);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_review_review__ = __webpack_require__(390);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_config__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__node_modules_ngx_translate_core__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_globalization__ = __webpack_require__(393);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_wishlistupdated_wishlistupdated__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_appconstants_appconstants__ = __webpack_require__(182);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9788,6 +10410,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+
 
 
 
@@ -9897,6 +10520,9 @@ let MyApp = class MyApp {
     }
     testPage() {
         this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_7__pages_home1_home1__["a" /* Home1Page */]);
+    }
+    testPage1() {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_23__pages_appconstants_appconstants__["a" /* AppconstantsPage */]);
     }
     my_accountPage() {
         this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_4__pages_myaccountupdated_myaccountupdated__["a" /* MyaccountupdatedPage */]);
@@ -10011,7 +10637,7 @@ __decorate([
     __metadata("design:type", __WEBPACK_IMPORTED_MODULE_11_ionic_angular__["j" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_10__angular_core__["n" /* Component */])({template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\app\app.html"*/'<ion-menu [content]="content" [side]="getSideOfCurLang()">\n\n  <ion-header>\n\n  \n\n    <div style="background: #a8171e; height: 170px;" padding text-center>\n\n      <ion-item text-center>\n\n        <img src="assets/imgs/sterlinglogo.png" class="img" />\n\n\n\n        <h2 style="color: white; justify-content: center;">STERLING</h2>\n\n\n\n        <ion-row style="margin-top: 4%;">\n\n          <p style="color: white; margin-left: 14%; text-align: center;">\n\n            sterlingtools@gmail.com\n\n          </p>\n\n          <ion-icon\n\n            name="arrow-forward"\n\n            style="margin-left: 88%; width: 30px; height: 30px;margin-top: 36px;color: white;"\n\n          >\n\n          </ion-icon>\n\n        </ion-row>  \n\n      </ion-item>  \n\n    </div>\n\n\n\n\n\n     <!-- style="width: 40px;"  -->\n\n    <div class="menu-tabs" padding text-center>\n\n      <ion-row>\n\n        <img src="assets/imgs/ic_my_orders_updated.png" />\n\n        <p\n\n          style="\n\n            font-size: 10px;\n\n            color: white;\n\n            \n\n            font-size: 12px;\n\n          "\n\n        >\n\n          My Orders\n\n        </p>\n\n\n\n        <img\n\n          src="assets/imgs/ic_my_addresses_updated.png"\n\n         \n\n        />\n\n        <p\n\n          style="\n\n            font-size: 10px;\n\n            color: white;\n\n           \n\n            font-size: 12px;\n\n          "\n\n        >\n\n          My Addresses\n\n        </p>\n\n      </ion-row>\n\n    </div>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <div class="menu-title">\n\n      <ion-list>\n\n        <button ion-item menuClose (click)="homePage()">\n\n          <img src="assets/imgs/ic_home.png " />\n\n         Home\n\n        </button>\n\n        <!-- <button ion-item menuClose >\n\n          <img src="assets/imgs/ic_categories.png "   />\n\n          {{"categories" | translate}}\n\n         \n\n        </button> -->\n\n        <!-- <div class="drop-down ">\n\n                    <button ion-item menuClose (click)="categoryPage() ">\n\n                    <img src="assets/imgs/ic_electronics.png ">\n\n                        Electronics\n\n                </button>\n\n                    <button ion-item menuClose (click)="categoryPage() ">\n\n                    <img src="assets/imgs/ic_fashion.png ">\n\n                        Fashion\n\n                </button>\n\n                    <button ion-item menuClose (click)="categoryPage() ">\n\n                    <img src="assets/imgs/ic_home_decor.png ">\n\n                        Home Decor\n\n                </button>\n\n                    <button ion-item menuClose (click)="categoryPage() ">\n\n                    <img src="assets/imgs/ic_mobile.png ">\n\n                        Mobile\n\n                </button>\n\n                    <button ion-item menuClose (click)="categoryPage() ">\n\n                    <img src="assets/imgs/ic_more.png ">\n\n                        More\n\n                </button>\n\n                </div> -->\n\n\n\n                <!-- <button ion-item menuClose (click)="categoryPage()">\n\n                  <img src="assets/imgs/ic_categories.png "/>\n\n                  {{"my_order" | translate}}\n\n                </button> -->\n\n\n\n                <button ion-item menuClose (click)="categoryPage()">\n\n                  <img src="assets/imgs/ic_my_cart.png " />\n\n                  {{"Categories" | translate}}\n\n                </button>\n\n\n\n                <!-- <button ion-item menuClose (click)="categoryPage1()">\n\n                  <img src="assets/imgs/ic_my_cart.png " />\n\n                  Categories1\n\n                </button> -->\n\n        <!-- <button ion-item menuClose (click)="myorder_2Page()">\n\n          <img src="assets/imgs/ic_my_cart.png " />\n\n          {{"my_order" | translate}}\n\n        </button> -->  \n\n\n\n\n\n        <button ion-item menuClose (click)="myorder_2Page()" *ngIf="checkStatus">\n\n          <img src="assets/imgs/ic_my_cart.png " />\n\n          {{"View Orders" | translate}}\n\n        </button>\n\n\n\n       \n\n\n\n\n\n        <!-- <button ion-item menuClose (click)="wishlistPage()">\n\n          <img src="assets/imgs/ic_my_wishlist.png " />\n\n          {{"My wishlist (3)" | translate}}\n\n        </button> -->\n\n\n\n        <button ion-item menuClose (click)="wishlistPage1()">\n\n          <img src="assets/imgs/ic_my_wishlist.png " />\n\n          {{"My wishlist" | translate}}\n\n        </button>\n\n        <button ion-item menuClose (click)="my_accountPage()" *ngIf="checkStatus">\n\n          <img src="assets/imgs/ic_my_account.png " />\n\n          My Account\n\n        </button>\n\n        <button ion-item menuClose (click)="helpPage()">\n\n          <img src="assets/imgs/ic_help.png " />\n\n          Help Center\n\n        </button>\n\n      \n\n        <button ion-item menuClose (click)="privacyPolicyPage()">\n\n          <img src="assets/imgs/ic_logout.png " />\n\n          Privacy Policy\n\n        </button>\n\n\n\n        <button ion-item menuClose (click)="termsConditionsPage()">\n\n          <img src="assets/imgs/ic_logout.png " />\n\n          Terms & Conditions\n\n        </button>\n\n       \n\n      \n\n          <button ion-item menuClose     *ngIf="checkStatus"  (click)="logoutPage()" >\n\n            <img src="assets/imgs/ic_logout.png " />\n\n            Logout\n\n          </button>\n\n\n\n          <button ion-item menuClose     *ngIf="!checkStatus"  (click)="loginPage()" >\n\n            <img src="assets/imgs/ic_logout.png " />\n\n            <!-- <ion-icon name="log-in-outline"></ion-icon> -->\n\n\n\n            Login\n\n          </button>\n\n\n\n          <!-- <button ion-item menuClose       (click)="testPage()" >\n\n            <img src="assets/imgs/ic_logout.png " />\n\n            Test\n\n          </button> -->\n\n\n\n\n\n       \n\n\n\n\n\n\n\n          \n\n        <!-- <ng-template #templateName>\n\n          Logout!!\n\n        </ng-template> -->\n\n\n\n\n\n        \n\n        <!-- if (localStorage.getItem("Userid value") === null) { -->\n\n     \n\n\n\n\n\n        <!-- <div *ngIf="checkAccountStatus">\n\n          It\'s Done!\n\n        </div>\n\n    \n\n       \n\n        <div *ngIf="!checkAccountStatus">\n\n          It\'s Not Done!\n\n        </div> -->\n\n        \n\n          \n\n      </ion-list>\n\n    </div>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav\n\n  [root]="rootPage"\n\n \n\n  #content\n\n  swipeBackEnabled="false "\n\n  type="overlay"\n\n></ion-nav>\n\n     '/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\app\app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_10__angular_core__["n" /* Component */])({template:/*ion-inline-start:"F:\Github Sterling Tools\SterlingTools\src\app\app.html"*/'<ion-menu [content]="content" [side]="getSideOfCurLang()">\n\n  <ion-header>\n\n  \n\n    <div style="background: #a8171e; height: 170px;" padding text-center>\n\n      <ion-item text-center>\n\n        <img src="assets/imgs/sterlinglogo.png" class="img" />\n\n\n\n        <h2 style="color: white; justify-content: center;">STERLING</h2>\n\n\n\n        <ion-row style="margin-top: 4%;">\n\n          <p style="color: white; margin-left: 14%; text-align: center;">\n\n            sterlingtools@gmail.com\n\n          </p>\n\n          <ion-icon\n\n            name="arrow-forward"\n\n            style="margin-left: 88%; width: 30px; height: 30px;margin-top: 36px;color: white;"\n\n          >\n\n          </ion-icon>\n\n        </ion-row>  \n\n      </ion-item>  \n\n    </div>\n\n\n\n\n\n     <!-- style="width: 40px;"  -->\n\n    <div class="menu-tabs" padding text-center>\n\n      <ion-row>\n\n        <img src="assets/imgs/ic_my_orders_updated.png" />\n\n        <p\n\n          style="\n\n            font-size: 10px;\n\n            color: white;\n\n            \n\n            font-size: 12px;\n\n          "\n\n        >\n\n          My Orders\n\n        </p>\n\n\n\n        <img\n\n          src="assets/imgs/ic_my_addresses_updated.png"\n\n         \n\n        />\n\n        <p\n\n          style="\n\n            font-size: 10px;\n\n            color: white;\n\n           \n\n            font-size: 12px;\n\n          "\n\n        >\n\n          My Addresses\n\n        </p>\n\n      </ion-row>\n\n    </div>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <div class="menu-title">\n\n      <ion-list>\n\n        <button ion-item menuClose (click)="homePage()">\n\n          <img src="assets/imgs/ic_home.png " />\n\n         Home\n\n        </button>\n\n        <!-- <button ion-item menuClose >\n\n          <img src="assets/imgs/ic_categories.png "   />\n\n          {{"categories" | translate}}\n\n         \n\n        </button> -->\n\n        <!-- <div class="drop-down ">\n\n                    <button ion-item menuClose (click)="categoryPage() ">\n\n                    <img src="assets/imgs/ic_electronics.png ">\n\n                        Electronics\n\n                </button>\n\n                    <button ion-item menuClose (click)="categoryPage() ">\n\n                    <img src="assets/imgs/ic_fashion.png ">\n\n                        Fashion\n\n                </button>\n\n                    <button ion-item menuClose (click)="categoryPage() ">\n\n                    <img src="assets/imgs/ic_home_decor.png ">\n\n                        Home Decor\n\n                </button>\n\n                    <button ion-item menuClose (click)="categoryPage() ">\n\n                    <img src="assets/imgs/ic_mobile.png ">\n\n                        Mobile\n\n                </button>\n\n                    <button ion-item menuClose (click)="categoryPage() ">\n\n                    <img src="assets/imgs/ic_more.png ">\n\n                        More\n\n                </button>\n\n                </div> -->\n\n\n\n                <!-- <button ion-item menuClose (click)="categoryPage()">\n\n                  <img src="assets/imgs/ic_categories.png "/>\n\n                  {{"my_order" | translate}}\n\n                </button> -->\n\n\n\n                <button ion-item menuClose (click)="categoryPage()">\n\n                  <img src="assets/imgs/ic_my_cart.png " />\n\n                  {{"Categories" | translate}}\n\n                </button>\n\n\n\n                <!-- <button ion-item menuClose (click)="categoryPage1()">\n\n                  <img src="assets/imgs/ic_my_cart.png " />\n\n                  Categories1\n\n                </button> -->\n\n        <!-- <button ion-item menuClose (click)="myorder_2Page()">\n\n          <img src="assets/imgs/ic_my_cart.png " />\n\n          {{"my_order" | translate}}\n\n        </button> -->  \n\n\n\n\n\n        <button ion-item menuClose (click)="myorder_2Page()" *ngIf="checkStatus">\n\n          <img src="assets/imgs/ic_my_cart.png " />\n\n          {{"View Orders" | translate}}\n\n        </button>\n\n\n\n       \n\n\n\n\n\n        <!-- <button ion-item menuClose (click)="wishlistPage()">\n\n          <img src="assets/imgs/ic_my_wishlist.png " />\n\n          {{"My wishlist (3)" | translate}}\n\n        </button> -->\n\n\n\n        <button ion-item menuClose (click)="wishlistPage1()">\n\n          <img src="assets/imgs/ic_my_wishlist.png " />\n\n          {{"My wishlist" | translate}}\n\n        </button>\n\n        <button ion-item menuClose (click)="my_accountPage()" *ngIf="checkStatus">\n\n          <img src="assets/imgs/ic_my_account.png " />\n\n          My Account\n\n        </button>\n\n        <button ion-item menuClose (click)="helpPage()">\n\n          <img src="assets/imgs/ic_help.png " />\n\n          Help Center\n\n        </button>\n\n      \n\n        <button ion-item menuClose (click)="privacyPolicyPage()">\n\n          <img src="assets/imgs/ic_logout.png " />\n\n          Privacy Policy\n\n        </button>\n\n\n\n        <button ion-item menuClose (click)="termsConditionsPage()">\n\n          <img src="assets/imgs/ic_logout.png " />\n\n          Terms & Conditions\n\n        </button>\n\n       \n\n      \n\n          <button ion-item menuClose     *ngIf="checkStatus"  (click)="logoutPage()" >\n\n            <img src="assets/imgs/ic_logout.png " />\n\n            Logout\n\n          </button>\n\n\n\n          <button ion-item menuClose     *ngIf="!checkStatus"  (click)="loginPage()" >\n\n            <img src="assets/imgs/ic_logout.png " />\n\n            <!-- <ion-icon name="log-in-outline"></ion-icon> -->\n\n\n\n            Login\n\n          </button>\n\n\n\n          <!-- <button ion-item menuClose       (click)="testPage()" >\n\n            <img src="assets/imgs/ic_logout.png " />\n\n            Test\n\n          </button> -->\n\n\n\n           \n\n\n\n\n\n       \n\n\n\n\n\n\n\n          \n\n        <!-- <ng-template #templateName>\n\n          Logout!!\n\n        </ng-template> -->\n\n\n\n\n\n        \n\n        <!-- if (localStorage.getItem("Userid value") === null) { -->\n\n     \n\n\n\n\n\n        <!-- <div *ngIf="checkAccountStatus">\n\n          It\'s Done!\n\n        </div>\n\n    \n\n       \n\n        <div *ngIf="!checkAccountStatus">\n\n          It\'s Not Done!\n\n        </div> -->\n\n        \n\n          \n\n      </ion-list>\n\n    </div>\n\n  </ion-content>\n\n</ion-menu>\n\n\n\n\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav\n\n  [root]="rootPage"\n\n \n\n  #content\n\n  swipeBackEnabled="false "\n\n  type="overlay"\n\n></ion-nav>\n\n     '/*ion-inline-end:"F:\Github Sterling Tools\SterlingTools\src\app\app.html"*/
     }),
     __param(0, Object(__WEBPACK_IMPORTED_MODULE_10__angular_core__["A" /* Inject */])(__WEBPACK_IMPORTED_MODULE_19__app_config__["a" /* APP_CONFIG */])),
     __metadata("design:paramtypes", [Object, __WEBPACK_IMPORTED_MODULE_21__ionic_native_globalization__["a" /* Globalization */],
@@ -10027,7 +10653,7 @@ MyApp = __decorate([
 
 /***/ }),
 
-/***/ 746:
+/***/ 748:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10035,7 +10661,7 @@ MyApp = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__password_password__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__password_password__ = __webpack_require__(394);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10084,14 +10710,14 @@ PhonenumberPage = __decorate([
 
 /***/ }),
 
-/***/ 747:
+/***/ 749:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShirtsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__short_short__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__short_short__ = __webpack_require__(397);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cart_cart__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__search_search__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__itemdetail_itemdetail__ = __webpack_require__(57);
@@ -10147,7 +10773,7 @@ ShirtsPage = __decorate([
 
 /***/ }),
 
-/***/ 748:
+/***/ 750:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10186,7 +10812,7 @@ ShippiningPage = __decorate([
 
 /***/ }),
 
-/***/ 749:
+/***/ 751:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10225,7 +10851,7 @@ PlacedPage = __decorate([
 
 /***/ }),
 
-/***/ 750:
+/***/ 752:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10324,7 +10950,7 @@ My_accountPage = __decorate([
 
 /***/ }),
 
-/***/ 751:
+/***/ 753:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10524,6 +11150,8 @@ let DemoPage = class DemoPage {
             localStorage.setItem('isSigned', 'true');
             // localStorage.setItem('alljson', this.obj);
             localStorage.setItem('Userid value', this.strId);
+            sessionStorage.setItem('Id', this.strId);
+            sessionStorage.setItem('_product_id', this.strId);
             this.userDataValue = response.status;
             console.log('status value' + this.userDataValue);
             console.log('RespCode value' + this.strResponseCode);
@@ -10679,7 +11307,7 @@ DemoPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__productcategorydetail_productcategorydetail__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__viewcart_viewcart__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__capacitor_core__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__capacitor_core__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__wishlistupdated_wishlistupdated__ = __webpack_require__(29);
 /**
  *  Created By Lasting Erp 5/10/2020
@@ -10962,5 +11590,5 @@ ProductcategoryPage = __decorate([
 
 /***/ })
 
-},[406]);
+},[408]);
 //# sourceMappingURL=main.js.map

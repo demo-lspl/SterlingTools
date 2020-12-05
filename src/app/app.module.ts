@@ -65,6 +65,8 @@ import { ProductcategorydetaillistPage } from '../pages/productcategorydetaillis
 import { ReadmorePage } from '../pages/readmore/readmore';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AppconstantsPage } from '../pages/appconstants/appconstants';
+import { CategorydetailPage } from '../pages/categorydetail/categorydetail';
+import { SearchdetailsPage } from '../pages/searchdetails/searchdetails';
 
 
 
@@ -125,7 +127,9 @@ export function createTranslateLoader(http: HttpClient) {
     SearchproductsPage,
     ProductcategorydetaillistPage,
     ReadmorePage,
-    AppconstantsPage
+    AppconstantsPage,
+    CategorydetailPage,
+    SearchdetailsPage
     
   ],
   imports: [  
@@ -196,7 +200,9 @@ export function createTranslateLoader(http: HttpClient) {
     SearchproductsPage,
     ProductcategorydetaillistPage,
     ReadmorePage,
-    AppconstantsPage
+    AppconstantsPage,
+    CategorydetailPage,
+    SearchdetailsPage
   ],
   providers: [
     InAppBrowser,

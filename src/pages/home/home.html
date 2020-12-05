@@ -83,27 +83,25 @@
   </ion-navbar>
   <div class="custom-id"  >
     <ion-item class="custom" >
-      <!-- <ion-select
-        placeholder="All"
-        value="value"
-        okText="Ok"
-        cancelText="Cancel"
-        style="margin-left: 1px"
-        (ionChange)="getCategories(value)"
-        [(ngModel)]="value"
-        (click)="testValue()"
-       >
-        <ion-option  *ngFor="let productKey of productCategoryList"  (click)="testValue1()" >{{productKey.name}}</ion-option>
-      </ion-select> -->
+      
       <ion-select  
           (ionChange)="getOuterName()" 
           [(ngModel)]="companyName" 
-          placeholder = "All Products" >
+          placeholder = "All Products"
+          okText="Ok"
+          cancelText="Cancel" 
+          class="testing">
         <ion-option *ngFor="let companies of productCategoryList" 
           [value]="companies.catId" >
           {{companies.name}}
         </ion-option>
       </ion-select>
+
+
+      <!-- <div *ngIf="this.productCategoryList.name = 'Uncategorized';then content else other_content">here is ignored</div>    
+<ng-template #content>content here...</ng-template>
+<ng-template #other_content>other content here...</ng-template> -->
+
       <ion-icon name="md-search" class="text-light icon"></ion-icon>
     </ion-item>
     <ion-searchbar  
@@ -114,27 +112,7 @@
   </div>  
 
 
-  <!-- <ion-grid class="product-grid"  >
-    <ion-row class="rowgrid" text-center style="height: 300px;" *ngFor="let productCategoryGrid of productCategoryList">
-      <ion-col col-6
-        class="columngrid"
-        
-        (click)="itemdetailPage(productCategoryGrid.catId)">
-        <ion-card>  
-          <ion-card-header style="justify-content: left">
-            <div
-              class="img-box">
-              <ion-option  *ngFor="let productKey of productCategoryList"  >{{productKey.name}}</ion-option>
-            </div>
-          </ion-card-header>
-          <ion-card-content>
-           
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid> -->
-
+ 
   
 </ion-header>
 
@@ -222,7 +200,7 @@
                     placeholder="MODEL"
                     value="sortpopular"
                     okText="Ok"
-                    cancelText="Cancel"
+          cancelText="Cancel"
                   
                     >
                     <!-- <ion-option value="sortpopular">popularity</ion-option>
@@ -248,7 +226,7 @@
                     placeholder="SUB MODEL"
                     value="sortpopular"
                     okText="Ok"
-                    cancelText="Cancel"
+          cancelText="Cancel"
                     [(ngModel)]="engineValue">
                     <!-- <ion-option value="sortpopular">popularity</ion-option>
                     <ion-option value="sortaveragerating">rating</ion-option>
@@ -274,7 +252,7 @@
                     placeholder="YEAR"
                     value="sortpopular"
                     okText="Ok"
-                    cancelText="Cancel"
+          cancelText="Cancel"
                     [(ngModel)]="yearValue">
                     <!-- <ion-option value="sortpopular">popularity</ion-option>
                     <ion-option value="sortaveragerating">rating</ion-option>

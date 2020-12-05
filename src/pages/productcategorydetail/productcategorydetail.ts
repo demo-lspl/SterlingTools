@@ -191,9 +191,9 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
       if(activeView.name === 'ProductcategorydetailPage') {
           if (nav.canGoBack()){                  
               console.log('Tushar');
-              // this.navCtrl.setRoot(ProductcategoryPage);
+               //this.navCtrl.setRoot(ProductcategoryPage);
 
-          } else {
+          } else {  
             console.log('Tushar1');
             this.navCtrl.setRoot(ProductcategoryPage);
           }

@@ -119,21 +119,27 @@
 <button ion-button (click)="requestPermission()">Request Permission</button> -->
 
 
-<ion-badge>Jami Bot</ion-badge>
-<ion-badge color="secondary" mode="ios">Jami Bot</ion-badge>
-<ion-badge color="tertiary">Jami Bot</ion-badge>
 
+
+
+<ion-searchbar (ionInput)="getItems($event)" ></ion-searchbar>
 <ion-list>
-  <ion-item>
-    <ion-label>hello world</ion-label>
-    <ion-badge>100</ion-badge>
+  <ion-item *ngFor="let item of items">
+    {{ item }}
   </ion-item>
 </ion-list>
 
 
 
 
-  
+<ion-searchbar (ionInput)="getItems1($event)"  [(ngModel)]="name" ></ion-searchbar>
+<ion-list>
+  <ion-item *ngFor="let item of productCategoryInformation1" (click)="searchClick(item.id,item.description,item.regular_price,item.image,item.attribute.pa_make,item.attribute.pa_model)">
+    {{ item.name }}
+  </ion-item>
+</ion-list>
+
+
 
     
  

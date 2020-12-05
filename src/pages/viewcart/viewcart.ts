@@ -625,7 +625,7 @@ clearCart()
                 this.strProductIdValue = productIdValue;
                 //this.strNumber = priceValue.concat('price');
 
-                console.log('Value got ' + productIdValue);
+               // console.log('Value got ' + productIdValue);
               }
             }
           }
@@ -749,6 +749,7 @@ clearCart()
       title: 'Remove Item! ' + name,
       message: 'Do you want to remove item from cart!',
       enableBackdropDismiss: false,
+      
   
       buttons: [
         {
@@ -756,29 +757,29 @@ clearCart()
           text: 'Ok',
           handler: (ok) => {
         
-        //     console.log('Remove Product: ' + product_id);
-        //     if(localStorage.getItem('isSigned'))
-        //     {
-        //     console.log('User Status ' + 'isSigned true');
-        //     this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?'+'product_id='+ product_id).subscribe((jsonResponse) => {
-        //     this.obj = JSON.stringify(jsonResponse);
-        //     console.log('Data' + this.obj);
-        //     this.showToastOnDeletingCart();
-        //     this.viewCartApi();
-        //  // this.navCtrl.setRoot(HomePage);
-        //   });
-        //     }
-          
-        //     else {
-        //       console.log('isSigned status: ' + 'isSigned false');
-        //     }
-
-        this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?'+'product_id='+ product_id).subscribe((jsonResponse) => {
+            console.log('Remove Product: ' + product_id);
+            if(localStorage.getItem('isSigned'))
+            {
+            console.log('User Status ' + 'isSigned true');
+            this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?'+'product_id='+ product_id).subscribe((jsonResponse) => {
             this.obj = JSON.stringify(jsonResponse);
             console.log('Data' + this.obj);
             this.showToastOnDeletingCart();
             this.viewCartApi();
+         // this.navCtrl.setRoot(HomePage);
           });
+            }
+          
+            else {
+              console.log('isSigned status: ' + 'isSigned false');
+            }
+
+        // this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?'+'product_id='+ product_id).subscribe((jsonResponse) => {
+        //     this.obj = JSON.stringify(jsonResponse);
+        //     console.log('Data' + this.obj);
+        //     this.showToastOnDeletingCart();
+        //     this.viewCartApi();
+        //   });
             },
           },
           {

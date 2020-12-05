@@ -1,14 +1,14 @@
 webpackJsonp([22],{
 
-/***/ 762:
+/***/ 765:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MyaccountupdatedPageModule", function() { return MyaccountupdatedPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PaymentpagePageModule", function() { return PaymentpagePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__myaccountupdated__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__paymentpage__ = __webpack_require__(402);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,20 +18,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-let MyaccountupdatedPageModule = class MyaccountupdatedPageModule {
+let PaymentpagePageModule = class PaymentpagePageModule {
 };
-MyaccountupdatedPageModule = __decorate([
+PaymentpagePageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__myaccountupdated__["a" /* MyaccountupdatedPage */],
+            __WEBPACK_IMPORTED_MODULE_2__paymentpage__["a" /* PaymentpagePage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__myaccountupdated__["a" /* MyaccountupdatedPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__paymentpage__["a" /* PaymentpagePage */]),
         ],
     })
-], MyaccountupdatedPageModule);
+], PaymentpagePageModule);
 
-//# sourceMappingURL=myaccountupdated.module.js.map
+//# sourceMappingURL=paymentpage.module.js.map
 
 /***/ })
 

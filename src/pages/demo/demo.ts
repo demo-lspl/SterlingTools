@@ -180,6 +180,9 @@ clearpassword() {
       // localStorage.setItem('alljson', this.obj);
        localStorage.setItem('Userid value', this.strId);
 
+
+       sessionStorage.setItem('Id', this.strId);
+       sessionStorage.setItem('_product_id', this.strId);
       this.userDataValue = response.status;
 
       

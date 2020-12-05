@@ -1,18 +1,68 @@
-<!--
-  Generated template for the AppconstantsPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
+<ion-header class="bg-thime">
   <ion-navbar>
-    <ion-title>appconstants</ion-title>
+    <button ion-button menuToggle style="display: block !important;">
+      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>
+    </button>
+    <ion-title text-uppercase>AUTO PARTS
+      <span float-right>
+        <ion-icon class="icon" ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>
+        <ion-icon class="icon" ><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>
+        
+
+           
+      </span>
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+  <ion-toolbar>
+  
+ 
+  
+  
+        <ion-toolbar>
+        <ion-searchbar
+        autocomplete="true"
+        debounce="500"
+        placeholder="Encuentra una película"
+        (ionInput)="onInput($event)"
+        (ionClear)="onClear($event)"
+        ></ion-searchbar>
+  
+  <ion-content [fullscreen]="true" >
+  
+   
+  
+    <!-- <app-Spinner name="Pagina1" ></app-Spinner> -->
+  
+    <ion-list>
+        <ion-item  *ngFor="let place of DataMovies" [routerLink]="['/MoviesDetails/',place.id]"
+  (click)="DetallesPelicula(place.title)">
+          <ion-thumbnail slot="start">
+          <ion-img [src]="'https://image.tmdb.org/t/p/w500' + place.poster_path"></ion-img>
+          </ion-thumbnail>
+  
+  <div class="Principal_Descripcion">
+            <div class="itemD">
+                          <ion-label>
+                            {{place.title}}
+                          </ion-label>
+            </div>
+  
+            <div class="itemD">
+  
+              <ion-label>
+                {{place.release_date}}
+              </ion-label>
+              <ion-label>
+                {{place.vote_average}}/10
+                <ion-icon name="star" color="primary"></ion-icon>
+              </ion-label>
+            </div>
+  
+    </div>
+                </ion-item>
+            </ion-list>
+  </ion-content>
+  

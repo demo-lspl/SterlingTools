@@ -9,6 +9,16 @@ import { Injectable } from '@angular/core';
 import {  map} from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
 import { Observable} from 'rxjs';
+import { catchError, retry,  delay} from 'rxjs/operators';
+
+
+// My Custom set of data 
+export enum SearchType {
+  all = '',
+  movie = 'movie',
+  series = 'series',
+  episode = 'episode'
+}
 
 
 
@@ -17,6 +27,12 @@ export class ApiProvider {
    httpClientFetch = [];
    urlCountries :string = "https://raw.githubusercontent.com/sagarshirbhate/Country-State-City-Database/master/Contries.json";
    urlMake:string = 'http://busybanda.com/sterling-tools/api/mmey_make_search';
+
+ // Storing the url from where I want to fetch the data
+ url = 'https://www.omdbapi.com/';
+ //The api key for it
+ apiKey = 'ee67e267';
+
 
   constructor(public httpClient: HttpClient,
               public loadingController: LoadingController,
@@ -152,4 +168,7 @@ export class ApiProvider {
     });
     await loading.present();
   } 
+
+ 
+
 }

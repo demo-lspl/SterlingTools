@@ -1,14 +1,14 @@
 webpackJsonp([16],{
 
-/***/ 768:
+/***/ 771:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductcategorydetaillistPageModule", function() { return ProductcategorydetaillistPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReadmorePageModule", function() { return ReadmorePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__productcategorydetaillist__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__readmore__ = __webpack_require__(185);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,20 +18,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-let ProductcategorydetaillistPageModule = class ProductcategorydetaillistPageModule {
+let ReadmorePageModule = class ReadmorePageModule {
 };
-ProductcategorydetaillistPageModule = __decorate([
+ReadmorePageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__productcategorydetaillist__["a" /* ProductcategorydetaillistPage */],
+            __WEBPACK_IMPORTED_MODULE_2__readmore__["a" /* ReadmorePage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__productcategorydetaillist__["a" /* ProductcategorydetaillistPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__readmore__["a" /* ReadmorePage */]),
         ],
     })
-], ProductcategorydetaillistPageModule);
+], ReadmorePageModule);
 
-//# sourceMappingURL=productcategorydetaillist.module.js.map
+//# sourceMappingURL=readmore.module.js.map
 
 /***/ })
 

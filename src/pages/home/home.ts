@@ -181,7 +181,7 @@ export class HomePage implements OnInit {
      this.rendererCategories.setElementStyle(this._elRef.nativeElement, "webkitTransition","max-height 500px, padding 1200ms");
      this.getAllFeaturedProducts();
      this.getAllFeaturedProductsCategories();
-     this.getCategoriesApi();
+    // this.getCategoriesApi();
      this.viewCartApi();
      this.getMakeApi();
 
@@ -426,7 +426,7 @@ addToWishList(id, name,image,description,regular_price,x) {
       this.showToastOnEmptyProduct();
     }
 
-   
+    
   
   }
 
@@ -437,7 +437,7 @@ addToWishList(id, name,image,description,regular_price,x) {
       regular_price:regular_price
     });
     console.log("Sent product id " + id);
-    console.log("Sent product name " + name);
+    console.log("Sent product name " + name); 
     console.log("Sent product name " + regular_price);
     console.log('data added '+this.val);
   }
@@ -447,7 +447,7 @@ productcategoryDetailPage(catId,name) {
       catId: catId,
       name:name
     });
-  }
+  }  
 
 toggleAccordionVehicle() {
     if (this.accordionExpandedVehicle) {
@@ -570,7 +570,8 @@ getAllFeaturedProductsCategories() {
       if(this.productCategoryList.name = 'Uncategorized'){
         console.log('Uncategorized available');
         //this.productCategoryList.splice(0);
-        this.productCategoryList.filter(item => item !== "Uncategorized")
+        //this.productCategoryList.filter(item => item !== "Uncategorized")
+        this.productCategoryList.splice(0,1);
 
       }
 

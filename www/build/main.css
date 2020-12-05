@@ -8569,7 +8569,6 @@ ion-app.ios [padding-top] {
 }
 
 ion-app.ios [padding-left] {
-  padding-left: 16px;
 }
 
 ion-app.ios [padding-right] {
@@ -52803,7 +52802,7 @@ page-home {
 page-home .icon-add ion-badge#notifications-badge {
   position: absolute;
   top: -5px;
-  right: -11px;
+  right: -3px;
   font-size: 8px;
   padding: 5px;
 }
@@ -52816,7 +52815,7 @@ page-home .icon-add {
 page-myorder_2 .icon-add ion-badge#notifications-badge {
   position: absolute;
   top: -5px;
-  right: -11px;
+  right: -3px;
   font-size: 8px;
   padding: 5px;
 }
@@ -52829,7 +52828,7 @@ page-myorder_2 .icon-add {
 page-myaccountupdated .icon-add ion-badge#notifications-badge {
   position: absolute;
   top: -5px;
-  right: -11px;
+  right: -3px;
   font-size: 8px;
   padding: 5px;
 }
@@ -52843,7 +52842,7 @@ page-myaccountupdated .icon-add {
 page-itemdetail .icon-add ion-badge#notifications-badge {
   position: absolute;
   top: -5px;
-  right: -11px;
+  right: -3px;
   font-size: 8px;
   padding: 5px;
 }
@@ -52860,7 +52859,7 @@ page-itemdetail .icon-add {
 page-wishlistupdated .icon-add ion-badge#notifications-badge {
   position: absolute;
   top: -5px;
-  right: -11px;
+  right: -3px;
   font-size: 8px;
   padding: 5px;
 }
@@ -52871,10 +52870,25 @@ page-wishlistupdated .icon-add {
   position: relative;
 }
 
+page-searchdetails .icon-add ion-badge#notifications-badge {
+  position: absolute;
+  top: -5px;
+  right: -3px;
+  font-size: 8px;
+  padding: 5px;
+}
+
+page-searchdetails .icon-add {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+}
+
+
 page-productcategory .icon-add ion-badge#notifications-badge {
   position: absolute;
   top: -5px;
-  right: -11px;
+  right: -3px;
   font-size: 8px;
   padding: 5px;
 }
@@ -52888,7 +52902,7 @@ page-productcategory .icon-add {
 page-productcategorydetail .icon-add ion-badge#notifications-badge {
   position: absolute;
   top: -5px;
-  right: -11px;
+  right: -3px;
   font-size: 8px;
   padding: 5px;
 }
@@ -52902,7 +52916,7 @@ page-productcategorydetail .icon-add {
 page-productcategorydetaillist .icon-add ion-badge#notifications-badge {
   position: absolute;
   top: -5px;
-  right: -11px;
+  right: -3px;
   font-size: 8px;
   padding: 5px;
 }
@@ -52916,7 +52930,7 @@ page-productcategorydetaillist .icon-add {
 page-search .icon-add ion-badge#notifications-badge {
   position: absolute;
   top: -5px;
-  right: -11px;
+  right: -3px;
   font-size: 8px;
   padding: 5px;
 }
@@ -52930,12 +52944,27 @@ page-search .icon-add {
 page-searchproducts .icon-add ion-badge#notifications-badge {
   position: absolute;
   top: -5px;
-  right: -11px;
+  right: -3px;
   font-size: 8px;
   padding: 5px;
 }
 
 page-searchproducts .icon-add {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+}
+
+
+page-viewall .icon-add ion-badge#notifications-badge {
+  position: absolute;
+  top: -5px;
+  right: -3px;
+  font-size: 8px;
+  padding: 5px;
+}
+
+page-viewall .icon-add {
   color: #fff;
   font-size: 20px;
   position: relative;

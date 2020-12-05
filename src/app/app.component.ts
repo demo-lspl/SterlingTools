@@ -33,6 +33,7 @@ import { TranslateService } from '../../node_modules/@ngx-translate/core';
 import { Globalization } from '@ionic-native/globalization';
 import { WishlistupdatedPage } from '../pages/wishlistupdated/wishlistupdated';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AppconstantsPage } from '../pages/appconstants/appconstants';
 
 
   
@@ -161,6 +162,10 @@ export class MyApp implements OnInit{
 
   testPage() {
     this.nav.setRoot(Home1Page);
+  }
+
+  testPage1() {
+    this.nav.setRoot(AppconstantsPage);
   }
   
   my_accountPage() {

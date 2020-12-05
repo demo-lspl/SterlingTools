@@ -87,7 +87,7 @@ export class MyaccountupdatedPage implements OnInit {
 
     this.viewCartApi();
     this.showLoaderPageLoad();
-    this.getProfileApi();
+    this.getProfileApi();  
     this.checkNetwork();
    
   /*

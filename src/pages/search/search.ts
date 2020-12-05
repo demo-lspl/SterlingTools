@@ -5,6 +5,7 @@ import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
 import { WishlistupdatedPage } from '../wishlistupdated/wishlistupdated';
 import { ViewcartPage } from '../viewcart/viewcart';
 import { HomePage } from '../home/home';
+import { SearchdetailsPage } from '../searchdetails/searchdetails';
 
 
 @Component({
@@ -203,6 +204,23 @@ export class SearchPage implements OnInit {
       // Sorry! No Web Storage support..
       console.log('Sorry! No Web Storage support..')
     }
+  }
+
+  productDetailPage(id, name,image,description,regular_price,make,model,size) {
+    this.navCtrl.push(SearchdetailsPage, {
+      id: id,
+      name: name,
+      image:image,
+      regular_price:regular_price,
+      description:description,
+      make:make,
+      model:model,
+      size:size
+    });
+    console.log("Sent product id " + id);
+    console.log("Sent product name " + name); 
+    console.log("Sent product name " + regular_price);
+  
   }
 
   showToastOnAddProduct(strProductAdded) {
