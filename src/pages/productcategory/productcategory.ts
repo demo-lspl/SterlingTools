@@ -148,13 +148,33 @@ searchPage() {
   }
 
   
-  addToCart(catId,strProductAdded) {
-    this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + catId).subscribe((jsonResponse) => {
-      this.obj = JSON.stringify(jsonResponse);
-      console.log("Sent productsList response " + this.obj);
-      console.log("Sent productsList id " + catId);
-      this.showToastOnAddProductSingle(strProductAdded);
-    });
+ 
+addToCart(id, name,image,description,regular_price) {
+  if (localStorage.getItem("Userid value") === null) {
+    let products = [];
+    if (localStorage.getItem('products')) {
+      products = JSON.parse(localStorage.getItem('products')); // get product list 
+    } 
+    console.log("Sent productsList id " + id);
+    console.log("Sent productsList name " + name);
+    products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+    localStorage.setItem('products', JSON.stringify(products)); 
+    this.showToastOnAddProductLocal(name);
+    this.countProductsCartLocalUpdated++;
+
+  
+    
+  }  
+  
+  else { 
+    this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
+          this.obj = JSON.stringify(jsonResponse);
+          console.log("Sent productsList response " + this.obj);
+          console.log("Sent productsList id " + id);
+          this.showToastOnAddProductServer(name);
+          this.countProductsCart++;
+        });
+  }   
 }  
 
 
@@ -235,6 +255,27 @@ searchPage() {
       });
     } catch (error) {}
   }
+
+  showToastOnAddProductLocal(strProductAdded) {
+    const toast = this.toastController.create({
+      // message: this.testStr,
+      message: 'Product Added in Local Cart : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+      duration: 3000,
+      position: "bottom",
+    });   
+    toast.present();  
+  }  
+  
+
+  showToastOnAddProductServer(strProductAdded) {
+    const toast = this.toastController.create({
+      // message: this.testStr,
+      message: 'Product Added in Server : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+      duration: 1000,
+      position: "bottom",
+    });   
+    toast.present();   
+  }  
 
   showToastOnAddProductSingle(strProductAdded) {
     const toast = this.toastController.create({

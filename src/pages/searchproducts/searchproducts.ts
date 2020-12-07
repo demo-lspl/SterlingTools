@@ -29,6 +29,7 @@ export class SearchproductsPage implements OnInit{
   strModel: string;  
   strEngine: string;  
   strYear: string;  
+  
   featuredProductsList: any = [];  
   strData: string;
   networkStatus: NetworkStatus;

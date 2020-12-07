@@ -1,14 +1,14 @@
 webpackJsonp([16],{
 
-/***/ 771:
+/***/ 779:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReadmorePageModule", function() { return ReadmorePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchdataPageModule", function() { return SearchdataPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__readmore__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__searchdata__ = __webpack_require__(406);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,20 +18,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-let ReadmorePageModule = class ReadmorePageModule {
+let SearchdataPageModule = class SearchdataPageModule {
 };
-ReadmorePageModule = __decorate([
+SearchdataPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__readmore__["a" /* ReadmorePage */],
+            __WEBPACK_IMPORTED_MODULE_2__searchdata__["a" /* SearchdataPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__readmore__["a" /* ReadmorePage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__searchdata__["a" /* SearchdataPage */]),
         ],
     })
-], ReadmorePageModule);
+], SearchdataPageModule);
 
-//# sourceMappingURL=readmore.module.js.map
+//# sourceMappingURL=searchdata.module.js.map
 
 /***/ })
 

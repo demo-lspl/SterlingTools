@@ -100,19 +100,59 @@
 
       <!-- <div *ngIf="this.productCategoryList.name = 'Uncategorized';then content else other_content">here is ignored</div>    
 <ng-template #content>content here...</ng-template>
-<ng-template #other_content>other content here...</ng-template> -->
+<ng-template #other_content>other content here...</ng-template>
+ (ionChange)="ionChange($event)"
+
+-->
 
       <ion-icon name="md-search" class="text-light icon"></ion-icon>
     </ion-item>
+
     <ion-searchbar  
-    
+    [(ngModel)]="searchProductName" 
+    (ionChange)="ionChange($event)"
       placeholder="Search Products"
-      (click)="productDetailPage1(companyName)">
+      search-icon='undefined'
+      min="3"
+      (click)="productDetailPage2(companyName)">
+     
     </ion-searchbar>
+
+    <!-- <p >
+       Items
+      <small class="bg-thime btn-round text-white" float-right (click)="productDetailPage1(searchProductName)"> Search </small>
+    </p> -->
+
+
+   
+
+   
+    
+    <!-- 
+
+    <ion-searchbar  
+    [(ngModel)]="searchProductName" 
+    (ionChange)="ionChange($event)"
+      placeholder="Search Products"
+      search-icon='undefined'
+      style="width: 30px;">
+    </ion-searchbar> -->
+   
+    <!-- <ion-buttons end>
+      <button ion-button item-right (click)="refreshData()">
+      <ion-icon name="refresh"></ion-icon>
+     </button>
+  </ion-buttons>
+  <ion-searchbar
+  [showCancelButton]="shouldShowCancel"
+  placeholder="Search Names"
+  (ionInput)="filterDriver($event)"
+  (ionCancel)="onCancel($event)">
+  </ion-searchbar> -->
   </div>  
 
 
- 
+  <!-- <ion-icon name="search-outline" style="width: 30px;height: 30px;"></ion-icon> -->
   
 </ion-header>
 

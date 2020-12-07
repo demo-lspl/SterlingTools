@@ -19,6 +19,8 @@ import { SearchPage } from '../search/search';
 import { SearchproductsPage } from '../searchproducts/searchproducts';
 import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
 import { HelpPage } from '../help/help';
+import { SearchproductsupdatedPage } from '../searchproductsupdated/searchproductsupdated';
+import { SearchdataPage } from '../searchdata/searchdata';
 
 
     
@@ -40,7 +42,7 @@ export class HomePage implements OnInit {
   strProductRegularPriceRevised: string;
   strData: string;
   strRegularPrice:string;
-  hideMe:boolean = false;
+  hideMe:boolean = false; 
   obj;
   icon: string = "arrow-forward";
   icon1: string = "arrow-forward";
@@ -49,6 +51,7 @@ export class HomePage implements OnInit {
   items: any;
   val;
   featuredProductsList: any = [];  
+  featuredProductsList1: any = [];  
   featuredCategoryList: any = [];    
   featuredProductCategoryList: any = [];
   productTitle:''
@@ -74,6 +77,8 @@ export class HomePage implements OnInit {
   makeList: any = [];  
   modelList: any = [];  
   companyName: any;
+  companyName1: any;
+  searchProductName:string;
   strMakeListValue:string;
   strModelListValue:string; 
   zone;
@@ -109,6 +114,8 @@ export class HomePage implements OnInit {
   strTestValue3:string;
   checkStatus: boolean;
   visible = false;
+  strTestValue4:string;
+  autocomplete: { input: string; }; 
 
 
 
@@ -404,31 +411,107 @@ addToWishList(id, name,image,description,regular_price,x) {
   }
 
   viewAllCategories() {
-   // this.navCtrl.push(ViewallcategoriesPage);
     this.navCtrl.push(ViewallPage);
+  }  
+
+
+  ionChange(event) {
+    //console.log('Inputted' + event.value);
+
+    if(!event.value === null || event.value === '' || event.value.length<=2)
+    {
+        console.log('Length issue');
+        this.showToastOnLengthProduct();
+    }
   }
+  
 
-
-  productDetailPage1(catId) {
-
-
-    if(this.companyName){
-      console.log('clicked');
-       this.navCtrl.push(SearchPage, {
-      catId: catId,
-     
-    });
-    console.log("Sent product id " + catId);
+  productDetailPage1(searchProductName) {
+     if(searchProductName){
+      console.log('filled');
+          this.navCtrl.push(SearchproductsupdatedPage, {
+      input: this.searchProductName,
+ });
+    console.log('Sent Search value' + this.searchProductName)
     }
 
     else {
-      console.log('clicked!!!!!!');
+      console.log('empty');
       this.showToastOnEmptyProduct();
     }
-
-    
-  
   }
+
+
+  productDetailPage2(catId) {
+  // if(this.companyName){
+  //   console.log('clicked');
+  //    this.navCtrl.push(SearchPage, {
+  //   catId: catId,
+  // });
+  // console.log("Sent product id " + catId);
+  // }
+  // else {
+  //   console.log('clicked!!!!!!');
+  //   this.showToastOnEmptyProduct();
+  // }
+
+  // if(!this.companyName){
+  //   console.log('please select dropdown failed');
+  // }
+
+  // else if (this.companyName){
+  //   console.log('please select dropdown passed');
+  //   this.navCtrl.push(SearchPage, {
+  //       catId: catId,
+  //     });
+  // }
+
+  // else if (!this.searchProductName){
+  //   console.log('please input value failed');
+  // }
+  // else if (this.searchProductName){
+  //   console.log('please input value success');
+  //   this.navCtrl.push(SearchproductsupdatedPage, {
+  //     input: this.searchProductName,
+  //   });
+  // }
+  // else {
+  //   console.log('success passed');
+  // }
+ 
+  if(this.companyName  ){
+    console.log('failure passed company name');
+    this.navCtrl.push(SearchPage, {
+            catId: catId,
+          });
+  }
+
+  else if(this.searchProductName){
+    console.log('failure passed search name');
+    this.navCtrl.push(SearchproductsupdatedPage, {
+          input: this.searchProductName,
+        });
+
+  }
+
+  else {
+    console.log('success passed');
+    // this.navCtrl.push(SearchPage, {
+    //   catId: catId,
+    // });
+  }
+
+
+}
+  
+
+
+ 
+
+
+
+
+
 
   productDetailPage(id, name,regular_price) {
     this.navCtrl.push(ItemdetailPage, {
@@ -535,6 +618,36 @@ getAllFeaturedProducts() {
 
   
   }  
+
+
+  getAllFeaturedProducts1() {
+    
+    const service = this.apiProvider.getFeaturedProducts1();
+    service.subscribe((jsonResponse) => {
+
+      const resultado = jsonResponse;
+      this.featuredProductsList1 = resultado;
+      this.obj = JSON.stringify(jsonResponse);
+
+
+  
+
+        if(resultado === null){
+          this.showToastOnEmptyFeaturedProducts();
+          console.log('data not available');
+          this.strData = 'data not available';
+        }
+        else {
+          // console.log('data available');
+        }
+  
+        
+        
+    });
+
+  
+  }  
+
 
 getAllFeaturedProductsCategories() {
     
@@ -748,35 +861,25 @@ getCategoriesApi(){
    
 
   
-  searchData1(catId){
-
-    // this.httpClient.get( "http://busybanda.com/sterling-tools/api/get_products_mmey_search?" + "make=" +this.makeValue + '&model=' + this.strModelListSelectedValue + '&engine=' + this.strEngineListSelectedValue)
-    // .subscribe((jsonResponse) => { 
-    //   this.obj = JSON.stringify(jsonResponse);
-    //   console.log('searchData api response   ' + jsonResponse);
-    // });
-
  
-    // this.navCtrl.push(SearchPage, {
-    //   catId: catId,
-           
-    //     });    
-
-        if(this.productCategoryList){
-          console.log("productCategoryList has data " + this.productCategoryList.length + catId );
-        }
-        else {
-          console.log("productCategoryList does not have data " );
-
-        }
-  
-         
-  }  
-
   getOuterName(event){
     console.log("companyName"+this.companyName);
     this.strDynamicId = this.companyName;
  }
+
+ getOuterName1(event){
+  console.log("companyName------"+this.companyName1);
+
+  this.strTestValue4 = this.companyName1;
+  console.log("Updated search------"+this.strTestValue4);
+
+  this.navCtrl.push(SearchproductsupdatedPage, {
+         input: this.strTestValue4,
+    });
+
+  //this.strDynamicId = this.companyName;
+}
+
 
 
   itemdetailPage(catId) {
@@ -810,7 +913,6 @@ async viewCartApi() {
          console.log('All Json Response' + resultado);
 
    
-        //  this.countProductsCartLocalUpdated = this.viewCartList.length;
 
 
         if(this.viewCartList){
@@ -828,37 +930,12 @@ async viewCartApi() {
             
               
      
-        //  if(this.viewCartList.length>=1) {
-        //   console.log('Live server Cart Filled ' + this.viewCartList.length );
-        //   this.countProductsCart = this.viewCartList.length;
-         
-        //  }
- 
-        //  else{
-        //   console.log('Live server Cart  Empty ');
-        //  }
-
-
-        // if(this.viewCartList){
-        //   console.log('Live server Cart Filled tushar' + this.viewCartList.length );
-        // }
-
-        // else {
-        //   console.log('Local server Cart Filled tushar' + this.countProductsCartLocalUpdated );
-        //   this.countProductsCartLocalUpdated = this.countProductsCartLocalUpdated;
-          
-        // }
+       
 
 
        
                               
-        // for(var j=0; j < this.viewCartList.length; j++){
-        //   console.log('Price ' + this.viewCartList[j].price);
-        //   console.log('Product Id ' + this.viewCartList[j].product_id);
-        //   console.log('Quantity' + this.viewCartList[j].quantity);
-        //  }
-        // const resultado1 = data;
-        // console.log(resultado1);
+       
       } else {
       }
 
@@ -1008,12 +1085,22 @@ async showToastOnWishlist()
 async showToastOnEmptyProduct()
 {
  const toast = await this.toastController.create({
-   message: 'Please select Product ',
+   message: 'Input Product ',
    duration: 3000,
    position: 'bottom',
  });
  toast.present();
 } 
+
+async showToastOnLengthProduct()
+{
+ const toast = await this.toastController.create({
+   message: 'Min length of Product should be 3',
+   duration: 3000,
+   position: 'bottom',
+ });
+ toast.present();
+}
     
 callMakeApi() {
 

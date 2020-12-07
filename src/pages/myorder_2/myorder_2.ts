@@ -190,7 +190,7 @@ export class Myorder_2Page implements OnInit {
         (status) => {
           console.log('Network status HomePage here', status);
           this.networkStatus = status;
-        }
+        } 
       );
   
       if ((await Network.getStatus()).connectionType === 'none') {

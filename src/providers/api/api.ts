@@ -101,6 +101,11 @@ export class ApiProvider {
      return this.httpClient.get('http://busybanda.com/sterling-tools/api/get_featured_product').pipe(map((res: any) => this.httpClientFetch = res.result));
     }
 
+    getFeaturedProducts1(){
+      this.showFeaturedProductsLoader();
+      return this.httpClient.get('http://busybanda.com/sterling-tools/api/get_featured_product').pipe(map((res: any) => this.httpClientFetch = res.result));
+     }
+
   getTest(){
     return this.httpClient.get('http://pridediesel.com/pridediesel/api/getdrivers').pipe(map((res: any) => this.httpClientFetch = res.results));
   }

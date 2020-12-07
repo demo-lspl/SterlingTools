@@ -52812,6 +52812,20 @@ page-home .icon-add {
   position: relative;
 }
 
+
+page-searchproductsupdated .icon-add ion-badge#notifications-badge {
+  position: absolute;
+  top: -5px;
+  right: -3px;
+  font-size: 8px;
+  padding: 5px;
+}
+page-searchproductsupdated .icon-add {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+}
+
 page-myorder_2 .icon-add ion-badge#notifications-badge {
   position: absolute;
   top: -5px;
@@ -52848,6 +52862,20 @@ page-itemdetail .icon-add ion-badge#notifications-badge {
 }
 
 page-itemdetail .icon-add {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+}
+
+page-itemdetaillistpage1 .icon-add ion-badge#notifications-badge {
+  position: absolute;
+  top: -5px;
+  right: -3px;
+  font-size: 8px;
+  padding: 5px;
+}
+
+page-itemdetaillistpage1 .icon-add {
   color: #fff;
   font-size: 20px;
   position: relative;

@@ -1,14 +1,14 @@
 webpackJsonp([25],{
 
-/***/ 768:
+/***/ 767:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DemoPageModule", function() { return DemoPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MyaccountupdatedPageModule", function() { return MyaccountupdatedPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__demo__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__myaccountupdated__ = __webpack_require__(188);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,20 +18,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-let DemoPageModule = class DemoPageModule {
+let MyaccountupdatedPageModule = class MyaccountupdatedPageModule {
 };
-DemoPageModule = __decorate([
+MyaccountupdatedPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__demo__["a" /* DemoPage */],
+            __WEBPACK_IMPORTED_MODULE_2__myaccountupdated__["a" /* MyaccountupdatedPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__demo__["a" /* DemoPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__myaccountupdated__["a" /* MyaccountupdatedPage */]),
         ],
     })
-], DemoPageModule);
+], MyaccountupdatedPageModule);
 
-//# sourceMappingURL=demo.module.js.map
+//# sourceMappingURL=myaccountupdated.module.js.map
 
 /***/ })
 

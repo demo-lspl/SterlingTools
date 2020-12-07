@@ -1,14 +1,14 @@
 webpackJsonp([29],{
 
-/***/ 758:
+/***/ 768:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AccordiantestPageModule", function() { return AccordiantestPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CategoryupdatedPageModule", function() { return CategoryupdatedPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__accordiantest__ = __webpack_require__(398);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__categoryupdated__ = __webpack_require__(403);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,20 +18,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-let AccordiantestPageModule = class AccordiantestPageModule {
+let CategoryupdatedPageModule = class CategoryupdatedPageModule {
 };
-AccordiantestPageModule = __decorate([
+CategoryupdatedPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__accordiantest__["a" /* AccordiantestPage */],
+            __WEBPACK_IMPORTED_MODULE_2__categoryupdated__["a" /* CategoryupdatedPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__accordiantest__["a" /* AccordiantestPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__categoryupdated__["a" /* CategoryupdatedPage */]),
         ],
     })
-], AccordiantestPageModule);
+], CategoryupdatedPageModule);
 
-//# sourceMappingURL=accordiantest.module.js.map
+//# sourceMappingURL=categoryupdated.module.js.map
 
 /***/ })
 
