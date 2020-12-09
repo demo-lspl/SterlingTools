@@ -22,16 +22,15 @@ export class WishlistupdatedPage implements OnInit {
 
   productsLocalCart :any = [];  
   productsLocalWishList :any = [];  
-
+  viewCartList:any = [];
   strProductQuantity: number ;
+  strProductRegularPriceRevised1:number| any;
   obj;  
   strProductRegularPrice:any;
   strProductDescription:string;  
-  productTotalPrice:number;
-  strProductRegularPriceRevised1:number| any;
-  productQuantityTushar:number;
-  strData:string;
   strProductRegularPriceRevised:string;  
+  productTotalPrice:number;
+  strData:string;
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle;  
   localSearchProduct;
@@ -41,7 +40,6 @@ export class WishlistupdatedPage implements OnInit {
   letclickCount = 0;
   clickedButtonWishlist:boolean ;
   count:string|any;
-  viewCartList:any = [];
   buttonIcon: string ;
   countProductsCart:number|any|string;
   countProductsCartLocal:number|any|string;
@@ -105,10 +103,8 @@ export class WishlistupdatedPage implements OnInit {
       // Checks if can go back before show up the alert
       if(activeView.name === 'WishlistupdatedPage') {
           if (nav.canGoBack()){
-            console.log('Tushar');
           } else {
               this.navCtrl.setRoot(HomePage);
-              console.log('Tushar11');
           }
       }
   });
@@ -121,14 +117,12 @@ export class WishlistupdatedPage implements OnInit {
   
       else {  
         console.log('****** empty' + localStorage.getItem('productsWishlist'));
-        // this.strData = 'Wishlist is Empty.Please add items!';
         this.showToastOnEmptyCart();
       }
     
        this.obj = JSON.stringify(this.productsLocalCart);
       for(let i = 0; i < this.productsLocalCart.length; i++){   
         if(this.productsLocalCart[i].ProductQuantity && this.productsLocalCart[i].ProductRegularPrice && this.productsLocalCart[i].ProductDescription && this.productsLocalCart[i].ProductId ){
-         // this.strProductQuantity;
             this.strProductQuantity = this.productsLocalCart[i].ProductQuantity;
           this.strProductRegularPrice = this.productsLocalCart[i].ProductRegularPrice; 
           this.strProductDescription= this.productsLocalCart[i].ProductDescription; 
@@ -136,9 +130,6 @@ export class WishlistupdatedPage implements OnInit {
 
 
            this.strProductRegularPriceRevised1 = this.strProductRegularPriceRevised;
-          // this.strproductpriceTushar = 'Product Price: ' + this.strProductRegularPrice * this.strProductQuantity;
-        //  console.log('All Product Price ' + this.productsLocalCart[i].ProductRegularPrice);
-        //  console.log('All Product Quantity ' + this.productsLocalCart[i].ProductQuantity);
             this.productTotalPrice = this.productsLocalCart[i].ProductRegularPrice;
             var sum = 0, nums = ['100','300','400','60','40'];
             for (i = 0; i < nums.length; i++) {
@@ -147,7 +138,6 @@ export class WishlistupdatedPage implements OnInit {
             }
   
             this.productsLocalCart = JSON.parse(localStorage.getItem('productsWishlist'));
-  //tempJSON.name is SomeName
         }
     
         else {

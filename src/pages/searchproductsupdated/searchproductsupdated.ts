@@ -62,6 +62,7 @@ export class SearchproductsupdatedPage implements OnInit{
   newSearch: any;
   loading
   showDataboolean = false;
+  strResponse:string;
 
 
 
@@ -85,7 +86,7 @@ export class SearchproductsupdatedPage implements OnInit{
 
     
 
-
+  
 
 
     
@@ -96,26 +97,23 @@ export class SearchproductsupdatedPage implements OnInit{
 
   ngOnInit() {
 
-  //   this.httpClient.get("http://busybanda.com/sterling-tools/api/get_products_by_search?" +"searchby=" +this.strInputtedValue)
-  //   .subscribe((jsonResponse) => { 
-    
-  //     this.productsListInformation = jsonResponse['result'];
-  //     // this.productsListInformation1 = jsonResponse['result'].attribute;
-  //   this.obj = JSON.stringify(jsonResponse);
-       
-  //    if (this.productsListInformation && this.productsListInformation.length) {
-  //     console.log('Particular product details available ' );
-        
-  //    } 
-  //   else     
-  //   {     
-  //     console.log('Particular product empty ' + this.obj);
-  //   } 
+    this.platform.registerBackButtonAction(() => {
+      // Catches the active view
+      let nav = this.app.getActiveNavs()[0];
+      let activeView = nav.getActive();                
+      // Checks if can go back before show up the alert
+      if(activeView.name === 'SearchproductsupdatedPage') {
+          if (nav.canGoBack()){  
+              this.navCtrl.setRoot(HomePage);
+              console.log('test***');
+          } else {
+            console.log('test1*****');
+          }
 
-  // });
+      }
+  }); 
 
-
-  this.someFunction();
+  this.getProductsBySearch();
 
 
   
@@ -211,17 +209,14 @@ export class SearchproductsupdatedPage implements OnInit{
 
   
       
-      async someFunction() {
-
+      async getProductsBySearch() {
         const loader = await this.loadingController.create({
           content: 'Loading...',
         });
 
         await loader.present();
-    
-        loader.present().then(() => {               // show loader
+        loader.present().then(() => {               
           this.httpClient.get("http://busybanda.com/sterling-tools/api/get_products_by_search?" +"searchby=" +this.strInputtedValue).subscribe(jsonResponse => {
-
           if(jsonResponse){
             this.productsListInformation = jsonResponse['result'];
             this.obj = JSON.stringify(jsonResponse);
@@ -229,11 +224,13 @@ export class SearchproductsupdatedPage implements OnInit{
             loader.dismiss(); 
           }
 
-          else if(this.obj.includes('null')){
-            console.log('details available obj empty ' );
-            
-          }
+          const myURL_body = jsonResponse['result'];
+          this.strResponse = myURL_body;
 
+         if(this.strResponse = 'null'){
+          console.log('details available obj empty ' );
+          this.strDataServer = 'No data';
+         }
           else {
             console.log('details not available ' );
           }
@@ -249,7 +246,7 @@ export class SearchproductsupdatedPage implements OnInit{
       showToastOnProductError(strProductAdded) {
         const toast = this.toastController.create({
           // message: this.testStr,
-          message: 'Product Added in Cart : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
+          message: 'Error ' + strProductAdded ,
           duration: 3000,
           position: "bottom",
         });   
@@ -257,7 +254,17 @@ export class SearchproductsupdatedPage implements OnInit{
       } 
       
      
-
+      doRefresh(event) {  
+        console.log('Begin async operation');
+       
+        this.getProductsBySearch();
+      
+        
+        setTimeout(() => {
+          console.log('Async operation has ended');
+          event.complete();
+        }, 500);
+      } 
 
 
 }

@@ -51,7 +51,6 @@ export class HomePage implements OnInit {
   items: any;
   val;
   featuredProductsList: any = [];  
-  featuredProductsList1: any = [];  
   featuredCategoryList: any = [];    
   featuredProductCategoryList: any = [];
   productTitle:''
@@ -293,14 +292,7 @@ export class HomePage implements OnInit {
 
 
 
-//  addToCart(id,strProductAdded) {
-//   this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
-//     this.obj = JSON.stringify(jsonResponse);
-//     console.log("Sent productsList response " + this.obj);
-//     console.log("Sent productsList id " + id);
-//     this.showToastOnAddProductSingle(strProductAdded);
-//   }); 
-// }      
+     
       
   
 addToCart(id, name,image,description,regular_price) {
@@ -326,7 +318,9 @@ addToCart(id, name,image,description,regular_price) {
           console.log("Sent productsList response " + this.obj);
           console.log("Sent productsList id " + id);
           this.showToastOnAddProductServer(name);
-          this.countProductsCart++;
+          // this.countProductsCart++;
+          this.countProductsCartLocalUpdated++;
+
         });
   }   
 } 
@@ -408,7 +402,7 @@ addToWishList(id, name,image,description,regular_price,x) {
     for (var i = 0; i < this.elements.length; i++) {
       this.elements[i].style.width = "50%";
     } 
-  }
+  } 
 
   viewAllCategories() {
     this.navCtrl.push(ViewallPage);
@@ -416,69 +410,41 @@ addToWishList(id, name,image,description,regular_price,x) {
 
 
   ionChange(event) {
-    //console.log('Inputted' + event.value);
+    console.log('Entered value ' + event.value);
 
-    if(!event.value === null || event.value === '' || event.value.length<=2)
-    {
-        console.log('Length issue');
-        this.showToastOnLengthProduct();
-    }
+    this.strTestValue4 = event.value;
+
+    // if(this.strTestValue4.length <= 2) {
+    //   this.showToastOnLengthProduct();
+    //   return;
+    // }
+
+    // if(this.strTestValue4.length<=2)
+    // {
+    //     console.log('Length issue');
+    //     this.showToastOnLengthProduct();
+    // }
   }
   
 
-  productDetailPage1(searchProductName) {
-     if(searchProductName){
-      console.log('filled');
-          this.navCtrl.push(SearchproductsupdatedPage, {
-      input: this.searchProductName,
- });
-    console.log('Sent Search value' + this.searchProductName)
-    }
+//   productDetailPage1(searchProductName) {
+//      if(searchProductName){
+//       console.log('filled');
+//           this.navCtrl.push(SearchproductsupdatedPage, {
+//       input: this.searchProductName,
+//  });
+//     console.log('Sent Search value' + this.searchProductName)
+//     }
 
-    else {
-      console.log('empty');
-      this.showToastOnEmptyProduct();
-    }
-  }
+//     else {
+//       console.log('empty');
+//       this.showToastOnEmptyProduct();
+//     }
+//   }
 
 
   productDetailPage2(catId) {
-  // if(this.companyName){
-  //   console.log('clicked');
-  //    this.navCtrl.push(SearchPage, {
-  //   catId: catId,
-  // });
-  // console.log("Sent product id " + catId);
-  // }
-  // else {
-  //   console.log('clicked!!!!!!');
-  //   this.showToastOnEmptyProduct();
-  // }
-
-  // if(!this.companyName){
-  //   console.log('please select dropdown failed');
-  // }
-
-  // else if (this.companyName){
-  //   console.log('please select dropdown passed');
-  //   this.navCtrl.push(SearchPage, {
-  //       catId: catId,
-  //     });
-  // }
-
-  // else if (!this.searchProductName){
-  //   console.log('please input value failed');
-  // }
-  // else if (this.searchProductName){
-  //   console.log('please input value success');
-  //   this.navCtrl.push(SearchproductsupdatedPage, {
-  //     input: this.searchProductName,
-  //   });
-  // }
-  // else {
-  //   console.log('success passed');
-  // }
- 
+  
   if(this.companyName  ){
     console.log('failure passed company name');
     this.navCtrl.push(SearchPage, {
@@ -487,18 +453,26 @@ addToWishList(id, name,image,description,regular_price,x) {
   }
 
   else if(this.searchProductName){
-    console.log('failure passed search name');
-    this.navCtrl.push(SearchproductsupdatedPage, {
-          input: this.searchProductName,
-        });
+     console.log('failure passed search name' + this.searchProductName);
+
+     if(this.strTestValue4.length <= 2) {
+        this.showToastOnLengthProduct();
+     }
+
+     else {
+        this.navCtrl.push(SearchproductsupdatedPage, {
+         input: this.searchProductName,
+            });
+     }
+
+
+    
 
   }
 
   else {
     console.log('success passed');
-    // this.navCtrl.push(SearchPage, {
-    //   catId: catId,
-    // });
+   
   }
 
 
@@ -590,97 +564,213 @@ toggleAccordionCategory() {
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
   }
     
-getAllFeaturedProducts() {
+// getAllFeaturedProducts() {
     
-    const service = this.apiProvider.getFeaturedProducts();
-    service.subscribe((jsonResponse) => {
+//     const service = this.apiProvider.getFeaturedProducts();
+//     service.subscribe((jsonResponse) => {
 
-      const resultado = jsonResponse;
-      this.featuredProductsList = resultado;
-      this.obj = JSON.stringify(jsonResponse);
+//       const resultado = jsonResponse;
+//       this.featuredProductsList = resultado;
+//       this.obj = JSON.stringify(jsonResponse);
 
-      // this.httpClient.get('http://busybanda.com/sterling-tools/api/get_featured_product').subscribe(res => console.log(res.status), err => console.log('error', err.status))
 
   
 
-        if(resultado === null){
-          this.showToastOnEmptyFeaturedProducts();
-          console.log('data not available');
-          this.strData = 'data not available';
-        }
-        else {
-          // console.log('data available');
-        }
+//         if(resultado === null){
+//           this.showToastOnEmptyFeaturedProducts();
+//           console.log('data not available');
+//           this.strData = 'data not available';
+//         }
+//         else {
+//           // console.log('data available');
+//         }
   
         
         
+//     });
+
+  
+//   } 
+  
+
+  async getAllFeaturedProducts() {
+    const loader = await this.loadingController.create({
+      content: 'Please wait loading products!',
     });
 
-  
-  }  
+    await loader.present();
+    loader.present().then(() => {      
+      // const service = this.apiProvider.getOrders();   
+      // service.subscribe((jsonResponse) => {      
+       this.httpClient.get('http://busybanda.com/sterling-tools/api/get_featured_product').subscribe(jsonResponse => {
+      if(jsonResponse){
+        this.featuredProductsList = jsonResponse['result'];
+        this.obj = JSON.stringify(jsonResponse);
+        console.log('details available '+ this.obj );
+        loader.dismiss(); 
+      }
 
+      const myURL_body = jsonResponse['result'];
+      this.strData = myURL_body;
 
-  getAllFeaturedProducts1() {
-    
-    const service = this.apiProvider.getFeaturedProducts1();
-    service.subscribe((jsonResponse) => {
-
-      const resultado = jsonResponse;
-      this.featuredProductsList1 = resultado;
-      this.obj = JSON.stringify(jsonResponse);
-
-
-  
-
-        if(resultado === null){
-          this.showToastOnEmptyFeaturedProducts();
-          console.log('data not available');
-          this.strData = 'data not available';
-        }
-        else {
-          // console.log('data available');
-        }
-  
-        
-        
+     if(this.strData = 'null'){
+      console.log('details available obj empty ' );
+      this.strData = 'No data';
+     }
+      else { 
+        console.log('details not available ' );
+      }
+      },
+        error => { 
+          console.log(error);
+          this.showToastOnProductError(error);
+        });
     });
-
-  
-  }  
+  }
 
 
-getAllFeaturedProductsCategories() {
+
+
+
+// getAllFeaturedProductsCategories() {
     
-    const service = this.apiProvider.getProductCategoriesGrid();
-    service.subscribe((jsonResponse) => {
+//     const service = this.apiProvider.getProductCategoriesGrid();
+//     service.subscribe((jsonResponse) => {
   
-      const resultado = jsonResponse;
-      this.featuredProductCategoryList = resultado;
+//       const resultado = jsonResponse;
+//       this.featuredProductCategoryList = resultado;
+//       this.obj = JSON.stringify(jsonResponse);
+
+//       this.strData = 'No data available';
+
+//         if(resultado === null){
+//           this.showToastOnEmptyFeaturedProducts();
+//         }
+//         else {
+//           //console.log('data available');
+//         }
+//     });  
+//   }   
+
+
+async getAllFeaturedProductsCategories() {
+  // const loader = await this.loadingController.create({
+  //   content: 'Please wait fetching orders!',
+  // });
+
+  // await loader.present();
+  // loader.present().then(() => {      
+    // const service = this.apiProvider.getOrders();   
+    // service.subscribe((jsonResponse) => {      
+     this.httpClient.get('http://busybanda.com/sterling-tools/api/get_products_category_grid').subscribe(jsonResponse => {
+    if(jsonResponse){
+      this.featuredProductCategoryList = jsonResponse['result'];
       this.obj = JSON.stringify(jsonResponse);
+      console.log('details available '+ this.obj );
+      // loader.dismiss(); 
+    }
 
-      this.strData = 'No data available';
+    const myURL_body = jsonResponse['result'];
+    this.strData = myURL_body;
 
-        if(resultado === null){
-          this.showToastOnEmptyFeaturedProducts();
-        }
-        else {
-          //console.log('data available');
-        }
-    });  
-  }   
+   if(this.strData = 'null'){
+    console.log('details available obj empty ' );
+    this.strData = 'No data';
+   }
+    else { 
+      console.log('details not available ' );
+    }
+    },
+      error => { 
+        console.log(error);
+        this.showToastOnProductError(error);
+      });
+  // });
+}
 
-  getAllProductsCategoriesList() {
+  // getAllProductsCategoriesList() {
     
-    const service = this.apiProvider.getProductCategories();
-    service.subscribe((jsonResponse) => {
+  //   const service = this.apiProvider.getProductCategories();
+  //   service.subscribe((jsonResponse) => {
   
-      const resultado = jsonResponse;
-      this.productCategoryList = resultado;
+  //     const resultado = jsonResponse;
+  //     this.productCategoryList = resultado;
+  //     this.obj = JSON.stringify(jsonResponse);
+
+  //     this.strData = 'No data available';
+
+  //     if(this.productCategoryList.name = 'Uncategorized'){
+  //       console.log('Uncategorized available');
+  //       //this.productCategoryList.splice(0);
+  //       //this.productCategoryList.filter(item => item !== "Uncategorized")
+  //       this.productCategoryList.splice(0,1);
+
+  //     }
+
+  //     else {
+  //       console.log('Uncategorized not available');
+  //     }
+
+  //       if(resultado === null){
+  //         this.showToastOnEmptyFeaturedProducts();
+  //       }
+  //       else {
+  //        // console.log('data available getAllProductsCategoriesList' + this.obj);
+  //       }
+
+
+        
+
+  //       for (const entry of this.productCategoryList) {
+  //         // console.log('Dynamic Ids ' + entry.catId);
+  //          this.strCateid = entry.catId;
+  //       }
+
+
+
+  //   });
+  // }
+
+
+// getCategoriesApi(){
+//     // console.log('getProductCategoriesApi called    ');  
+//     const service = this.apiProvider.getProductCategories();
+//     service.subscribe((data) => {
+//         const resultado = data;
+//         this.featuredCategoryList = resultado;
+//         this.productTitle = data.title;
+//     }); 
+//   }
+
+async getAllProductsCategoriesList() {
+  // const loader = await this.loadingController.create({
+  //   content: '',
+  // });
+
+  // await loader.present();
+  // loader.present().then(() => {      
+    // const service = this.apiProvider.getOrders();   
+    // service.subscribe((jsonResponse) => {      
+     this.httpClient.get('http://busybanda.com/sterling-tools/api/get_products_category').subscribe(jsonResponse => {
+    if(jsonResponse){
+      this.productCategoryList = jsonResponse['result'];
       this.obj = JSON.stringify(jsonResponse);
+      console.log('details available '+ this.obj );
+      // loader.dismiss(); 
+    }
 
-      this.strData = 'No data available';
+    const myURL_body = jsonResponse['result'];
+    this.strData = myURL_body;
 
-      if(this.productCategoryList.name = 'Uncategorized'){
+   if(this.strData = 'null'){
+    console.log('details available obj empty ' );
+    this.strData = 'No data';
+   }
+    else { 
+      console.log('details not available ' );
+    }
+
+         if(this.productCategoryList.name = 'Uncategorized'){
         console.log('Uncategorized available');
         //this.productCategoryList.splice(0);
         //this.productCategoryList.filter(item => item !== "Uncategorized")
@@ -691,37 +781,59 @@ getAllFeaturedProductsCategories() {
       else {
         console.log('Uncategorized not available');
       }
+    },
+      error => { 
+        console.log(error);
+        this.showToastOnProductError(error);
+      });
+  // });
+}
 
-        if(resultado === null){
-          this.showToastOnEmptyFeaturedProducts();
-        }
-        else {
-         // console.log('data available getAllProductsCategoriesList' + this.obj);
-        }
+async getCategoriesApi() {
+  const loader = await this.loadingController.create({
+    content: '',
+  });
 
+  await loader.present();
+  loader.present().then(() => {      
+    // const service = this.apiProvider.getOrders();   
+    // service.subscribe((jsonResponse) => {      
+     this.httpClient.get('http://busybanda.com/sterling-tools/api/get_products_category').subscribe(jsonResponse => {
+    if(jsonResponse){
+      this.featuredCategoryList = jsonResponse['result'];
+      this.obj = JSON.stringify(jsonResponse);
+      console.log('details available '+ this.obj );
+      loader.dismiss(); 
+    }
 
-        
+    // const myURL_body = jsonResponse['result'];
+    // this.strResponse = myURL_body;
 
-        for (const entry of this.productCategoryList) {
-          // console.log('Dynamic Ids ' + entry.catId);
-           this.strCateid = entry.catId;
-        }
-
-
-
-    });
+  //  if(this.strResponse = 'null'){
+  //   console.log('details available obj empty ' );
+  //   this.strDataServer = 'No data';
+  //  }
+  //   else { 
+  //     console.log('details not available ' );
+  //   }
+    },
+      error => { 
+        console.log(error);
+        this.showToastOnProductError(error);
+      });
+  });
+}
+  
+  
+  showToastOnProductError(strProductAdded) {
+    const toast = this.toastController.create({
+      // message: this.testStr,
+      message: 'Error' + strProductAdded,
+      duration: 3000,
+      position: "bottom",
+    });   
+    toast.present();  
   }
-
-
-getCategoriesApi(){
-    // console.log('getProductCategoriesApi called    ');  
-    const service = this.apiProvider.getProductCategories();
-    service.subscribe((data) => {
-        const resultado = data;
-        this.featuredCategoryList = resultado;
-        this.productTitle = data.title;
-    }); 
-  }   
   
    
                       
@@ -781,6 +893,8 @@ getCategoriesApi(){
     this.strTestValue2 = value;
     console.log("selected strTestValue2", this.strTestValue2);
     this.getYearApi(this.makeValue,this.strTestValue1,this.strTestValue2);
+
+    console.log('Selected engine tushar:  ' + this.strTestValue2);
   }
 
   triggerMeYear(value: string): void {
@@ -819,11 +933,18 @@ getCategoriesApi(){
      this.strMakeListSelectedValue = this.makeValue;
      this.getModelApi(this.strMakeListSelectedValue);
      console.log("Selected make:  ", this.makeValue); 
+
+    //  this.engineValue ='';
+    //  this.yearValue = '';     
+
+    // this.strTestValue1 = '';
+
+
     }
 
    
                  
-  searchData(makeValue,strTestValue2,strTestValue3,year){
+  searchVehicleData(makeValue,strTestValue2,strTestValue3,year){
 
   
 
@@ -847,15 +968,15 @@ getCategoriesApi(){
         });
 
         console.log("Sent product make " + this.makeValue);
-        console.log("Sent product model " + this.strTestValue2);
-        console.log("Sent product engine " + this.strTestValue1);
+        console.log("Sent product model " + this.strTestValue1);
+        console.log("Sent product engine " + strTestValue3);
         console.log("Sent product year " + this.yearValue);
   }
   }        
  
   
 
-
+ 
     
    
    
@@ -863,33 +984,11 @@ getCategoriesApi(){
   
  
   getOuterName(event){
-    console.log("companyName"+this.companyName);
+    console.log("Product category Id  "+this.companyName);
     this.strDynamicId = this.companyName;
  }
 
- getOuterName1(event){
-  console.log("companyName------"+this.companyName1);
 
-  this.strTestValue4 = this.companyName1;
-  console.log("Updated search------"+this.strTestValue4);
-
-  this.navCtrl.push(SearchproductsupdatedPage, {
-         input: this.strTestValue4,
-    });
-
-  //this.strDynamicId = this.companyName;
-}
-
-
-
-  itemdetailPage(catId) {
-    console.log("itemdetailPage called " );
-    // this.navCtrl.push(ProductcategorydetailPage, {
-    //   catId: catId,
-    //   name:name
-    // });
-    console.log('Sent productsList id ' + catId);
-  } 
  
  
      
@@ -918,13 +1017,11 @@ async viewCartApi() {
         if(this.viewCartList){
           this.countProductsCartLocalUpdated = this.viewCartList.length;
 
-          console.log('Tushar data server' );
         }
 
         else {
           this.countProductsCartLocalUpdated = this.countProductsCart;
 
-          console.log('Tushar data local' );
         }
   
             
@@ -1193,9 +1290,5 @@ private async showNetworkAlert(): Promise<void> {
 
   alert.present();
 }
-
-
-
-
-
 }   
+  

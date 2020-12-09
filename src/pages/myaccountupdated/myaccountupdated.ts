@@ -56,7 +56,6 @@ export class MyaccountupdatedPage implements OnInit {
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
   countProductsCartLocal:number|any|string;
-  countClickAddToCartTushar: number = 0;
   countProductsCartLocalUpdated:number = 0;
   countProductsWishlistLocalUpdated:number = 0;
   countProductsWishList:number =0;
@@ -124,9 +123,53 @@ export class MyaccountupdatedPage implements OnInit {
                         
 
 
-  getProfileApi(){
-    this.httpClient.get('http://busybanda.com/sterling-tools/api/get_user_details?' +  'user_id=' + localStorage.getItem('Userid value')).subscribe((jsonResponse) => {
-          this.obj = JSON.stringify(jsonResponse);
+  // getProfileApi(){
+  //   this.httpClient.get('http://busybanda.com/sterling-tools/api/get_user_details?' +  'user_id=' + localStorage.getItem('Userid value')).subscribe((jsonResponse) => {
+  //         this.obj = JSON.stringify(jsonResponse);
+  //         const parsedData = JSON.parse(this.obj);
+  //         status = parsedData.Status;
+  //         if (localStorage.getItem("Userid value") === null) {
+  //           console.log('Issue');
+  //         }  
+ 
+  //         else {
+  //           console.log('Success' +this.obj);
+  //         }
+  //         this.strAddress = parsedData.result.address;
+  //         this.strCity = parsedData.result.city;
+  //         this.strState = parsedData.result.state;
+  //         this.strPostalCode = parsedData.result.postalcode;
+  //         this.strPhone = parsedData.result.phone;
+
+  //         console.log('Fetched address' + this.strAddress);
+  //       });
+  //       this.platform.registerBackButtonAction(() => {
+  //         // Catches the active view
+  //         let nav = this.app.getActiveNavs()[0];
+  //         let activeView = nav.getActive();                
+  //         // Checks if can go back before show up the alert
+  //         if(activeView.name === 'MyaccountupdatedPage') {
+  //             if (nav.canGoBack()){
+  //             } else {
+  //                 this.navCtrl.setRoot(HomePage);
+  //             }
+  //         }
+  //     });
+  // }
+
+
+  async getProfileApi() {
+    const loader = await this.loadingController.create({
+      content: 'Please wait loading profile!',
+    });
+
+    await loader.present();
+    loader.present().then(() => {      
+      // const service = this.apiProvider.getOrders();   
+      // service.subscribe((jsonResponse) => {      
+        this.httpClient.get('http://busybanda.com/sterling-tools/api/get_user_details?' +  'user_id=' + localStorage.getItem('Userid value')).subscribe((jsonResponse) => {
+      if(jsonResponse){
+        this.obj = JSON.stringify(jsonResponse);
           const parsedData = JSON.parse(this.obj);
           status = parsedData.Status;
           if (localStorage.getItem("Userid value") === null) {
@@ -143,19 +186,25 @@ export class MyaccountupdatedPage implements OnInit {
           this.strPhone = parsedData.result.phone;
 
           console.log('Fetched address' + this.strAddress);
+        loader.dismiss(); 
+      }
+
+      // const myURL_body = jsonResponse['result'];
+      // this.strResponse = myURL_body;
+
+    //  if(this.strResponse = 'null'){
+    //   console.log('details available obj empty ' );
+    //   this.strDataServer = 'No data';
+    //  }
+    //   else { 
+    //     console.log('details not available ' );
+    //   }
+      },
+        error => { 
+          console.log(error);
+          this.showToastOnProductError(error);
         });
-        this.platform.registerBackButtonAction(() => {
-          // Catches the active view
-          let nav = this.app.getActiveNavs()[0];
-          let activeView = nav.getActive();                
-          // Checks if can go back before show up the alert
-          if(activeView.name === 'MyaccountupdatedPage') {
-              if (nav.canGoBack()){
-              } else {
-                  this.navCtrl.setRoot(HomePage);
-              }
-          }
-      });
+    });
   }
 
   async loginBtnClick() {
@@ -275,16 +324,25 @@ export class MyaccountupdatedPage implements OnInit {
           this.obj = JSON.stringify(data);
           console.log('All Json Response' + this.obj);
            this.strData = 'No Products in Cart';  
-           if(this.viewCartList.length>=1) {
-            console.log('Cart Filled ');
-            this.countProducts = this.viewCartList.length;
-             this.buttonIcon = "cart";
-           }
+          //  if(this.viewCartList.length>=1) {
+          //   console.log('Cart Filled ');
+          //   this.countProducts = this.viewCartList.length;
+          //    this.buttonIcon = "cart";
+          //  }
   
-           else{
-            console.log('Cart Empty ');
-           this.countProducts = 'Empty';
-           }
+          //  else{
+          //   console.log('Cart Empty ');
+          //  this.countProducts = 'Empty';
+          //  }
+          if(this.viewCartList){
+            this.countProductsCartLocalUpdated = this.viewCartList.length;
+  
+          }
+  
+          else {
+            this.countProductsCartLocalUpdated = this.countProductsCart;
+  
+          }
         } else {
         }
   
@@ -447,6 +505,16 @@ private async showNetworkAlert(): Promise<void> {
   });
 
   alert.present();
+}
+
+showToastOnProductError(strProductAdded) {
+  const toast = this.toastController.create({
+    // message: this.testStr,
+    message: 'Error' + strProductAdded,
+    duration: 3000,
+    position: "bottom",
+  });   
+  toast.present();  
 }
 
  

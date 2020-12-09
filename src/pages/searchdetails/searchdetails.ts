@@ -66,7 +66,9 @@ ngOnInit(){
     if(activeView.name === 'SearchdetailsPage') {
         if (nav.canGoBack()){  
             this.navCtrl.setRoot(HomePage);
+            console.log('test');
         } else {
+          console.log('test-------');
         }
     }
 }); 

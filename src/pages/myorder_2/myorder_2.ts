@@ -4,8 +4,9 @@ import { ViewcartPage } from './../viewcart/viewcart';
 import { ApiProvider } from './../../providers/api/api';
 import { VieworderdetailsPage } from './../vieworderdetails/vieworderdetails';
 import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController, Platform, App, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, ModalController, Platform, App, AlertController, LoadingController, ToastController } from 'ionic-angular';
 import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
+import { HttpClient } from '@angular/common/http';
 
 
   
@@ -29,8 +30,8 @@ export class Myorder_2Page implements OnInit {
   countProductsCartLocalUpdated:number = 0;
   countProductsWishlistLocalUpdated:number = 0;
   countProductsWishList:number =0;
-  
-
+  strResponse:string;
+  strDataServer:string;
 
   constructor(public navCtrl: NavController, 
               public modalCtrl: ModalController,
@@ -38,7 +39,9 @@ export class Myorder_2Page implements OnInit {
               public platform: Platform,
               public app: App,
               public alertController: AlertController,
-              public loadingController: LoadingController) {
+              public loadingController: LoadingController,
+              public toastController: ToastController,
+              public httpClient: HttpClient) {
   
   }
 
@@ -89,7 +92,7 @@ export class Myorder_2Page implements OnInit {
     else {
       console.log('Local Cart empty ' );
     }
-}
+}   
   
      cartPage() {
     this.navCtrl.setRoot(ViewcartPage);
@@ -113,20 +116,57 @@ export class Myorder_2Page implements OnInit {
     }, 500);
   }
 
-  viewOrdersApi(){
-    console.log('viewOrdersApi called    ');
-    const service = this.apiProvider.getOrders();
-    service.subscribe((data) => {
-   
-        const resultado = data;
-        console.log('Get response: ' + resultado);
-        this.viewOrdersList = resultado;
+  
+
+
+  async viewOrdersApi() {
+    const loader = await this.loadingController.create({
+      content: 'Please wait fetching orders!',
+    });
+
+    await loader.present();
+    loader.present().then(() => {      
+      // const service = this.apiProvider.getOrders();   
+      // service.subscribe((jsonResponse) => {      
+       this.httpClient.get('http://busybanda.com/sterling-tools/api/get_shop_order/').subscribe(jsonResponse => {
+      if(jsonResponse){
+        this.viewOrdersList = jsonResponse['result'];
+        this.obj = JSON.stringify(jsonResponse);
+        console.log('details available '+ this.obj );
+        loader.dismiss(); 
+      }
+
+      const myURL_body = jsonResponse['result'];
+      this.strResponse = myURL_body;
+
+     if(this.strResponse = 'null'){
+      console.log('details available obj empty ' );
+      this.strDataServer = 'No data';
+     }
+      else { 
+        console.log('details not available ' );
+      }
+      },
+        error => { 
+          console.log(error);
+          this.showToastOnProductError(error);
+        });
     });
   }
 
   
   wishlistPage() {
     this.navCtrl.push(WishlistupdatedPage);
+  }
+
+  showToastOnProductError(strProductAdded) {
+    const toast = this.toastController.create({
+      // message: this.testStr,
+      message: 'Error' + strProductAdded,
+      duration: 3000,
+      position: "bottom",
+    });   
+    toast.present();  
   }
 
         
@@ -146,22 +186,27 @@ export class Myorder_2Page implements OnInit {
   
             
            
-          if(this.viewCartList.length>=1) {
-            console.log('Cart Filled ');
-            this.countProductsCart = this.viewCartList.length;
-             this.buttonIcon = "cart";
-           }
+          // if(this.viewCartList.length>=1) {
+          //   console.log('Cart Filled ');
+          //   this.countProductsCart = this.viewCartList.length;
+          //    this.buttonIcon = "cart";
+          //  }
   
-           else{
-            console.log('Cart Empty ');
-           this.countProductsCart = 'Empty';
+          //  else{
+          //   console.log('Cart Empty ');
+          //  this.countProductsCart = 'Empty';
   
-           }
+          //  }
   
+          if(this.viewCartList){
+            this.countProductsCartLocalUpdated = this.viewCartList.length;
   
+          }
   
-         
-                                
+          else {
+            this.countProductsCartLocalUpdated = this.countProductsCart;
+  
+          }
        
         } else {
         }

@@ -54,9 +54,7 @@ export class ViewcartPage implements OnInit{
   viewCartList: any = [];
   productsLocalCart :any = [];
   cart: any = [];
-  itemsInCart: Object[] = [];
   id;
-  productsListInformation: any = [];
   dynamicId:string;
   strProductName:string;
   strProductRegularPrice:any;
@@ -148,18 +146,12 @@ export class ViewcartPage implements OnInit{
         this.strProductRegularPrice = this.productsLocalCart[i].ProductRegularPrice; 
         this.strProductDescription= this.productsLocalCart[i].ProductDescription; 
         this.strProductName= this.productsLocalCart[i].ProductName; 
-  
-
          this.strProductRegularPriceRevised1 = this.strProductRegularPriceRevised;
-        // this.strproductpriceTushar = 'Product Price: ' + this.strProductRegularPrice * this.strProductQuantity;
-        // console.log('All Product Price ' + this.productsLocalCart[i].ProductRegularPrice);
-        // console.log('All Product Quantity ' + this.productsLocalCart[i].ProductQuantity);
           this.productTotalPrice = this.productsLocalCart[i].ProductRegularPrice;
           var sum = 0, nums = ['100','300','400','60','40'];
           for (i = 0; i < nums.length; i++) {
               sum += +nums[i];
           }
-
           this.productsLocalCart = JSON.parse(localStorage.getItem('products'));
       }
   
@@ -174,7 +166,6 @@ export class ViewcartPage implements OnInit{
       // Catches the active view
       let nav = this.app.getActiveNavs()[0];
       let activeView = nav.getActive();                
-      // Checks if can go back before show up the alert
       if(activeView.name === 'ViewcartPage') {
           if (nav.canGoBack()){
               this.navCtrl.setRoot(HomePage);
@@ -328,27 +319,19 @@ export class ViewcartPage implements OnInit{
 
 incrementValue(index: number) {
   if(this.productsLocalCart){
-    console.log('Tushar called')
     if(this.viewCartList[index].product_id === this.eventCartNumber) {
       console.log('success even');
        this.viewCartList[index].quantity += 2;  
   this.testTushar =  this.viewCartList[index].quantity;
   this.buttonDisabled = false;
-  console.log('testTushar incrementValue even ' + this.testTushar);
     }
     else {
       console.log('success odd');
       this.viewCartList[index].quantity ++;  
   this.testTushar =  this.viewCartList[index].quantity;
-  console.log('tushar' + this.viewCartList[index].quantity);
   this.testArray1 = this.viewCartList[index].quantity;
   this.testArray2 = this.testTushar;
-  console.log('Tushar here' + this.testArray1 );
-  console.log('Tushar here' + this.testArray2 );
-  console.log('Increased Quantity odd' +  this.viewCartList[index].quantity);
-  console.log('Increased ProductId odd' +  this.viewCartList[index].product_id);
   this.buttonDisabled = false;
-  console.log('testTushar incrementValue odd ' + this.testTushar);
     }
   }  
   
@@ -358,49 +341,32 @@ incrementValue(index: number) {
        this.viewCartList[index].quantity += 2;  
   this.testTushar =  this.viewCartList[index].quantity;
   this.buttonDisabled = false;
-  console.log('testTushar incrementValue even ' + this.testTushar);
     }
     else {
       console.log('success odd');
       this.viewCartList[index].quantity ++;  
   this.testTushar =  this.viewCartList[index].quantity;
-  console.log('tushar' + this.viewCartList[index].product_id);
   this.testArray1 = this.viewCartList[index].product_id;
   this.testArray2 = this.testTushar;
-  console.log('Tushar here' + this.testArray1 );
-  console.log('Tushar here' + this.testArray2 );
-  //console.log('Increased Quantity odd' +  this.viewCartList[index].quantity);
- // console.log('Increased ProductId odd' +  this.viewCartList[index].product_id);
   this.buttonDisabled = false;
-  console.log('testTushar incrementValue odd ' + this.testTushar);
     }
   }
 }
 
 incrementValueLocal(index,item){
-  // console.log('Local removed' + item);
-  // this.strValue = item++;
-  // console.log('Local removed' + this.strValue);
   if(this.productsLocalCart[index].ProductId === this.eventCartNumber) {
     console.log('success even');
      this.productsLocalCart[index].ProductQuantity += 2;  
 this.testTushar =  this.productsLocalCart[index].ProductQuantity;
 this.buttonDisabled = false;
-console.log('testTushar incrementValue even ' + this.testTushar);
   }
   else {
     console.log('success odd');
     this.productsLocalCart[index].ProductQuantity ++;  
 this.testTushar =  this.productsLocalCart[index].ProductQuantity;
-console.log('tushar' + this.productsLocalCart[index].ProductQuantity);
 this.testArray1 = this.productsLocalCart[index].ProductQuantity;
 this.testArray2 = this.testTushar;
-console.log('Tushar here' + this.testArray1 );
-console.log('Tushar here' + this.testArray2 );
-console.log('Increased Quantity odd' +  this.productsLocalCart[index].ProductQuantity);
-console.log('Increased ProductId odd' +  this.productsLocalCart[index].ProductId);
 this.buttonDisabled = false;
-console.log('testTushar incrementValue odd ' + this.testTushar);
   }
 }
 
@@ -417,60 +383,18 @@ decrementValueLocal(index,item){
      this.productsLocalCart[index].ProductQuantity -= 2;  
 this.testTushar =  this.productsLocalCart[index].ProductQuantity;
 this.buttonDisabled = false;
-console.log('testTushar incrementValue even ' + this.testTushar);
   }
   else {
     console.log('success odd');
     this.productsLocalCart[index].ProductQuantity --;  
 this.testTushar =  this.productsLocalCart[index].ProductQuantity;
-console.log('tushar' + this.productsLocalCart[index].ProductQuantity);
 this.testArray1 = this.productsLocalCart[index].ProductQuantity;
 this.testArray2 = this.testTushar;
-console.log('Tushar here' + this.testArray1 );
-console.log('Tushar here' + this.testArray2 );
-console.log('Increased Quantity odd' +  this.productsLocalCart[index].ProductQuantity);
-console.log('Increased ProductId odd' +  this.productsLocalCart[index].ProductId);
 this.buttonDisabled = false;
-console.log('testTushar incrementValue odd ' + this.testTushar);
   }
 }
 
-// incrementValue(index: number) {  
-//   if(this.productsLocalCart[index].ProductId === this.eventCartNumber) {
-//     console.log('success even');
-//      this.productsLocalCart[index].ProductQuantity += 2;  
-// this.testTushar =  this.productsLocalCart[index].ProductQuantity;
 
-// this.buttonDisabled = false;
-
-// console.log('testTushar incrementValue even ' + this.testTushar);
-//   }
-//   else {
-//     console.log('success odd');
-//     this.productsLocalCart[index].ProductQuantity ++;  
-// this.testTushar =  this.productsLocalCart[index].ProductQuantity;
-
-
-// console.log('tushar' + this.productsLocalCart[index].ProductId);
-  
-
-// this.testArray1 = this.productsLocalCart[index].ProductId;
-// this.testArray2 = this.testTushar;
-
-
-// console.log('Tushar here' + this.testArray1 );
-// console.log('Tushar here' + this.testArray2 );
-
-
-
-// //console.log('Increased Quantity odd' +  this.viewCartList[index].quantity);
-// // console.log('Increased ProductId odd' +  this.viewCartList[index].product_id);
-// this.buttonDisabled = false;
-
-// console.log('testTushar incrementValue odd ' + this.testTushar);
-
-//   }
-// }
                                
 decrementValue(index: number,strDynamicId) {
 
@@ -489,11 +413,9 @@ else {
   else if(this.viewCartList[index].product_id === this.eventCartNumber ) {
      this.viewCartList[index].quantity -= 2;  
   this.testTushar =  this.viewCartList[index].quantity;
-  //console.log('Decreased Quantity even ' +  this.viewCartList[index].quantity );
-  //console.log('Decreased ProductId even ' +  this.viewCartList[index].product_id);
+
   this.buttonDisabled = false;
 
-  console.log('testTushar decrementValue even ' + this.testTushar);
 
   }
 
@@ -501,10 +423,7 @@ else {
     console.log('success odd');
     this.viewCartList[index].quantity --;  
   this.testTushar =  this.viewCartList[index].quantity;
-  //console.log('Decreased Quantity odd' +  this.viewCartList[index].quantity);
-  //console.log('Decreased ProductId odd' +  this.viewCartList[index].product_id);
   this.buttonDisabled = false;
-  console.log('testTushar decrementValue odd ' + this.testTushar);
   }
   } 
 }  
@@ -529,16 +448,9 @@ updateShoppingCart(){
 removeProductServer(product_id,name){  
   this.showCartRemovalServer(product_id,name);
 
-//   const postParams = {product_id: product_id};
-//   this.httpClient.post('http://busybanda.com/sterling-tools/api/remove_cart_item?', JSON.stringify(postParams)).subscribe(async (response: Response) => {
-//     this.obj = JSON.stringify(response); 
-//     console.log('Data' + this.obj);
-//     this.showToastOnDeletingCart();
-//     this.viewCartApi();
-// });          
 } 
  
-  /*
+  /* 
       Remove Product from local storage cart
   */
 
@@ -562,17 +474,14 @@ clearCart()
       service.subscribe(async (data) => {
         if (data) {
           const resultado = data;  
-          // console.log(resultado);
           this.viewCartList = resultado;     
           this.obj = JSON.stringify(data);
 
           console.log('View cart length ' + this.viewCartList.length);
 
            console.log('All Json Response' + this.obj);             
-          //  this.strDataServer = 'Cart is Empty.Please add items!';
         var result=[];
  
-        console.log('Tushar' + this.viewCartList[0].product_id);
           for( var i=0; i < this.viewCartList.length; i++){
             var arr = []; // create array
             var ii = i;
@@ -586,7 +495,6 @@ clearCart()
             result.push(this.strDynamicId);
       }
  
-          //  console.log('Total Price of Products ' + this.total);
            this.strSubTotalAmount = this.total;  
            this.strQuantityUpdated = this.total1 * 2;
            localStorage.setItem('name', this.strSubTotalAmount);
@@ -620,12 +528,8 @@ clearCart()
               this.viewCartList[keyProductId].product_id = productIdValue;
 
                if (productIdValue === "") {
-                //this.viewCartList[keyPrice].price = "No Product Id Defined";
               } else {
                 this.strProductIdValue = productIdValue;
-                //this.strNumber = priceValue.concat('price');
-
-               // console.log('Value got ' + productIdValue);
               }
             }
           }
@@ -640,11 +544,7 @@ clearCart()
 
  
 
-  productcategoryDetailPage1(product_id,name) {
-    console.log('Product Id----' + product_id);
-    console.log('Product Name-----' + name);
-    this.strTestProductId = product_id;
-  }
+  
 
   async showLoadingControllerLaunch() {
 
@@ -703,45 +603,7 @@ clearCart()
     alert.present();  
   }
 
-  private async showCartRemovalAlert(dynamicId): Promise<void> {
-    // omitted;
-    const alert1 = this.alertController.create({
-      title: 'Remove Item!',
-      message: 'Do you want to remove items from cart!',
-      enableBackdropDismiss: false,
-  
-      buttons: [
-        {
-          text: 'Ok',
-          handler: (ok) => {
-            console.log('Confirm Ok');
-
-            this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?' + 'product_id=' + dynamicId ).subscribe((jsonResponse) => {
-              this.obj = JSON.stringify(jsonResponse);
-              console.log("Delete productsList response " + this.obj);
-              console.log("Delete productsList id " + dynamicId);
-           
-             this.showToastOnDeletingCart();
-             this.viewCartApi();
-            });
-            },
-          },
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          
-          handler: (cancel) => {
-            console.log('Confirm Cancel');
-            alert1.dismiss();
-            // resolve('cancel');
-          },
-        },
-      ],
-    });
-
-    alert1.present();
-  }
+ 
 
   public async showCartRemovalServer(product_id,name): Promise<void> {
     // omitted;
@@ -751,7 +613,7 @@ clearCart()
       enableBackdropDismiss: false,
       
   
-      buttons: [
+      buttons: [ 
         {
           cssClass: 'my-custom-class',
           text: 'Ok',
@@ -761,12 +623,24 @@ clearCart()
             if(localStorage.getItem('isSigned'))
             {
             console.log('User Status ' + 'isSigned true');
-            this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?'+'product_id='+ product_id).subscribe((jsonResponse) => {
+            // this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?'+'product_id='+ product_id + '&quantity=' + '0').subscribe((jsonResponse) => {
+              this.httpClient.get('http://busybanda.com/sterling-tools/api/remove_cart_item?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + product_id + '&quantity=' + '0').subscribe((jsonResponse) => {
+
             this.obj = JSON.stringify(jsonResponse);
             console.log('Data' + this.obj);
             this.showToastOnDeletingCart();
             this.viewCartApi();
-         // this.navCtrl.setRoot(HomePage);
+           // this.doRefresh(event);
+            this.callPage();
+         //this.navCtrl.setRoot(HomePage);
+
+        console.log('view cart length' + this.viewCartList.length);
+
+        // if(this.viewCartList.length < 1){
+        //   this.navCtrl.setRoot(HomePage);
+        // }
+
+        this.ngOnInit();
           });
             }
           
@@ -796,6 +670,11 @@ clearCart()
     }); 
   
     alert1.present();
+  }
+
+
+  callPage(){
+    this.ngOnInit();
   }
 
   private async showCartRemovalAlert2(index,item,name): Promise<void> {

@@ -35,6 +35,7 @@ export class SearchPage implements OnInit {
   countProductsCartLocal:number = 0;
   countProductsCartLocalUpdated:number = 0;
   countProductsWishlistLocalUpdated:number = 0;
+  strResponse:string;
 
 
 
@@ -91,8 +92,9 @@ export class SearchPage implements OnInit {
 
     this.checkNetwork();
     this.showLoadingControllerLaunch();
-    this.callProductCategoryDetail();
+    // this.callProductCategoryDetail();
 
+    this.getProductsCategoryBySearch();
     this.platform.registerBackButtonAction(() => {
       // Catches the active view
       let nav = this.app.getActiveNavs()[0];
@@ -100,8 +102,10 @@ export class SearchPage implements OnInit {
       // Checks if can go back before show up the alert
       if(activeView.name === 'SearchPage') {
           if (nav.canGoBack()){  
-              this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(HomePage);
+            console.log('test***');
           } else {
+            console.log('test1*****');
           }
       }
   }); 
@@ -340,5 +344,47 @@ showToastOnAddProductServer(strProductAdded) {
     position: "bottom",
   });   
   toast.present();  
+}
+async getProductsCategoryBySearch() {
+  const loader = await this.loadingController.create({
+    content: 'Please wait. Loading data!',
+  });
+
+  await loader.present();
+  loader.present().then(() => {               
+    // this.httpClient.get("http://busybanda.com/sterling-tools/api/get_products_by_search?" +"searchby=" +this.strInputtedValue).subscribe(jsonResponse => {
+      this.httpClient.get('http://busybanda.com/sterling-tools/api/get_category_by_id?' +  'id=' +this.dynamicId).subscribe(jsonResponse => {
+    if(jsonResponse){
+      this.productCategoryInformation = jsonResponse['result'];
+      this.obj = JSON.stringify(jsonResponse);
+      console.log('details available '+ this.obj );
+      loader.dismiss(); 
+    }
+
+    const myURL_body = jsonResponse['result'];
+    this.strResponse = myURL_body;
+
+   if(this.strResponse = 'null'){
+    console.log('details available obj empty ' );
+    this.strData = 'No data';
+   }
+    else {
+      console.log('details not available ' );
+    }
+    },
+      error => {
+        console.log(error);
+        this.showToastOnProductError(error);
+      });
+  });
 }  
+showToastOnProductError(strProductAdded) {
+  const toast = this.toastController.create({
+    // message: this.testStr,
+    message: 'Error ' + strProductAdded ,
+    duration: 3000,
+    position: "bottom",
+  });   
+  toast.present();  
+} 
 }

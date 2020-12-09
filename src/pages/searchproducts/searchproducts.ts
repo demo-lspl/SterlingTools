@@ -12,6 +12,7 @@ import { ViewcartPage } from '../viewcart/viewcart';
 import { WishlistupdatedPage } from '../wishlistupdated/wishlistupdated';
 import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
 import { HomePage } from '../home/home';
+import { MakeresponsePage } from '../makeresponse/makeresponse';
 
 
 
@@ -62,13 +63,21 @@ export class SearchproductsPage implements OnInit{
     this.strEngine = navParams.get("model");
     this.strYear = navParams.get("year");
 
+    if(this.strEngine = ''){
+      console.log('ionViewDidLoad SearchproductsPage strEngine empty' );
+    }
 
-
+    else {
+      console.log('ionViewDidLoad SearchproductsPage strEngine filled' );
+    }
 
     console.log('ionViewDidLoad SearchproductsPage' + this.strMake);
     console.log('ionViewDidLoad SearchproductsPage' + this.strModel);
-    console.log('ionViewDidLoad SearchproductsPage' + this.strEngine);
     console.log('ionViewDidLoad SearchproductsPage' + this.strYear);
+
+
+
+    console.log("Received product make " + this.strMake);
     
   }    
    
@@ -311,4 +320,21 @@ export class SearchproductsPage implements OnInit{
     });   
     toast.present();  
   } 
+
+  moreInformationDetail(id, name,image,description,regular_price,make,model,year) {
+    this.navCtrl.push(MakeresponsePage, {
+      id: id,
+      name: name,
+      image:image,
+      description:description,
+      regular_price:regular_price,
+      make:make,
+      model:model,
+      year:year,
+    });
+    console.log("Sent product id " + id);
+    console.log("Sent product name " + name); 
+    console.log("Sent product name " + regular_price);
+    
+  }
 }

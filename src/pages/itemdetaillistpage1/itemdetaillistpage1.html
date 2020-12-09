@@ -6,27 +6,11 @@
     </button>
     <ion-title>Product Detail
      
-      <!-- <span float-right>
-        <ion-icon name="cart" style="margin-left: 12px;">
-          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
-        </ion-icon> 
-        
-        <ion-icon name="cart" style="margin-left: 12px;">
-          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
-        </ion-icon> 
      
-      </span> -->
-
 
       <span float-right>
 
-        <!-- <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
-          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
-        </ion-icon> 
-        
-        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
-          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
-        </ion-icon>  -->
+    
         <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
           <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
         </ion-icon> 
@@ -42,6 +26,9 @@
 
 <!--<select size & color>-->
 <ion-content class="bg-light">
+
+
+ 
   <div class="img-section shadow-bottom" text-center>
   
   
@@ -50,18 +37,7 @@
 
     <img  [src]="strProductImage"  style="width:200px;height:150px;margin-top: 18px;">
 
-    <!-- <div class="tab-btn-box">
-      <div class="tab-btn">
-        <img  [src]="strProductImage"  style="width:150px;height:40px;"  >
-        
-      </div>
-      <div class="tab-btn">
-        <img  [src]="strProductImage"  style="width:150px;height:40px;">
-      </div>
-      <div class="tab-btn">
-        <img  [src]="strProductImage"  style="width:150px;height:40px;">
-      </div>
-    </div> -->
+   
     <div class="d-flex" style="align-items: start;margin-top: 15px;">
       <span>{{strName}}</span>
       <span class="icon">
@@ -99,7 +75,6 @@
     <p><span class="circle"></span>{{strProductSubModel}}</p>
     <p><span class="circle"></span>{{strProductYear}}</p>
     <p><span class="circle"></span>{{strProductYearFrom}}</p>
-
     <p><span class="circle"></span>{{strStock}}</p>
 
     

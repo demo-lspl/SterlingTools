@@ -1,14 +1,14 @@
 webpackJsonp([26],{
 
-/***/ 765:
+/***/ 770:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Itemdetaillistpage1PageModule", function() { return Itemdetaillistpage1PageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MakeresponsePageModule", function() { return MakeresponsePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__itemdetaillistpage1__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__makeresponse__ = __webpack_require__(188);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,20 +18,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-let Itemdetaillistpage1PageModule = class Itemdetaillistpage1PageModule {
+let MakeresponsePageModule = class MakeresponsePageModule {
 };
-Itemdetaillistpage1PageModule = __decorate([
+MakeresponsePageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__itemdetaillistpage1__["a" /* Itemdetaillistpage1Page */],
+            __WEBPACK_IMPORTED_MODULE_2__makeresponse__["a" /* MakeresponsePage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__itemdetaillistpage1__["a" /* Itemdetaillistpage1Page */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__makeresponse__["a" /* MakeresponsePage */]),
         ],
     })
-], Itemdetaillistpage1PageModule);
+], MakeresponsePageModule);
 
-//# sourceMappingURL=itemdetaillistpage1.module.js.map
+//# sourceMappingURL=makeresponse.module.js.map
 
 /***/ })
 

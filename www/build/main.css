@@ -8764,7 +8764,7 @@ ion-app.md [padding-top] {
 }
 
 ion-app.md [padding-left] {
-  padding-left: 16px;
+ 
 }
 
 ion-app.md [padding-right] {
@@ -52812,6 +52812,19 @@ page-home .icon-add {
   position: relative;
 }
 
+page-makeresponse .icon-add ion-badge#notifications-badge {
+  position: absolute;
+  top: -5px;
+  right: -3px;
+  font-size: 8px;
+  padding: 5px;
+}
+page-makeresponse .icon-add {
+  color: #fff;
+  font-size: 20px;
+  position: relative;
+}
+
 
 page-searchproductsupdated .icon-add ion-badge#notifications-badge {
   position: absolute;
@@ -62912,6 +62925,18 @@ page-wishlist .card .card-content .card-btn small {
 
 
 page-wishlistupdated .add-icon {
+  color: white;
+  margin-top: 5px;
+  position: absolute;
+  top: -8px;
+  right: -7px;
+  font-size: 11px;
+  border-radius: 50%;
+  padding: 4px;
+  width: unset !important;
+  height: unset !important;
+}
+page-makeresponse .add-icon {
   color: white;
   margin-top: 5px;
   position: absolute;

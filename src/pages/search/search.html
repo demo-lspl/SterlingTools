@@ -67,7 +67,7 @@
                   ion-button
                   full
                   class="bg-thime btn-round btn-text"
-                  style="margin-top: 3px;text-align: center;height: 40px;"
+                  style="margin-top: 3px;text-align: center;height: 40px;font-size: 10px;"
                   
                   (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"
 
@@ -90,8 +90,8 @@
                   ion-button
                   full
                   class="bg-thime btn-round btn-text"
-                  style="margin-top: 3px; text-align: center;height: 40px;"
-                  (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"
+                  style="margin-top: 3px; text-align: center;height: 40px;font-size: 10px;"
+                  (click)="productDetailPage(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price,featuredProducts.attribute.pa_make,featuredProducts.attribute.pa_model,featuredProducts.attribute.pa_size)"
                 >
                 Read More
                 </button>

@@ -1,16 +1,14 @@
 webpackJsonp([27],{
 
-/***/ 764:
+/***/ 769:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Home1PageModule", function() { return Home1PageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Itemdetaillistpage1PageModule", function() { return Itemdetaillistpage1PageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home1__ = __webpack_require__(184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ngx_pagination__ = __webpack_require__(401);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_search_filter__ = __webpack_require__(402);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__itemdetaillistpage1__ = __webpack_require__(189);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20,24 +18,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
- // <-- import the module
-
-let Home1PageModule = class Home1PageModule {
+let Itemdetaillistpage1PageModule = class Itemdetaillistpage1PageModule {
 };
-Home1PageModule = __decorate([
+Itemdetaillistpage1PageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__home1__["a" /* Home1Page */],
+            __WEBPACK_IMPORTED_MODULE_2__itemdetaillistpage1__["a" /* Itemdetaillistpage1Page */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__home1__["a" /* Home1Page */]),
-            __WEBPACK_IMPORTED_MODULE_3_ngx_pagination__["a" /* NgxPaginationModule */],
-            __WEBPACK_IMPORTED_MODULE_4_ng2_search_filter__["a" /* Ng2SearchPipeModule */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__itemdetaillistpage1__["a" /* Itemdetaillistpage1Page */]),
         ],
     })
-], Home1PageModule);
+], Itemdetaillistpage1PageModule);
 
-//# sourceMappingURL=home1.module.js.map
+//# sourceMappingURL=itemdetaillistpage1.module.js.map
 
 /***/ })
 

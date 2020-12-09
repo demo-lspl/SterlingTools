@@ -5,8 +5,8 @@
     </button>
     <ion-title text-uppercase>AUTO PARTS
       <span float-right>
-        <ion-icon class="icon" ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>
-        <ion-icon class="icon" ><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>
+        <ion-icon class="icon"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>
+        <ion-icon class="icon"><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>
         <!-- <ion-badge  color="primary" style="width: 100px;">
           <ion-icon name="cart"></ion-icon>
               {{7}}
@@ -16,10 +16,10 @@
             <ion-icon name="mail"></ion-icon>
                 {{3}}
             </ion-badge> -->
-            <!-- <ion-icon class="icon" ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>
+        <!-- <ion-icon class="icon" ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>
             <ion-badge color="dark">99</ion-badge> -->
 
-           
+
       </span>
     </ion-title>
   </ion-navbar>
@@ -30,11 +30,11 @@
 <ion-content class="bg-light">
   <div class="col-md-4 col-xs-12">
 
-   
 
 
 
-  <!-- <div class="size" style="justify-content: center">
+
+    <!-- <div class="size" style="justify-content: center">
     <ion-item>
       <ion-label>Make</ion-label>
       <ion-select
@@ -87,13 +87,16 @@
 
 
     </ion-item>
-  </div> -->
-  
+  </div>
 
-   
 
-      
-  <!-- <div class="list">
+  <button ion-button full class="bg-thime btn-round btn-text"
+  (click)="searchData(makeValue,strTestValue2,strTestValue3)">
+    Search 
+  </button> -->
+
+
+    <!-- <div class="list">
 		<ul>
 			<li *ngFor="let item of collection | paginate: { itemsPerPage: 5, currentPage: p }">{{ makeList }}</li>
     </ul>
@@ -105,7 +108,7 @@
 </div> -->
 
 
-<!-- <ion-item>
+    <!-- <ion-item>
   <ion-label floating>Badge Number</ion-label>
   <ion-input type="number" [(ngModel)]="badgeNumber">
   </ion-input>
@@ -122,7 +125,7 @@
 
 
 
-<ion-searchbar (ionInput)="getItems($event)" ></ion-searchbar>
+    <!-- <ion-searchbar (ionInput)="getItems($event)" ></ion-searchbar>
 <ion-list>
   <ion-item *ngFor="let item of items">
     {{ item }}
@@ -137,14 +140,152 @@
   <ion-item *ngFor="let item of productCategoryInformation1" (click)="searchClick(item.id,item.description,item.regular_price,item.image,item.attribute.pa_make,item.attribute.pa_model)">
     {{ item.name }}
   </ion-item>
-</ion-list>
+</ion-list> -->
 
 
 
-    
- 
+    <!-- <div class="col-md-12 no-padding">
 
-</div>   
- 
+  <select (change)="onChange($event)"  class="form-control select2" type="text" style="width: 100%;">
+    <option selected value="make">Please select value</option>
+    <option  value="make">Make</option>
+
+  </select>
+</div>
+
+<div *ngIf="selectedType == 'make'" class="col-md-12 no-padding">
+  <label>Application Name</label>
+  <input type="text"  class="form-control" id="applicationname" placeholder="Application Name">
+  <span class="text-danger" *ngIf="['applicationname'].touched && ['applicationname'].hasError('required')">
+    Application Name is required! </span>
+</div>
+
+<div *ngIf="selectedType == 'make'" class="col-md-12 no-padding">
+  <input type="text" class="form-control" id="mainmenu" placeholder="Message  "> 
+  <select (change)="onChange1($event)"  class="form-control select2" type="text" style="width: 100%;">
+    <option  value="make">Model</option>
+
+  </select>-->
+
+    <!-- <select [(ngModel)]="selectAccountType" (change)='onOptionsSelected($event)' style="width: 100px">
+      <option selected id="MAKE" value="MAKE">MAKE</option>
+      <option id="VALUEB" value="VALUEB">VALUEB</option>
+    </select>
+
+    <div *ngIf="showData===true">
+
+       <select [(ngModel)]="selectAccountType" (change)='onOptionsSelected1($event)' style="width: 100px">
+        <option id="MAKE" value="MAKE">MAKE</option>
+      </select> 
+    </div> -->
+    <!-- <button ion-button full round (click)="ngIfCtrl()" >Click </button>
+    <ion-input type="text" value="" *ngIf="hide"></ion-input> -->
+
+
+    <!-- <ion-item *ngIf="hide">
+      <ion-label>Select</ion-label>
+      <ion-select (ionChange)="getOuterName()"  [(ngModel)]="companyName"   placeholder = "Make">
+        <ion-option value="make">make</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item  >
+      <ion-label>Select</ion-label>
+      <ion-select (ionChange)="getOuterName()"  [(ngModel)]="companyName"   placeholder = "Model">
+        <ion-option value="model">model</ion-option>
+      </ion-select>
+    </ion-item> -->
+
+    <!-- <ion-item  >
+      <ion-label>Select</ion-label>
+      <ion-select (ionChange)="getOuterName()"  [(ngModel)]="companyName"   placeholder = "Make" (click)="ngIfCtrl()">
+        <ion-option value="make">make</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item  *ngIf="hide">
+      <ion-label>Select</ion-label>
+      <ion-select (ionChange)="getOuterName()"  [(ngModel)]="companyName"   placeholder = "Model" (click)="ngIfCtrl1()">
+        <ion-option value="model">model</ion-option>
+      </ion-select>
+    </ion-item> -->
+
+<!-- <div *ngIf="hideMe"> here your content</div> -->
+
+
+    <!-- <button ion-button (click)="hideTest()">Make</button>
+    <button ion-button (click)="hideTest1()"  *ngIf="hideMe">Model</button>
+    <button ion-button  (click)="hideTest2()" *ngIf="hideMe1">Engine</button>
+    <button ion-button   *ngIf="hideMe2">Year</button> -->
+
+
+    <ion-item  >
+      <ion-label>Make</ion-label>
+      <ion-select  (ionChange)="makeDropDownValue(makeValue)" [(ngModel)]="makeValue"   placeholder = "Make" >
+        <ion-option *ngFor="let makeKey of makeList" >{{makeKey}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item    *ngIf="hideMe">
+      <ion-label>Model</ion-label>
+      <ion-select (ionChange)="getOuterName()"  [(ngModel)]="companyName"   placeholder = "Model"   >
+        <ion-option *ngFor="let modelKey of modelList" [value] = "modelKey" (ionSelect)="triggerMeModel(modelKey)" >{{modelKey}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item    *ngIf="hideMe1">
+      <ion-label>Engine</ion-label>
+      <ion-select (ionChange)="getOuterName1()"  [(ngModel)]="engineValue"   placeholder = "Engine"   >
+        <ion-option *ngFor="let engineKey of engineList" [value] = "engineKey" (ionSelect)="triggerMeEngine(engineKey)">{{engineKey}}</ion-option> 
+      </ion-select>
+    </ion-item>
+
+    <div class="size" style="justify-content: center">
+      <ion-item *ngIf="hideMe2">
+        <ion-label>Year</ion-label>
+        <ion-select
+          value="sortpopular"
+          okText="Ok"
+          cancelText="Cancel"
+          [(ngModel)]="yearValue"
+          (ionChange)="getOuterName2()">
+          <ion-option *ngFor="let yearKey of yearList"  >{{yearKey}}</ion-option>
+        </ion-select>
   
+  
+      </ion-item>
+    </div> 
+    <button ion-button full round (click)="searchData(makeValue)" >Search </button>
+
+
+
+<!-- <ion-item  (click)="hideTest()">
+  <ion-label>Make</ion-label>
+  <ion-select  (ionChange)="makeDropDownValue(makeValue)" [(ngModel)]="makeValue"   placeholder = "Make" (click)="ngIfCtrl()">
+    <ion-option *ngFor="let makeKey of makeList" >{{makeKey}}</ion-option>
+  </ion-select>
+</ion-item>
+
+<ion-item  *ngIf="hide" >
+  <ion-label>Model</ion-label>
+  <ion-select (ionChange)="getOuterName()"  [(ngModel)]="companyName"   placeholder = "Model" (click)="ngIfCtrl1()">
+    <ion-option *ngFor="let modelKey of modelList" [value] = "modelKey" (ionSelect)="triggerMeModel(modelKey)" >{{modelKey}}</ion-option>
+  </ion-select>
+</ion-item> -->
+
+
+  <!-- <ion-item *ngIf="hide">
+    Test
+  </ion-item> -->
+
+
+
+<!-- <ion-item  >
+  <ion-label>Engine</ion-label>
+  <ion-select (ionChange)="getOuterName()"  [(ngModel)]="engineValue"   placeholder = "Engine" (click)="ngIfCtrl1()">
+    <ion-option *ngFor="let engineKey of engineList" [value] = "engineKey" (ionSelect)="triggerMeEngine(engineKey)">{{engineKey}}</ion-option>  </ion-select>
+</ion-item> -->
+
+  </div>
+
+
 </ion-content>

@@ -100,8 +100,6 @@ export class RegisterPage implements OnInit{
       // Checks if can go back before show up the alert
       if(activeView.name === 'RegisterPage') {
           if (nav.canGoBack()){  
-              //nav.pop();
-              console.log('Tushar'); 
           } else {
               this.navCtrl.setRoot(DemoPage);
           }

@@ -167,11 +167,8 @@ export class ViewallPage implements OnInit{
       // Checks if can go back before show up the alert
       if(activeView.name === 'ViewallPage') {
         if (nav.canGoBack()){
-          console.log('Tushar');
           this.navCtrl.setRoot(HomePage);
         } else {
-            // this.navCtrl.setRoot(HomePage);
-            console.log('Tushar11');
         }
       }
   });  
@@ -547,9 +544,6 @@ getModelApi(makeValue){
         const resultado = data;
         this.modelList = resultado; 
        this.strModelListValue =  resultado;
-       console.log('getModelApi called tushar    ' + resultado);
-       console.log('getModelApi called tushar    ' + this.modelList);
-       console.log('getModelApi called tushar    ' + this.strModelListValue);
        this.modeKeys = resultado;
        console.log('modelkeys ' + this.modeKeys);
     });

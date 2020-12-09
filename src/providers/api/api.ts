@@ -97,6 +97,7 @@ export class ApiProvider {
 
  
   getFeaturedProducts(){
+    
      this.showFeaturedProductsLoader();
      return this.httpClient.get('http://busybanda.com/sterling-tools/api/get_featured_product').pipe(map((res: any) => this.httpClientFetch = res.result));
     }

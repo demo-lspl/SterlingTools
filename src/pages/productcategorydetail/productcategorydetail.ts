@@ -131,7 +131,8 @@ addToCart(id, name,image,description,regular_price) {
           console.log("Sent productsList response " + this.obj);
           console.log("Sent productsList id " + id);
           this.showToastOnAddProductServer(name);
-          this.countProductsCart++;
+          // this.countProductsCart++;
+          this.countProductsCartLocalUpdated++;
         });
   }
 }      
@@ -190,16 +191,16 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
       // Checks if can go back before show up the alert
       if(activeView.name === 'ProductcategorydetailPage') {
           if (nav.canGoBack()){                  
-              console.log('Tushar');
-               //this.navCtrl.setRoot(ProductcategoryPage);
+               this.navCtrl.setRoot(ProductcategoryPage);
+               console.log('test');
 
           } else {  
-            console.log('Tushar1');
-            this.navCtrl.setRoot(ProductcategoryPage);
+             this.navCtrl.setRoot(ProductcategoryPage);
+            console.log('test!!!');
           }
       }  
   }); 
-    this.showLoadingControllerLaunch();
+    // this.showLoadingControllerLaunch();
     this.callProductCategoryDetail();
 
          /*
@@ -234,34 +235,91 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
 
   } 
   
-  callProductCategoryDetail() {
-    this.httpClient.get('http://busybanda.com/sterling-tools/api/get_category_by_id?' +  'id=' +this.dynamicTermId)
-    .subscribe((jsonResponse) => {
-      
-       this.productCategoryInformation = jsonResponse['result'];
-       this.obj = JSON.stringify(jsonResponse);
-       console.log('Particular product details json ' + this.obj.result );
-  
-       if (this.productCategoryInformation && this.productCategoryInformation.length) {
-        console.log('Particular product details available ' );
-          
-       }  
-      else 
-      {
-        this.strData = 'No data available';
-        console.log('Particular product empty ' + jsonResponse['result']);
-      }
-     
-      for (const entry of this.productCategoryInformation) {
-        this.strProductCategoryName = 'Name: ' + entry.name;
-        this.strProductMake = entry.attribute.pa_make;
-        console.log(entry.attribute.pa_make);
-      }
-
-      for (const entry of this.productCategoryInformation) {
-         console.log(entry.name); // val1 and etc...
-      }
+  async callProductCategoryDetail() {
+        const loader = await this.loadingController.create({
+      content: 'Please wait fetching product sub categories!',
     });
+    await loader.present();
+    loader.present().then(() => {
+      this.httpClient.get('http://busybanda.com/sterling-tools/api/get_category_by_id?' +  'id=' +this.dynamicTermId)
+      .subscribe((jsonResponse) => {
+        
+         this.productCategoryInformation = jsonResponse['result'];
+         this.obj = JSON.stringify(jsonResponse);
+         console.log('Particular product details json ' + this.obj.result );
+    
+         if (this.productCategoryInformation && this.productCategoryInformation.length) {
+          console.log('Particular product details available ' );
+          loader.dismiss(); 
+            
+         }  
+        else 
+        {
+          this.strData = 'No data available';
+          console.log('Particular product empty ' + jsonResponse['result']);
+          loader.dismiss(); 
+        }
+       
+        for (const entry of this.productCategoryInformation) {
+          this.strProductCategoryName = 'Name: ' + entry.name;
+          this.strProductMake = entry.attribute.pa_make;
+          console.log(entry.attribute.pa_make);
+        }
+  
+        for (const entry of this.productCategoryInformation) {
+           console.log(entry.name); // val1 and etc...
+        }
+      });
+    });
+  
+  }
+
+  // async callProductCategoryDetail() {
+  //   const loader = await this.loadingController.create({
+  //     content: 'Please wait fetching product sub categories!',
+  //   });
+
+  //   await loader.present();
+  //   loader.present().then(() => {      
+  //     // const service = this.apiProvider.getOrders();   
+  //     // service.subscribe((jsonResponse) => {      
+  //      this.httpClient.get('http://busybanda.com/sterling-tools/api/get_category_by_id?' +  'id=' +this.dynamicTermId).subscribe(jsonResponse => {
+  //     if(jsonResponse){
+  //       this.productCategoryInformation = jsonResponse['result'];
+        
+  //       this.obj = JSON.stringify(jsonResponse);
+  //       console.log('details available '+ this.obj );
+  //       loader.dismiss(); 
+  //     }
+
+  //     const myURL_body = jsonResponse['result'];
+  //     this.strData = myURL_body;
+
+  //     if (this.productCategoryInformation && this.productCategoryInformation.length) {
+  //             console.log('Particular product details available ' );
+                
+  //            }  
+  //           else 
+  //           {
+  //             this.strData = 'No data available';
+  //             console.log('Particular product empty ' + jsonResponse['result']);
+  //           }
+  //     },
+  //       error => { 
+  //         console.log(error);
+  //         this.showToastOnProductError(error);
+  //       });
+  //   });
+  // }
+
+  showToastOnProductError(strProductAdded) {
+    const toast = this.toastController.create({
+      // message: this.testStr,
+      message: 'Error' + strProductAdded,
+      duration: 3000,
+      position: "bottom",
+    });   
+    toast.present();  
   }
 
 
@@ -312,17 +370,26 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
           this.obj = JSON.stringify(data);
           console.log('All Json Response' + this.obj);
            // this.strData = 'No Products in Cart';  
-           if(this.viewCartList.length>=1) {
-            console.log('Cart Filled ');
-            this.countProductsCart = this.viewCartList.length;
-             this.buttonIcon = "cart";
-           }
+          //  if(this.viewCartList.length>=1) {
+          //   console.log('Cart Filled ');
+          //   this.countProductsCart = this.viewCartList.length;
+          //    this.buttonIcon = "cart";
+          //  }
   
-           else{
-            console.log('Cart Empty ');
-           this.countProductsCart = 'Empty';
+          //  else{
+          //   console.log('Cart Empty ');
+          //  this.countProductsCart = 'Empty';
   
-           }
+          //  }
+          if(this.viewCartList){
+            this.countProductsCartLocalUpdated = this.viewCartList.length;
+  
+          }
+  
+          else {
+            this.countProductsCartLocalUpdated = this.countProductsCart;
+  
+          }
         } else {
         }
   

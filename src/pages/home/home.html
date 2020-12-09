@@ -222,7 +222,7 @@
                     cancelText="Cancel"
                     (ionChange)="makeDropDownValue(makeValue)"
                     [(ngModel)]="makeValue"
-                    >
+                    style="max-width: 45%;">
                     <ion-option *ngFor="let makeKey of makeList" >{{makeKey}}</ion-option>
                   
                   </ion-select>
@@ -241,7 +241,7 @@
                     value="sortpopular"
                     okText="Ok"
           cancelText="Cancel"
-                  
+                  style="max-width: 45%;"
                     >
                     <!-- <ion-option value="sortpopular">popularity</ion-option>
                     <ion-option value="sortaveragerating">rating</ion-option>
@@ -314,7 +314,7 @@
             style="2px 10px !important;"
           >
             <button ion-button full class="bg-thime btn-round btn-text"
-            (click)="searchData(makeValue,strTestValue2,strTestValue3)">
+            (click)="searchVehicleData(makeValue,strTestValue2,strTestValue3)">
               Search 
             </button>
           </ion-row>

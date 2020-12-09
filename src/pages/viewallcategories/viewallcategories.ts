@@ -504,8 +504,6 @@ console.log(output);
         const resultado = data;
         this.modelList = resultado; 
        this.strModelListValue =  resultado;
-       console.log('getModelApi called tushar    ' + resultado);
-       console.log('getModelApi called tushar    ' + this.modelList);
        this.modeKeys =resultado;
     });
     

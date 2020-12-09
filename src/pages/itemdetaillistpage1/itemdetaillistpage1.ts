@@ -5,6 +5,7 @@ import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
 import { ProductcategorydetailPage } from '../productcategorydetail/productcategorydetail';
 import { ApiProvider } from '../../providers/api/api';
 import { HomePage } from '../home/home';
+import { SearchproductsupdatedPage } from '../searchproductsupdated/searchproductsupdated';
 
 
 
@@ -148,18 +149,7 @@ export class Itemdetaillistpage1Page {
   ngOnInit() {
     this.checkNetwork();
 
-    this.platform.registerBackButtonAction(() => {
-      // Catches the active view
-      let nav = this.app.getActiveNavs()[0];
-      let activeView = nav.getActive();
-      // Checks if can go back before show up the alert
-      if (activeView.name === 'Itemdetaillistpage1Page') {
-        if (nav.canGoBack()) {
-          this.navCtrl.setRoot(HomePage);
-        } else {
-        }
-      }
-    });
+    
 
 
     /*
@@ -200,10 +190,12 @@ export class Itemdetaillistpage1Page {
       let nav = this.app.getActiveNavs()[0];
       let activeView = nav.getActive();
       // Checks if can go back before show up the alert
-      if (activeView.name === 'ProductcategorydetaillistPage') {
+      if (activeView.name === 'Itemdetaillistpage1Page') {
         if (nav.canGoBack()) {
-          this.navCtrl.setRoot(ProductcategorydetailPage);
+           this.navCtrl.setRoot(SearchproductsupdatedPage);
+          console.log('Test');
         } else {
+          console.log('Test1');
         }
       }
     });
@@ -288,13 +280,11 @@ export class Itemdetaillistpage1Page {
           if(this.viewCartList){
             this.countProductsCartLocalUpdated = this.viewCartList.length;
   
-            console.log('Tushar data server' );
           }
   
           else {
             this.countProductsCartLocalUpdated = this.countProductsCart;
   
-            console.log('Tushar data local' );
           }
 
 

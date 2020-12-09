@@ -1,0 +1,200 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle style="display: block !important">
+      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"/>
+    </ion-icon>
+    </button>
+    <ion-title>Product Detail
+     
+      <!-- <span float-right>
+        <ion-icon name="cart" style="margin-left: 12px;">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
+        </ion-icon> 
+        
+        <ion-icon name="cart" style="margin-left: 12px;">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
+        </ion-icon> 
+     
+      </span> -->
+
+
+      <span float-right>
+
+        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
+        </ion-icon> 
+        
+        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
+        </ion-icon> 
+      </span>
+     
+    </ion-title>
+  </ion-navbar>
+</ion-header> 
+
+<!--<select size & color>-->
+<ion-content class="bg-light">
+  <div class="img-section shadow-bottom" text-center>
+  
+  
+
+    <!-- <img src="assets/imgs/productimage.jpg" /> -->
+
+    <img  [src]="strImage"  style="width:200px;height:150px;margin-top: 8px;">
+
+    <!-- <div class="tab-btn-box">
+      <div class="tab-btn">
+        <img  [src]="strImage"  style="width:150px;height:40px;"  >
+        
+      </div>
+      <div class="tab-btn">
+        <img  [src]="strImage"  style="width:150px;height:40px;">
+      </div>
+      <div class="tab-btn">
+        <img  [src]="strImage"  style="width:150px;height:40px;">
+      </div>
+    </div> -->
+    <div class="d-flex" style="align-items: start">
+      <span>{{strName}}</span>
+      <span class="icon">
+        <ion-icon name="md-remove" (click)="decrementValue()"></ion-icon
+      ></span>
+      <span
+        class="text-sky small-text"
+        style="text-align: center; margin-left: 20%"
+      >
+        {{currentNumber}}</span
+      >
+      <span class="icon" style="margin-left: 20%"
+        ><ion-icon name="md-add" (click)="incrementValue()"></ion-icon
+      ></span>
+    </div>
+    <div class="card-btn">
+      <div class="d-flex" style="padding: 1rem">
+        <div class="review-box">
+          <!-- <small class="text-white bg-green" float-left>4.2 <ion-icon name="md-add" (click)="decrementValue()"></ion-icon></small> -->
+          <span class="text-sky small-text" style="color: black;">Product Quantity</span>
+        </div>
+        <!-- <div class="price-box">
+                    <div class="price text-light" style="margin-right: 1rem;">
+                        <img src="assets/imgs/rupee-light.png" class="rupee-icon">500
+                    </div>
+                    <div class="price text-sky">
+                        <img src="assets/imgs/rupee-sky.png" class="rupee-icon">300
+                    </div>
+                </div> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="select-section shadow-bottom">
+        <ion-row>
+            <ion-col col-6 >
+                <div class="size">
+                    <ion-item>
+                        <ion-label>{{"size" | translate}}</ion-label>
+                        <ion-select  interface="action-sheet">
+                            <ion-option value="enable">Small</ion-option>
+                            <ion-option selected value="mute">Medium</ion-option>
+                            <ion-option value="mute_week"> large</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </div>
+            </ion-col>
+            <ion-col col-6>
+                <div class="color">
+                    <ion-item>
+                        <ion-label>{{"color" | translate}}</ion-label>
+                        <ion-select interface="action-sheet">
+                            <ion-option selected value="enable">Black</ion-option>
+                            <ion-option value="mute">White</ion-option>
+                            <ion-option value="mute_week">Red</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </div>
+            </ion-col>
+        </ion-row>
+    </div> -->
+
+  <!-- <div class="select-section shadow-bottom">
+      <ion-row>
+          <ion-col col-12 >
+              <div class="size">
+                  <ion-item>
+                      <ion-label>{{"size" | translate}}</ion-label>
+                      <ion-select  interface="action-sheet">
+                          <ion-option value="enable">Small</ion-option>
+                          <ion-option selected value="mute">Medium</ion-option>
+                          <ion-option value="mute_week"> large</ion-option>
+                      </ion-select>
+                  </ion-item>
+              </div>
+          </ion-col>
+       
+      </ion-row>
+  </div> -->
+
+  <div class="features bg-white shadow-bottom" padding>
+    <h6 class="heading">Key Features</h6>
+    <p><span class="circle"></span>{{strProductName}}</p>
+<!--   
+    <p><span class="circle"></span>{{strProductDescription}}</p>
+    <p><span class="circle"></span>{{strProductRegularPrice}} $ </p> -->
+    <!-- <p><span class="circle"></span>{{strProductSalePrice}}</p> -->
+    <p><span class="circle"></span>{{strProductMake}}</p>  
+    <p><span class="circle"></span>{{strProductModel}}</p>
+    <p><span class="circle"></span>{{strProductSubModel}}</p>
+    <p><span class="circle"></span>{{strProductYearStart}}</p>
+    <p><span class="circle"></span>{{strProductYearEnd}}</p>
+  
+
+    <!-- <p><span class="circle"></span>{{strStock}}</p> -->
+
+    <!-- <div>
+      <div  *ngIf="strStock=== null;else templateName">    
+        *Stock --- 
+      </div>
+
+      <ng-template #templateName>
+        *Stock  
+      </ng-template>
+  
+      
+  </div> -->
+
+
+    <!-- <p><span class="circle"></span>{{strTaxonomyProductCatTitle}}</p>
+    <p><span class="circle"></span>{{strTaxonomyProductBrandTitle}}</p> -->
+    <!-- <p><span class="circle"></span>{{strTaxonomyProductBrandModel}}</p> -->
+
+    <!-- <p><span class="circle"></span>{{strTaxonomyProductMakeTitle}}</p>
+    <p><span class="circle"></span>{{strTaxonomyProductYearTitle}}</p> -->
+    <!-- <p><span class="circle"></span>{{strTaxonomyProductBrandTag}}</p> -->
+  </div>
+
+  <div class="reating-review bg-white" padding >
+    <div class="reating"></div>
+
+    <div class="lick" >
+      <button
+      ion-button
+      full
+      class="btn-round green-shadow btn-text"
+      style="background-color: red; color: white;"
+     
+      (click)="addToCart(dynamicId,strProductName,strImage,strProductDescription,strProductRegularPrice)"
+
+      >
+
+    Add To Cart
+      
+    </button>
+    </div>
+
+    <!-- (click)="addToCart(dynamicId)" -->
+    
+
+  
+  </div>
+</ion-content>

@@ -32,9 +32,18 @@
     <h5 style="font-size: 12px;">{{strDataServer}}</h5>
   </ion-item>
 
-  <!-- <ion-item *ngIf="!productsLocalCart.length ;else other_content1" lines="none">
+  <!-- <ion-item *ngIf="productsLocalCart.length ;else other_content1" lines="none">
     <h5 style="font-size: 12px;">{{strDataLocal}}</h5>
   </ion-item> -->
+
+  <ion-item *ngIf="viewCartList ;else other_content3" lines="none">
+    <h5 style="font-size: 12px;">{{strDataServer}}</h5>
+  </ion-item>
+
+
+  <ng-template #other_content3>
+    <h5 style="font-size: 12px;">Empty data</h5>
+  </ng-template>
 
 
 

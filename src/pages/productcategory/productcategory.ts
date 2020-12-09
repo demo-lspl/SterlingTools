@@ -43,6 +43,8 @@ export class ProductcategoryPage implements OnInit{
   countProductsCartLocalUpdated:number = 0;
   countProductsWishlistLocalUpdated:number = 0;
   countProductsWishList:number =0;
+  strResponse:string;
+  strDataServer:string;
 
 
   
@@ -59,20 +61,15 @@ export class ProductcategoryPage implements OnInit{
               public alertController: AlertController
               ) {
 
-                this.getProductCategoriesApi();
-                this.getProductCategoriesApi1();
+                
+               
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad VieworderPage');
-    this.getProductCategoriesApi();
-  }
   
   ngOnInit() {
     this.checkNetwork();
     this.viewCartApi();
-    this.getProductCategoriesApi();
-    this.getProductCategoriesApi1();  
+    this.getProductCategoriesApi();  
     this.platform.registerBackButtonAction(() => {
       // Catches the active view
       let nav = this.app.getActiveNavs()[0];
@@ -180,7 +177,7 @@ addToCart(id, name,image,description,regular_price) {
 
   doRefresh(event) {
     console.log('Begin async operation');
-    this.getProductCategoriesApi1();
+    this.getProductCategoriesApi();
     setTimeout(() => {
       console.log('Async operation has ended');
       event.complete();
@@ -188,23 +185,49 @@ addToCart(id, name,image,description,regular_price) {
   }
 
 
-  getProductCategoriesApi(){
-    console.log('getProductCategoriesApi called    ');
-    const service = this.apiProvider.getProductCategories();
-    service.subscribe((data) => {
-        const resultado = data;
-        this.productCategoryList = resultado;
-        this.productTitle = data.title;
-    });
-  }
 
-  getProductCategoriesApi1(){
-    const service = this.apiProvider.getProductCategoriesGrid();
-    service.subscribe((data) => {
-        this.constresultado = data;
-        this.productCategoryGridList = this.constresultado;
-        this.productTitle = data.title;
+
+  // getProductCategoriesApi1(){
+  //   const service = this.apiProvider.getProductCategoriesGrid();
+  //   service.subscribe((data) => {
+  //       this.constresultado = data;
+  //       this.productCategoryGridList = this.constresultado;
+  //       this.productTitle = data.title;
        
+  //   });
+  // }
+  async getProductCategoriesApi() {
+    const loader = await this.loadingController.create({
+      content: 'Please wait fetching product categories!',
+    });
+
+    await loader.present();
+    loader.present().then(() => {      
+      // const service = this.apiProvider.getOrders();   
+      // service.subscribe((jsonResponse) => {      
+       this.httpClient.get('http://busybanda.com/sterling-tools/api/get_products_category_grid').subscribe(jsonResponse => {
+      if(jsonResponse){
+        this.productCategoryGridList = jsonResponse['result'];
+        this.obj = JSON.stringify(jsonResponse);
+        console.log('details available '+ this.obj );
+        loader.dismiss(); 
+      }
+
+      const myURL_body = jsonResponse['result'];
+      this.strResponse = myURL_body;
+
+     if(this.strResponse = 'null'){
+      console.log('details available obj empty ' );
+      this.strDataServer = 'No data';
+     }
+      else { 
+        console.log('details not available ' );
+      }
+      },
+        error => { 
+          console.log(error);
+          this.showToastOnProductError(error);
+        });
     });
   }
   itemdetailPage(catId,name) {
@@ -232,17 +255,15 @@ addToCart(id, name,image,description,regular_price) {
             
            
        
-          if(this.viewCartList.length>=1) {
-            console.log('Cart Filled ');
-            this.countProductsCart = this.viewCartList.length;
-             this.buttonIcon = "cart";
-           }
+          if(this.viewCartList){
+            this.countProductsCartLocalUpdated = this.viewCartList.length;
   
-           else{
-            console.log('Cart Empty ');
-           this.countProductsCart = 'Empty';
+          }
   
-           }
+          else {
+            this.countProductsCartLocalUpdated = this.countProductsCart;
+  
+          }
   
   
   
@@ -255,7 +276,15 @@ addToCart(id, name,image,description,regular_price) {
       });
     } catch (error) {}
   }
-
+  showToastOnProductError(strProductAdded) {
+    const toast = this.toastController.create({
+      // message: this.testStr,
+      message: 'Error' + strProductAdded,
+      duration: 3000,
+      position: "bottom",
+    });   
+    toast.present();  
+  }
   showToastOnAddProductLocal(strProductAdded) {
     const toast = this.toastController.create({
       // message: this.testStr,
