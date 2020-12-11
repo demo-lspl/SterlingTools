@@ -36,25 +36,26 @@
 <!--<select size & color>-->
 <ion-content class="bg-light">
   <div class="img-section shadow-bottom" text-center>
-  
-  
 
-    <!-- <img src="assets/imgs/productimage.jpg" /> -->
+
+    
+  
+  
+    <!-- <img  [src]="strImage"  style="width:50px;height:50px;margin-top: 8px;"> -->
+
+    <ion-icon   name="md-heart" class="text-light icon" style="width:50px;height:50px;margin-top: 8px;" (click)="addToWishList(strId,strProductName,strImage,strProductDescription,strProductRegularPrice)"></ion-icon>
 
     <img  [src]="strImage"  style="width:200px;height:150px;margin-top: 8px;">
 
     <div class="tab-btn-box">
       <div class="tab-btn">
-        <!-- <img src="assets/imgs/productimage.jpg" /> -->
         <img  [src]="strImage"  style="width:150px;height:40px;"  >
         
       </div>
       <div class="tab-btn">
-        <!-- <img src="assets/imgs/productimage.jpg" /> -->
         <img  [src]="strImage"  style="width:150px;height:40px;">
       </div>
       <div class="tab-btn">
-        <!-- <img src="assets/imgs/productimage.jpg" /> -->
         <img  [src]="strImage"  style="width:150px;height:40px;">
       </div>
     </div>
@@ -92,52 +93,7 @@
     </div>
   </div>
 
-  <!-- <div class="select-section shadow-bottom">
-        <ion-row>
-            <ion-col col-6 >
-                <div class="size">
-                    <ion-item>
-                        <ion-label>{{"size" | translate}}</ion-label>
-                        <ion-select  interface="action-sheet">
-                            <ion-option value="enable">Small</ion-option>
-                            <ion-option selected value="mute">Medium</ion-option>
-                            <ion-option value="mute_week"> large</ion-option>
-                        </ion-select>
-                    </ion-item>
-                </div>
-            </ion-col>
-            <ion-col col-6>
-                <div class="color">
-                    <ion-item>
-                        <ion-label>{{"color" | translate}}</ion-label>
-                        <ion-select interface="action-sheet">
-                            <ion-option selected value="enable">Black</ion-option>
-                            <ion-option value="mute">White</ion-option>
-                            <ion-option value="mute_week">Red</ion-option>
-                        </ion-select>
-                    </ion-item>
-                </div>
-            </ion-col>
-        </ion-row>
-    </div> -->
 
-  <!-- <div class="select-section shadow-bottom">
-      <ion-row>
-          <ion-col col-12 >
-              <div class="size">
-                  <ion-item>
-                      <ion-label>{{"size" | translate}}</ion-label>
-                      <ion-select  interface="action-sheet">
-                          <ion-option value="enable">Small</ion-option>
-                          <ion-option selected value="mute">Medium</ion-option>
-                          <ion-option value="mute_week"> large</ion-option>
-                      </ion-select>
-                  </ion-item>
-              </div>
-          </ion-col>
-       
-      </ion-row>
-  </div> -->
 
   <div class="features bg-white shadow-bottom" padding>
     <h6 class="heading">Key Features</h6>
@@ -145,7 +101,6 @@
   
     <p><span class="circle"></span>{{strProductDescription}}</p>
     <p><span class="circle"></span>{{strProductRegularPrice}} $ </p>
-    <!-- <p><span class="circle"></span>{{strProductSalePrice}}</p> -->
     <p><span class="circle"></span>{{strProductMake}}</p>  
     <p><span class="circle"></span>{{strProductModel}}</p>
     <p><span class="circle"></span>{{strProductSubModel}}</p>
@@ -153,28 +108,10 @@
     <p><span class="circle"></span>{{strProductYearEnd}}</p>
   
 
-    <!-- <p><span class="circle"></span>{{strStock}}</p> -->
-
-    <!-- <div>
-      <div  *ngIf="strStock=== null;else templateName">    
-        *Stock --- 
-      </div>
-
-      <ng-template #templateName>
-        *Stock  
-      </ng-template>
-  
-      
-  </div> -->
+   
 
 
-    <!-- <p><span class="circle"></span>{{strTaxonomyProductCatTitle}}</p>
-    <p><span class="circle"></span>{{strTaxonomyProductBrandTitle}}</p> -->
-    <!-- <p><span class="circle"></span>{{strTaxonomyProductBrandModel}}</p> -->
-
-    <!-- <p><span class="circle"></span>{{strTaxonomyProductMakeTitle}}</p>
-    <p><span class="circle"></span>{{strTaxonomyProductYearTitle}}</p> -->
-    <!-- <p><span class="circle"></span>{{strTaxonomyProductBrandTag}}</p> -->
+    
   </div>
 
   <div class="reating-review bg-white" padding >
@@ -186,17 +123,11 @@
       full
       class="btn-round green-shadow btn-text"
       style="background-color: red; color: white;"
-     
-      (click)="addToCart(dynamicId,strProductName,strImage,strProductDescription,strProductRegularPrice)"
-
-      >
-
+      (click)="addToCart(dynamicId,strProductName,strImage,strProductDescription,strProductRegularPrice)">
     Add To Cart
-      
     </button>
     </div>
 
-    <!-- (click)="addToCart(dynamicId)" -->
     
 
   

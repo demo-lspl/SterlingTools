@@ -297,17 +297,27 @@ removeProduct() {
               
            
        
-           if(this.viewCartList.length>=1) {
-            console.log('Cart Filled ');
-            this.countProductsCart = this.viewCartList.length;
-             this.buttonIcon = "cart";
-           }
+          //  if(this.viewCartList.length>=1) {
+          //   console.log('Cart Filled ');
+          //   this.countProductsCart = this.viewCartList.length;
+          //    this.buttonIcon = "cart";
+          //  }
   
-           else{
-            console.log('Cart Empty ');
-           this.countProductsCart = 'Empty';
+          //  else{
+          //   console.log('Cart Empty ');
+          //  this.countProductsCart = 'Empty';
   
-           }
+          //  }
+
+          if(this.viewCartList){
+            this.countProductsCartLocalUpdated = this.viewCartList.length;
+  
+          }
+  
+          else {
+            this.countProductsCartLocalUpdated = this.countProductsCart;
+  
+          }
   
   
   

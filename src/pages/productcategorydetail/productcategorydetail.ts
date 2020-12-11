@@ -274,6 +274,10 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
   
   }
 
+  // ionViewCanLeave() {
+  //   return !this.loadingController;
+  // }
+
   // async callProductCategoryDetail() {
   //   const loader = await this.loadingController.create({
   //     content: 'Please wait fetching product sub categories!',

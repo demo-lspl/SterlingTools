@@ -84,7 +84,7 @@ export class ApiProvider {
     return this.httpClient.get('http://busybanda.com/sterling-tools/api/mmey_engine_search?make=' + make + '&model=' + model )
     .pipe(map((res: any) => this.httpClientFetch = res.result));
   }
-
+  
   getYearCategories(make: string,model:string,engine:string){
     return this.httpClient.get('http://busybanda.com/sterling-tools/api/mmey_year_search?make=' + make + '&model=' + model + '&engine=' + engine )
     .pipe(map((res: any) => this.httpClientFetch = res.result));

@@ -1,19 +1,17 @@
 <ion-header class="bg-thime">
   <ion-navbar>
     <button ion-button menuToggle style="display: block !important">
-      <ion-icon class="menu-icon"
-        ><img src="assets/imgs/ic_menu.png"
-      /></ion-icon>
+      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png" /></ion-icon>
     </button>
 
     <!-- <p *ngIf="result.length === 0">No matching Result found</p>   -->
     <!-- <div *ngIf="featuredProductsList; else elseStatement" class="checkFeaturedProducts">  -->
-      <!-- <ng-template *ngIf="role === 'admin';then asscom else unit"></ng-template> -->
-   
-  
-    <ion-title >Products
+    <!-- <ng-template *ngIf="role === 'admin';then asscom else unit"></ng-template> -->
 
-     
+
+    <ion-title>Products
+
+
       <!-- <div *ngIf="countProductsCartLocal; else elseStatement1">
         <span float-right>
           <ion-icon class="icon"  (click)="wishlistPage()" >
@@ -34,14 +32,14 @@
           <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> 
         </ion-icon>
       </ng-template> -->
-      
-
-        
-    
-     
 
 
-     
+
+
+
+
+
+
       <span float-right>
         <!-- <ion-icon class="icon"  (click)="wishlistPage()" >
           <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
@@ -68,22 +66,21 @@
 
         <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
           <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
-        </ion-icon> 
-        
+        </ion-icon>
+
         <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
           <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
-        </ion-icon> 
+        </ion-icon>
 
 
       </span>
-     
+
     </ion-title>
 
-    
+
   </ion-navbar>
-  <div class="custom-id"  >
+  <!-- <div class="custom-id"  >
     <ion-item class="custom" >
-      
       <ion-select  
           (ionChange)="getOuterName()" 
           [(ngModel)]="companyName" 
@@ -96,75 +93,212 @@
           {{companies.name}}
         </ion-option>
       </ion-select>
-
-
-      <!-- <div *ngIf="this.productCategoryList.name = 'Uncategorized';then content else other_content">here is ignored</div>    
-<ng-template #content>content here...</ng-template>
-<ng-template #other_content>other content here...</ng-template>
- (ionChange)="ionChange($event)"
-
--->
-
       <ion-icon name="md-search" class="text-light icon"></ion-icon>
     </ion-item>
-
-    <ion-searchbar  
-    [(ngModel)]="searchProductName" 
-    (ionChange)="ionChange($event)"
-      placeholder="Search Products"
-      search-icon='undefined'
-      min="3"
-      (click)="productDetailPage2(companyName)">
-     
+    <ion-searchbar 
+          showCancelButton="focus" 
+          cancelButtonText="Custom Cancel" 
+          placeholder="Search Products" 
+           [(ngModel)]="searchProductName" 
+           (click)="productDetailPage2(companyName)">
     </ion-searchbar>
-
-    <!-- <p >
-       Items
-      <small class="bg-thime btn-round text-white" float-right (click)="productDetailPage1(searchProductName)"> Search </small>
-    </p> -->
+  </div>   -->
 
 
+  <!-- <div>
+    <ion-select  
+          (ionChange)="getOuterName()" 
+          [(ngModel)]="companyName" 
+          placeholder = "All Products"
+          okText="Ok"
+          cancelText="Cancel" 
+          class="testing">
+        <ion-option *ngFor="let companies of productCategoryList" 
+          [value]="companies.catId" >
+          {{companies.name}}
+        </ion-option>
+      </ion-select>
+    <ion-input placeholder="Enter Input.. "></ion-input>
    
+    <button ion-button (click)="someThingLikeLogOut()" style="align-self:auto;">
+      <ion-icon name="search" style="    width: 21px;height: 30px;"></ion-icon>
+    </button>
+  </div> -->
 
+  <!-- <div class="maininput">
+    <ion-item>
+      <ion-select (ionChange)="getOuterName()" [(ngModel)]="companyName" placeholder="All Products" okText="Ok"
+        cancelText="Cancel" class="testing">
+        <ion-option *ngFor="let companies of productCategoryList" [value]="companies.catId">
+          {{companies.name}}
+        </ion-option>
+      </ion-select>
+
+      <ion-input placeholder="Search" style="height: 40px;"></ion-input>
+      <button item-end ion-button style="align-self: flex-end;padding: 19px;">
+        <ion-icon name="md-search"></ion-icon>
+      </button>
+    </ion-item>
+  </div> -->
+
+
+  <!-- <ion-item 
+  text-center>
+    <ion-select (ionChange)="getOuterName()" [(ngModel)]="companyName" placeholder="All Products" okText="Ok"
+    cancelText="Cancel" class="testing">
+    <ion-option *ngFor="let companies of productCategoryList" [value]="companies.catId">
+      {{companies.name}}
+    </ion-option>
+  </ion-select>
+
+
+    <ion-input type="text" placeholder="Search"   [(ngModel)]="searchProductName" ></ion-input>
+    <button item-end ion-button >
+      <ion-icon name="md-search" (click)="productDetailPage2(companyName)" ></ion-icon>
+    </button>
+   </ion-item> -->
+
+  <!-- <ion-item>
+    <ion-select placeholder="Select One">
+      <ion-option value="f">Female</ion-option>
+      <ion-option value="m">Male</ion-option>
+    </ion-select>
+    <ion-input placeholder="Enter Input"></ion-input>
    
+    <button ion-button (click)="someThingLikeLogOut()" style="align-self:auto;">
+      <ion-icon name="search" style="    width: 21px;height: 30px;"></ion-icon>
+    </button>
+  </ion-item> -->
+
+  <!-- <ion-item>
+    <ion-select placeholder="All Products">
+      <ion-option value="f">Kit</ion-option >
+      <ion-option  value="m">Sensors</ion-option >
+    </ion-select>
+    <ion-input placeholder="Enter Input"></ion-input>
+    <button ion-button (click)="someThingLikeLogOut()" style="align-self:auto;">
+      <ion-icon name="search" style="    width: 21px;height: 30px;"></ion-icon>
+    </button>
+  </ion-item> -->
+
+
+
+
+  <div class="main-searchbar">
+
+  <ion-item class="custom">
     
-    <!-- 
-
-    <ion-searchbar  
-    [(ngModel)]="searchProductName" 
-    (ionChange)="ionChange($event)"
-      placeholder="Search Products"
-      search-icon='undefined'
-      style="width: 30px;">
-    </ion-searchbar> -->
+    <ion-select  
+    (ionChange)="getOuterName()" 
+    [(ngModel)]="companyName" 
+    placeholder = "All Products"
+    okText="Ok"
+    cancelText="Cancel" 
+    class="testing">
+  <ion-option *ngFor="let companies of productCategoryList" 
+    [value]="companies.catId" >
+    {{companies.name}}
+  </ion-option>
+</ion-select>
+ <ion-icon name="md-search" class="text-light icon"></ion-icon>
+    <ion-input placeholder="Search Products"  [(ngModel)]="searchProductName" ></ion-input>
    
-    <!-- <ion-buttons end>
-      <button ion-button item-right (click)="refreshData()">
-      <ion-icon name="refresh"></ion-icon>
-     </button>
-  </ion-buttons>
-  <ion-searchbar
-  [showCancelButton]="shouldShowCancel"
-  placeholder="Search Names"
-  (ionInput)="filterDriver($event)"
-  (ionCancel)="onCancel($event)">
-  </ion-searchbar> -->
-  </div>  
+</ion-item>
+<button ion-button  style="align-self:auto;">
+  <ion-icon name="search" (click)="productDetailPage2(companyName)"></ion-icon>
+</button>
+</div>
 
 
-  <!-- <ion-icon name="search-outline" style="width: 30px;height: 30px;"></ion-icon> -->
+
+
+
+  <!-- <div class="custom-id"  >
+    <ion-item class="custom" >
+      <button ion-button (click)="someThingLikeLogOut()" style="align-self:auto;">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button ion-button (click)="someThingLikeLogOut()" style="align-self:auto;">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-item>
+  </div> -->
+
+  <!-- <ion-item>
+    <ion-label position="floating" style="font-size: 10px;">Floating Label</ion-label>
+    <ion-input style="width: 100px;"></ion-input>
   
+    <button ion-button (click)="someThingLikeLogOut()" style="align-self:auto;">
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </ion-item> -->
+
+  <!-- <div class="custom-id"  >
+    <ion-item class="custom" >
+      <ion-select  
+      (ionChange)="getOuterName()" 
+      [(ngModel)]="companyName" 
+      placeholder = "All Products"
+      okText="Ok"
+      cancelText="Cancel" 
+      class="testing">
+    <ion-option *ngFor="let companies of productCategoryList" 
+      [value]="companies.catId" >
+      {{companies.name}}
+    </ion-option>
+  </ion-select>
+    <input class="input-field"  placeholder="Password"  type="text"  >
+    </ion-item>
+  </div> -->
+
+
+  <!-- <div class="custom-id"  >
+    <ion-item class="custom" >
+      <ion-select  
+          (ionChange)="getOuterName()" 
+          [(ngModel)]="companyName" 
+          placeholder = "All Products"
+          okText="Ok"
+          cancelText="Cancel" 
+          class="testing"
+          style="color: red;">
+        <ion-option *ngFor="let companies of productCategoryList" 
+          [value]="companies.catId" >
+          {{companies.name}}
+        </ion-option>
+      </ion-select>
+      <ion-icon name="md-search" class="text-light icon"></ion-icon>
+    </ion-item>
+    <ion-input 
+          showCancelButton="focus" 
+          cancelButtonText="Custom Cancel" 
+          placeholder="Search Products.." 
+          
+           [(ngModel)]="searchProductName" 
+           (click)="productDetailPage2(companyName)">
+    </ion-input>
+
+    <button ion-button (click)="someThingLikeLogOut()" style="align-self:auto;">
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </div> -->
+
+  <!-- <div style="width: 100%;">
+    <input type="text" style="float: left; width: 100px;" id="url" value="Paste URL here">
+    <input type="text" style="float: left; width: 100px;" id="url" value="Paste URL here">
+    <button style="font-size: 10px; margin: 2px; float: left;" id="i">Go</button>
+</div>
+  -->
+
+
+
 </ion-header>
 
 <ion-content class="bg-light">
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      pullingIcon="chevron-down-circle-outline"
-      pullingText="Pull to refresh"
-      refreshingSpinner="circles"
-      refreshingText="Refreshing Products."
-    >
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
+      refreshingSpinner="circles" refreshingText="Refreshing Products.">
     </ion-refresher-content>
   </ion-refresher>
 
@@ -194,7 +328,7 @@
     <small class="bg-thime btn-round text-white" float-right>{{countProductsCartLocalUpdated}} </small>
   </p> -->
 
-  
+
 
   <div class="card-main">
     <ion-card>
@@ -205,7 +339,7 @@
               <ion-icon color="light" [name]="icon"></ion-icon>
             </button>
 
-            <h6 >SHOP BY VEHICLE</h6>
+            <h6>SHOP BY VEHICLE</h6>
           </ion-item>
         </ion-list>
       </ion-card-header>
@@ -215,16 +349,10 @@
             <ion-col size="12" offset="4">
               <div class="size" style="justify-content: center">
                 <ion-item>
-                  <ion-select
-                    placeholder="MAKE"
-                    value="sortpopular"
-                    okText="Ok"
-                    cancelText="Cancel"
-                    (ionChange)="makeDropDownValue(makeValue)"
-                    [(ngModel)]="makeValue"
-                    style="max-width: 45%;">
-                    <ion-option *ngFor="let makeKey of makeList" >{{makeKey}}</ion-option>
-                  
+                  <ion-select placeholder="MAKE" value="sortpopular" okText="Ok" cancelText="Cancel"
+                    (ionChange)="makeDropDownValue(makeValue)" [(ngModel)]="makeValue" style="max-width: 45%;">
+                    <ion-option *ngFor="let makeKey of makeList">{{makeKey}}</ion-option>
+
                   </ion-select>
                 </ion-item>
               </div>
@@ -236,19 +364,15 @@
             <ion-col size="12" offset="4">
               <div class="size" style="justify-content: center">
                 <ion-item>
-                  <ion-select
-                    placeholder="MODEL"
-                    value="sortpopular"
-                    okText="Ok"
-          cancelText="Cancel"
-                  style="max-width: 45%;"
-                    >
+                  <ion-select placeholder="MODEL" value="sortpopular" okText="Ok" cancelText="Cancel"
+                    style="max-width: 45%;">
                     <!-- <ion-option value="sortpopular">popularity</ion-option>
                     <ion-option value="sortaveragerating">rating</ion-option>
                     <ion-option value="sortlatest">latest</ion-option>
                     <ion-option value="sortpricelowhigh" style="max-width: 100%">low to high</ion-option > -->
-                      <!-- <ion-option *ngFor="let modelKey of modelList" >{{modelKey}}</ion-option> -->
-                      <ion-option *ngFor="let modelKey of modelList" [value] = "modelKey" (ionSelect)="triggerMeModel(modelKey)" >{{modelKey}}</ion-option>
+                    <!-- <ion-option *ngFor="let modelKey of modelList" >{{modelKey}}</ion-option> -->
+                    <ion-option *ngFor="let modelKey of modelList" [value]="modelKey"
+                      (ionSelect)="triggerMeModel(modelKey)">{{modelKey}}</ion-option>
 
                   </ion-select>
                 </ion-item>
@@ -262,19 +386,16 @@
             <ion-col size="12" offset="4">
               <div class="size" style="justify-content: center">
                 <ion-item>
-                  <ion-select
-                    placeholder="SUB MODEL"
-                    value="sortpopular"
-                    okText="Ok"
-          cancelText="Cancel"
-                    [(ngModel)]="engineValue">
+                  <ion-select placeholder="SUB MODEL" value="sortpopular" okText="Ok" cancelText="Cancel" 
+                    [(ngModel)]="engineValue" (ionChange)="getOuterNametushar()">
                     <!-- <ion-option value="sortpopular">popularity</ion-option>
                     <ion-option value="sortaveragerating">rating</ion-option>
                     <ion-option value="sortlatest">latest</ion-option>
                     <ion-option value="sortpricelowhigh" style="max-width: 100%">low to high</ion-option> -->
                     <!-- <ion-option *ngFor="let engineKey of engineList" >{{engineKey}}</ion-option> -->
 
-                    <ion-option *ngFor="let engineKey of engineList" [value] = "engineKey" (ionSelect)="triggerMeEngine(engineKey)">{{engineKey}}</ion-option>
+                    <ion-option *ngFor="let engineKey of engineList" [value]="engineKey"
+                      (ionSelect)="triggerMeEngine(engineKey)">{{engineKey}}</ion-option>
 
                   </ion-select>
                 </ion-item>
@@ -288,18 +409,14 @@
             <ion-col size="12" offset="4">
               <div class="size" style="justify-content: center">
                 <ion-item>
-                  <ion-select
-                    placeholder="YEAR"
-                    value="sortpopular"
-                    okText="Ok"
-          cancelText="Cancel"
+                  <ion-select placeholder="YEAR" value="sortpopular" okText="Ok" cancelText="Cancel"
                     [(ngModel)]="yearValue">
                     <!-- <ion-option value="sortpopular">popularity</ion-option>
                     <ion-option value="sortaveragerating">rating</ion-option>
                     <ion-option value="sortlatest">latest</ion-option>
                     <ion-option value="sortpricelowhigh" style="max-width: 100%">low to high</ion-option> -->
                     <!-- <ion-option *ngFor="let yearKey of yearList" >{{yearKey}}</ion-option> -->
-                    <ion-option *ngFor="let yearKey of yearList"  >{{yearKey}}</ion-option>
+                    <ion-option *ngFor="let yearKey of yearList">{{yearKey}}</ion-option>
 
                   </ion-select>
                 </ion-item>
@@ -309,16 +426,13 @@
         </div>
 
         <div class="select-section shadow-bottom">
-          <ion-row
-            class="ion-justify-content-center"
-            style="2px 10px !important;"
-          >
+          <ion-row class="ion-justify-content-center" style="2px 10px !important;">
             <button ion-button full class="bg-thime btn-round btn-text"
             (click)="searchVehicleData(makeValue,strTestValue2,strTestValue3)">
-              Search 
+              Search
             </button>
           </ion-row>
-        </div>  
+        </div>
       </ion-card-content>
     </ion-card>
   </div>
@@ -345,38 +459,37 @@
 
                 <ion-grid class="product-grid" style="margin-top: 8px;">
                   <ion-row class="rowgrid">
-                    <ion-col
-                      class="columngrid"
-                      *ngFor="let featuredProductCategories of featuredProductCategoryList"
+                    <ion-col class="columngrid" *ngFor="let featuredProductCategories of featuredProductCategoryList"
                       (click)="productcategoryDetailPage(featuredProductCategories.catId,featuredProductCategories.url)"
                       style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);">
-              
-                     
-                      <ion-card >
-                        
-              
+
+
+                      <ion-card>
+
+
                         <ion-card-header style="justify-content: left">
-                          <div 
-                            class="img-box"
-                           
-                           >
+                          <div class="img-box">
 
                             <!-- <img src="assets/imgs/categoryfirst.png"  style="width:200px;height:80px ;"> -->
 
-                            <img  [src]="featuredProductCategories.thumbnail"  style="width:200px;height:80px;margin-top: 6px">
+                            <img [src]="featuredProductCategories.thumbnail"
+                              style="width:200px;height:80px;margin-top: 6px">
 
-                         
-                              
+
+
                           </div>
                         </ion-card-header>
                         <ion-card-content>
-                      
-                          <ion-item >
-                            <h5 style="font-size: 14px;text-align: -webkit-center;margin-top: 7px;">{{featuredProductCategories.name}}</h5> 
+
+                          <ion-item>
+                            <h5 style="font-size: 14px;text-align: -webkit-center;margin-top: 7px;">
+                              {{featuredProductCategories.name}}</h5>
                           </ion-item>
                           <div>
-                            <div *ngIf="featuredProductCategories.regular_price">     <!--If "product" exists-->
-                              <h5 style="font-size: 12px;text-align: center;"  > <span class="priceicon">Price : </span>  <span class="priceicon">$</span> {{featuredProductCategories.regular_price}} </h5>  
+                            <div *ngIf="featuredProductCategories.regular_price">
+                              <!--If "product" exists-->
+                              <h5 style="font-size: 12px;text-align: center;"> <span class="priceicon">Price : </span>
+                                <span class="priceicon">$</span> {{featuredProductCategories.regular_price}} </h5>
                               <!-- <div class="rateing">
                                 <div class="card-btn">  
                                   <p class="" float-left>
@@ -394,13 +507,13 @@
                             </div>
 
 
-                             <!--If "product" not exists-->
-                        
-                            <div *ngIf="!featuredProductCategories.regular_price" style="text-align: -webkit-center;">    
+                            <!--If "product" not exists-->
+
+                            <div *ngIf="!featuredProductCategories.regular_price" style="text-align: -webkit-center;">
                               <!-- <span >☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span> -->
                               <div class="rateing">
                                 <div class="card-btn">
-                                   <p class="" float-left>
+                                  <p class="" float-left>
                                     <!-- <button
                                       ion-button
                                       full
@@ -409,33 +522,33 @@
                                     >
                                        More Info--
                                     </button> -->
-                                    
-                                  </p> 
+
+                                  </p>
                                   <!-- <p style="font-size: 11px;text-align: -webkit-center;">{{featuredProductCategories.name}}</p> -->
                                   <!-- <ion-item >
                                     <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProductCategories.name}}</h5> 
                                   </ion-item> -->
                                 </div>
                               </div>
-                            </div> 
-                        </div>
-              
-                        
-              
-                         
+                            </div>
+                          </div>
+
+
+
+
                         </ion-card-content>
                       </ion-card>
                     </ion-col>
-              
-                
+
+
                   </ion-row>
                 </ion-grid>
-              
+
               </div>
             </ion-col>
           </ion-row>
         </div>
-     
+
 
         <!-- <div class="select-section shadow-bottom">
           <ion-row
@@ -451,7 +564,7 @@
     </ion-card>
   </div>
 
-  
+
 
   <!-- <div class="shorting-bar">
     <ion-item>
@@ -508,11 +621,11 @@
       <ion-col col-3>
         <div class="size">
           <ion-item>
-            <ion-select  interface="action-sheet">
+            <ion-select interface="action-sheet">
               <ion-option selected value="mute">Brakes</ion-option>
               <ion-option value="enable">Suspensions</ion-option>
-          </ion-select>
-          </ion-item>  
+            </ion-select>
+          </ion-item>
         </div>
       </ion-col>
       <ion-col col-3>
@@ -522,7 +635,7 @@
               <ion-option selected value="mute">Brakes</ion-option>
               <ion-option value="enable">Suspensions</ion-option>
             </ion-select>
-          </ion-item>  
+          </ion-item>
         </div>
       </ion-col>
       <ion-col col-3>
@@ -532,7 +645,7 @@
               <ion-option selected value="mute">Brakes</ion-option>
               <ion-option value="enable">Suspensions</ion-option>
             </ion-select>
-          </ion-item>  
+          </ion-item>
         </div>
       </ion-col>
       <ion-col col-3>
@@ -542,67 +655,62 @@
               <ion-option selected value="mute">Brakes</ion-option>
               <ion-option value="enable">Suspensions</ion-option>
             </ion-select>
-          </ion-item>  
+          </ion-item>
         </div>
       </ion-col>
     </ion-row>
   </div>
 
- 
 
 
-   <div *ngIf="featuredProductsList; else elseStatement" class="checkFeaturedProducts"> 
-</div> 
-<ng-template #elseStatement style="margin-top: 10px;"> 
+
+  <div *ngIf="featuredProductsList; else elseStatement" class="checkFeaturedProducts">
+  </div>
+  <ng-template #elseStatement style="margin-top: 10px;">
     No Product Available
-</ng-template> 
+  </ng-template>
 
-<ng-container *ngIf="( featuredProductsList | filter : localSearchProduct) as result">
+  <ng-container *ngIf="( featuredProductsList | filter : localSearchProduct) as result">
 
-  
-  
-  <p *ngIf="result.length === 0">No matching Result found</p>  
-</ng-container>
+
+
+    <p *ngIf="result.length === 0">No matching Result found</p>
+  </ng-container>
 
   <ion-grid class="product-grid" style="margin-top: 15px;">
     <ion-row class="rowgrid">
-      <ion-col
-        class="columngrid"
-        *ngFor="let featuredProducts of featuredProductsList | filter:localSearchProduct">
-        <ion-card >
+      <ion-col class="columngrid" *ngFor="let featuredProducts of featuredProductsList | filter:localSearchProduct">
+        <ion-card>
           <ion-card-header style="justify-content: left">
-            <div 
-              class="img-box"
+            <div class="img-box"
               (click)="productDetailPage(featuredProducts.id,featuredProducts.name,featuredProducts.regular_price)">
-              <img  [src]="featuredProducts.image"  style="width:200px;height:80px ;">
+              <img [src]="featuredProducts.image" style="width:200px;height:80px ;">
             </div>
-            <ion-icon   name="md-heart" class="text-light icon" (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"></ion-icon>
-         
+            <ion-icon name="md-heart" class="text-light icon"
+              (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)">
+            </ion-icon>
+
             <!-- <ion-icon name="arrow-down" *ngIf="!visible" (click)="toggle()"></ion-icon>
             <ion-icon name="arrow-up" *ngIf="visible" (click)="toggle()"></ion-icon> -->
           </ion-card-header>
           <ion-card-content>
-  
-           
-        
-            <ion-item >
-              <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5> 
+
+
+
+            <ion-item>
+              <h5 style="font-size: 11px;text-align: -webkit-center;">{{featuredProducts.name}}</h5>
             </ion-item>
             <div>
-              <div *ngIf="featuredProducts.regular_price">     <!--If "product" exists-->
-                <h5 style="font-size: 12px;text-align: center;color: red;"  > <span class="priceicon" style="color: red;">Price : </span> <span class="priceicon">$</span> {{featuredProducts.regular_price}}  </h5>  
+              <div *ngIf="featuredProducts.regular_price">
+                <!--If "product" exists-->
+                <h5 style="font-size: 12px;text-align: center;color: red;"> <span class="priceicon"
+                    style="color: red;">Price : </span> <span class="priceicon">$</span>
+                  {{featuredProducts.regular_price}} </h5>
                 <div class="rateing">
                   <div class="card-btn">
                     <p style="width: 100%;" float-left>
-                      <button
-                        ion-button
-                        full
-                        class="bg-thime btn-round btn-text"
-                        
-                        
-                        (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)"
-
-                      >
+                      <button ion-button full class="bg-thime btn-round btn-text"
+                        (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)">
                         Add To Cart
                       </button>
                     </p>
@@ -610,32 +718,29 @@
                 </div>
               </div>
 
-          
-          
-              <div *ngIf="!featuredProducts.regular_price">     <!--If "product" not exists-->
-                <h5 style="font-size: 12px;text-align: center"> Price Not Available</h5>  
+
+
+              <div *ngIf="!featuredProducts.regular_price">
+                <!--If "product" not exists-->
+                <h5 style="font-size: 12px;text-align: center"> Price Not Available</h5>
 
                 <div class="rateing">
                   <div class="card-btn">
                     <p class="" float-left>
-                      <button
-                        ion-button
-                        full
-                        class="bg-thime btn-round btn-text"
+                      <button ion-button full class="bg-thime btn-round btn-text"
                         style="margin-top: 3px; width: 150px;text-align: center;"
-                        (click)="readMoreLocal(featuredProducts.id,featuredProducts.name,featuredProducts.regular_price)"
-                      >
+                        (click)="readMoreLocal(featuredProducts.id,featuredProducts.name,featuredProducts.regular_price)">
                         Read More
                       </button>
                     </p>
                   </div>
                 </div>
               </div>
-          </div>
+            </div>
 
-          
 
-            
+
+
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -645,12 +750,12 @@
         <ion-icon name="arrow-up" *ngIf="visible" (click)="toggle()"></ion-icon>
       </ion-col> -->
 
-  
+
     </ion-row>
   </ion-grid>
 
-  
-      <!-- <ion-item>
+
+  <!-- <ion-item>
         <ion-label>Make</ion-label>
         <ion-select [(ngModel)]="makeValue"  (ionChange)="makeDropDownValue(makeValue)">
           <ion-option *ngFor="let key of makeList" >{{key}}</ion-option>
@@ -669,7 +774,7 @@
         </ion-select>
       </ion-item> -->
 
-       <!-- <ion-item>
+  <!-- <ion-item>
         <ion-label>Model</ion-label>
         <ion-select [(ngModel)]="makeValue" (ionChange)="modelDropDownValue(makeValue)">
           <ion-option *ngFor="let key of makeList">{{makeValue}}</ion-option>
@@ -678,7 +783,7 @@
         <ion-label>Length {{makeList.length}}</ion-label>
       </ion-item> -->
 
- 
 
-  
+
+
 </ion-content>

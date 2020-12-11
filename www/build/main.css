@@ -53013,7 +53013,48 @@ page-viewall .icon-add {
 
 
 
+page-home .main-searchbar ion-item.custom.item.item-block.item-md.item-select.item-input.item-multiple-inputs {
+  background-color: #fff;
+  border-radius: 5px;
+  position: relative;
+}
+page-home .main-searchbar {position: relative;
+  margin-left: 9px;
+  margin-right: 9px;
+}
 
+page-home .main-searchbar button.disable-hover.button.button-md.button-default.button-default-md {
+  position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: #000;
+    margin: 0px;
+    height: 4.6rem;
+}
+
+page-home .main-searchbar ion-item.custom.item.item-block.item-md.item-select.item-input.item-multiple-inputs {
+  padding: 0px;
+}
+
+page-home .main-searchbar ion-select {
+  width: auto;
+  min-width: 15%;
+  max-width: 30%;
+  font-size: 12px;
+  line-height: 19px;
+  padding-left: 7px;
+}
+page-home .main-searchbar button.disable-hover.button.button-md.button-default.button-default-md ion-icon.icon.icon-md.ion-md-search {
+  color: #fff;
+}
+
+
+  page-home .main-searchbar ion-input.input.input-md {font-size: 13px !important;
+  border: 0px;
+  border-left: 1px solid #dad7d7;
+  border-radius: 0px;
+  background-color: #fff;
+}
 
 
 
@@ -58931,6 +58972,9 @@ page-itemdetail .test {
   border: 1px solid #d2d2d2;
   border-radius: 9px;
   font-size: 0.9em !important;
+  /* background: brown; */
+  width: 300px;
+  margin-right: 47px;
 }
 
 .white {

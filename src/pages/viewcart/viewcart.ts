@@ -247,16 +247,7 @@ export class ViewcartPage implements OnInit{
     this.strTestProductId = product_id;
   }
     
- 
-
- 
-
- 
-
-    
-           
-        
-      
+   
   toggleAccordion() {  
     if (this.accordionExpanded) {
       this.renderer.setElementStyle(
@@ -371,8 +362,6 @@ this.buttonDisabled = false;
 }
 
 decrementValueLocal(index,item){
-
-  
   if(this.productsLocalCart[index].ProductQuantity<=1) {
     console.log('failure');
     this.showToastOnCart();
@@ -393,30 +382,22 @@ this.testArray2 = this.testTushar;
 this.buttonDisabled = false;
   }
 }
-
-
                                
 decrementValue(index: number,strDynamicId) {
-
-
 if(this.viewCartList[index].quantity<=1) {
   console.log('failure');
   this.showToastOnCart();
-}
-
+} 
+ 
 else {
   if(this.viewCartList[index].product_id === this.eventCartNumber && this.viewCartList[index].quantity<=2) {
     console.log('no decrement ');
-     
   }
 
   else if(this.viewCartList[index].product_id === this.eventCartNumber ) {
      this.viewCartList[index].quantity -= 2;  
   this.testTushar =  this.viewCartList[index].quantity;
-
   this.buttonDisabled = false;
-
-
   }
 
   else {
@@ -426,7 +407,7 @@ else {
   this.buttonDisabled = false;
   }
   } 
-}  
+}   
    
   /*
       Update Shopping Cart button
@@ -519,7 +500,7 @@ clearCart()
                 this.strNumber = priceValue.concat('price');
               }
             }    
-          }       
+          }        
 
           for (keyProductId in this.viewCartList) {
             if (this.viewCartList.hasOwnProperty(keyProductId)) { 
@@ -535,7 +516,7 @@ clearCart()
           }
         
         } else {
-        }  
+        }   
 
       });
     } catch (error) {}
@@ -697,29 +678,13 @@ clearCart()
       this.productsLocalCart.splice(i, 1);
       localStorage.setItem('products', JSON.stringify(this.productsLocalCart));
     }
-
-   
-            
-
-
-
-
-
-
-
-
-
-
-             
+     
             }},
           },
           {
             text: 'Cancel',
             handler: data => {
               let navTransition = alert1.dismiss();
-              //  navTransition.then(() => {
-              //    this.navCtrl.pop();
-              //  });
              return false;
            }
         },
@@ -907,7 +872,7 @@ async loaderFlatRate() {
   });
   return await loading.present();
 }
-
+ 
+    
   
-
 }

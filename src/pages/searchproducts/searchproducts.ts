@@ -41,6 +41,7 @@ export class SearchproductsPage implements OnInit{
   countProductsCartLocal:number = 0;
   countProductsCartLocalUpdated:number = 0;
   countProductsWishlistLocalUpdated:number = 0;
+  strResponse:string;
 
   
     
@@ -59,21 +60,31 @@ export class SearchproductsPage implements OnInit{
               public alertController: AlertController) {
 
     this.strMake = navParams.get("make");
-    this.strModel = navParams.get("engine");
-    this.strEngine = navParams.get("model");
+    this.strModel = navParams.get("model");
+     this.strEngine = navParams.get("engine1");
     this.strYear = navParams.get("year");
 
-    if(this.strEngine = ''){
-      console.log('ionViewDidLoad SearchproductsPage strEngine empty' );
+    // if(this.strEngine = ''){
+    //   console.log('ionViewDidLoad SearchproductsPage strEngine empty' );
+    // }
+
+    // else {
+    //   console.log('ionViewDidLoad SearchproductsPage strEngine filled' + this.strEngine);
+    // }
+
+    if(this.strEngine){
+      this.strEngine = navParams.get("engine1");
+
     }
 
-    else {
-      console.log('ionViewDidLoad SearchproductsPage strEngine filled' );
-    }
+    else  if(this.strEngine = ''){
+         console.log('ionViewDidLoad SearchproductsPage strEngine empty' );
+       }
 
-    console.log('ionViewDidLoad SearchproductsPage' + this.strMake);
-    console.log('ionViewDidLoad SearchproductsPage' + this.strModel);
-    console.log('ionViewDidLoad SearchproductsPage' + this.strYear);
+    console.log('received make SearchproductsPage' + this.strMake);
+    console.log('received model SearchproductsPage' + this.strModel);
+    console.log('received engine SearchproductsPage' + this.strEngine);
+    console.log('received year SearchproductsPage' + this.strYear);
 
 
 
@@ -83,6 +94,8 @@ export class SearchproductsPage implements OnInit{
    
 
   ngOnInit(){
+
+    this.getProductsSearchApi();
 
       /*
           Local Wishlist
@@ -133,21 +146,21 @@ export class SearchproductsPage implements OnInit{
 
     this.showLoadingControllerLaunch();
      
-      const service = this.apiProvider.getSearchData(this.strMake,this.strModel,this.strEngine,this.strYear);
-      service.subscribe((jsonResponse) => {
+      // const service = this.apiProvider.getSearchData(this.strMake,this.strModel,this.strEngine,this.strYear);
+      // service.subscribe((jsonResponse) => {
   
-        const resultado = jsonResponse;
-        this.featuredProductsList = resultado;
-        this.obj = JSON.stringify(jsonResponse);
-          if(resultado === null){
-            this.showToastOnEmptyFeaturedProducts();
-            console.log('data not available');
-            this.strData = 'data not available';
-          }
-          else {
-            // console.log('data available');
-          }
-        }); 
+      //   const resultado = jsonResponse;
+      //   this.featuredProductsList = resultado;
+      //   this.obj = JSON.stringify(jsonResponse);
+      //     if(resultado === null){
+      //       this.showToastOnEmptyFeaturedProducts();
+      //       console.log('data not available');
+      //       this.strData = 'data not available';
+      //     }
+      //     else {
+      //       // console.log('data available');
+      //     }
+      //   }); 
   }
 
 
@@ -336,5 +349,40 @@ export class SearchproductsPage implements OnInit{
     console.log("Sent product name " + name); 
     console.log("Sent product name " + regular_price);
     
+  }
+
+  async getProductsSearchApi() {
+    const loader = await this.loadingController.create({
+      content: 'Please wait fetching data!',
+    });
+
+    await loader.present();
+    loader.present().then(() => {      
+      // const service = this.apiProvider.getOrders();   
+      // service.subscribe((jsonResponse) => {      
+        this.httpClient.get('http://busybanda.com/sterling-tools/api/get_products_mmey_search?make=' + this.strMake + '&model=' + this.strModel + '&engine=' + this.strEngine  + '&year=' + this.strYear).subscribe(jsonResponse => {
+      if(jsonResponse){
+        this.featuredProductsList = jsonResponse['result'];
+        this.obj = JSON.stringify(jsonResponse);
+        console.log('details available '+ this.obj );
+        loader.dismiss(); 
+      }
+
+      const myURL_body = jsonResponse['result'];
+      this.strResponse = myURL_body;
+
+     if(this.strResponse = 'null'){
+      console.log('details available obj empty ' );
+      this.strDataServer = 'No data';
+     }
+      else { 
+        console.log('details not available ' );
+      }
+      },
+        error => { 
+          console.log(error);
+          // this.showToastOnProductError(error);
+        });
+    });
   }
 }

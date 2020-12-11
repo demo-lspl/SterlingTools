@@ -73,8 +73,8 @@ export class ItemdetailPage implements OnInit {
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
   countProductsCartLocal:number|any|string;
-  countProductsCartLocalUpdated:number = 0;
-  countProductsWishlistLocalUpdated:number = 0;
+  countProductsCartLocalUpdated:number  | any= 0;
+  countProductsWishlistLocalUpdated:number | any = 0;
   countProductsWishList:number =0;
 
   
@@ -93,7 +93,7 @@ export class ItemdetailPage implements OnInit {
     public app: App,
     public platform: Platform,
     public alertController: AlertController
-
+ 
   ) {
     this.strId = navParams.get("id");
     this.strProductUrl = "Product Url " + navParams.get("url");
@@ -101,6 +101,15 @@ export class ItemdetailPage implements OnInit {
   }
 
   ngOnInit() {
+
+
+    if(this.countProductsWishlistLocalUpdated===0){
+      this.countProductsWishlistLocalUpdated = '';
+    }
+
+    else if(this.countProductsCartLocalUpdated===0){
+      this.countProductsCartLocalUpdated = '';
+    }
 
           /*
           Local Wishlist
@@ -432,6 +441,53 @@ export class ItemdetailPage implements OnInit {
           });
     }   
   }
+
+  addToWishList(id, name,image,description,regular_price,x) {
+
+    // this.visible = !this.visible;
+    // this.countClick++;
+  
+    //   if(this.countClick>1){
+    //     console.log('Clicked More than one');
+    //     this.showToastOnWishlist();
+    //   }
+    //   else {
+    //   }
+  
+    //x.classList.toggle("fa-thumbs-down");
+  
+   // document.getElementById("myDIV").classList.add("mystyle");
+  
+    
+    let productsWishlist = [];
+    if (localStorage.getItem('productsWishlist')) {
+      productsWishlist = JSON.parse(localStorage.getItem('productsWishlist')); // get product list 
+    } 
+    console.log("Sent productsList id " + id);
+    console.log("Sent productsList name " + name);
+    productsWishlist.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+    localStorage.setItem('productsWishlist', JSON.stringify(productsWishlist)); 
+    this.buttonIcon = "home";
+    this.showToastOnAddProductWishlist(name);
+    this.countProductsWishlistLocalUpdated++;
+    if (typeof(Storage) !== "undefined") {
+      // Code for localStorage/sessionStorage.
+      console.log('Code for localStorage/sessionStorage.')
+    } else {
+      // Sorry! No Web Storage support..
+      console.log('Sorry! No Web Storage support..')
+    }
+  } 
+
+  showToastOnAddProductWishlist(strProductAdded) {
+    const toast = this.toastController.create({
+      // message: this.testStr,
+      message: 'Product Added in Wishlist : \n ' + strProductAdded + '\n' ,
+      duration: 1000,
+      position: "bottom",
+    });   
+    toast.present();  
+  }  
 
   showToastOnAddProductLocal(strProductAdded) {
     const toast = this.toastController.create({

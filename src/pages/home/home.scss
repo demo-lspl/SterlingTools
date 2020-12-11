@@ -1,4 +1,34 @@
 page-home {
+    
+    .maininput{
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+    }
+    .inputproducts{
+        width: 300px;
+    min-width: 137px;
+    }
+    .vl {
+        border-left: 6px solid green;
+        height: 5px;
+      }
+
+
+    .main-searchbar ion-item.custom.item.item-block.item-md.item-select.item-input.item-multiple-inputs {
+        width: auto;
+        background-color: #fff;
+        margin-left: 10px;
+        margin-right: 10px !important;
+        border-radius: 4px;
+    }
+
+    .input-container {
+        display: flex;
+        width: 100%;
+        margin-bottom: 15px;
+      }
 
     .testing{
         font-style: bold;
@@ -498,5 +528,8 @@ page-home {
 
     // }
     }
+
+
+    
                 
 }

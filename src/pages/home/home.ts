@@ -22,7 +22,7 @@ import { HelpPage } from '../help/help';
 import { SearchproductsupdatedPage } from '../searchproductsupdated/searchproductsupdated';
 import { SearchdataPage } from '../searchdata/searchdata';
 
-
+  
     
 @Component({  
   selector: "page-home",           
@@ -36,6 +36,7 @@ export class HomePage implements OnInit {
   accordionExpandedCategory = false; 
   @ViewChild("cc") cardContentVehicle: any;
   @ViewChild("cc1") cardContentCategory: any;  
+  
   @Input("title") title: string;  
   @Input("title") Elem: string;
   strProductRegularPrice:string;
@@ -61,8 +62,8 @@ export class HomePage implements OnInit {
   countProductsCart:number|any|string;
   countProductsWishList:number =0;
   countProductsCartLocal:number = 0;
-  countProductsCartLocalUpdated:number = 0;
-  countProductsWishlistLocalUpdated:number = 0;
+  countProductsCartLocalUpdated:number | any = 0;
+  countProductsWishlistLocalUpdated:number | any = 0;
      
         
   count:string|any;
@@ -71,8 +72,6 @@ export class HomePage implements OnInit {
   strUserId:number | any;
   countClick: number = 0;
   countClickAddToCart: number = 0;
-  countClickAddToCartTushar: number = 0;
-  countClickAddToCartTushar1: number = 0;
   makeList: any = [];  
   modelList: any = [];  
   companyName: any;
@@ -116,6 +115,8 @@ export class HomePage implements OnInit {
   strTestValue4:string;
   autocomplete: { input: string; }; 
 
+  engineKey:string;
+
 
 
   constructor(
@@ -143,8 +144,19 @@ export class HomePage implements OnInit {
       /*
           Local Wishlist
       */
+
+
+    if(this.countProductsWishlistLocalUpdated===0){
+      this.countProductsWishlistLocalUpdated = '';
+    }
+
+    else if(this.countProductsCartLocalUpdated===0){
+      this.countProductsCartLocalUpdated = '';
+    }
+
+
       var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
-      if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
+       if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
         var arrayLength = productsWishlistarrayFromStorage.length;
         this.countProductsWishList = arrayLength;
         this.countProductsWishlistLocalUpdated = this.countProductsWishList;
@@ -379,7 +391,7 @@ addToWishList(id, name,image,description,regular_price,x) {
     this.getAllFeaturedProductsCategories();
     this.viewCartApi();
     this.getMakeApi();
-  
+    
     
     setTimeout(() => {
       console.log('Async operation has ended');
@@ -455,16 +467,19 @@ addToWishList(id, name,image,description,regular_price,x) {
   else if(this.searchProductName){
      console.log('failure passed search name' + this.searchProductName);
 
-     if(this.strTestValue4.length <= 2) {
-        this.showToastOnLengthProduct();
-     }
+    //  if(this.strTestValue4.length <= 2) {
+    //     this.showToastOnLengthProduct();
+    //  }
 
-     else {
-        this.navCtrl.push(SearchproductsupdatedPage, {
-         input: this.searchProductName,
-            });
-     }
+    //  else {
+    //     this.navCtrl.push(SearchproductsupdatedPage, {
+    //      input: this.searchProductName,
+    //         });
+    //  }
 
+    this.navCtrl.push(SearchproductsupdatedPage, {
+      input: this.searchProductName,
+         });
 
     
 
@@ -482,7 +497,19 @@ addToWishList(id, name,image,description,regular_price,x) {
 
  
 
+searchData2(strMakeListSelectedValue,strModelListSelectedValue,engine,year){
+  // this.navCtrl.push(SearchproductsPage, {
+  //       make: this.makeValue,
+  //       model: this.modelValue,
+  //       engine:this.engineValue,
+  //       year:this.yearValue
+  //     });
 
+      console.log("Sent product make " + this.makeValue);
+      console.log("Sent product model " + this.modelValue);
+      console.log("Sent product engine " + this.strTestValue3);
+      console.log("Sent product year " + this.yearValue);
+}
 
 
 
@@ -608,8 +635,8 @@ toggleAccordionCategory() {
         this.obj = JSON.stringify(jsonResponse);
         console.log('details available '+ this.obj );
         loader.dismiss(); 
-      }
-
+      }  
+        
       const myURL_body = jsonResponse['result'];
       this.strData = myURL_body;
 
@@ -623,13 +650,13 @@ toggleAccordionCategory() {
       },
         error => { 
           console.log(error);
-          this.showToastOnProductError(error);
+          //this.showToastOnProductError(error);
         });
     });
   }
 
 
-
+   
 
 
 // getAllFeaturedProductsCategories() {
@@ -686,6 +713,10 @@ async getAllFeaturedProductsCategories() {
         this.showToastOnProductError(error);
       });
   // });
+}
+
+onClear() {
+  this.searchProductName = '';
 }
 
   // getAllProductsCategoriesList() {
@@ -823,7 +854,7 @@ async getCategoriesApi() {
       });
   });
 }
-  
+   
   
   showToastOnProductError(strProductAdded) {
     const toast = this.toastController.create({
@@ -835,12 +866,6 @@ async getCategoriesApi() {
     toast.present();  
   }
   
-   
-                      
-    
- 
-
-
 
   getCategories(value){
     console.info("Selected Product category : ",value);
@@ -876,7 +901,7 @@ async getCategoriesApi() {
         this.strModelListSelectedValue =  resultado;
         this.strEngineListSelectedValue =  resultado;
         this.obj = JSON.stringify(data);
-        console.log('Selected model tushar:  ' + this.strTestValue);
+        // console.log('Selected model   ' + this.strTestValue);
          
      });
   }       
@@ -894,7 +919,7 @@ async getCategoriesApi() {
     console.log("selected strTestValue2", this.strTestValue2);
     this.getYearApi(this.makeValue,this.strTestValue1,this.strTestValue2);
 
-    console.log('Selected engine tushar:  ' + this.strTestValue2);
+    console.log('Selected engine   ' + this.strTestValue2);
   }
 
   triggerMeYear(value: string): void {
@@ -912,8 +937,10 @@ async getCategoriesApi() {
         this.strMakeListSelectedValue =  resultado;
         this.strModelListSelectedValue =  resultado;
         this.strModelListSelectedValue =  this.modelValue;
-        console.log('Engine api response  make ' + strMakeListSelectedValue);
-        console.log('Engine api response  model ' + strModelListSelectedValue);
+        this.strEngineListSelectedValue =  this.engineValue;
+        console.log(' api response  make ' + strMakeListSelectedValue);
+        console.log(' api response  model ' + strModelListSelectedValue);
+        console.log(' api response  engine ' + this.strEngineListSelectedValue);
 
      });
   } 
@@ -942,14 +969,14 @@ async getCategoriesApi() {
 
     }
 
+
+  
    
                  
   searchVehicleData(makeValue,strTestValue2,strTestValue3,year){
 
-  
-
   if(!this.makeValue ){
-    console.log('issue make');
+    console.log('issue make'); 
     this.showToastOnEmptyMake();
   }
    else if(!this.strTestValue1){
@@ -957,19 +984,33 @@ async getCategoriesApi() {
     console.log('issue model');
   }
 
+ 
+
+  
+
+
+  
+
+ 
+
+
+
   else {
     console.log('success!!!!!!');
+    // this.engineKey = strTestValue2;
+    console.log('issue engine' + this.strTestValue2);
     this.navCtrl.push(SearchproductsPage, 
         {
           make: this.makeValue,
-          model: this.strTestValue2,
-          engine:this.strTestValue1,
+          model: this.strTestValue1,
+          engine1:this.strTestValue2,
           year:this.yearValue
         });
 
         console.log("Sent product make " + this.makeValue);
         console.log("Sent product model " + this.strTestValue1);
-        console.log("Sent product engine " + strTestValue3);
+        console.log("Sent product engine " + strTestValue2);
+        console.log("Sent product engine value " + this.engineKey);
         console.log("Sent product year " + this.yearValue);
   }
   }        
@@ -983,9 +1024,9 @@ async getCategoriesApi() {
 
   
  
-  getOuterName(event){
-    console.log("Product category Id  "+this.companyName);
-    this.strDynamicId = this.companyName;
+  getOuterNametushar(event){
+    console.log("getOuterNametushar called  "+this.engineValue);
+    // this.strDynamicId = this.companyName;
  }
 
 
@@ -1012,7 +1053,7 @@ async viewCartApi() {
          console.log('All Json Response' + resultado);
 
    
-
+  
 
         if(this.viewCartList){
           this.countProductsCartLocalUpdated = this.viewCartList.length;

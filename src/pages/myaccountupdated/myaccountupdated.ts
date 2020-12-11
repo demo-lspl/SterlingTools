@@ -120,8 +120,8 @@ export class MyaccountupdatedPage implements OnInit {
     }
 
   } 
-                        
-
+                         
+  
 
   // getProfileApi(){
   //   this.httpClient.get('http://busybanda.com/sterling-tools/api/get_user_details?' +  'user_id=' + localStorage.getItem('Userid value')).subscribe((jsonResponse) => {
