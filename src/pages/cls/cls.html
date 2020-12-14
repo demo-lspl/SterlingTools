@@ -1,0 +1,70 @@
+<!--
+  Generated template for the ClsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle style="display: block !important">
+      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"/>
+    </ion-icon>
+    </button>
+    <ion-title>Pagination
+      <span float-right>
+        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
+        </ion-icon> 
+        
+        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
+        </ion-icon> 
+      </span>
+     
+    </ion-title>
+  </ion-navbar>
+</ion-header> 
+
+
+<ion-content padding>
+
+  <ng-template *ngIf="categoriesList.length === '0';then card else noCard">
+
+    <ion-item lines="none">
+      <ion-label style="margin-top: 40%;text-align: center;">No data Found</ion-label>
+    </ion-item>
+  </ng-template>
+
+  <ng-template #noCard>
+    
+
+    <ion-card class="maincard">
+      <div class="list" *ngFor="let categoryItem of categoriesList |filter:searchText | paginate: {
+        itemsPerPage: 10,
+        currentPage: p
+         }">
+      <ion-card class="cards">
+      
+
+          <div class="columnback">
+            <ion-img class="lefticon" src="assets/assets/icon/cardnumber.png"></ion-img>
+            <ion-label class="lefttext"><b>Name:</b></ion-label>
+            <ion-label style="font-size: 10px;">{{categoryItem.name}}</ion-label>
+          </div>
+
+          
+      </ion-card>
+
+    </div>
+    </ion-card>
+
+
+
+
+
+</ng-template>
+<pagination-controls (pageChange)="p = $event" previousLabel="Prev" nextLabel="Next"></pagination-controls>
+
+
+</ion-content>

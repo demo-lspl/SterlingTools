@@ -228,7 +228,7 @@
     <ion-item    *ngIf="hideMe">
       <ion-label>Model</ion-label>
       <ion-select (ionChange)="getOuterName()"  [(ngModel)]="companyName"   placeholder = "Model"   >
-        <ion-option *ngFor="let modelKey of modelList" [value] = "modelKey" (ionSelect)="triggerMeModel(modelKey)" >{{modelKey}}</ion-option>
+        <ion-option *ngFor="let modelKey of modelList" [value] = "modelKey" (ionSelect)="triggerMeModel(modelKey)" placeholder = "Model value">{{modelKey}}</ion-option>
       </ion-select>
     </ion-item>
 
@@ -247,7 +247,8 @@
           okText="Ok"
           cancelText="Cancel"
           [(ngModel)]="yearValue"
-          (ionChange)="getOuterName2()">
+          (ionChange)="getOuterName2()"
+         >
           <ion-option *ngFor="let yearKey of yearList"  >{{yearKey}}</ion-option>
         </ion-select>
   
@@ -289,15 +290,6 @@
 
 
 
-  <ion-item>
-
-    <ion-card>
-
-      <ion-card-header>Test</ion-card-header>
-
-    </ion-card>
-
-  </ion-item>
-
+ 
 
 </ion-content>

@@ -91,19 +91,19 @@ export class WishlistupdatedPage implements OnInit {
       this.countProductsCart = arrayLength1;
       this.countProductsCartLocalUpdated = this.countProductsCart;
       console.log('Local Cart filled ' + this.countProductsCartLocalUpdated);
-    }
-
+    } 
+ 
     else {
       console.log('Local Cart empty ' );
     }
     this.platform.registerBackButtonAction(() => {
       // Catches the active view
-      let nav = this.app.getActiveNavs()[0];
+      let nav = this.app.getActiveNavs()[0]; 
       let activeView = nav.getActive();                
       // Checks if can go back before show up the alert
       if(activeView.name === 'WishlistupdatedPage') {
           if (nav.canGoBack()){
-          } else {
+          } else {  
               this.navCtrl.setRoot(HomePage);
           }
       }

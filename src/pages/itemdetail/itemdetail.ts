@@ -77,7 +77,7 @@ export class ItemdetailPage implements OnInit {
   countProductsWishlistLocalUpdated:number | any = 0;
   countProductsWishList:number =0;
 
-  
+   
 
       
 

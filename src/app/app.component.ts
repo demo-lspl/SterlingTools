@@ -34,6 +34,7 @@ import { Globalization } from '@ionic-native/globalization';
 import { WishlistupdatedPage } from '../pages/wishlistupdated/wishlistupdated';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppconstantsPage } from '../pages/appconstants/appconstants';
+import { ClsPage } from '../pages/cls/cls';
 
 
   
@@ -161,8 +162,15 @@ export class MyApp implements OnInit{
   }  
 
   testPage() {
-    this.nav.setRoot(Home1Page);
+     this.nav.setRoot(Home1Page);
+
+   // this.nav.setRoot(AppconstantsPage);
   }
+
+  testPage2() {
+    this.nav.setRoot(ClsPage);
+
+ }
 
   testPage1() {
     this.nav.setRoot(AppconstantsPage);
@@ -248,7 +256,7 @@ export class MyApp implements OnInit{
   
   testPageTushar() {
   // this.nav.setRoot(TestingPage);
-   this.nav.setRoot(TestcartPage);
+   this.nav.setRoot(AppconstantsPage);
  }         
  
  privacyPolicyPage() {

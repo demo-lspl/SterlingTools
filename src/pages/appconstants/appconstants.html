@@ -4,7 +4,7 @@
     <button ion-button menuToggle style="display: block !important;">
       <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>
     </button>
-    <ion-title text-uppercase>AUTO PARTS
+    <ion-title text-uppercase>lAZY LOADING
       <span float-right>
         <ion-icon class="icon" ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>
         <ion-icon class="icon" ><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>
@@ -16,53 +16,27 @@
   </ion-navbar>
 
 </ion-header>
-  <ion-toolbar>
+
+       
   
- 
-  
-  
-        <ion-toolbar>
-        <ion-searchbar
-        autocomplete="true"
-        debounce="500"
-        placeholder="Encuentra una película"
-        (ionInput)="onInput($event)"
-        (ionClear)="onClear($event)"
-        ></ion-searchbar>
-  
-  <ion-content [fullscreen]="true" >
+  <ion-content padding>
   
    
   
-    <!-- <app-Spinner name="Pagina1" ></app-Spinner> -->
-  
     <ion-list>
-        <ion-item  *ngFor="let place of DataMovies" [routerLink]="['/MoviesDetails/',place.id]"
-  (click)="DetallesPelicula(place.title)">
-          <ion-thumbnail slot="start">
-          <ion-img [src]="'https://image.tmdb.org/t/p/w500' + place.poster_path"></ion-img>
-          </ion-thumbnail>
+      <ion-item *ngFor="let user of users" style="font-size: 10px;">
+        <!-- <ion-avatar item-left>
+          <img [src]="user.picture.thumbnail" alt="" style="width: 40px;height: 40px;">
+        </ion-avatar>
+        {{user.name.first}} {{user.name.last}} -->
+        <ion-title text-uppercase>Test</ion-title>
+      </ion-item>
+    </ion-list>
   
-  <div class="Principal_Descripcion">
-            <div class="itemD">
-                          <ion-label>
-                            {{place.title}}
-                          </ion-label>
-            </div>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   
-            <div class="itemD">
-  
-              <ion-label>
-                {{place.release_date}}
-              </ion-label>
-              <ion-label>
-                {{place.vote_average}}/10
-                <ion-icon name="star" color="primary"></ion-icon>
-              </ion-label>
-            </div>
-  
-    </div>
-                </ion-item>
-            </ion-list>
+
   </ion-content>
   

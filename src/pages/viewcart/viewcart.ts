@@ -83,7 +83,7 @@ export class ViewcartPage implements OnInit{
   public amount:number;
   testTushar:number;
   dropdown1 = "Local Pickup";
-  total = 0; 
+  total = 0;    
   buttonIcon: string = "home";
   buttonIcon1: string = "home";
 
@@ -93,7 +93,7 @@ export class ViewcartPage implements OnInit{
   finalData: any = [];
   testArray1=[];
   testArray2:any = [] ;
-  strTestProductId:number;
+  strTestProductId:number; 
   strUserId:number | any;
   strProductDescription:string;
   productTotalPrice:number;

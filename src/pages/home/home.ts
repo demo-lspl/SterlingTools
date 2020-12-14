@@ -313,12 +313,36 @@ addToCart(id, name,image,description,regular_price) {
     if (localStorage.getItem('products')) {
       products = JSON.parse(localStorage.getItem('products')); // get product list 
     } 
-    console.log("Sent productsList id " + id);
-    console.log("Sent productsList name " + name);
-    products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
-    localStorage.setItem('products', JSON.stringify(products)); 
+    console.log("Added productsList id " + id);
+    console.log("Added productsList name " + name);
+    // products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+    // localStorage.setItem('products', JSON.stringify(products)); 
     this.showToastOnAddProductLocal(name);
     this.countProductsCartLocalUpdated++;
+
+
+    this.countClick++;
+    if(this.countClick>1){
+     
+      console.log('Product cannot be added ');
+      products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+      localStorage.setItem('products', JSON.stringify(products)); 
+    }
+
+    else {
+      console.log('Product can be added');
+      products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+      localStorage.setItem('products', JSON.stringify(products)); 
+    }
+
+    // if(id)
+    // {
+    //     console.log('Product added is same');
+    // }
+
+    // else {
+    //   console.log('Product added is different');
+    // }
 
   
     

@@ -71,6 +71,7 @@ import { SearchproductsupdatedPage } from '../pages/searchproductsupdated/search
 import { SearchdataPage } from '../pages/searchdata/searchdata';
 import { Itemdetaillistpage1Page } from '../pages/itemdetaillistpage1/itemdetaillistpage1';
 import { MakeresponsePage } from '../pages/makeresponse/makeresponse';
+import { ClsPage } from '../pages/cls/cls';
 
 
 
@@ -137,7 +138,8 @@ export function createTranslateLoader(http: HttpClient) {
     SearchproductsupdatedPage,
     SearchdataPage,
     Itemdetaillistpage1Page,
-    MakeresponsePage
+    MakeresponsePage,
+    ClsPage
     
   ],
   imports: [  
@@ -214,7 +216,8 @@ export function createTranslateLoader(http: HttpClient) {
     SearchproductsupdatedPage,
     SearchdataPage,
     Itemdetaillistpage1Page,
-    MakeresponsePage
+    MakeresponsePage,
+    ClsPage
   ],
   providers: [
     InAppBrowser,

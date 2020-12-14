@@ -121,6 +121,12 @@ export class ApiProvider {
   allMake(): Observable<any>{
     return this.httpClient.get(this.urlMake);
   }
+
+
+  getData1() {
+    return this.httpClient.get('https://randomuser.me/api/?results=10').pipe(map((res: any) => this.httpClientFetch = res.results));
+    // .map(res => res.json());
+  }
   
 
 
@@ -176,5 +182,6 @@ export class ApiProvider {
   } 
 
  
+  
 
 }
