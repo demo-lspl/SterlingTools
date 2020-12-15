@@ -43,7 +43,7 @@ export class HomePage implements OnInit {
   strProductRegularPriceRevised: string;
   strData: string;
   strRegularPrice:string;
-  hideMe:boolean = false; 
+  // hideMe:boolean = false; 
   obj;
   icon: string = "arrow-forward";
   icon1: string = "arrow-forward";
@@ -70,7 +70,7 @@ export class HomePage implements OnInit {
   strImagePath: string;
   public myimage = 'https://aws1.discourse-cdn.com/ionicframework/original/3X/c/f/cf7af661f0bae7cca915258f2b8d6b3937fccda4.png';
   strUserId:number | any;
-  countClick: number = 0;
+  countClick: number | any = 0;
   countClickAddToCart: number = 0;
   makeList: any = [];  
   modelList: any = [];  
@@ -114,8 +114,19 @@ export class HomePage implements OnInit {
   visible = false;
   strTestValue4:string;
   autocomplete: { input: string; }; 
-
+ 
   engineKey:string;
+  strModelValue: string;
+  hide:boolean = true;
+  hide1:boolean = true;
+  hide2:boolean = true;  
+  hide3:boolean = true;
+
+
+  hideMe;
+  hideMe1;
+  hideMe2;
+  hideMe3;
 
 
 
@@ -139,7 +150,12 @@ export class HomePage implements OnInit {
   }     
                      
        
-  ngOnInit() {      
+  ngOnInit() {   
+    
+    this.hide = !this.hide;
+    this.hide1 = !this.hide1;
+    this.hide2 = !this.hide2;
+    this.hide3 = !this.hide3;
     
       /*
           Local Wishlist
@@ -148,10 +164,12 @@ export class HomePage implements OnInit {
 
     if(this.countProductsWishlistLocalUpdated===0){
       this.countProductsWishlistLocalUpdated = '';
+      console.log('Entered');
     }
 
-    else if(this.countProductsCartLocalUpdated===0){
+     if(this.countProductsCartLocalUpdated===0){
       this.countProductsCartLocalUpdated = '';
+      console.log('Entered..');
     }
 
 
@@ -224,6 +242,41 @@ export class HomePage implements OnInit {
 
    }
 
+   searchData(makeValue, strTestValue2, strEngineListSelectedValue, year) {
+
+    if (!this.makeValue) {
+      console.log('issue make');
+      this.showToastOnEmptyMake();
+    } 
+    else if (!this.strModelValue) { 
+      this.showToastOnEmptyModel();
+      console.log('issue model');
+    }
+
+    // else if (!this.strEngineValue) {
+    //   this.strEngineValueUpdated = this.strEngineValue;
+    //   this.showToastOnEmptyModel();
+    //   console.log('issue engine' + this.strEngineValueUpdated);
+    // }
+
+    else {
+      console.log('success!!!!!!');
+      this.navCtrl.push(SearchproductsPage,
+        {
+          make: this.makeValue,
+          model: this.strTestValue2,
+          engine:this.strModelValue,
+          year:this.yearValue
+        });
+ 
+      console.log("Sent product make " + this.makeValue);
+      console.log("Sent product model " + this.strModelValue);
+      console.log("Sent product engine " + this.strEngineListSelectedValue);
+      console.log("Sent product year " + this.yearValue);
+       
+    }
+  }
+
 
    toggle() {
     this.visible = !this.visible;
@@ -241,18 +294,18 @@ export class HomePage implements OnInit {
   }
 
 
-   hide(){
-    if(this.hideMe){
-      console.log('Current State' + this.hideMe);
-      this.hideMe=false;
-    }
+  //  hide(){
+  //   if(this.hideMe){
+  //     console.log('Current State' + this.hideMe);
+  //     this.hideMe=false;
+  //   }
   
-    else {
-      console.log('Current State..' + this.hideMe);
-      this.hideMe=true;
-    }
+  //   else {
+  //     console.log('Current State..' + this.hideMe);
+  //     this.hideMe=true;
+  //   }
   
-    }
+  //   }
 
   
 
@@ -307,7 +360,57 @@ export class HomePage implements OnInit {
      
       
   
-addToCart(id, name,image,description,regular_price) {
+//  addProductToCart(id, name,image,description,regular_price) {
+//   if (localStorage.getItem("Userid value") === null) {
+//     let products = [];
+//     if (localStorage.getItem('products')) {
+//       products = JSON.parse(localStorage.getItem('products')); // get product list 
+//     } 
+//     console.log("Added productsList id " + id);
+//     console.log("Added productsList name " + name);
+//     // products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+//     // localStorage.setItem('products', JSON.stringify(products)); 
+//     this.showToastOnAddProductLocal(name);
+//     this.countProductsCartLocalUpdated++;
+
+
+//     this.countClickAddToCart++;
+
+
+    
+//     if(this.countClickAddToCart>1){
+//       console.log('Product cannot be added ');
+//       this.showToastOnAlreadyAddedProduct(name);
+//     }
+
+//     else {
+//       console.log('Product can be added');
+//       products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+//       localStorage.setItem('products', JSON.stringify(products)); 
+//       localStorage.setItem('ProductCount',this.countClick);
+//     }
+
+    
+
+  
+    
+//   }  
+  
+//   else { 
+//     this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
+//           this.obj = JSON.stringify(jsonResponse);
+//           console.log("Sent productsList response " + this.obj);
+//           console.log("Sent productsList id " + id);
+//           this.showToastOnAddProductServer(name);
+//           // this.countProductsCart++;
+//           this.countProductsCartLocalUpdated++;
+
+//         });
+//   }   
+// } 
+
+
+ addProductToCart(id, name,image,description,regular_price) {
   if (localStorage.getItem("Userid value") === null) {
     let products = [];
     if (localStorage.getItem('products')) {
@@ -321,28 +424,23 @@ addToCart(id, name,image,description,regular_price) {
     this.countProductsCartLocalUpdated++;
 
 
-    this.countClick++;
-    if(this.countClick>1){
-     
+    this.countClickAddToCart++;
+
+
+    
+    if(this.countClickAddToCart>1){
       console.log('Product cannot be added ');
-      products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
-      localStorage.setItem('products', JSON.stringify(products)); 
+      this.showToastOnAlreadyAddedProduct(name);
     }
 
     else {
       console.log('Product can be added');
       products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
       localStorage.setItem('products', JSON.stringify(products)); 
+      localStorage.setItem('ProductCount',this.countClick);
     }
 
-    // if(id)
-    // {
-    //     console.log('Product added is same');
-    // }
-
-    // else {
-    //   console.log('Product added is different');
-    // }
+    
 
   
     
@@ -359,8 +457,7 @@ addToCart(id, name,image,description,regular_price) {
 
         });
   }   
-} 
-
+}  
 addToWishList(id, name,image,description,regular_price,x) {
 
   this.visible = !this.visible;
@@ -487,7 +584,7 @@ addToWishList(id, name,image,description,regular_price,x) {
             catId: catId,
           });
   }
-
+ 
   else if(this.searchProductName){
      console.log('failure passed search name' + this.searchProductName);
 
@@ -573,7 +670,7 @@ toggleAccordionVehicle() {
       this.rendererVehicle.setElementStyle(
         this.cardContentVehicle.nativeElement,
         "max-height",
-        "500px"
+        "1500px"
       );
       this.rendererVehicle.setElementStyle(
         this.cardContentVehicle.nativeElement,
@@ -1042,7 +1139,7 @@ async getCategoriesApi() {
   
 
  
-    
+       
    
    
 
@@ -1190,6 +1287,16 @@ async viewCartApi() {
     });   
     toast.present();  
   }  
+
+  showToastOnAlreadyAddedProduct(strProductAdded) {
+    const toast = this.toastController.create({
+      // message: this.testStr,
+      message: 'Product already Added in Local Cart : \n ' + strProductAdded ,
+      duration: 3000,
+      position: "bottom",
+    });   
+    toast.present();  
+  } 
   
 
   showToastOnAddProductServer(strProductAdded) {

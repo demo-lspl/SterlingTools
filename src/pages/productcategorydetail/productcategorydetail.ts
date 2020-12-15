@@ -39,15 +39,15 @@ export class ProductcategorydetailPage implements OnInit{
   strProductCategoryRegularPrice:string;
   strProductGuid:string;
   
-  viewCartList: any = [];
+  viewCartList: any = [];  
   countProducts:number|any;
   buttonIcon: string ;
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
   countProductsCart:number|any|string;
   countProductsCartLocal:number|any|string;
-  countProductsCartLocalUpdated:number = 0;
-  countProductsWishlistLocalUpdated:number = 0;
+  countProductsCartLocalUpdated:number | any = 0;
+  countProductsWishlistLocalUpdated:number  | any= 0;
   countProductsWishList:number =0;
 
 
@@ -123,7 +123,7 @@ addToCart(id, name,image,description,regular_price) {
 
 
    
-  }
+  } 
   
   else { 
     this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
@@ -135,7 +135,7 @@ addToCart(id, name,image,description,regular_price) {
           this.countProductsCartLocalUpdated++;
         });
   }
-}      
+}       
  
 readMore(id) {
   // this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
@@ -176,8 +176,6 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
   console.log("Sent product year " + year);
 
 
-
-
 }
 
 
@@ -198,7 +196,7 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
              this.navCtrl.setRoot(ProductcategoryPage);
             console.log('test!!!');
           }
-      }  
+      }    
   }); 
     // this.showLoadingControllerLaunch();
     this.callProductCategoryDetail();
@@ -206,6 +204,18 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
          /*
           Local Wishlist
       */
+
+     if(this.countProductsWishlistLocalUpdated===0){
+      this.countProductsWishlistLocalUpdated = '';
+      console.log('Entered');
+    }
+
+     if(this.countProductsCartLocalUpdated===0){
+      this.countProductsCartLocalUpdated = '';
+      console.log('Entered..');
+    }
+
+
      var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
      if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
        var arrayLength = productsWishlistarrayFromStorage.length;
@@ -233,14 +243,14 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
       console.log('Local Cart empty ' );
     }
 
-  } 
+  }  
   
   async callProductCategoryDetail() {
         const loader = await this.loadingController.create({
       content: 'Please wait fetching product sub categories!',
     });
     await loader.present();
-    loader.present().then(() => {
+    loader.present().then(() => { 
       this.httpClient.get('http://busybanda.com/sterling-tools/api/get_category_by_id?' +  'id=' +this.dynamicTermId)
       .subscribe((jsonResponse) => {
         
@@ -251,8 +261,8 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
          if (this.productCategoryInformation && this.productCategoryInformation.length) {
           console.log('Particular product details available ' );
           loader.dismiss(); 
-            
-         }  
+             
+         }     
         else 
         {
           this.strData = 'No data available';
@@ -271,50 +281,9 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
         }
       });
     });
-  
   }
 
-  // ionViewCanLeave() {
-  //   return !this.loadingController;
-  // }
-
-  // async callProductCategoryDetail() {
-  //   const loader = await this.loadingController.create({
-  //     content: 'Please wait fetching product sub categories!',
-  //   });
-
-  //   await loader.present();
-  //   loader.present().then(() => {      
-  //     // const service = this.apiProvider.getOrders();   
-  //     // service.subscribe((jsonResponse) => {      
-  //      this.httpClient.get('http://busybanda.com/sterling-tools/api/get_category_by_id?' +  'id=' +this.dynamicTermId).subscribe(jsonResponse => {
-  //     if(jsonResponse){
-  //       this.productCategoryInformation = jsonResponse['result'];
-        
-  //       this.obj = JSON.stringify(jsonResponse);
-  //       console.log('details available '+ this.obj );
-  //       loader.dismiss(); 
-  //     }
-
-  //     const myURL_body = jsonResponse['result'];
-  //     this.strData = myURL_body;
-
-  //     if (this.productCategoryInformation && this.productCategoryInformation.length) {
-  //             console.log('Particular product details available ' );
-                
-  //            }  
-  //           else 
-  //           {
-  //             this.strData = 'No data available';
-  //             console.log('Particular product empty ' + jsonResponse['result']);
-  //           }
-  //     },
-  //       error => { 
-  //         console.log(error);
-  //         this.showToastOnProductError(error);
-  //       });
-  //   });
-  // }
+ 
 
   showToastOnProductError(strProductAdded) {
     const toast = this.toastController.create({
@@ -331,8 +300,8 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
     let loading = this.loadingController.create({
       content: 'Please wait!'
     });
-  
-    loading.present();
+   
+    loading.present();    
     // this.callRegisterApi();
   
     setTimeout(() => {

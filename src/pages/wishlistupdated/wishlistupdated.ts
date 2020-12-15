@@ -43,8 +43,8 @@ export class WishlistupdatedPage implements OnInit {
   buttonIcon: string ;
   countProductsCart:number|any|string;
   countProductsCartLocal:number|any|string;
-  countProductsCartLocalUpdated:number = 0;
-  countProductsWishlistLocalUpdated:number = 0;
+  countProductsCartLocalUpdated:number | any = 0;
+  countProductsWishlistLocalUpdated:number | any = 0;
   countProductsWishList:number =0;
 
   
@@ -66,6 +66,16 @@ export class WishlistupdatedPage implements OnInit {
   }
      
   ngOnInit() {
+
+    if(this.countProductsWishlistLocalUpdated===0){
+      this.countProductsWishlistLocalUpdated = '';
+      console.log('Entered');
+    }
+
+     if(this.countProductsCartLocalUpdated===0){
+      this.countProductsCartLocalUpdated = '';
+      console.log('Entered..');
+    }
 
         /*
           Local Wishlist
@@ -103,8 +113,11 @@ export class WishlistupdatedPage implements OnInit {
       // Checks if can go back before show up the alert
       if(activeView.name === 'WishlistupdatedPage') {
           if (nav.canGoBack()){
+            console.log('Tushar');
+            this.navCtrl.setRoot(HomePage);
           } else {  
-              this.navCtrl.setRoot(HomePage);
+              // this.navCtrl.setRoot(HomePage);
+              console.log('Tushar!!!!!!!!!!');
           }
       }
   });

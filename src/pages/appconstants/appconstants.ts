@@ -22,7 +22,9 @@ export class AppconstantsPage implements OnInit {
 
   gerProductsUrl: 'http://busybanda.com/sterling-tools/api/get_products/';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public data: ApiProvider) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams, 
+              public data: ApiProvider) {
   }
 
 

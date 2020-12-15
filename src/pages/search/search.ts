@@ -33,8 +33,8 @@ export class SearchPage implements OnInit {
   countProductsCart:number|any|string;
   countProductsWishList:number =0;
   countProductsCartLocal:number = 0;
-  countProductsCartLocalUpdated:number = 0;
-  countProductsWishlistLocalUpdated:number = 0;
+  countProductsCartLocalUpdated:number | any = 0;
+  countProductsWishlistLocalUpdated:number | any = 0;
   strResponse:string;
 
 
@@ -59,6 +59,16 @@ export class SearchPage implements OnInit {
 
 
   ngOnInit() {
+
+    if(this.countProductsWishlistLocalUpdated===0){
+      this.countProductsWishlistLocalUpdated = '';
+      console.log('Entered');
+    }
+
+     if(this.countProductsCartLocalUpdated===0){
+      this.countProductsCartLocalUpdated = '';
+      console.log('Entered..');
+    }
 
      /*
           Local Wishlist
@@ -348,7 +358,7 @@ showToastOnAddProductServer(strProductAdded) {
 async getProductsCategoryBySearch() {
   const loader = await this.loadingController.create({
     content: 'Please wait. Loading data!',
-  });
+  });    
 
   await loader.present();
   loader.present().then(() => {               
@@ -358,23 +368,23 @@ async getProductsCategoryBySearch() {
       this.productCategoryInformation = jsonResponse['result'];
       this.obj = JSON.stringify(jsonResponse);
       console.log('details available '+ this.obj );
-      loader.dismiss(); 
-    }
-
+      loader.dismiss();  
+    }    
+ 
     const myURL_body = jsonResponse['result'];
     this.strResponse = myURL_body;
 
-   if(this.strResponse = 'null'){
-    console.log('details available obj empty ' );
-    this.strData = 'No data';
-   }
-    else {
-      console.log('details not available ' );
-    }
+  //  if(this.strResponse = 'null'){
+  //   console.log('details available obj empty ' ); 
+  //   this.strData = 'No data'; 
+  //  }
+  //   else {
+  //     console.log('details not available ' );
+  //   }
     },
-      error => {
+      error => { 
         console.log(error);
-        this.showToastOnProductError(error);
+        //this.showToastOnProductError(error);
       });
   });
 }  

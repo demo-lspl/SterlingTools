@@ -51,8 +51,8 @@ obj;
   countProductsCart:number|any|string;
   countProductsWishList:number =0;
   countProductsCartLocal:number = 0;
-  countProductsCartLocalUpdated:number = 0;
-  countProductsWishlistLocalUpdated:number = 0;
+  countProductsCartLocalUpdated:number | any= 0;
+  countProductsWishlistLocalUpdated:number | any= 0;
 
   
 
@@ -83,7 +83,15 @@ obj;
 
     this.checkNetwork();
     this.viewCartApi();
+    if(this.countProductsWishlistLocalUpdated===0){
+      this.countProductsWishlistLocalUpdated = '';
+      console.log('Entered');
+    }
 
+     if(this.countProductsCartLocalUpdated===0){
+      this.countProductsCartLocalUpdated = '';
+      console.log('Entered..');
+    }
 
      /*
           Local Wishlist

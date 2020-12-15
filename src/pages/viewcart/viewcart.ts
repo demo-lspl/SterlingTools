@@ -98,7 +98,7 @@ export class ViewcartPage implements OnInit{
   strProductDescription:string;
   productTotalPrice:number;
   strValue:number;
-
+ 
 
    
   constructor(public navCtrl: NavController, 
@@ -120,6 +120,23 @@ export class ViewcartPage implements OnInit{
    // this.strData = 'No Products in Cart';
     this.viewCartApi();
     this.showLoadingControllerLaunch();
+
+    // if("ProductId" in localStorage){
+      if (localStorage["products"]) {
+      console.log('Yes');
+    }
+
+      else {
+        console.log('No*****');
+      }
+
+      console.log('Product Count is: ' + localStorage.getItem('ProductCount'));
+
+
+
+
+
+
     if (localStorage.getItem('products')) {
       this.productsLocalCart = JSON.parse(localStorage.getItem('products')); // get product list 
         console.log('****** filled' + localStorage.getItem('products'));
@@ -612,7 +629,7 @@ clearCart()
             this.showToastOnDeletingCart();
             this.viewCartApi();
            // this.doRefresh(event);
-            this.callPage();
+           window.location.reload();
          //this.navCtrl.setRoot(HomePage);
 
         console.log('view cart length' + this.viewCartList.length);
@@ -621,7 +638,7 @@ clearCart()
         //   this.navCtrl.setRoot(HomePage);
         // }
 
-        this.ngOnInit();
+        // this.ngOnInit();
           });
             }
           

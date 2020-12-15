@@ -209,7 +209,7 @@
       </ion-select>
     </ion-item> -->
 
-<!-- <div *ngIf="hideMe"> here your content</div> -->
+    <!-- <div *ngIf="hideMe"> here your content</div> -->
 
 
     <!-- <button ion-button (click)="hideTest()">Make</button>
@@ -218,48 +218,43 @@
     <button ion-button   *ngIf="hideMe2">Year</button> -->
 
 
-    <ion-item  >
+    <ion-item>
       <ion-label>Make</ion-label>
-      <ion-select  (ionChange)="makeDropDownValue(makeValue)" [(ngModel)]="makeValue"   placeholder = "Make" >
-        <ion-option *ngFor="let makeKey of makeList" >{{makeKey}}</ion-option>
+      <ion-select (ionChange)="makeDropDownValue(makeValue)" [(ngModel)]="makeValue" placeholder="Make">
+        <ion-option *ngFor="let makeKey of makeList">{{makeKey}}</ion-option>
       </ion-select>
     </ion-item>
 
-    <ion-item    *ngIf="hideMe">
+    <ion-item *ngIf="hideMe">
       <ion-label>Model</ion-label>
-      <ion-select (ionChange)="getOuterName()"  [(ngModel)]="companyName"   placeholder = "Model"   >
-        <ion-option *ngFor="let modelKey of modelList" [value] = "modelKey" (ionSelect)="triggerMeModel(modelKey)" placeholder = "Model value">{{modelKey}}</ion-option>
+      <ion-select (ionChange)="getOuterName()" [(ngModel)]="companyName" placeholder="Model">
+        <ion-option *ngFor="let modelKey of modelList" [value]="modelKey" (ionSelect)="triggerMeModel(modelKey)"
+          placeholder="Model value">{{modelKey}}</ion-option>
       </ion-select>
     </ion-item>
 
-    <ion-item    *ngIf="hideMe1">
+    <ion-item *ngIf="hideMe1">
       <ion-label>Engine</ion-label>
-      <ion-select (ionChange)="getOuterName1()"  [(ngModel)]="engineValue"   placeholder = "Engine"   >
-        <ion-option *ngFor="let engineKey of engineList" [value] = "engineKey" (ionSelect)="triggerMeEngine(engineKey)">{{engineKey}}</ion-option> 
+      <ion-select (ionChange)="getOuterName1()" [(ngModel)]="engineValue" placeholder="Engine">
+        <ion-option *ngFor="let engineKey of engineList" [value]="engineKey" (ionSelect)="triggerMeEngine(engineKey)">
+          {{engineKey}}</ion-option>
       </ion-select>
     </ion-item>
 
     <div class="size" style="justify-content: center">
       <ion-item *ngIf="hideMe2">
         <ion-label>Year</ion-label>
-        <ion-select
-          value="sortpopular"
-          okText="Ok"
-          cancelText="Cancel"
-          [(ngModel)]="yearValue"
-          (ionChange)="getOuterName2()"
-         >
-          <ion-option *ngFor="let yearKey of yearList"  >{{yearKey}}</ion-option>
+        <ion-select value="sortpopular" okText="Ok" cancelText="Cancel" [(ngModel)]="yearValue"
+          (ionChange)="getOuterName2()">
+          <ion-option *ngFor="let yearKey of yearList">{{yearKey}}</ion-option>
         </ion-select>
-  
-  
       </ion-item>
-    </div> 
-    <button ion-button full round (click)="searchData(makeValue)" >Search </button>
+    </div>
+    <button ion-button full round (click)="searchData(makeValue)">Search </button>
 
 
 
-<!-- <ion-item  (click)="hideTest()">
+    <!-- <ion-item  (click)="hideTest()">
   <ion-label>Make</ion-label>
   <ion-select  (ionChange)="makeDropDownValue(makeValue)" [(ngModel)]="makeValue"   placeholder = "Make" (click)="ngIfCtrl()">
     <ion-option *ngFor="let makeKey of makeList" >{{makeKey}}</ion-option>
@@ -274,13 +269,13 @@
 </ion-item> -->
 
 
-  <!-- <ion-item *ngIf="hide">
+    <!-- <ion-item *ngIf="hide">
     Test
   </ion-item> -->
 
 
 
-<!-- <ion-item  >
+    <!-- <ion-item  >
   <ion-label>Engine</ion-label>
   <ion-select (ionChange)="getOuterName()"  [(ngModel)]="engineValue"   placeholder = "Engine" (click)="ngIfCtrl1()">
     <ion-option *ngFor="let engineKey of engineList" [value] = "engineKey" (ionSelect)="triggerMeEngine(engineKey)">{{engineKey}}</ion-option>  </ion-select>
@@ -290,6 +285,6 @@
 
 
 
- 
+
 
 </ion-content>

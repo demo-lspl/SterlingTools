@@ -24,7 +24,6 @@ export class SearchproductsupdatedPage implements OnInit{
   strModel: string;  
   strEngine: string;  
   strYear: string;  
-  featuredProductsList: any = [];  
   strData: string;
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
@@ -32,12 +31,11 @@ export class SearchproductsupdatedPage implements OnInit{
   countProductsCart:number|any|string;
   countProductsWishList:number =0;
   countProductsCartLocal:number = 0;
-  countProductsCartLocalUpdated:number = 0;
-  countProductsWishlistLocalUpdated:number = 0;
+  countProductsCartLocalUpdated:number | any = 0;
+  countProductsWishlistLocalUpdated :number | any = 0;
   viewCartList:any = [];
   strInputtedValue:string;
   productsListInformation: any = [];
-  productsListInformation1: any = [];
   strProductName: string;
   strProductMake: string;
   strProductModel:string;   
@@ -97,6 +95,16 @@ export class SearchproductsupdatedPage implements OnInit{
 
   ngOnInit() {
 
+    if(this.countProductsWishlistLocalUpdated===0){
+      this.countProductsWishlistLocalUpdated = '';
+      console.log('Entered');
+    }
+
+     if(this.countProductsCartLocalUpdated===0){
+      this.countProductsCartLocalUpdated = '';
+      console.log('Entered..');
+    }
+
     this.platform.registerBackButtonAction(() => {
       // Catches the active view
       let nav = this.app.getActiveNavs()[0];
@@ -126,7 +134,7 @@ export class SearchproductsupdatedPage implements OnInit{
   }
 
 
-  productDetailPage(id, name,image,regular_price,description,make,model,year,yearFrom) {
+  productDetailPage(id, name,image,regular_price,description,make,model,yearStart,yearEnd) {
     this.navCtrl.push(Itemdetaillistpage1Page, {
       id: id,
       name: name,
@@ -134,11 +142,10 @@ export class SearchproductsupdatedPage implements OnInit{
       regular_price:regular_price,
       description:description,
       make:make,
-      model:model,
-      year:year,
-      yearFrom:yearFrom
-     
-    });
+      model:model, 
+      yearStart:yearStart,
+      yearEnd:yearEnd
+     });
     console.log("Sent product id " + id);
     console.log("Sent product name " + name);
     console.log("Sent product image " + image);
@@ -146,8 +153,8 @@ export class SearchproductsupdatedPage implements OnInit{
     console.log("Sent product description " + description);
     console.log("Sent product make " + make);
     console.log("Sent product model " + model);
-    console.log("Sent product year " + year);
-    console.log("Sent product year " + yearFrom);
+    console.log("Sent product year start" + yearStart);
+    console.log("Sent product year end" + yearEnd);
 
    
   
@@ -237,7 +244,7 @@ export class SearchproductsupdatedPage implements OnInit{
           },
             error => {
               console.log(error);
-              this.showToastOnProductError(error);
+              //this.showToastOnProductError(error);
             });
         });
       }
@@ -249,7 +256,7 @@ export class SearchproductsupdatedPage implements OnInit{
           message: 'Error ' + strProductAdded ,
           duration: 3000,
           position: "bottom",
-        });   
+        });    
         toast.present();  
       } 
       

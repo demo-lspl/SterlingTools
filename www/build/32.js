@@ -1,14 +1,14 @@
 webpackJsonp([32],{
 
-/***/ 762:
+/***/ 765:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppconstantsPageModule", function() { return AppconstantsPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CategorydetailPageModule", function() { return CategorydetailPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__appconstants__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__categorydetail__ = __webpack_require__(184);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,20 +18,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-let AppconstantsPageModule = class AppconstantsPageModule {
+let CategorydetailPageModule = class CategorydetailPageModule {
 };
-AppconstantsPageModule = __decorate([
+CategorydetailPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__appconstants__["a" /* AppconstantsPage */],
+            __WEBPACK_IMPORTED_MODULE_2__categorydetail__["a" /* CategorydetailPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__appconstants__["a" /* AppconstantsPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__categorydetail__["a" /* CategorydetailPage */]),
         ],
     })
-], AppconstantsPageModule);
+], CategorydetailPageModule);
 
-//# sourceMappingURL=appconstants.module.js.map
+//# sourceMappingURL=categorydetail.module.js.map
 
 /***/ })
 

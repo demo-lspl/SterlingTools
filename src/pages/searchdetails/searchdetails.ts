@@ -3,6 +3,7 @@ import { AlertController, App, IonicPage, LoadingController, NavController, NavP
 import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
 import { HomePage } from '../home/home';
 import { HttpClient } from '@angular/common/http';
+import { SearchPage } from '../search/search';
 
 
 
@@ -27,8 +28,8 @@ export class SearchdetailsPage implements OnInit{
   networkListener: PluginListenerHandle; 
   currentNumber :any = 1;
   countProductsCartLocal:number|any|string;
-  countProductsCartLocalUpdated:number = 0;
-  countProductsWishlistLocalUpdated:number = 0;
+  countProductsCartLocalUpdated:number | any = 0;
+  countProductsWishlistLocalUpdated:number | any= 0;
   countProductsWishList:number =0;
   countProductsCart:number|any|string;
   obj;
@@ -56,7 +57,7 @@ export class SearchdetailsPage implements OnInit{
   }
 
 ngOnInit(){
-
+  this.showLoaderPageLoad();
   this.checkNetwork();
   this.platform.registerBackButtonAction(() => {
     // Catches the active view
@@ -65,13 +66,24 @@ ngOnInit(){
     // Checks if can go back before show up the alert
     if(activeView.name === 'SearchdetailsPage') {
         if (nav.canGoBack()){  
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(SearchPage);
             console.log('test');
         } else {
-          console.log('test-------');
+          console.log('test-------');  
         }
     }
 }); 
+
+
+if(this.countProductsWishlistLocalUpdated===0){
+  this.countProductsWishlistLocalUpdated = '';
+  console.log('Entered');
+}
+
+ if(this.countProductsCartLocalUpdated===0){
+  this.countProductsCartLocalUpdated = '';
+  console.log('Entered..');
+}
    /*
           Local Wishlist
       */
@@ -256,7 +268,7 @@ public async checkNetwork() {
       this.networkStatus = await Network.getStatus();
       // this.showAlert();
       console.log('Network status available', this.networkStatus);
-      this.showLoaderPageLoad();
+      // this.showLoaderPageLoad();
     }
 }
 

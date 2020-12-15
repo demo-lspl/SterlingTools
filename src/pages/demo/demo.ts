@@ -38,7 +38,7 @@ export class DemoPage implements OnInit{
   passwordType: string = 'password';
   passwordIcon: string = 'eye-off';
   public showPassword: boolean = false;
-
+  checkStatus: boolean;
 
 
   
@@ -54,6 +54,8 @@ export class DemoPage implements OnInit{
               public  app: App,
 
     ) {   
+
+      this.checkStatus = this.localStorageItem();
   }
 
   ionViewDidLoad() {
@@ -65,6 +67,16 @@ export class DemoPage implements OnInit{
         //this.navCtrl.push(HomePage);
         console.log('ionViewDidLoad DemoPage length not 0');
     }
+  }
+
+  public localStorageItem(): boolean {
+    if (localStorage.getItem("isSigned") === "true") {
+      console.log('isSigned true');
+      return true
+    } else {
+      console.log('isSigned false');
+      return false;
+    };
   }
 
   async loginBtnClick() {
@@ -204,6 +216,9 @@ clearpassword() {
       {
         console.log('Json Response success ' + this.obj)
         console.log('Json Response status ' + this.obj.status)
+        window.location.reload();
+
+
         this.navController.setRoot(HomePage);
       }
 

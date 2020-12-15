@@ -105,10 +105,12 @@ export class ItemdetailPage implements OnInit {
 
     if(this.countProductsWishlistLocalUpdated===0){
       this.countProductsWishlistLocalUpdated = '';
+      console.log('Entered');
     }
 
-    else if(this.countProductsCartLocalUpdated===0){
+     if(this.countProductsCartLocalUpdated===0){
       this.countProductsCartLocalUpdated = '';
+      console.log('Entered..');
     }
 
           /*

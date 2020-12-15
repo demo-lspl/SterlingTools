@@ -40,8 +40,8 @@ export class ProductcategoryPage implements OnInit{
   networkListener: PluginListenerHandle; 
   countProductsCart:number|any|string;
   countProductsCartLocal:number|any|string;
-  countProductsCartLocalUpdated:number = 0;
-  countProductsWishlistLocalUpdated:number = 0;
+  countProductsCartLocalUpdated:number | any = 0;
+  countProductsWishlistLocalUpdated:number | any = 0;
   countProductsWishList:number =0;
   strResponse:string;
   strDataServer:string;
@@ -82,6 +82,16 @@ export class ProductcategoryPage implements OnInit{
           }
       }
   }); 
+
+  if(this.countProductsWishlistLocalUpdated===0){
+    this.countProductsWishlistLocalUpdated = '';
+    console.log('Entered');
+  }
+
+   if(this.countProductsCartLocalUpdated===0){
+    this.countProductsCartLocalUpdated = '';
+    console.log('Entered..');
+  }
 
        /*
           Local Wishlist
@@ -226,7 +236,7 @@ addToCart(id, name,image,description,regular_price) {
       },
         error => { 
           console.log(error);
-          this.showToastOnProductError(error);
+          //this.showToastOnProductError(error);
         });
     });
   }

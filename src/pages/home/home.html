@@ -189,7 +189,7 @@
   <ion-item class="custom">
     
     <ion-select  
-    (ionChange)="getOuterName()" 
+   
     [(ngModel)]="companyName" 
     placeholder = "All Products"
     okText="Ok"
@@ -710,7 +710,7 @@
                   <div class="card-btn">
                     <p style="width: 100%;" float-left>
                       <button ion-button full class="bg-thime btn-round btn-text"
-                        (click)="addToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)">
+                        (click)="addProductToCart(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)">
                         Add To Cart
                       </button>
                     </p>

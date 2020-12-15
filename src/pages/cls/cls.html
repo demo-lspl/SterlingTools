@@ -8,23 +8,23 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle style="display: block !important">
-      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"/>
-    </ion-icon>
+      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png" />
+      </ion-icon>
     </button>
     <ion-title>Pagination
       <span float-right>
         <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
           <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
-        </ion-icon> 
-        
+        </ion-icon>
+
         <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
           <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
-        </ion-icon> 
+        </ion-icon>
       </span>
-     
+
     </ion-title>
   </ion-navbar>
-</ion-header> 
+</ion-header>
 
 
 <ion-content padding>
@@ -37,34 +37,88 @@
   </ng-template>
 
   <ng-template #noCard>
-    
+    <ion-item>
+      <ion-label>SORT BY </ion-label>
+      <ion-select placeholder="Please select" value="Name" okText="Okay" cancelText="Dismiss"
+        (ionChange)="sortDropDownValue(categoriesList)" style="width: 200px;padding: 0px 10px;">
+        <ion-option value="Name">Name</ion-option>
+      </ion-select>
+    </ion-item>
+   
+    <ion-grid class="product-grid">
+      <ion-row class="rowgrid" text-center>
+        <ion-col col-6 class="columngrid" *ngFor="let categoryItem of categoriesList |filter:searchText | paginate: {itemsPerPage: 10,currentPage: p}">
+          <ion-card>
+            <ion-card-header style="justify-content: left">
+              <div class="img-box">
+                <img [src]="categoryItem.image" style="width:200px;height:80px ;"
+                  (click)="productDetailPage(categoryItem.id,categoryItem.name,categoryItem.image,categoryItem.regular_price,categoryItem.description,categoryItem.attribute.pa_make,categoryItem.attribute.pa_model,categoryItem.attribute.pa_year)">
+              </div>
+              <ion-icon name="md-heart" class="text-light icon"></ion-icon>
+            </ion-card-header>
+            <ion-card-content>
 
-    <ion-card class="maincard">
-      <div class="list" *ngFor="let categoryItem of categoriesList |filter:searchText | paginate: {
-        itemsPerPage: 10,
-        currentPage: p
-         }">
-      <ion-card class="cards">
-      
-
-          <div class="columnback">
-            <ion-img class="lefticon" src="assets/assets/icon/cardnumber.png"></ion-img>
-            <ion-label class="lefttext"><b>Name:</b></ion-label>
-            <ion-label style="font-size: 10px;">{{categoryItem.name}}</ion-label>
-          </div>
-
-          
-      </ion-card>
-
-    </div>
-    </ion-card>
+              <div>
+                <h5 style="font-size: 11px;text-align: -webkit-center;"> {{categoryItem.name}}</h5>
+              </div>
+              <div>
 
 
+                <div *ngIf="categoryItem.regular_price">
+                  <!--If "product" exists-->
+                  <h5 style="font-size: 10px;text-align: center;color: red;margin-top: 13px;"> <span class="priceicon"
+                      style="color: red;">Price : </span> <span class="priceicon">$</span>
+                    {{categoryItem.regular_price}} </h5>
+                  <div class="rateing">
+                    <div class="card-btn">
+                      <p style="width: 100%;font-size: 10px;" float-left>
+                        <button ion-button full class="bg-thime btn-round btn-text" 
+                         
+                          (click)="addToCart(categoryItem.id,categoryItem.name,categoryItem.image,categoryItem.description,categoryItem.regular_price)">
+                          Add To Cart
+                        </button>
+                      </p>
+                    </div> 
+                  </div>
+                </div>
+
+                <div *ngIf="!categoryItem.regular_price">
+                  <!--If "product" not exists-->
+                  <h5 style="font-size: 10px;text-align: center;color: red;margin-top: 13px;"> Price Not Available</h5>
+                  <div class="rateing">
+                    <div class="card-btn">
+                      <p style="width: 100%;font-size: 10px;" float-left>
+                        <button ion-button full class="bg-thime btn-round btn-text" 
+                        
+                          (click)="productDetailPage(categoryItem.id,categoryItem.name,categoryItem.image,categoryItem.regular_price,categoryItem.description,categoryItem.attribute.pa_make,categoryItem.attribute.pa_model,categoryItem.attribute.pa_year)">
+                          Read More
+                        </button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
 
-</ng-template>
-<pagination-controls (pageChange)="p = $event" previousLabel="Prev" nextLabel="Next"></pagination-controls>
+
+
+
+
+
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+
+
+
+  </ng-template>
+  <pagination-controls (pageChange)="p = $event" previousLabel="Prev" nextLabel="Next"></pagination-controls>
 
 
 </ion-content>

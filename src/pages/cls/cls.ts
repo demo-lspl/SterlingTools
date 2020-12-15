@@ -24,14 +24,14 @@ export class ClsPage implements OnInit{
 
 
   constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
+              public navParams: NavParams,   
               public loadingController: LoadingController,
               public httpClient: HttpClient) {
   }
-
-  ngOnInit(){
-    this.getCategoriesApi();
-  }
+    
+  ngOnInit(){   
+    this.getCategoriesApi();    
+  }   
 
   async getCategoriesApi() {
     const loader = await this.loadingController.create({

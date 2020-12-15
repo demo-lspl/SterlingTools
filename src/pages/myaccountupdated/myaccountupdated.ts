@@ -56,8 +56,8 @@ export class MyaccountupdatedPage implements OnInit {
   networkStatus: NetworkStatus;
   networkListener: PluginListenerHandle; 
   countProductsCartLocal:number|any|string;
-  countProductsCartLocalUpdated:number = 0;
-  countProductsWishlistLocalUpdated:number = 0;
+  countProductsCartLocalUpdated:number | any= 0;
+  countProductsWishlistLocalUpdated:number | any= 0;
   countProductsWishList:number =0;
   countProductsCart:number|any|string;
 
@@ -88,6 +88,16 @@ export class MyaccountupdatedPage implements OnInit {
     this.showLoaderPageLoad();
     this.getProfileApi();  
     this.checkNetwork();
+
+    if(this.countProductsWishlistLocalUpdated===0){
+      this.countProductsWishlistLocalUpdated = '';
+      console.log('Entered');
+    }
+
+     if(this.countProductsCartLocalUpdated===0){
+      this.countProductsCartLocalUpdated = '';
+      console.log('Entered..');
+    }
    
   /*
           Local Wishlist
@@ -202,7 +212,7 @@ export class MyaccountupdatedPage implements OnInit {
       },
         error => { 
           console.log(error);
-          this.showToastOnProductError(error);
+          //this.showToastOnProductError(error);
         });
     });
   }

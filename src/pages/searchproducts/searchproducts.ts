@@ -28,7 +28,7 @@ export class SearchproductsPage implements OnInit{
   obj;
   strMake: string;  
   strModel: string;  
-  strEngine: string;  
+  strEngine: string;    
   strYear: string;  
   
   featuredProductsList: any = [];  
@@ -39,8 +39,8 @@ export class SearchproductsPage implements OnInit{
   countProductsCart:number|any|string;
   countProductsWishList:number =0;
   countProductsCartLocal:number = 0;
-  countProductsCartLocalUpdated:number = 0;
-  countProductsWishlistLocalUpdated:number = 0;
+  countProductsCartLocalUpdated:number|any = 0;
+  countProductsWishlistLocalUpdated:number | any = 0;
   strResponse:string;
 
   
@@ -96,6 +96,16 @@ export class SearchproductsPage implements OnInit{
   ngOnInit(){
 
     this.getProductsSearchApi();
+
+    if(this.countProductsWishlistLocalUpdated===0){
+      this.countProductsWishlistLocalUpdated = '';
+      console.log('Entered');
+    }
+
+     if(this.countProductsCartLocalUpdated===0){
+      this.countProductsCartLocalUpdated = '';
+      console.log('Entered..');
+    }
 
       /*
           Local Wishlist
@@ -364,7 +374,7 @@ export class SearchproductsPage implements OnInit{
       if(jsonResponse){
         this.featuredProductsList = jsonResponse['result'];
         this.obj = JSON.stringify(jsonResponse);
-        console.log('details available '+ this.obj );
+        console.log('details available '+ this.obj );  
         loader.dismiss(); 
       }
 

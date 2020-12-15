@@ -20,8 +20,8 @@ export class Itemdetaillistpage1Page {
   strProductId: string;
   strProductMake: string;
   strProductModel: string;
-  strProductYear: string;
-  strProductYearFrom: string;
+  strProductYearStart: string;
+  strProductYearEnd: string;
 
   strProductStock: string;
 
@@ -59,8 +59,8 @@ export class Itemdetaillistpage1Page {
     this.strProductDescription = navParams.get('description');
     this.strProductMake = navParams.get('make');
     this.strProductModel = navParams.get('model');
-    this.strProductYear = navParams.get('year');
-    this.strProductYearFrom = navParams.get('yearFrom');
+    this.strProductYearStart = navParams.get('yearStart');
+    this.strProductYearEnd = navParams.get('yearEnd');
     this.strProductStock = navParams.get('stock');
 
 
@@ -95,7 +95,7 @@ export class Itemdetaillistpage1Page {
 
     if (this.strProductMake === '') {
       this.strProductMake = 'No Product Make   ';
-    }
+    } 
 
     else {
       this.strProductMake = 'Product Make: ' + this.strProductMake;
@@ -108,20 +108,20 @@ export class Itemdetaillistpage1Page {
     else {
       this.strProductModel = 'Product Model: ' + this.strProductModel;
     }
-    if (this.strProductYear === '') {
-      this.strProductYear = 'No Product Year   ';
+    if (this.strProductYearStart === '') {
+      this.strProductYearStart = 'No Product Year Start  ';
     }
 
     else {
-      this.strProductYear = 'Product Year Start: ' + this.strProductYear;
+      this.strProductYearStart = 'Product Year Start: ' + this.strProductYearStart;
     }
 
-    if (this.strProductYearFrom === '') {
-      this.strProductYearFrom = 'No Product Year from   ';
+    if (this.strProductYearEnd === '') {
+      this.strProductYearEnd = 'No Product Year from   ';
     }
 
     else {
-      this.strProductYearFrom = 'Product Year End: ' + this.strProductYearFrom;
+      this.strProductYearEnd = 'Product Year End: ' + this.strProductYearEnd;
     }
 
     // if(this.strProductStock === ''){

@@ -168,6 +168,8 @@ export class Home1Page implements OnInit {
     this.strModelValue = value;
     console.log("selected strTestValue1", this.strModelValue);
     this.getEngineApi(this.makeValue, this.strModelValue);
+
+    // this.companyName = 'Model value';
   }
 
   triggerMeEngine(value: string): void {
@@ -512,20 +514,22 @@ export class Home1Page implements OnInit {
     
 
   getOuterName(event){
-    console.log("selected value  "+ this.companyName);
+    console.log("selected value getOuterName "+ this.companyName);
     console.log('Model clicked');
     this.hideMe1 = !  this.hideMe1;
+
+    this.companyName = 'Default value' + '';
  }
  
  getOuterName1(event){
-  console.log("selected value  "+ this.companyName1);
+  console.log("selected value  getOuterName1"+ this.companyName1);
   console.log('Engine clicked');
   this.hideMe2 = !  this.hideMe2;
 
    
 }
 getOuterName2(event){
-  console.log("selected value  "+ this.companyName);
+  console.log("selected value  getOuterName2"+ this.companyName);
   console.log('Year clicked');
   this.hideMe3 = !  this.hideMe2;
 }
