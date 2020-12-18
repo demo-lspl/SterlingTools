@@ -95,6 +95,8 @@ export class SearchproductsupdatedPage implements OnInit{
 
   ngOnInit() {
 
+    this.checkNetwork();
+
     if(this.countProductsWishlistLocalUpdated===0){
       this.countProductsWishlistLocalUpdated = '';
       console.log('Entered');
@@ -104,6 +106,33 @@ export class SearchproductsupdatedPage implements OnInit{
       this.countProductsCartLocalUpdated = '';
       console.log('Entered..');
     }
+
+    var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
+    if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
+     var arrayLength = productsWishlistarrayFromStorage.length;
+     this.countProductsWishList = arrayLength;
+     this.countProductsWishlistLocalUpdated = this.countProductsWishList;
+     console.log('Local Wishlist filled ' + this.countProductsWishlistLocalUpdated);
+
+   }        
+
+   else {
+     console.log('Local Wishlist empty ' );
+   }
+   /*
+       Local Cart
+   */
+  var productsCartarrayFromStorage = JSON.parse(localStorage.getItem('products'));
+  if (productsCartarrayFromStorage != null && productsCartarrayFromStorage.length > 0) {
+    var arrayLength1 = productsCartarrayFromStorage.length;
+    this.countProductsCart = arrayLength1;
+    this.countProductsCartLocalUpdated = this.countProductsCart;
+    console.log('Local Cart filled ' + this.countProductsCartLocalUpdated);
+  }
+
+  else {
+    console.log('Local Cart empty ' );
+  }
 
     this.platform.registerBackButtonAction(() => {
       // Catches the active view
@@ -271,7 +300,118 @@ export class SearchproductsupdatedPage implements OnInit{
           console.log('Async operation has ended');
           event.complete();
         }, 500);
-      } 
+      }  
 
+      addToWishList(id, name,image,description,regular_price,x) {
+
+      //  this.visible = !this.visible;
+        // this.countClick++;
+      
+        //   if(this.countClick>1){
+        //     console.log('Clicked More than one');
+        //     this.showToastOnWishlist();
+        //   }
+        //   else {
+        //   }
+      
+        //x.classList.toggle("fa-thumbs-down");
+      
+       // document.getElementById("myDIV").classList.add("mystyle");
+      
+        
+        let productsWishlist = [];
+        if (localStorage.getItem('productsWishlist')) {
+          productsWishlist = JSON.parse(localStorage.getItem('productsWishlist')); // get product list 
+        } 
+        console.log("Sent productsList id " + id);
+        console.log("Sent productsList name " + name);
+        productsWishlist.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+        localStorage.setItem('productsWishlist', JSON.stringify(productsWishlist)); 
+      //  this.buttonIcon = "home";
+        this.showToastOnAddProductWishlist(name);
+        this.countProductsWishlistLocalUpdated++;
+        if (typeof(Storage) !== "undefined") {
+          // Code for localStorage/sessionStorage.
+          console.log('Code for localStorage/sessionStorage.')
+        } else {
+          // Sorry! No Web Storage support..
+          console.log('Sorry! No Web Storage support..')
+        }
+      } 
+      showToastOnAddProductWishlist(strProductAdded) {
+        const toast = this.toastController.create({
+          // message: this.testStr,
+          message: 'Product Added in Wishlist : \n ' + strProductAdded + '\n' ,
+          duration: 1000,
+          position: "bottom",
+        });   
+        toast.present();  
+      }  
+
+      public async checkNetwork() {
+        const { Network } = Plugins;
+          this.networkListener = Network.addListener(
+            'networkStatusChange',
+            (status) => {
+              console.log('Network status HomePage here', status);
+              this.networkStatus = status;
+            } 
+          );
+      
+          if ((await Network.getStatus()).connectionType === 'none') {
+            this.showNetworkAlert();
+            console.log('Network status not available', this.networkStatus);
+          } else {
+            this.networkStatus = await Network.getStatus();
+            // this.showAlert();
+            console.log('Network status available', this.networkStatus);
+            //this.showLoaderPageLoad();
+          }
+        
+      }
+      
+      
+      private async showNetworkAlert(): Promise<void> {
+        // omitted;
+        const alert = await this.alertController.create({
+          title: 'Network Issues!',
+          message: 'There are issues in network connectivity',
+      
+          buttons: [
+            {
+              text: 'Ok',
+              handler: (ok) => {
+                console.log('Confirm Ok');
+                // resolve('ok');
+              },
+            },
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: (cancel) => {
+                console.log('Confirm Cancel');
+                alert.dismiss();
+                // resolve('cancel');
+              },
+            },
+          ],
+        });
+      
+        alert.present();
+      }
+
+      showLoaderPageLoad() {
+        let loading = this.loadingController.create({
+          content: 'Please wait loading Orders!'
+        });
+      
+        loading.present();
+      
+      
+        setTimeout(() => {
+          loading.dismiss();
+        }, 1700);
+      }
 
 }

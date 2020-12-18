@@ -64,6 +64,8 @@ export class HomePage implements OnInit {
   countProductsCartLocal:number = 0;
   countProductsCartLocalUpdated:number | any = 0;
   countProductsWishlistLocalUpdated:number | any = 0;
+  private tutorialHidden: boolean = true;
+
      
         
   count:string|any;
@@ -241,6 +243,8 @@ export class HomePage implements OnInit {
   });  
 
    }
+
+   
 
    searchData(makeValue, strTestValue2, strEngineListSelectedValue, year) {
 
@@ -428,17 +432,17 @@ export class HomePage implements OnInit {
 
 
     
-    if(this.countClickAddToCart>1){
-      console.log('Product cannot be added ');
-      this.showToastOnAlreadyAddedProduct(name);
-    }
+    // if(this.countClickAddToCart>1){
+    //   console.log('Product cannot be added ');
+    //   this.showToastOnAlreadyAddedProduct(name);
+    // }
 
-    else {
-      console.log('Product can be added');
-      products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
-      localStorage.setItem('products', JSON.stringify(products)); 
-      localStorage.setItem('ProductCount',this.countClick);
-    }
+    // else {
+    //   console.log('Product can be added');
+    //   products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+    //   localStorage.setItem('products', JSON.stringify(products)); 
+    //   localStorage.setItem('ProductCount',this.countClick);
+    // }
 
     
 
@@ -754,7 +758,7 @@ toggleAccordionCategory() {
       if(jsonResponse){
         this.featuredProductsList = jsonResponse['result'];
         this.obj = JSON.stringify(jsonResponse);
-        console.log('details available '+ this.obj );
+     //   console.log('details available '+ this.obj );
         loader.dismiss(); 
       }  
         
@@ -814,7 +818,7 @@ async getAllFeaturedProductsCategories() {
     if(jsonResponse){
       this.featuredProductCategoryList = jsonResponse['result'];
       this.obj = JSON.stringify(jsonResponse);
-      console.log('details available '+ this.obj );
+     // console.log('details available '+ this.obj );
       // loader.dismiss(); 
     }
 

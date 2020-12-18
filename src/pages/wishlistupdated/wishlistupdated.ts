@@ -113,11 +113,9 @@ export class WishlistupdatedPage implements OnInit {
       // Checks if can go back before show up the alert
       if(activeView.name === 'WishlistupdatedPage') {
           if (nav.canGoBack()){
-            console.log('Tushar');
             this.navCtrl.setRoot(HomePage);
           } else {  
               // this.navCtrl.setRoot(HomePage);
-              console.log('Tushar!!!!!!!!!!');
           }
       }
   });

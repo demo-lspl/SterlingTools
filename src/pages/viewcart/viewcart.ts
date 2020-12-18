@@ -611,7 +611,7 @@ clearCart()
       enableBackdropDismiss: false,
       
   
-      buttons: [ 
+      buttons: [  
         {
           cssClass: 'my-custom-class',
           text: 'Ok',

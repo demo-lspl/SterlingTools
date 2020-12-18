@@ -218,9 +218,9 @@
     <button ion-button   *ngIf="hideMe2">Year</button> -->
 
 
-    <ion-item>
+    <ion-item >
       <ion-label>Make</ion-label>
-      <ion-select (ionChange)="makeDropDownValue(makeValue)" [(ngModel)]="makeValue" placeholder="Make">
+      <ion-select (ionChange)="makeDropDownValue(makeValue)" [(ngModel)]="makeValue" placeholder="Select One">
         <ion-option *ngFor="let makeKey of makeList">{{makeKey}}</ion-option>
       </ion-select>
     </ion-item>
@@ -252,6 +252,31 @@
     </div>
     <button ion-button full round (click)="searchData(makeValue)">Search </button>
 
+
+    <div *ngIf="alive">alive</div>
+    <div *ngIf="!alive">dead</div>
+    <button ion-button (click)="alive = !alive">flip</button>
+
+
+    <!-- <button ion-button (click)="hideMeFirst()">Hide Div</button> -->
+    <!-- <button ion-button (click)="clickfirst()">Make</button>
+<div *ngIf="hideMeFirstValue"> here your content</div> -->
+
+    <!-- <ion-item >
+      <ion-label>Select value</ion-label>
+      <ion-select placeholder="Select One"  >
+        <ion-option value="f">Test</ion-option>
+        <ion-option value="m">Test</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item (click)="clickfirst()">
+      <ion-label>Select value</ion-label>
+      <ion-select placeholder="Select One" *ngIf="hideMe2">
+        <ion-option value="f">Test</ion-option>
+        <ion-option value="m">Test</ion-option>
+      </ion-select>
+    </ion-item> -->
 
 
     <!-- <ion-item  (click)="hideTest()">

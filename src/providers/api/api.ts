@@ -44,7 +44,7 @@ export class ApiProvider {
     return this.httpClient.get('http://busybanda.com/sterling-tools/api/get_products/')
     .pipe(map((res: any) => this.httpClientFetch = res.result));
   }
-    
+      
 
   getOrders(){ 
     this.showViewOrderLoader();

@@ -160,7 +160,7 @@ export class Myorder_2Page implements OnInit {
          // this.showToastOnProductError(error);
         });
     });
-  }
+  } 
 
   
   wishlistPage() {

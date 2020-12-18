@@ -43,7 +43,7 @@
               <img [src]="featuredProducts.image" style="width:200px;height:80px ;"
                 (click)="productDetailPage(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price,featuredProducts.attribute.pa_make,featuredProducts.attribute.pa_model,featuredProducts.attribute.pa_year,featuredProducts.attribute.pa_yearfrom)">
             </div>
-            <ion-icon name="md-heart" class="text-light icon"
+            <ion-icon name="md-heart" class="text-light icon" style="margin-top: 10px;"
               (click)="addToWishList(featuredProducts.id,featuredProducts.name,featuredProducts.image,featuredProducts.description,featuredProducts.regular_price)">
             </ion-icon>
           </ion-card-header>

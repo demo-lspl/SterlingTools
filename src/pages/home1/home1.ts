@@ -2,7 +2,7 @@
 import { DemoPage } from './../demo/demo';
 import { ApiProvider } from './../../providers/api/api';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NavController, ModalController, ToastController, IonicPage, LoadingController, Select } from 'ionic-angular';
+import { NavController, ModalController, ToastController, IonicPage, LoadingController, Select, AlertController } from 'ionic-angular';
 
 import { CategoryPage } from '../category/category';
 import { SearchPage } from '../search/search';
@@ -109,14 +109,19 @@ export class Home1Page implements OnInit {
   hideMe1;
   hideMe2;
   hideMe3;
-  
+  hideMeFirstValue:boolean = false;;
 
+  hideButton:boolean = true;
+  alive: boolean;
+
+  
   constructor(public apiProvider: ApiProvider,
     public httpClient: HttpClient,
     public navCtrl: NavController,
     public toastController: ToastController,
     public apiService: ApiProvider,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public alertController: AlertController
 
   ) { 
     this.items = [
@@ -133,18 +138,40 @@ export class Home1Page implements OnInit {
 
     this.initializeItems();
   
-    
-  }
+      
+  }  
 
-  ngOnInit() {
+  ngOnInit() { 
 
-    // this.callProductCategoryDetail();   
+    // this.callProductCategoryDetail();    
 
     this.getMakeApi();
     this.hide = !this.hide;
     this.hide1 = !this.hide1;
-    this.hide2 = !this.hide2;
+    this.hide2 = !this.hide2; 
     this.hide3 = !this.hide3;
+  }
+
+
+  approve(){
+    if(this.hideButton){
+        this.hideButton = false;
+    }
+      // this.alertController.c("Congrats! Your account has been approved")
+
+      console.log('Congrats! Your account has been approved');
+    }
+  cancel(){
+     if(this.hideButton){
+         this.hideButton = false;
+     }
+    // this.message.alert("Sorry your account has not been approved")
+
+     console.log('Sorry your account has not been approved');
+   }
+
+  clickfirst() {
+    this.hideMeFirstValue = true;
   }
   
 
@@ -160,7 +187,17 @@ export class Home1Page implements OnInit {
       this.obj = JSON.stringify(data);
       console.log('Selected model tushar:  ' + this.strTestValue);
 
+
+     
+
     });
+  }
+
+
+  triggerMeMake(value: string): void {
+    console.log("selected triggerMeMake", value);
+
+    this.hideMe2 = !  this.hideMe2;
   }
 
   triggerMeModel(value: string): void {
@@ -168,7 +205,7 @@ export class Home1Page implements OnInit {
     this.strModelValue = value;
     console.log("selected strTestValue1", this.strModelValue);
     this.getEngineApi(this.makeValue, this.strModelValue);
-
+    this.hideMe1 = !  this.hideMe1;
     // this.companyName = 'Model value';
   }
 
@@ -214,17 +251,8 @@ export class Home1Page implements OnInit {
   makeDropDownValue() {
     this.strMakeListSelectedValue = this.makeValue;
     this.getModelApi(this.strMakeListSelectedValue);
-    console.log("Selected make:  ", this.makeValue);
-
-    // this.hide = !this.hide;
-
-    console.log('Make clicked');
-  this.hideMe = ! this.hideMe;
-  // this.hideMe1 = ! this.hideMe1;
-
- 
- 
-
+    console.log("Selected makeDropDownValue :  ", this.makeValue);
+   this.hideMe = ! this.hideMe;
 
   }
   searchData(makeValue, strTestValue2, strEngineListSelectedValue, year) {
@@ -516,9 +544,8 @@ export class Home1Page implements OnInit {
   getOuterName(event){
     console.log("selected value getOuterName "+ this.companyName);
     console.log('Model clicked');
-    this.hideMe1 = !  this.hideMe1;
-
-    this.companyName = 'Default value' + '';
+    // this.hideMe1 = !  this.hideMe1;
+    // this.companyName = 'Default value' + '';
  }
  
  getOuterName1(event){
