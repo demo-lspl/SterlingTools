@@ -2,6 +2,8 @@ import { SearchPage } from './../search/search';
 import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { CartPage } from '../cart/cart';
+import { WishlistupdatedPage } from '../wishlistupdated/wishlistupdated';
+import { ViewcartPage } from '../viewcart/viewcart';
 
 /**
  * Generated class for the AboutusPage page.
@@ -24,13 +26,11 @@ export class AboutusPage {
     console.log('ionViewDidLoad AboutusPage');
   }
 
-  searchPage() {
-    let modal = this.modalCtrl.create(SearchPage);
-    modal.present();
+  wishlistPage() {
+    this.navCtrl.push(WishlistupdatedPage);
   }
   cartPage() {
-    let modal = this.modalCtrl.create(CartPage);
-    modal.present();
+    this.navCtrl.setRoot(ViewcartPage);
   }
 
 }

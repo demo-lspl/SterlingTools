@@ -1,12 +1,19 @@
 <ion-header class="bg-thime">
   <ion-navbar>
-    <button ion-button menuToggle style="display: block !important;">
-      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>
+    <button ion-button menuToggle style="display: block !important">
+      <ion-icon class="menu-icon"
+        ><img src="assets/imgs/ic_menu.png"
+      /></ion-icon>
     </button>
-    <ion-title text-uppercase>AUTO PARTS
+    <ion-title text-uppercase
+      >AUTO PARTS
       <span float-right>
-        <ion-icon class="icon"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>
-        <ion-icon class="icon"><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>
+        <ion-icon class="icon"
+          ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"
+        /></ion-icon>
+        <ion-icon class="icon"
+          ><img src="assets/imgs/ic_my_cart.png" width="100%;"
+        /></ion-icon>
         <!-- <ion-badge  color="primary" style="width: 100px;">
           <ion-icon name="cart"></ion-icon>
               {{7}}
@@ -18,22 +25,13 @@
             </ion-badge> -->
         <!-- <ion-icon class="icon" ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"></ion-icon>
             <ion-badge color="dark">99</ion-badge> -->
-
-
       </span>
     </ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content class="bg-light">
   <div class="col-md-4 col-xs-12">
-
-
-
-
-
     <!-- <div class="size" style="justify-content: center">
     <ion-item>
       <ion-label>Make</ion-label>
@@ -95,7 +93,6 @@
     Search 
   </button> -->
 
-
     <!-- <div class="list">
 		<ul>
 			<li *ngFor="let item of collection | paginate: { itemsPerPage: 5, currentPage: p }">{{ makeList }}</li>
@@ -106,7 +103,6 @@
 
 		<pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div> -->
-
 
     <!-- <ion-item>
   <ion-label floating>Badge Number</ion-label>
@@ -120,10 +116,6 @@
 <button ion-button (click)="getBadges()">Get Badges</button>
 <button ion-button (click)="clearBadges()">Clear Badges</button>
 <button ion-button (click)="requestPermission()">Request Permission</button> -->
-
-
-
-
 
     <!-- <ion-searchbar (ionInput)="getItems($event)" ></ion-searchbar>
 <ion-list>
@@ -141,8 +133,6 @@
     {{ item.name }}
   </ion-item>
 </ion-list> -->
-
-
 
     <!-- <div class="col-md-12 no-padding">
 
@@ -181,7 +171,6 @@
     <!-- <button ion-button full round (click)="ngIfCtrl()" >Click </button>
     <ion-input type="text" value="" *ngIf="hide"></ion-input> -->
 
-
     <!-- <ion-item *ngIf="hide">
       <ion-label>Select</ion-label>
       <ion-select (ionChange)="getOuterName()"  [(ngModel)]="companyName"   placeholder = "Make">
@@ -211,52 +200,77 @@
 
     <!-- <div *ngIf="hideMe"> here your content</div> -->
 
-
     <!-- <button ion-button (click)="hideTest()">Make</button>
     <button ion-button (click)="hideTest1()"  *ngIf="hideMe">Model</button>
     <button ion-button  (click)="hideTest2()" *ngIf="hideMe1">Engine</button>
     <button ion-button   *ngIf="hideMe2">Year</button> -->
 
-
-    <ion-item >
+    <ion-item>
       <ion-label>Make</ion-label>
-      <ion-select (ionChange)="makeDropDownValue(makeValue)" [(ngModel)]="makeValue" placeholder="Select One">
+      <ion-select
+        (ionChange)="makeDropDownValue(makeValue)"
+        [(ngModel)]="makeValue"
+        placeholder="Select One"
+      >
         <ion-option *ngFor="let makeKey of makeList">{{makeKey}}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item *ngIf="hideMe">
       <ion-label>Model</ion-label>
-      <ion-select (ionChange)="getOuterName()" [(ngModel)]="companyName" placeholder="Model">
-        <ion-option *ngFor="let modelKey of modelList" [value]="modelKey" (ionSelect)="triggerMeModel(modelKey)"
-          placeholder="Model value">{{modelKey}}</ion-option>
+      <ion-select
+        (ionChange)="getOuterName()"
+        [(ngModel)]="companyName"
+        placeholder="Model"
+      >
+        <ion-option
+          *ngFor="let modelKey of modelList"
+          [value]="modelKey"
+          (ionSelect)="triggerMeModel(modelKey)"
+          placeholder="Model value"
+          >{{modelKey}}</ion-option
+        >
       </ion-select>
     </ion-item>
 
     <ion-item *ngIf="hideMe1">
       <ion-label>Engine</ion-label>
-      <ion-select (ionChange)="getOuterName1()" [(ngModel)]="engineValue" placeholder="Engine">
-        <ion-option *ngFor="let engineKey of engineList" [value]="engineKey" (ionSelect)="triggerMeEngine(engineKey)">
-          {{engineKey}}</ion-option>
+      <ion-select
+        (ionChange)="getOuterName1()"
+        [(ngModel)]="engineValue"
+        placeholder="Engine"
+      >
+        <ion-option
+          *ngFor="let engineKey of engineList"
+          [value]="engineKey"
+          (ionSelect)="triggerMeEngine(engineKey)"
+        >
+          {{engineKey}}</ion-option
+        >
       </ion-select>
     </ion-item>
 
     <div class="size" style="justify-content: center">
       <ion-item *ngIf="hideMe2">
         <ion-label>Year</ion-label>
-        <ion-select value="sortpopular" okText="Ok" cancelText="Cancel" [(ngModel)]="yearValue"
-          (ionChange)="getOuterName2()">
+        <ion-select
+          value="sortpopular"
+          okText="Ok"
+          cancelText="Cancel"
+          [(ngModel)]="yearValue"
+          (ionChange)="getOuterName2()"
+        >
           <ion-option *ngFor="let yearKey of yearList">{{yearKey}}</ion-option>
         </ion-select>
       </ion-item>
     </div>
-    <button ion-button full round (click)="searchData(makeValue)">Search </button>
+    <button ion-button full round (click)="searchData(makeValue)">
+      Search
+    </button>
 
-
-    <div *ngIf="alive">alive</div>
+    <!-- <div *ngIf="alive">alive</div>
     <div *ngIf="!alive">dead</div>
-    <button ion-button (click)="alive = !alive">flip</button>
-
+    <button ion-button (click)="alive = !alive">flip</button> -->
 
     <!-- <button ion-button (click)="hideMeFirst()">Hide Div</button> -->
     <!-- <button ion-button (click)="clickfirst()">Make</button>
@@ -278,7 +292,6 @@
       </ion-select>
     </ion-item> -->
 
-
     <!-- <ion-item  (click)="hideTest()">
   <ion-label>Make</ion-label>
   <ion-select  (ionChange)="makeDropDownValue(makeValue)" [(ngModel)]="makeValue"   placeholder = "Make" (click)="ngIfCtrl()">
@@ -293,23 +306,14 @@
   </ion-select>
 </ion-item> -->
 
-
     <!-- <ion-item *ngIf="hide">
     Test
   </ion-item> -->
-
-
 
     <!-- <ion-item  >
   <ion-label>Engine</ion-label>
   <ion-select (ionChange)="getOuterName()"  [(ngModel)]="engineValue"   placeholder = "Engine" (click)="ngIfCtrl1()">
     <ion-option *ngFor="let engineKey of engineList" [value] = "engineKey" (ionSelect)="triggerMeEngine(engineKey)">{{engineKey}}</ion-option>  </ion-select>
 </ion-item> -->
-
   </div>
-
-
-
-
-
 </ion-content>

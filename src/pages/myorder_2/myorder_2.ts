@@ -124,8 +124,6 @@ export class Myorder_2Page implements OnInit {
     }, 500);
   }
 
-  
-
 
   async viewOrdersApi() {
     const loader = await this.loadingController.create({

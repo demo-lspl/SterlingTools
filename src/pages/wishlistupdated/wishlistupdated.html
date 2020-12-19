@@ -1,17 +1,17 @@
-
 <ion-header class="bg-thime">
   <ion-navbar>
-  <button ion-button menuToggle style="display: block !important">
-    <ion-icon class="menu-icon"
-      ><img src="assets/imgs/ic_menu.png"
-    /></ion-icon>
-  </button>
-    <ion-title style="text-align: left">My Wishlist
-      
-        <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>
+    <button ion-button menuToggle style="display: block !important">
+      <ion-icon class="menu-icon"
+        ><img src="assets/imgs/ic_menu.png"
+      /></ion-icon>
+    </button>
+    <ion-title style="text-align: left"
+      >My Wishlist
+
+      <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>
         <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon> -->
 
-        <!-- <ion-icon class="icon"  (click)="wishlistPage()" >
+      <!-- <ion-icon class="icon"  (click)="wishlistPage()" >
           <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
           <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> 
         </ion-icon>
@@ -20,27 +20,37 @@
           <img src="assets/imgs/ic_my_cart.png" width="100%;" />
           <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> 
         </ion-icon> -->
-        <span float-right>
+      <span float-right>
+        <ion-icon
+          class="icon-add"
+          name="heart"
+          style="margin-left: 12px"
+          (click)="wishlistPage()"
+        >
+          <ion-badge id="notifications-badge" color="primary"
+            >{{countProductsWishlistLocalUpdated}}</ion-badge
+          >
+        </ion-icon>
 
-          <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
-            <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
-          </ion-icon> 
-          
-          <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
-            <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
-          </ion-icon> 
-        </span>
+        <ion-icon
+          class="icon-add"
+          name="cart"
+          style="margin-left: 12px"
+          (click)="cartPage()"
+        >
+          <ion-badge id="notifications-badge" color="primary"
+            >{{countProductsCartLocalUpdated}}</ion-badge
+          >
+        </ion-icon>
+      </span>
     </ion-title>
   </ion-navbar>
   <div class="custom-id">
-    <ion-searchbar placeholder="Search any part here" ></ion-searchbar>
+    <ion-searchbar placeholder="Search any part here"></ion-searchbar>
   </div>
- 
 </ion-header>
 
 <ion-content class="bg-light">
-
-
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="chevron-down-circle-outline"
@@ -51,16 +61,11 @@
     </ion-refresher-content>
   </ion-refresher>
 
-
   <ion-item *ngIf=" !productsLocalCart.length;else other_content">
-    <h5 style="font-size: 12px;">{{strData}}</h5> 
+    <h5 style="font-size: 12px">{{strData}}</h5>
   </ion-item>
 
- 
-
-
   <ng-template #other_content>
-
     <!-- <div class="reating-review bg-white" padding style="margin-top: 5px" > 
       <div class="reating">
         <div class="select-section shadow-bottom" style="text-align: center"
@@ -83,74 +88,84 @@
         </div>
       </div>
     </div> -->
-    
 
-    <div class="pincod bg-white shadow-bottom cart-box"  style=" padding: 16px 16px 16px 16px;"
+    <div
+      class="pincod bg-white shadow-bottom cart-box"
+      style="padding: 16px 16px 16px 16px"
     >
-      <ion-row style="margin-top: 8px" *ngFor="let productsLocal of productsLocalCart;let i = index" >
+      <ion-row
+        style="margin-top: 8px"
+        *ngFor="let productsLocal of productsLocalCart;let i = index"
+      >
         <ion-col col-4>
           <ion-list>
             <ion-item>
-              <img  [src]="productsLocal.ProductImage"  style="width:200px;height:75px ;">
+              <img
+                [src]="productsLocal.ProductImage"
+                style="width: 200px; height: 75px"
+              />
             </ion-item>
           </ion-list>
         </ion-col>
         <ion-col col-8>
-
-       
-          
-          <div class="row"  >
+          <div class="row">
             <div class="block">Name: {{productsLocal.ProductName}}</div>
             <span class="icon" text-right>
               <ion-icon
                 name="md-close"
-                style="margin-left: 30px;margin-top: 5px;"
-                
-                
-                (click)="removeProductLocally(i,productsLocal,productsLocal.ProductName)">
+                style="margin-left: 30px; margin-top: 5px"
+                (click)="removeProductLocally(i,productsLocal,productsLocal.ProductName)"
+              >
               </ion-icon>
             </span>
-            
-            
           </div>
           <!-- (click)="removeProductLocally(i,productsLocal,productsLocal.ProductName)" -->
 
-         
-        
-
-        
           <div style="margin-top: 6%">
-            <label > Price:  {{productsLocal.ProductRegularPrice}} <span class="priceicon">$</span></label>
+            <label>
+              Price: {{productsLocal.ProductRegularPrice}}
+              <span class="priceicon">$</span></label
+            >
           </div>
 
           <div style="margin-top: 6%">
-            <label style="color: black;">Description:  {{productsLocal.ProductDescription}} </label>
+            <label style="color: black"
+              >Description: {{productsLocal.ProductDescription}}
+            </label>
           </div>
 
           <div style="margin-top: 10%">
             <button
-          ion-button
-          full
-          class="bg-thime btn-round btn-text"
-          style="margin-top: 3px; width: 150px;text-align: center;"
-          (click)="addToCart(i,productsLocal.ProductId,productsLocal.ProductName,productsLocal.ProductImage,productsLocal.ProductDescription,productsLocal.ProductRegularPrice)"
-
-
-
-        >
-          Add To Cart
-        </button>
+              ion-button
+              full
+              class="bg-thime btn-round btn-text"
+              style="margin-top: 3px; width: 150px; text-align: center"
+              (click)="addToCart(i,productsLocal.ProductId,productsLocal.ProductName,productsLocal.ProductImage,productsLocal.ProductDescription,productsLocal.ProductRegularPrice)"
+            >
+              Add To Cart
+            </button>
           </div>
 
-          <!-- (click)="addToCart(products.ProductId)" -->
-          <!-- (click)="addToCartLocal(products.ProductId,products.ProductName,products.ProductImage,products.ProductDescription,products.ProductRegularPrice)" -->
+          <div>
+            <span style="color: black">Share On</span>
+          </div>
+      
+          <div>
+            <ion-icon name="logo-facebook" style="margin: 8px"></ion-icon>
+            <ion-icon name="logo-facebook" style="margin: 8px"></ion-icon>
+            <ion-icon name="logo-facebook" style="margin: 8px"></ion-icon>
+            <ion-icon name="logo-whatsapp" style="margin: 8px"></ion-icon>
+            <ion-icon name="copy" style="margin: 8px"></ion-icon>
+            <ion-icon name="mail" style="margin: 8px"></ion-icon>
+          </div>
+        </ion-col>
 
         
-        </ion-col>
       </ion-row>
-    
     </div>
-  
+
+   
+
     <!-- <div class="reating-review bg-white" padding style="margin-bottom: 15px">
       <div class="reating">
         <div class="select-section shadow-bottom" style="text-align: center">

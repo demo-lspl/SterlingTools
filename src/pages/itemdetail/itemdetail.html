@@ -1,11 +1,13 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle style="display: block !important">
-      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"/>
-    </ion-icon>
+      <ion-icon class="menu-icon"
+        ><img src="assets/imgs/ic_menu.png" />
+      </ion-icon>
     </button>
-    <ion-title>Product Detail
-     
+    <ion-title
+      >Product Detail
+
       <!-- <span float-right>
         <ion-icon name="cart" style="margin-left: 12px;">
           <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
@@ -17,48 +19,58 @@
      
       </span> -->
 
-
       <span float-right>
+        <ion-icon
+          class="icon-add"
+          name="heart"
+          style="margin-left: 12px"
+          (click)="wishlistPage()"
+        >
+          <ion-badge id="notifications-badge" color="primary"
+            >{{countProductsWishlistLocalUpdated}}</ion-badge
+          >
+        </ion-icon>
 
-        <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
-          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
-        </ion-icon> 
-        
-        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
-          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
-        </ion-icon> 
+        <ion-icon
+          class="icon-add"
+          name="cart"
+          style="margin-left: 12px"
+          (click)="cartPage()"
+        >
+          <ion-badge id="notifications-badge" color="primary"
+            >{{countProductsCartLocalUpdated}}</ion-badge
+          >
+        </ion-icon>
       </span>
-     
     </ion-title>
   </ion-navbar>
-</ion-header> 
+</ion-header>
 
 <!--<select size & color>-->
 <ion-content class="bg-light">
   <div class="img-section shadow-bottom" text-center>
-
-
-    
-  
-  
     <!-- <img  [src]="strImage"  style="width:50px;height:50px;margin-top: 8px;"> -->
 
-    <ion-icon   name="md-heart" class="text-light icon" style="width:50px;height:50px;margin-top: 8px;" (click)="addToWishList(strId,strProductName,strImage,strProductDescription,strProductRegularPrice)"></ion-icon>
+    <!-- <ion-icon   name="md-heart" class="text-light icon" style="width:50px;height:50px;margin-top: 8px;" (click)="addToWishList(strId,strProductName,strImage,strProductDescription,strProductRegularPrice)"></ion-icon> -->
 
-    <img  [src]="strImage"  style="width:200px;height:150px;margin-top: 8px;">
+    <img
+      [src]="strImage"
+      style="width: 200px; height: 150px; margin-top: 8px"
+      class="zoom"
+    />
 
-    <div class="tab-btn-box">
+    <!-- <div class="tab-btn-box">
       <div class="tab-btn">
         <img  [src]="strImage"  style="width:150px;height:40px;"  >
         
       </div>
       <div class="tab-btn">
         <img  [src]="strImage"  style="width:150px;height:40px;">
-      </div>
+      </div> 
       <div class="tab-btn">
         <img  [src]="strImage"  style="width:150px;height:40px;">
       </div>
-    </div>
+    </div> -->
     <div class="d-flex" style="align-items: start">
       <!-- <span>Unique For Men Black Formal Slim Fit Shirt by Mark Tayler</span> -->
       <span>{{strName}}</span>
@@ -79,7 +91,11 @@
       <div class="d-flex" style="padding: 1rem">
         <div class="review-box">
           <!-- <small class="text-white bg-green" float-left>4.2 <ion-icon name="md-add" (click)="decrementValue()"></ion-icon></small> -->
-          <span class="text-sky small-text" style="color: black;">Product Quantity</span>
+          <span
+            class="text-sky small-text"
+            style="color: black; font-size: 14px"
+            >Product Quantity</span
+          >
         </div>
         <!-- <div class="price-box">
                     <div class="price text-light" style="margin-right: 1rem;">
@@ -93,43 +109,44 @@
     </div>
   </div>
 
-
-
   <div class="features bg-white shadow-bottom" padding>
     <h6 class="heading">Key Features</h6>
     <p><span class="circle"></span>{{strProductName}}</p>
-  
+
     <p><span class="circle"></span>{{strProductDescription}}</p>
-    <p><span class="circle"></span>{{strProductRegularPrice}} $ </p>
-    <p><span class="circle"></span>{{strProductMake}}</p>  
+    <p><span class="circle"></span>{{strProductRegularPrice}} $</p>
+    <p><span class="circle"></span>{{strProductMake}}</p>
     <p><span class="circle"></span>{{strProductModel}}</p>
     <p><span class="circle"></span>{{strProductSubModel}}</p>
     <p><span class="circle"></span>{{strProductYearStart}}</p>
     <p><span class="circle"></span>{{strProductYearEnd}}</p>
-  
-
-   
-
-
-    
   </div>
 
-  <div class="reating-review bg-white" padding >
+  <div class="reating-review bg-white" padding>
     <div class="reating"></div>
 
-    <div class="lick" >
+    <div class="lick">
       <button
-      ion-button
-      full
-      class="btn-round green-shadow btn-text"
-      style="background-color: red; color: white;"
-      (click)="addToCart(dynamicId,strProductName,strImage,strProductDescription,strProductRegularPrice)">
-    Add To Cart
-    </button>
+        ion-button
+        full
+        class="btn-round green-shadow btn-text"
+        style="background-color: red; color: white"
+        (click)="addToCart(dynamicId,strProductName,strImage,strProductDescription,strProductRegularPrice)"
+      >
+        Add To Cart
+      </button>
     </div>
 
-    
-
-  
+    <div class="lick">
+      <button
+        ion-button
+        full
+        class="btn-round green-shadow btn-text"
+        style="background-color: red; color: white; margin-top: 12px"
+        (click)="addToWishList(strId,strProductName,strImage,strProductDescription,strProductRegularPrice)"
+      >
+        Add To Wishlist
+      </button>
+    </div>
   </div>
 </ion-content>

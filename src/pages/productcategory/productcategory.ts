@@ -208,7 +208,7 @@ addToCart(id, name,image,description,regular_price) {
   // }
   async getProductCategoriesApi() {
     const loader = await this.loadingController.create({
-      content: 'Please wait fetching product categories!',
+      content: 'Please wait loading products!',
     });
 
     await loader.present();
@@ -233,11 +233,11 @@ addToCart(id, name,image,description,regular_price) {
       else { 
         console.log('details not available ' );
       }
-      },
+      },  
         error => { 
           console.log(error);
           //this.showToastOnProductError(error);
-        });
+        }); 
     });
   }
   itemdetailPage(catId,name) {

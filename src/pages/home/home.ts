@@ -65,6 +65,8 @@ export class HomePage implements OnInit {
   countProductsCartLocalUpdated:number | any = 0;
   countProductsWishlistLocalUpdated:number | any = 0;
   private tutorialHidden: boolean = true;
+  // myCustomIcon = "assets/sterlinglogo.png";
+
 
      
         
@@ -413,7 +415,7 @@ export class HomePage implements OnInit {
 //   }   
 // } 
 
-
+ 
  addProductToCart(id, name,image,description,regular_price) {
   if (localStorage.getItem("Userid value") === null) {
     let products = [];
@@ -422,8 +424,8 @@ export class HomePage implements OnInit {
     } 
     console.log("Added productsList id " + id);
     console.log("Added productsList name " + name);
-    // products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
-    // localStorage.setItem('products', JSON.stringify(products)); 
+    products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+    localStorage.setItem('products', JSON.stringify(products)); 
     this.showToastOnAddProductLocal(name);
     this.countProductsCartLocalUpdated++;
 
@@ -835,7 +837,7 @@ async getAllFeaturedProductsCategories() {
     },
       error => { 
         console.log(error);
-        this.showToastOnProductError(error);
+       // this.showToastOnProductError(error);
       });
   // });
 }
@@ -930,7 +932,7 @@ async getAllProductsCategoriesList() {
         console.log('Uncategorized available');
         //this.productCategoryList.splice(0);
         //this.productCategoryList.filter(item => item !== "Uncategorized")
-        this.productCategoryList.splice(0,1);
+        this.productCategoryList.splice(0,4);
 
       }
 
@@ -940,7 +942,7 @@ async getAllProductsCategoriesList() {
     },
       error => { 
         console.log(error);
-        this.showToastOnProductError(error);
+        //this.showToastOnProductError(error);
       });
   // });
 }
@@ -975,7 +977,7 @@ async getCategoriesApi() {
     },
       error => { 
         console.log(error);
-        this.showToastOnProductError(error);
+       // this.showToastOnProductError(error);
       });
   });
 }
@@ -1032,10 +1034,13 @@ async getCategoriesApi() {
   }       
 
   triggerMeModel(value: string): void {
+    this.showLoadingControllerLaunch();
     console.log("selected value", value);
     this.strTestValue1 = value;
     console.log("selected strTestValue1", this.strTestValue1);
     this.getEngineApi(this.makeValue,this.strTestValue1);
+
+    
   }
 
   triggerMeEngine(value: string): void {
@@ -1243,6 +1248,7 @@ async viewCartApi() {
     setTimeout(() => {
       loading.dismiss();
     }, 600);
+    
   }
 
   showLoadingControllerListView() {

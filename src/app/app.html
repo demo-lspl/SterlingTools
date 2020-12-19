@@ -1,27 +1,31 @@
 <ion-menu [content]="content" [side]="getSideOfCurLang()">
   <ion-header>
-  
-    <div style="background: #a8171e; height: 170px;" padding text-center>
+    <div style="background: #a8171e; height: 170px" padding text-center>
       <ion-item text-center>
         <img src="assets/imgs/sterlinglogo.png" class="img" />
 
-        <h2 style="color: white; justify-content: center;">STERLING</h2>
+        <h2 style="color: white; justify-content: center">STERLING</h2>
 
-        <ion-row style="margin-top: 4%;">
-          <p style="color: white; margin-left: 14%; text-align: center;">
+        <ion-row style="margin-top: 4%">
+          <p style="color: white; margin-left: 14%; text-align: center">
             sterlingtools@gmail.com
           </p>
           <ion-icon
             name="arrow-forward"
-            style="margin-left: 88%; width: 30px; height: 30px;margin-top: 36px;color: white;"
+            style="
+              margin-left: 88%;
+              width: 30px;
+              height: 30px;
+              margin-top: 36px;
+              color: white;
+            "
           >
           </ion-icon>
-        </ion-row>  
-      </ion-item>  
+        </ion-row>
+      </ion-item>
     </div>
 
-
-     <!-- style="width: 40px;"  -->
+    <!-- style="width: 40px;"  -->
     <div class="menu-tabs" padding text-center>
       <ion-row>
         <img src="assets/imgs/ic_my_orders_updated.png" />
@@ -29,22 +33,19 @@
           style="
             font-size: 10px;
             color: white;
-            
+
             font-size: 12px;
           "
         >
           My Orders
         </p>
 
-        <img
-          src="assets/imgs/ic_my_addresses_updated.png"
-         
-        />
+        <img src="assets/imgs/ic_my_addresses_updated.png" />
         <p
           style="
             font-size: 10px;
             color: white;
-           
+
             font-size: 12px;
           "
         >
@@ -59,7 +60,7 @@
       <ion-list>
         <button ion-item menuClose (click)="homePage()">
           <img src="assets/imgs/ic_home.png " />
-         Home
+          Home
         </button>
         <!-- <button ion-item menuClose >
           <img src="assets/imgs/ic_categories.png "   />
@@ -89,33 +90,34 @@
                 </button>
                 </div> -->
 
-                <!-- <button ion-item menuClose (click)="categoryPage()">
+        <!-- <button ion-item menuClose (click)="categoryPage()">
                   <img src="assets/imgs/ic_categories.png "/>
                   {{"my_order" | translate}}
                 </button> -->
 
-                <button ion-item menuClose (click)="categoryPage()">
-                  <img src="assets/imgs/ic_my_cart.png " />
-                  {{"Categories" | translate}}
-                </button>
+        <button ion-item menuClose (click)="categoryPage()">
+          <img src="assets/imgs/ic_my_cart.png " />
+          {{"Categories" | translate}}
+        </button>
 
-                <!-- <button ion-item menuClose (click)="categoryPage1()">
+        <!-- <button ion-item menuClose (click)="categoryPage1()">
                   <img src="assets/imgs/ic_my_cart.png " />
                   Categories1
                 </button> -->
         <!-- <button ion-item menuClose (click)="myorder_2Page()">
           <img src="assets/imgs/ic_my_cart.png " />
           {{"my_order" | translate}}
-        </button> -->  
+        </button> -->
 
-
-        <button ion-item menuClose (click)="myorder_2Page()" *ngIf="checkStatus">
+        <button
+          ion-item
+          menuClose
+          (click)="myorder_2Page()"
+          *ngIf="checkStatus"
+        >
           <img src="assets/imgs/ic_my_cart.png " />
           {{"View Orders" | translate}}
         </button>
-
-       
-
 
         <!-- <button ion-item menuClose (click)="wishlistPage()">
           <img src="assets/imgs/ic_my_wishlist.png " />
@@ -126,7 +128,12 @@
           <img src="assets/imgs/ic_my_wishlist.png " />
           {{"My wishlist" | translate}}
         </button>
-        <button ion-item menuClose (click)="my_accountPage()" *ngIf="checkStatus">
+        <button
+          ion-item
+          menuClose
+          (click)="my_accountPage()"
+          *ngIf="checkStatus"
+        >
           <img src="assets/imgs/ic_my_account.png " />
           My Account
         </button>
@@ -134,7 +141,7 @@
           <img src="assets/imgs/ic_help.png " />
           Help Center
         </button>
-      
+
         <button ion-item menuClose (click)="privacyPolicyPage()">
           <img src="assets/imgs/ic_logout.png " />
           Privacy Policy
@@ -144,47 +151,34 @@
           <img src="assets/imgs/ic_logout.png " />
           Terms & Conditions
         </button>
-       
-      
-          <button ion-item menuClose     *ngIf="checkStatus"  (click)="logoutPage()" >
-            <img src="assets/imgs/ic_logout.png " />
-            Logout
-          </button>
 
-          <button ion-item menuClose     *ngIf="!checkStatus"  (click)="loginPage()" >
-            <img src="assets/imgs/ic_logout.png " />
-            <!-- <ion-icon name="log-in-outline"></ion-icon> -->
+        <button ion-item menuClose *ngIf="checkStatus" (click)="logoutPage()">
+          <img src="assets/imgs/ic_logout.png " />
+          Logout
+        </button>
 
-            Login
-          </button>
+        <button ion-item menuClose *ngIf="!checkStatus" (click)="loginPage()">
+          <img src="assets/imgs/ic_logout.png " />
+          <!-- <ion-icon name="log-in-outline"></ion-icon> -->
 
-          <button ion-item menuClose       (click)="testPage()" >
-            <img src="assets/imgs/ic_logout.png " />
-            Test
-          </button>
+          Login
+        </button>
 
-          <!-- <button ion-item menuClose       (click)="testPage2()" >
+        <button ion-item menuClose (click)="testPage()">
+          <img src="assets/imgs/ic_logout.png " />
+          Test
+        </button>
+
+        <!-- <button ion-item menuClose       (click)="testPage2()" >
             <img src="assets/imgs/ic_logout.png " />
             Testing
           </button> -->
 
-           
-
-
-       
-
-
-
-          
         <!-- <ng-template #templateName>
           Logout!!
         </ng-template> -->
 
-
-        
         <!-- if (localStorage.getItem("Userid value") === null) { -->
-     
-
 
         <!-- <div *ngIf="checkAccountStatus">
           It's Done!
@@ -194,21 +188,15 @@
         <div *ngIf="!checkAccountStatus">
           It's Not Done!
         </div> -->
-        
-          
       </ion-list>
     </div>
   </ion-content>
 </ion-menu>
 
-
-
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav
   [root]="rootPage"
- 
   #content
   swipeBackEnabled="false "
   type="overlay"
 ></ion-nav>
-     

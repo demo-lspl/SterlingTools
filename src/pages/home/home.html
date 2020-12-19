@@ -9,73 +9,27 @@
     <!-- <ng-template *ngIf="role === 'admin';then asscom else unit"></ng-template> -->
 
 
-    <ion-title>Products
-
-
-      <!-- <div *ngIf="countProductsCartLocal; else elseStatement1">
-        <span float-right>
-          <ion-icon class="icon"  (click)="wishlistPage()" >
-            <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
-            <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> 
-          </ion-icon>
-  
-          <ion-icon class="icon"  (click)="cartPage()" >
-            <img src="assets/imgs/ic_my_cart.png" width="100%;" />
-            <ion-badge class="icon add-icon" >{{countProductsCartLocal}}</ion-badge> 
-          </ion-icon>
-        </span> 
-      </div>
-
-      <ng-template #elseStatement1>
-        <ion-icon class="icon"  (click)="cartPage()" >
-          <img src="assets/imgs/ic_my_cart.png" width="100%;" />
-          <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> 
-        </ion-icon>
-      </ng-template> -->
-
-
-
-
-
-
-
-
+     <ion-title>
+      Products
       <span float-right>
-        <!-- <ion-icon class="icon"  (click)="wishlistPage()" >
-          <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
-          <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> 
-        </ion-icon>
-        <ion-icon class="icon"  (click)="cartPage()"  >
-          <img src="assets/imgs/ic_my_cart.png" width="100%;" />
-          <ion-badge class="icon add-icon" >{{countProductsCartLocal}}</ion-badge> 
-        </ion-icon> -->
-        <!-- <ion-icon class="icon"  (click)="cartPage()"  >
-          <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
-          <ion-badge class="icon add-icon" >{{countProductsWishlistLocalUpdated}}</ion-badge> 
-        </ion-icon>
-
-        <ion-icon class="icon"  (click)="cartPage()"  >
-          <img src="assets/imgs/ic_my_cart.png" width="100%;" />
-          <ion-badge class="icon add-icon" >{{countProductsWishlistLocalUpdated}}</ion-badge> 
-        </ion-icon> -->
-        <!-- <ion-badge>{{countProductsWishlistLocalUpdated}}</ion-badge>
-        <ion-badge>{{countProductsCartLocalUpdated}}</ion-badge> -->
-
-
-        <!-- <ion-label>{{viewCartList.length}}</ion-label> -->
-
         <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
           <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
         </ion-icon>
-
         <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
           <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
         </ion-icon>
-
-
       </span>
+    </ion-title> 
 
-    </ion-title>
+    <!-- <img src="assets/sterlinglogo.png"  style="width:30px;height:30px ;"> -->
+      <!-- <span float-right>
+        <ion-icon class="icon-add" name="heart" style="margin-left: 12px" (click)="wishlistPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
+        </ion-icon>
+        <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
+          <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
+        </ion-icon>
+      </span> -->
 
 
   </ion-navbar>
@@ -314,10 +268,10 @@
     </ion-slide>
   </ion-slides>
 
-  <p (click)="viewAllCategories()">
+  <!-- <p (click)="viewAllCategories()">
     Featured Items
     <small class="bg-thime btn-round text-white" float-right> View All </small>
-  </p>
+  </p> -->
 
   <!-- <p (click)="viewAllCategories()">
     Featured Items--

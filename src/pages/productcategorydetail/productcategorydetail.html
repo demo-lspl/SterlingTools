@@ -56,10 +56,12 @@
         <ion-card>
           <ion-card-header style="justify-content: left">
             <div class="img-box">
-              <img [src]="categoryItem.image" style="width:200px;height:80px ;"
+              <img [src]="categoryItem.image" style="width:200px;height:80px ;margin-top: 30px;"
                 (click)="productDetailPage(categoryItem.id,categoryItem.name,categoryItem.image,categoryItem.regular_price,categoryItem.description,categoryItem.attribute.pa_make,categoryItem.attribute.pa_model,categoryItem.attribute.pa_year)">
             </div>
-            <ion-icon name="md-heart" class="text-light icon"></ion-icon>
+            <ion-icon name="md-heart" class="text-light icon" style="margin-top: -11px;"
+            (click)="addToWishList(categoryItem.id,categoryItem.name,categoryItem.image,categoryItem.description,categoryItem.regular_price)">
+          </ion-icon>
           </ion-card-header>
           <ion-card-content>
 

@@ -98,6 +98,53 @@ export class ProductcategorydetailPage implements OnInit{
   sortPopular(){
     this.showLoadingControllerLaunch();    
   }
+
+  addToWishList(id, name,image,description,regular_price,x) {
+
+    // this.visible = !this.visible;
+    // this.countClick++;
+  
+    //   if(this.countClick>1){
+    //     console.log('Clicked More than one');
+    //     this.showToastOnWishlist();
+    //   }
+    //   else {
+    //   }
+  
+    //x.classList.toggle("fa-thumbs-down");
+  
+   // document.getElementById("myDIV").classList.add("mystyle");  
+  
+    
+    let productsWishlist = [];
+    if (localStorage.getItem('productsWishlist')) {
+      productsWishlist = JSON.parse(localStorage.getItem('productsWishlist')); // get product list 
+    } 
+    console.log("Sent productsList id " + id);
+    console.log("Sent productsList name " + name);
+    productsWishlist.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+    localStorage.setItem('productsWishlist', JSON.stringify(productsWishlist)); 
+    this.buttonIcon = "home";
+    this.showToastOnAddProductWishlist(name);
+    this.countProductsWishlistLocalUpdated++;
+    if (typeof(Storage) !== "undefined") {
+      // Code for localStorage/sessionStorage.
+      console.log('Code for localStorage/sessionStorage.')
+    } else {
+      // Sorry! No Web Storage support..
+      console.log('Sorry! No Web Storage support..')
+    }
+  } 
+
+  showToastOnAddProductWishlist(strProductAdded) {
+    const toast = this.toastController.create({
+      // message: this.testStr,
+      message: 'Product Added in Wishlist : \n ' + strProductAdded + '\n' ,
+      duration: 1000,
+      position: "bottom",
+    });   
+    toast.present();  
+  }  
   
 //   addToCart(id,strProductAdded) {
 //     this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
@@ -247,7 +294,7 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
   
   async callProductCategoryDetail() {
         const loader = await this.loadingController.create({
-      content: 'Please wait fetching product sub categories!',
+      content: 'Please wait loading products detail!',
     });
     await loader.present();
     loader.present().then(() => { 
