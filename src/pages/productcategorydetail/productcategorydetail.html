@@ -44,10 +44,14 @@
 <ng-template #other_content>
   <ion-item>
     <ion-label>SORT BY </ion-label>
-    <ion-select placeholder="Please select" value="Name" okText="Okay" cancelText="Dismiss"
-      (ionChange)="sortDropDownValue(productCategoryInformation)" style="width: 200px;padding: 0px 10px;">
-      <ion-option value="Name">Name</ion-option>
+    <ion-select placeholder="Please select" value="Name" okText="Okay" cancelText="Dismiss" [(ngModel)]="filtermonthwise"
+       style="width: 200px;padding: 0px 10px;" (ionChange)="monthfilter(filtermonthwise);">
+      <ion-option value="Name" >Name</ion-option>
+      <ion-option value="Price Low to High"  >Price Low to High</ion-option>
+      <ion-option value="Price High to Low"  >Price High to Low</ion-option>
     </ion-select>
+
+    <!-- (ionChange)="sortDropDownValue(productCategoryInformation)" -->
   </ion-item>
  
   <ion-grid class="product-grid">

@@ -1,0 +1,132 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle style="display: block !important">
+      <ion-icon class="menu-icon"
+        ><img src="assets/imgs/ic_menu.png"
+      /></ion-icon>
+    </button>
+    <ion-title
+      >Address Details
+      <span float-right>
+        <ion-icon class="icon" ><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>
+        <ion-icon class="icon"  class="fa fa-thumbs-up"  (click)="cartPage()"><img src="assets/imgs/ic_my_cart.png" width="100%;"/></ion-icon>
+      </span>
+    </ion-title>
+  </ion-navbar>
+</ion-header> 
+
+
+
+
+
+<ion-content class="login-content" padding>
+  <ion-row class="logo-row">
+    <ion-col>
+      <img src="assets/imgs/sterlinglogo.png" />
+      <br />
+      <!-- <h4>Sterling Tools</h4> -->
+    </ion-col>
+  </ion-row>
+
+  <div>
+    <ion-list>
+      <div class="login-box">
+        <ion-row>
+          <ion-col>
+            <ion-list inset>
+              <div class="input-container">
+                <!-- <ion-icon name="mail" item-left></ion-icon> -->
+                <input class="input-field" placeholder="First Name" type="name" [(ngModel)]="firstName" style="width: 100%; 
+                box-sizing: border-box;
+                -webkit-box-sizing:border-box;
+                -moz-box-sizing: border-box;height: 35px;"/>
+              </div>
+
+              <div style="margin-top: 10px;">
+                <input class="input-field" placeholder="Last Name" type="name" [(ngModel)]="lastName" style="width: 100%; 
+                box-sizing: border-box;
+                -webkit-box-sizing:border-box;
+                -moz-box-sizing: border-box;height: 35px;"/>
+              </div>
+
+              <div style="margin-top: 10px;">
+                <input class="input-field" placeholder="Company Name" type="name" [(ngModel)]="companyName" style="width: 100%; 
+                box-sizing: border-box;
+                -webkit-box-sizing:border-box;
+                -moz-box-sizing: border-box;height: 35px;"/>
+              </div>
+
+              <div style="margin-top: 14px;">
+                <h4 style="font-size: 15px;">Country/Region</h4>
+              </div>
+
+              <div style="margin-top: 10px;">
+                <input class="input-field" placeholder="Street Address" type="name" [(ngModel)]="streetAddress" style="width: 100%; 
+                box-sizing: border-box;
+                -webkit-box-sizing:border-box;
+                -moz-box-sizing: border-box;height: 35px;"/>
+              </div>
+
+              <div style="margin-top: 10px;">
+                <input class="input-field" placeholder="Town/City" type="name" [(ngModel)]="town" style="width: 100%; 
+                box-sizing: border-box;
+                -webkit-box-sizing:border-box;
+                -moz-box-sizing: border-box;height: 35px;"/>
+              </div>
+
+              <div style="margin-top: 10px;">
+                <input class="input-field" placeholder="Region/Optional" type="name" [(ngModel)]="region" style="width: 100%; 
+                box-sizing: border-box;
+                -webkit-box-sizing:border-box;
+                -moz-box-sizing: border-box;height: 35px;"/>
+              </div>
+
+              <div style="margin-top: 10px;">
+                <input class="input-field" placeholder="Postcode" type="number" [(ngModel)]="postCode" style="width: 100%; 
+                box-sizing: border-box;
+                -webkit-box-sizing:border-box;
+                -moz-box-sizing: border-box;height: 35px;"/>
+              </div>
+
+              <div style="margin-top: 10px;">
+                <input class="input-field" placeholder="Phone" type="number" [(ngModel)]="phoneNo" style="width: 100%; 
+                box-sizing: border-box;
+                -webkit-box-sizing:border-box;
+                -moz-box-sizing: border-box;height: 35px;"/>
+              </div>
+
+
+              <div style="margin-top: 10px;">
+                <input class="input-field" placeholder="Email Address" type="email" [(ngModel)]="emailAddress" style="width: 100%; 
+                box-sizing: border-box;
+                -webkit-box-sizing:border-box;
+                -moz-box-sizing: border-box;height: 35px;"/>
+              </div>
+
+
+
+             
+              
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="signup-col">
+            <button
+              ion-button
+              class="submit-btn"
+              full
+              type="submit"
+              style="text-transform: none"
+              class="bg-thime btn-round btn-text"
+              (click)="saveBtnClick()">
+              Save
+            </button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

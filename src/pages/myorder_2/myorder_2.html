@@ -1,20 +1,22 @@
 <ion-header>
-    <ion-navbar>
-        <button ion-button menuToggle>
-      <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon class="menu-icon"
+        ><img src="assets/imgs/ic_menu.png"
+      /></ion-icon>
     </button>
-        <ion-title>My Order
-            <!-- <span float-right> 
+    <ion-title
+      >My Order
+      <!-- <span float-right> 
               <ion-icon class="icon" (click)="searchPage()"><img src="assets/imgs/ic_search.png" width="100%;"></ion-icon>
               <ion-icon class="icon" (click)="cartPage()"><img src="assets/imgs/ic_my_cart.png" width="100%;"></ion-icon>             
             </span> -->
-            <span float-right>
-                <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>
+      <span float-right>
+        <!-- <ion-header style="font-size: 14px;color: white;margin-left: -85px; margin-top: 5px;"> Cart: {{countProducts}}</ion-header>
                 <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>
                 <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon> -->
 
-
-                <!-- <ion-icon class="icon"  (click)="wishlistPage()" >
+        <!-- <ion-icon class="icon"  (click)="wishlistPage()" >
                     <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
                     <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> 
                   </ion-icon>
@@ -24,69 +26,89 @@
                     <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> 
                   </ion-icon>
               </span> -->
-              <ion-icon class="icon-add" name="heart" style="margin-left: 12px;" (click)="wishlistPage()">
-                <ion-badge id="notifications-badge" color="primary">{{countProductsWishlistLocalUpdated}}</ion-badge>
-              </ion-icon> 
-              
-              <ion-icon class="icon-add" name="cart" style="margin-left: 12px;" (click)="cartPage()">
-                <ion-badge id="notifications-badge" color="primary">{{countProductsCartLocalUpdated}}</ion-badge>
-              </ion-icon> 
-            </span>
-        </ion-title>
-    </ion-navbar>
+        <ion-icon
+          class="icon-add"
+          name="heart"
+          style="margin-left: 12px"
+          (click)="wishlistPage()"
+        >
+          <ion-badge id="notifications-badge" color="primary"
+            >{{countProductsWishlistLocalUpdated}}</ion-badge
+          >
+        </ion-icon>
+
+        <ion-icon
+          class="icon-add"
+          name="cart"
+          style="margin-left: 12px"
+          (click)="cartPage()"
+        >
+          <ion-badge id="notifications-badge" color="primary"
+            >{{countProductsCartLocalUpdated}}</ion-badge
+          >
+        </ion-icon>
+      </span>
+    </ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content class="bg-light">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing Orders."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let vieworders of viewOrdersList">
+    <ion-card-content>
+      <ion-row>
+        <ion-col col-3>
+          <div class="img-box">
+            <!-- <img src="assets/imgs/suit_PNG8132.png"> -->
+            <!-- <img src="assets/imgs/productimage.jpg"> -->
+            <img
+              src="assets/imgs/productimage.jpg"
+              style="width: 130px; float: left"
+            />
+          </div>
+        </ion-col>
+        <ion-col col-9>
+          <!-- <h4>Unique For Men Black Formal Slim Fit Shirt</h4> -->
+          <!-- <h4>{{vieworders.post_title}}</h4> -->
+          <div>
+            <p style="color: black">Order Id: {{vieworders.orderId}}</p>
+            <!-- <p style="color: black;">Order Status {{vieworders.orderStatus}}</p> -->
+          </div>
+          <div padding-top>
+            <!-- <small class="text-sky ">Cancel Order</small> -->
+            <!-- <small class="text-white bg-green green-shadow">Track Order</small> -->
+            <p style="color: black">Date: {{vieworders.created.date}}</p>
+          </div>
+          <div class="card-btn" padding-top>
+            <!-- <small class="text-sky ">Cancel Order</small> -->
+            <!-- <small class="text-white bg-green green-shadow">Track Order</small> -->
+            <p style="color: black">Status: {{vieworders.orderStatus}}</p>
+          </div>
+          <div class="card-btn" padding-top>
+            <!-- <small class="text-sky ">Cancel Order</small> -->
+            <!-- <small class="text-white bg-green green-shadow">Track Order</small> -->
+            <p style="color: black">Item Count: {{vieworders.itemCount}}</p>
+          </div>
 
-    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content
-          pullingIcon="chevron-down-circle-outline"
-          pullingText="Pull to refresh"
-          refreshingSpinner="circles"
-          refreshingText="Refreshing Orders."
-        >
-        </ion-refresher-content>
-      </ion-refresher>
-    <ion-card *ngFor="let vieworders of viewOrdersList" >
-        <ion-card-content>
-            <ion-row>
-                <ion-col col-3>
-                    <div class="img-box">
-                        <!-- <img src="assets/imgs/suit_PNG8132.png"> -->
-                        <!-- <img src="assets/imgs/productimage.jpg"> -->
-                         <img src="assets/imgs/productimage.jpg" style="width: 130px;float: left;" /> 
+          <div class="card-btn" padding-top>
+            <!-- <small class="text-sky ">Cancel Order</small> -->
+            <!-- <small class="text-white bg-green green-shadow">Track Order</small> -->
+            <p style="color: black">Total: {{vieworders.total}}</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 
-                    </div>
-                </ion-col>
-                <ion-col col-9>
-                    <!-- <h4>Unique For Men Black Formal Slim Fit Shirt</h4> -->
-                    <!-- <h4>{{vieworders.post_title}}</h4> -->
-                    <div >
-                      
-                        <p style="color: black;">Order Id: {{vieworders.orderId}}</p>
-                        <!-- <p style="color: black;">Order Status {{vieworders.orderStatus}}</p> -->
-                    </div>
-                    <div   padding-top>
-                        <!-- <small class="text-sky ">Cancel Order</small> -->
-                        <!-- <small class="text-white bg-green green-shadow">Track Order</small> -->
-                        <p style="color: black;">Date: {{vieworders.created.date}}</p>
-                    </div>
-                    <div class="card-btn"  padding-top>
-                        <!-- <small class="text-sky ">Cancel Order</small> -->
-                        <!-- <small class="text-white bg-green green-shadow">Track Order</small> -->
-                        <p style="color: black;">Status: {{vieworders.orderStatus}}</p>
-                    </div>
-                    <div class="card-btn"  padding-top>
-                        <!-- <small class="text-sky ">Cancel Order</small> -->
-                        <!-- <small class="text-white bg-green green-shadow">Track Order</small> -->
-                        <p style="color: black;">Total: {{vieworders.total}}</p>
-                    </div>
-                </ion-col>
-            </ion-row>
-        </ion-card-content>
-    </ion-card>
-
-    <!-- <ion-card>
+  <!-- <ion-card>
         <ion-card-content>
             <ion-row>
                 <ion-col col-3>

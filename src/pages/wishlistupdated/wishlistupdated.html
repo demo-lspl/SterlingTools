@@ -45,9 +45,9 @@
       </span>
     </ion-title>
   </ion-navbar>
-  <div class="custom-id">
+  <!-- <div class="custom-id">
     <ion-searchbar placeholder="Search any part here"></ion-searchbar>
-  </div>
+  </div> -->
 </ion-header>
 
 <ion-content class="bg-light">
@@ -134,7 +134,13 @@
             </label>
           </div>
 
-          <div style="margin-top: 10%">
+          <div style="margin-top: 6%">
+            <label style="color: black"
+              >Date Created: {{productsLocal.ProductDateCreated}}
+            </label>
+          </div>
+
+          <!-- <div style="margin-top: 10%">
             <button
               ion-button
               full
@@ -144,27 +150,63 @@
             >
               Add To Cart
             </button>
-          </div>
-
-          <div>
-            <span style="color: black">Share On</span>
-          </div>
-      
-          <div>
-            <ion-icon name="logo-facebook" style="margin: 8px"></ion-icon>
-            <ion-icon name="logo-facebook" style="margin: 8px"></ion-icon>
-            <ion-icon name="logo-facebook" style="margin: 8px"></ion-icon>
-            <ion-icon name="logo-whatsapp" style="margin: 8px"></ion-icon>
-            <ion-icon name="copy" style="margin: 8px"></ion-icon>
-            <ion-icon name="mail" style="margin: 8px"></ion-icon>
-          </div>
+          </div> -->
         </ion-col>
 
-        
+        <ion-item>
+          <button
+            ion-button
+            full
+            class="bg-thime btn-round btn-text"
+            style="margin-top: 3px; height: 40px; text-align: center"
+            (click)="addToCart(i,productsLocal.ProductId,productsLocal.ProductName,productsLocal.ProductImage,productsLocal.ProductDescription,productsLocal.ProductRegularPrice)"
+          >
+            Add To Cart
+          </button>
+        </ion-item>
+
+      
+
+        <!-- no-lines -->
+        <ion-item
+          class="center"
+          style="text-align: center; display: flex"
+          no-lines
+        >
+          <p style="color: black">Share On</p>
+          <ion-icon
+            name="logo-facebook"
+            style="margin: 8px; margin-top: 12px; font-size: 25px"
+            (click)="facebookPage()"
+          ></ion-icon>
+          <ion-icon
+            name="logo-twitter"
+            style="margin: 8px; margin-top: 12px; font-size: 25px"
+            (click)="twitterPage()"
+          ></ion-icon>
+          <ion-icon
+            name="logo-pinterest"
+            style="margin: 8px; margin-top: 12px; font-size: 25px"
+            (click)="pInterestPage()"
+          ></ion-icon>
+          <ion-icon
+            name="logo-whatsapp"
+            style="margin: 8px; margin-top: 12px; font-size: 25px"
+            (click)="whatsUpPage()"
+          ></ion-icon>
+          <ion-icon
+            name="copy"
+            style="margin: 8px; margin-top: 12px; font-size: 25px"
+            (click)="copyPage()"
+          ></ion-icon>
+          <ion-icon
+            name="mail"
+            style="margin: 8px; margin-top: 12px; font-size: 25px"
+            (click)="emailPage()"
+          ></ion-icon>
+        </ion-item>
       </ion-row>
     </div>
-
-   
 
     <!-- <div class="reating-review bg-white" padding style="margin-bottom: 15px">
       <div class="reating">

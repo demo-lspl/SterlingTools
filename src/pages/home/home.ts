@@ -131,6 +131,7 @@ export class HomePage implements OnInit {
   hideMe1;
   hideMe2;
   hideMe3;
+  vartoday : any;
 
 
 
@@ -155,6 +156,16 @@ export class HomePage implements OnInit {
                      
        
   ngOnInit() {   
+
+    this.vartoday = new Date();
+var dd = String(this.vartoday.getDate()).padStart(2, '0');
+var mm = String(this.vartoday.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = this.vartoday.getFullYear();
+
+this.vartoday = mm + '/' + dd + '/' + yyyy;
+// document.write(today);
+
+console.log('Today date ' + this.vartoday);
     
     this.hide = !this.hide;
     this.hide1 = !this.hide1;
@@ -464,7 +475,9 @@ export class HomePage implements OnInit {
         });
   }   
 }  
-addToWishList(id, name,image,description,regular_price,x) {
+addToWishList(id, name,image,description,regular_price,x,date) {
+
+  
 
   this.visible = !this.visible;
   // this.countClick++;
@@ -487,7 +500,7 @@ addToWishList(id, name,image,description,regular_price,x) {
   } 
   console.log("Sent productsList id " + id);
   console.log("Sent productsList name " + name);
-  productsWishlist.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
+  productsWishlist.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price , ProductDateCreated : this.vartoday} ); 
   localStorage.setItem('productsWishlist', JSON.stringify(productsWishlist)); 
   this.buttonIcon = "home";
   this.showToastOnAddProductWishlist(name);

@@ -4,75 +4,104 @@
  * Ionic pages and navigation.
  */
 
-import { ApiProvider } from './../../providers/api/api';
-import { WishlistupdatedPage } from './../wishlistupdated/wishlistupdated';
-import { ProductcategoryPage } from './../productcategory/productcategory';
-import { ViewcartPage } from './../viewcart/viewcart';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController, NavParams, IonicPage, LoadingController, Platform, App, ToastController, AlertController } from 'ionic-angular';
-import { ProductcategorydetaillistPage } from '../productcategorydetaillist/productcategorydetaillist';
-import { ReadmorePage } from '../readmore/readmore';
-import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
-
-
-
+import { ApiProvider } from "./../../providers/api/api";
+import { WishlistupdatedPage } from "./../wishlistupdated/wishlistupdated";
+import { ProductcategoryPage } from "./../productcategory/productcategory";
+import { ViewcartPage } from "./../viewcart/viewcart";
+import { HttpClient } from "@angular/common/http";
+import { Component, OnInit } from "@angular/core";
+import {
+  NavController,
+  ModalController,
+  NavParams,
+  IonicPage,
+  LoadingController,
+  Platform,
+  App,
+  ToastController,
+  AlertController,
+} from "ionic-angular";
+import { ProductcategorydetaillistPage } from "../productcategorydetaillist/productcategorydetaillist";
+import { ReadmorePage } from "../readmore/readmore";
+import { Plugins, NetworkStatus, PluginListenerHandle } from "@capacitor/core";
 
 @IonicPage()
 @Component({
-  selector: 'page-productcategorydetail',
-  templateUrl: 'productcategorydetail.html',
+  selector: "page-productcategorydetail",
+  templateUrl: "productcategorydetail.html",
 })
-export class ProductcategorydetailPage implements OnInit{
-
+export class ProductcategorydetailPage implements OnInit {
   obj;
-  dynamicTermId:string;
-  strId:string;
-  productCategoryInformation: any = [];  
-  strData:string; 
-  strIdValue:string;
-  strCommentStatus:string;
-  strPingStatus:string;
-  strProductCategoryName:string;
-  strProductMake:string;
+  dynamicTermId: string;
+  strId: string;
+  productCategoryInformation: any = [];
+  strData: string;
+  strIdValue: string;
+  strCommentStatus: string;
+  strPingStatus: string;
+  strProductCategoryName: string;
+  strProductMake: string;
 
-  strProductCategoryRegularPrice:string;
-  strProductGuid:string;
-  
-  viewCartList: any = [];  
-  countProducts:number|any;
-  buttonIcon: string ;
+  strProductCategoryRegularPrice: string;
+  strProductGuid: string;
+
+  viewCartList: any = [];
+  countProducts: number | any;
+  buttonIcon: string;
   networkStatus: NetworkStatus;
-  networkListener: PluginListenerHandle; 
-  countProductsCart:number|any|string;
-  countProductsCartLocal:number|any|string;
-  countProductsCartLocalUpdated:number | any = 0;
-  countProductsWishlistLocalUpdated:number  | any= 0;
-  countProductsWishList:number =0;
+  networkListener: PluginListenerHandle;
+  countProductsCart: number | any | string;
+  countProductsCartLocal: number | any | string;
+  countProductsCartLocalUpdated: number | any = 0;
+  countProductsWishlistLocalUpdated: number | any = 0;
+  countProductsWishList: number = 0;
+  selected_value = "";
+  filtermonthwise: any;
 
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public modalCtrl: ModalController,
+    public httpClient: HttpClient,
+    public loadingController: LoadingController,
+    public platform: Platform,
+    public app: App,
+    public toastController: ToastController,
+    public apiProvider: ApiProvider,
+    public alertController: AlertController
+  ) {
+    this.strId = navParams.get("catId");
+    this.dynamicTermId = this.strId;
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              public modalCtrl: ModalController,
-              public httpClient: HttpClient,
-              public loadingController: LoadingController,
-              public platform: Platform,
-              public app: App,
-              public toastController: ToastController,
-              public apiProvider: ApiProvider,
-              public alertController: AlertController) {
+    // console.log('Received productsList id ' + this.strId);
+  }
 
-      this.strId = navParams.get('catId');
-      this.dynamicTermId = this.strId;  
-   
-      // console.log('Received productsList id ' + this.strId);
-  }   
-   
-  
-    
- 
- 
-    
+  monthfilter() {
+    console.log(this.filtermonthwise);
+
+    if(this.filtermonthwise = 'Name')
+    {
+      this.showToastOnSortingCategory();
+      this.productCategoryInformation.sort((a, b) => (a.name > b.name ? 1 : -1));
+      console.log("Sorted by name:   " + this.filtermonthwise);
+    }
+
+   else  if(this.filtermonthwise = 'Price Low to High')
+    {
+      this.showToastOnSortingCategory();
+      this.productCategoryInformation.sort((a, b) => (a.regular_price > b.regular_price ? 1 : -1));
+      console.log("Sorted by price Low to High:   " + this.filtermonthwise);
+    }
+
+    else  if(this.filtermonthwise = 'Price High to Low')
+    {
+      this.showToastOnSortingCategory();
+      this.productCategoryInformation.sort((a, b) => (a.regular_price < b.regular_price ? 1 : -1));
+      console.log("Sorted by price High to Low:   " + this.filtermonthwise);
+    }
+
+  }
+
   cartPage() {
     // let modal = this.modalCtrl.create(CartPage);
     // modal.present();
@@ -81,99 +110,113 @@ export class ProductcategorydetailPage implements OnInit{
   }
 
   doRefresh(event) {
-    console.log('Begin async operation');
+    console.log("Begin async operation");
     this.callProductCategoryDetail();
-    
+
     setTimeout(() => {
-      console.log('Async operation has ended');
+      console.log("Async operation has ended");
       //  event.target.complete();
       event.complete();
       // window.location.reload();
-     // window.location.reload();
+      // window.location.reload();
       // location.reload();
     }, 600);
-  }    
-
-  
-  sortPopular(){
-    this.showLoadingControllerLaunch();    
   }
 
-  addToWishList(id, name,image,description,regular_price,x) {
+  sortPopular() {
+    this.showLoadingControllerLaunch();
+  }
 
+  addToWishList(id, name, image, description, regular_price, x) {
     // this.visible = !this.visible;
     // this.countClick++;
-  
+
     //   if(this.countClick>1){
     //     console.log('Clicked More than one');
     //     this.showToastOnWishlist();
     //   }
     //   else {
     //   }
-  
+
     //x.classList.toggle("fa-thumbs-down");
-  
-   // document.getElementById("myDIV").classList.add("mystyle");  
-  
-    
+
+    // document.getElementById("myDIV").classList.add("mystyle");
+
     let productsWishlist = [];
-    if (localStorage.getItem('productsWishlist')) {
-      productsWishlist = JSON.parse(localStorage.getItem('productsWishlist')); // get product list 
-    } 
+    if (localStorage.getItem("productsWishlist")) {
+      productsWishlist = JSON.parse(localStorage.getItem("productsWishlist")); // get product list
+    }
     console.log("Sent productsList id " + id);
     console.log("Sent productsList name " + name);
-    productsWishlist.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
-    localStorage.setItem('productsWishlist', JSON.stringify(productsWishlist)); 
+    productsWishlist.push({
+      ProductId: id,
+      ProductName: name,
+      ProductQuantity: "1",
+      ProductImage: image,
+      ProductDescription: description,
+      ProductRegularPrice: regular_price,
+    });
+    localStorage.setItem("productsWishlist", JSON.stringify(productsWishlist));
     this.buttonIcon = "home";
     this.showToastOnAddProductWishlist(name);
     this.countProductsWishlistLocalUpdated++;
-    if (typeof(Storage) !== "undefined") {
+    if (typeof Storage !== "undefined") {
       // Code for localStorage/sessionStorage.
-      console.log('Code for localStorage/sessionStorage.')
+      console.log("Code for localStorage/sessionStorage.");
     } else {
       // Sorry! No Web Storage support..
-      console.log('Sorry! No Web Storage support..')
+      console.log("Sorry! No Web Storage support..");
     }
-  } 
+  }
 
   showToastOnAddProductWishlist(strProductAdded) {
     const toast = this.toastController.create({
       // message: this.testStr,
-      message: 'Product Added in Wishlist : \n ' + strProductAdded + '\n' ,
+      message: "Product Added in Wishlist : \n " + strProductAdded + "\n",
       duration: 1000,
       position: "bottom",
-    });   
-    toast.present();  
-  }  
-  
-//   addToCart(id,strProductAdded) {
-//     this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
-//       this.obj = JSON.stringify(jsonResponse);
-//       console.log("Sent productsList response " + this.obj);
-//       console.log("Sent productsList id " + id);
-//       this.showToastOnAddProductSingle(strProductAdded);
-//       this.countProductsCartLocalUpdated++;
-//     }); 
-// } 
-addToCart(id, name,image,description,regular_price) {
-  if (localStorage.getItem("Userid value") === null) {
-    let products = [];
-    if (localStorage.getItem('products')) {
-      products = JSON.parse(localStorage.getItem('products')); // get product list 
-    } 
-    console.log("Sent productsList id " + id);
-    console.log("Sent productsList name " + name);
-    products.push({'ProductId' : id , 'ProductName' : name , 'ProductQuantity': '1' ,'ProductImage' : image ,'ProductDescription':description , 'ProductRegularPrice' : regular_price} ); 
-    localStorage.setItem('products', JSON.stringify(products)); 
-    this.showToastOnAddProductLocal(name);
-    this.countProductsCartLocalUpdated++;
+    });
+    toast.present();
+  }
 
-
-   
-  } 
-  
-  else { 
-    this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
+  //   addToCart(id,strProductAdded) {
+  //     this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
+  //       this.obj = JSON.stringify(jsonResponse);
+  //       console.log("Sent productsList response " + this.obj);
+  //       console.log("Sent productsList id " + id);
+  //       this.showToastOnAddProductSingle(strProductAdded);
+  //       this.countProductsCartLocalUpdated++;
+  //     });
+  // }
+  addToCart(id, name, image, description, regular_price) {
+    if (localStorage.getItem("Userid value") === null) {
+      let products = [];
+      if (localStorage.getItem("products")) {
+        products = JSON.parse(localStorage.getItem("products")); // get product list
+      }
+      console.log("Sent productsList id " + id);
+      console.log("Sent productsList name " + name);
+      products.push({
+        ProductId: id,
+        ProductName: name,
+        ProductQuantity: "1",
+        ProductImage: image,
+        ProductDescription: description,
+        ProductRegularPrice: regular_price,
+      });
+      localStorage.setItem("products", JSON.stringify(products));
+      this.showToastOnAddProductLocal(name);
+      this.countProductsCartLocalUpdated++;
+    } else {
+      this.httpClient
+        .get(
+          "http://busybanda.com/sterling-tools/api/set_cart_items?" +
+            "user_id=" +
+            localStorage.getItem("Userid value") +
+            "&product_id=" +
+            id
+        )
+        .subscribe((jsonResponse) => {
           this.obj = JSON.stringify(jsonResponse);
           console.log("Sent productsList response " + this.obj);
           console.log("Sent productsList id " + id);
@@ -181,50 +224,52 @@ addToCart(id, name,image,description,regular_price) {
           // this.countProductsCart++;
           this.countProductsCartLocalUpdated++;
         });
+    }
   }
-}       
- 
-readMore(id) {
-  // this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
-  //   this.obj = JSON.stringify(jsonResponse);
-  //   console.log("Sent productsList response " + this.obj);
-  //   console.log("Sent productsList id " + id);
-  //   this.showToastOnAddProductSingle(strProductAdded);
-  // });  
 
-  this.navCtrl.push(ReadmorePage, {
-    id: id,
-      
-  });
-  console.log("Read More Sent product id " + id);
- 
-}
-    
+  readMore(id) {
+    // this.httpClient.get('http://busybanda.com/sterling-tools/api/set_cart_items?' + 'user_id=' + localStorage.getItem('Userid value') + '&product_id=' + id).subscribe((jsonResponse) => {
+    //   this.obj = JSON.stringify(jsonResponse);
+    //   console.log("Sent productsList response " + this.obj);
+    //   console.log("Sent productsList id " + id);
+    //   this.showToastOnAddProductSingle(strProductAdded);
+    // });
 
-productDetailPage(id, name,image,regular_price,description,make,model,year) {
-  this.navCtrl.push(ProductcategorydetaillistPage, {
-    id: id,
-    name: name,
-    image:image,  
-    regular_price:regular_price,
-    description:description,
-    make:make,
-    model:model,
-    year:year,
-   
-  });
-  console.log("Sent product id " + id);
-  console.log("Sent product name " + name);
-  console.log("Sent product image " + image);
-  console.log("Sent product regular_price " + regular_price);
-  console.log("Sent product description " + description);
-  console.log("Sent product make " + make);
-  console.log("Sent product model " + model);
-  console.log("Sent product year " + year);
+    this.navCtrl.push(ReadmorePage, {
+      id: id,
+    });
+    console.log("Read More Sent product id " + id);
+  }
 
-
-}
-
+  productDetailPage(
+    id,
+    name,
+    image,
+    regular_price,
+    description,
+    make,
+    model,
+    year
+  ) {
+    this.navCtrl.push(ProductcategorydetaillistPage, {
+      id: id,
+      name: name,
+      image: image,
+      regular_price: regular_price,
+      description: description,
+      make: make,
+      model: model,
+      year: year,
+    });
+    console.log("Sent product id " + id);
+    console.log("Sent product name " + name);
+    console.log("Sent product image " + image);
+    console.log("Sent product regular_price " + regular_price);
+    console.log("Sent product description " + description);
+    console.log("Sent product make " + make);
+    console.log("Sent product model " + model);
+    console.log("Sent product year " + year);
+  }
 
   ngOnInit() {
     this.checkNetwork();
@@ -232,125 +277,130 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
     this.platform.registerBackButtonAction(() => {
       // Catches the active view
       let nav = this.app.getActiveNavs()[0];
-      let activeView = nav.getActive();                
+      let activeView = nav.getActive();
       // Checks if can go back before show up the alert
-      if(activeView.name === 'ProductcategorydetailPage') {
-          if (nav.canGoBack()){                  
-               this.navCtrl.setRoot(ProductcategoryPage);
-               console.log('test');
-
-          } else {  
-             this.navCtrl.setRoot(ProductcategoryPage);
-            console.log('test!!!');
-          }
-      }    
-  }); 
+      if (activeView.name === "ProductcategorydetailPage") {
+        if (nav.canGoBack()) {
+          this.navCtrl.setRoot(ProductcategoryPage);
+          console.log("test");
+        } else {
+          this.navCtrl.setRoot(ProductcategoryPage);
+          console.log("test!!!");
+        }
+      }
+    });
     // this.showLoadingControllerLaunch();
     this.callProductCategoryDetail();
 
-         /*
+    /*
           Local Wishlist
       */
 
-     if(this.countProductsWishlistLocalUpdated===0){
-      this.countProductsWishlistLocalUpdated = '';
-      console.log('Entered');
+    if (this.countProductsWishlistLocalUpdated === 0) {
+      this.countProductsWishlistLocalUpdated = "";
+      console.log("Entered");
     }
 
-     if(this.countProductsCartLocalUpdated===0){
-      this.countProductsCartLocalUpdated = '';
-      console.log('Entered..');
+    if (this.countProductsCartLocalUpdated === 0) {
+      this.countProductsCartLocalUpdated = "";
+      console.log("Entered..");
     }
 
-
-     var productsWishlistarrayFromStorage = JSON.parse(localStorage.getItem('productsWishlist'));
-     if (productsWishlistarrayFromStorage != null && productsWishlistarrayFromStorage.length > 0) {
-       var arrayLength = productsWishlistarrayFromStorage.length;
-       this.countProductsWishList = arrayLength;
-       this.countProductsWishlistLocalUpdated = this.countProductsWishList;
-       console.log('Local Wishlist filled ' + this.countProductsWishlistLocalUpdated);
- 
-     }        
-  
-     else {
-       console.log('Local Wishlist empty ' );
-     }
-     /*
+    var productsWishlistarrayFromStorage = JSON.parse(
+      localStorage.getItem("productsWishlist")
+    );
+    if (
+      productsWishlistarrayFromStorage != null &&
+      productsWishlistarrayFromStorage.length > 0
+    ) {
+      var arrayLength = productsWishlistarrayFromStorage.length;
+      this.countProductsWishList = arrayLength;
+      this.countProductsWishlistLocalUpdated = this.countProductsWishList;
+      console.log(
+        "Local Wishlist filled " + this.countProductsWishlistLocalUpdated
+      );
+    } else {
+      console.log("Local Wishlist empty ");
+    }
+    /*
          Local Cart
      */
-    var productsCartarrayFromStorage = JSON.parse(localStorage.getItem('products'));
-    if (productsCartarrayFromStorage != null && productsCartarrayFromStorage.length > 0) {
+    var productsCartarrayFromStorage = JSON.parse(
+      localStorage.getItem("products")
+    );
+    if (
+      productsCartarrayFromStorage != null &&
+      productsCartarrayFromStorage.length > 0
+    ) {
       var arrayLength1 = productsCartarrayFromStorage.length;
       this.countProductsCart = arrayLength1;
       this.countProductsCartLocalUpdated = this.countProductsCart;
-      console.log('Local Cart filled ' + this.countProductsCartLocalUpdated);
+      console.log("Local Cart filled " + this.countProductsCartLocalUpdated);
+    } else {
+      console.log("Local Cart empty ");
     }
-
-    else {
-      console.log('Local Cart empty ' );
-    }
-
-  }  
-  
-  async callProductCategoryDetail() {
-        const loader = await this.loadingController.create({
-      content: 'Please wait loading products detail!',
-    });
-    await loader.present();
-    loader.present().then(() => { 
-      this.httpClient.get('http://busybanda.com/sterling-tools/api/get_category_by_id?' +  'id=' +this.dynamicTermId)
-      .subscribe((jsonResponse) => {
-        
-         this.productCategoryInformation = jsonResponse['result'];
-         this.obj = JSON.stringify(jsonResponse);
-         console.log('Particular product details json ' + this.obj.result );
-    
-         if (this.productCategoryInformation && this.productCategoryInformation.length) {
-          console.log('Particular product details available ' );
-          loader.dismiss(); 
-             
-         }     
-        else 
-        {
-          this.strData = 'No data available';
-          console.log('Particular product empty ' + jsonResponse['result']);
-          loader.dismiss(); 
-        }
-       
-        for (const entry of this.productCategoryInformation) {
-          this.strProductCategoryName = 'Name: ' + entry.name;
-          this.strProductMake = entry.attribute.pa_make;
-          console.log(entry.attribute.pa_make);
-        }
-  
-        for (const entry of this.productCategoryInformation) {
-           console.log(entry.name); // val1 and etc...
-        }
-      });
-    });
   }
 
- 
+  async callProductCategoryDetail() {
+    const loader = await this.loadingController.create({
+      content: "Please wait loading products detail!",
+    });
+    await loader.present();
+    loader.present().then(() => {
+      this.httpClient
+        .get(
+          "http://busybanda.com/sterling-tools/api/get_category_by_id?" +
+            "id=" +
+            this.dynamicTermId
+        )
+        .subscribe((jsonResponse) => {
+          this.productCategoryInformation = jsonResponse["result"];
+          this.obj = JSON.stringify(jsonResponse);
+          console.log("Particular product details json " + this.obj.result);
+
+          if (
+            this.productCategoryInformation &&
+            this.productCategoryInformation.length
+          ) {
+            console.log("Particular product details available ");
+            loader.dismiss();
+          } else {
+            this.strData = "No data available";
+            console.log("Particular product empty " + jsonResponse["result"]);
+            loader.dismiss();
+          }
+
+          for (const entry of this.productCategoryInformation) {
+            this.strProductCategoryName = "Name: " + entry.name;
+            this.strProductMake = entry.attribute.pa_make;
+            console.log(entry.attribute.pa_make);
+          }
+
+          for (const entry of this.productCategoryInformation) {
+            console.log(entry.name); // val1 and etc...
+          }
+        });
+    });
+  }
 
   showToastOnProductError(strProductAdded) {
     const toast = this.toastController.create({
       // message: this.testStr,
-      message: 'Error' + strProductAdded,
+      message: "Error" + strProductAdded,
       duration: 3000,
       position: "bottom",
-    });   
-    toast.present();  
+    });
+    toast.present();
   }
-
 
   showLoadingControllerLaunch() {
     let loading = this.loadingController.create({
-      content: 'Please wait!'
+      content: "Please wait!",
     });
-   
-    loading.present();    
+
+    loading.present();
     // this.callRegisterApi();
-  
+
     setTimeout(() => {
       loading.dismiss();
     }, 3000);
@@ -362,166 +412,167 @@ productDetailPage(id, name,image,regular_price,description,make,model,year) {
   //     message: 'Product Added in Cart : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
   //     duration: 3000,
   //     position: "bottom",
-  //   });   
-  //   toast.present();  
+  //   });
+  //   toast.present();
   // }
 
   showToastOnAddProductSingle(strProductAdded) {
     const toast = this.toastController.create({
       // message: this.testStr,
-      message: 'In Process',
+      message: "In Process",
       duration: 1500,
       position: "bottom",
-    });     
-    toast.present();  
-  }
-          
-  wishlistPage() {
-    this.navCtrl.push(WishlistupdatedPage); 
+    });
+    toast.present();
   }
 
-  async viewCartApi() {            
+  wishlistPage() {
+    this.navCtrl.push(WishlistupdatedPage);
+  }
+
+  async viewCartApi() {
     try {
-      const service = this.apiProvider.getCartDetails();  
+      const service = this.apiProvider.getCartDetails();
       service.subscribe(async (data) => {
         if (data) {
           const resultado = data;
-          this.viewCartList = resultado;     
+          this.viewCartList = resultado;
           this.obj = JSON.stringify(data);
-          console.log('All Json Response' + this.obj);
-           // this.strData = 'No Products in Cart';  
+          console.log("All Json Response" + this.obj);
+          // this.strData = 'No Products in Cart';
           //  if(this.viewCartList.length>=1) {
           //   console.log('Cart Filled ');
           //   this.countProductsCart = this.viewCartList.length;
           //    this.buttonIcon = "cart";
           //  }
-  
+
           //  else{
           //   console.log('Cart Empty ');
           //  this.countProductsCart = 'Empty';
-  
+
           //  }
-          if(this.viewCartList){
+          if (this.viewCartList) {
             this.countProductsCartLocalUpdated = this.viewCartList.length;
-  
-          }
-  
-          else {
+          } else {
             this.countProductsCartLocalUpdated = this.countProductsCart;
-  
           }
         } else {
         }
-  
       });
     } catch (error) {}
   }
 
+  select_dropdown_value() {
+    console.log("selector: ", this.selected_value);
+  }
+
   sortDropDownValue() {
     console.log("Selected sortDropDownValue");
+
     this.showToastOnSortingCategory();
-    this.productCategoryInformation.sort((a, b) => (a.name > b.name) ? 1 : -1)
-    console.log('Sorted:   ' + this.productCategoryInformation);
- 
+    this.productCategoryInformation.sort((a, b) => (a.name > b.name ? 1 : -1));
+    console.log("Sorted:   " + this.productCategoryInformation);
+
     var points = [5.0, 3.7, 1.0, 2.9, 3.4, 4.5];
-    var output :any  = [];
+    var output: any = [];
     for (let i = 0; i < points.length; i++) {
-      	points.sort(function (a, b) {
-		    return b - a   
-	  });
-	  output += points[i] + "<br>";
-}
+      points.sort(function (a, b) {
+        return b - a;
+      });
+      output += points[i] + "<br>";
+    }
     console.log(output);
   }
-  
 
   showToastOnSortingCategory() {
     let loading = this.loadingController.create({
-      content: 'Please wait...'
+      content: "Please wait...",
     });
-  
+
     loading.present();
-    
+
     setTimeout(() => {
       loading.dismiss();
-    }, 700)
+    }, 700);
+  }
 
-}
-
-public async checkNetwork() {
-  const { Network } = Plugins;
+  public async checkNetwork() {
+    const { Network } = Plugins;
     this.networkListener = Network.addListener(
-      'networkStatusChange',
+      "networkStatusChange",
       (status) => {
-        console.log('Network status HomePage here', status);
+        console.log("Network status HomePage here", status);
         this.networkStatus = status;
       }
     );
 
-    if ((await Network.getStatus()).connectionType === 'none') {
+    if ((await Network.getStatus()).connectionType === "none") {
       this.showNetworkAlert();
-      console.log('Network status not available', this.networkStatus);
+      console.log("Network status not available", this.networkStatus);
     } else {
       this.networkStatus = await Network.getStatus();
       // this.showAlert();
-      console.log('Network status available', this.networkStatus);
+      console.log("Network status available", this.networkStatus);
       //this.router.navigate(['/invoices']);
-     // this.router.navigate(['/managecard']);
+      // this.router.navigate(['/managecard']);
     }
-  
-}
+  }
 
+  private async showNetworkAlert(): Promise<void> {
+    // omitted;
+    const alert = await this.alertController.create({
+      title: "Network Issues!",
+      message: "There are issues in network connectivity",
 
-private async showNetworkAlert(): Promise<void> {
-  // omitted;
-  const alert = await this.alertController.create({
-    title: 'Network Issues!',
-    message: 'There are issues in network connectivity',
-
-    buttons: [
-      {
-        text: 'Ok',
-        handler: (ok) => {
-          console.log('Confirm Ok');
-          // resolve('ok');
+      buttons: [
+        {
+          text: "Ok",
+          handler: (ok) => {
+            console.log("Confirm Ok");
+            // resolve('ok');
+          },
         },
-      },
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: (cancel) => {
-          console.log('Confirm Cancel');
-          alert.dismiss();
-          // resolve('cancel');
+        {
+          text: "Cancel",
+          role: "cancel",
+          cssClass: "secondary",
+          handler: (cancel) => {
+            console.log("Confirm Cancel");
+            alert.dismiss();
+            // resolve('cancel');
+          },
         },
-      },
-    ],
-  });
+      ],
+    });
 
-  alert.present();
-}
+    alert.present();
+  }
 
-showToastOnAddProductLocal(strProductAdded) {
-  const toast = this.toastController.create({
-    // message: this.testStr,
-    message: 'Product Added in Local Cart : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
-    duration: 3000,
-    position: "bottom",
-  });   
-  toast.present();  
-}  
+  showToastOnAddProductLocal(strProductAdded) {
+    const toast = this.toastController.create({
+      // message: this.testStr,
+      message:
+        "Product Added in Local Cart : \n " +
+        strProductAdded +
+        "\n" +
+        "\nProduct Quantity:  1",
+      duration: 3000,
+      position: "bottom",
+    });
+    toast.present();
+  }
 
-showToastOnAddProductServer(strProductAdded) {
-  const toast = this.toastController.create({
-    // message: this.testStr,
-    message: 'Product Added in Server : \n ' + strProductAdded + '\n' + '\nProduct Quantity:  1',
-    duration: 1000,
-    position: "bottom",
-  });   
-  toast.present();  
-}
-
-
-
+  showToastOnAddProductServer(strProductAdded) {
+    const toast = this.toastController.create({
+      // message: this.testStr,
+      message:
+        "Product Added in Server : \n " +
+        strProductAdded +
+        "\n" +
+        "\nProduct Quantity:  1",
+      duration: 1000,
+      position: "bottom",
+    });
+    toast.present();
+  }
 }
