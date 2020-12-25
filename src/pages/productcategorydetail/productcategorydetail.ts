@@ -57,6 +57,7 @@ export class ProductcategorydetailPage implements OnInit {
   countProductsWishList: number = 0;
   selected_value = "";
   filtermonthwise: any;
+  vartoday: any;
 
   constructor(
     public navCtrl: NavController,
@@ -79,27 +80,25 @@ export class ProductcategorydetailPage implements OnInit {
   monthfilter() {
     console.log(this.filtermonthwise);
 
-    if(this.filtermonthwise = 'Name')
-    {
+    if ((this.filtermonthwise = "Name")) {
       this.showToastOnSortingCategory();
-      this.productCategoryInformation.sort((a, b) => (a.name > b.name ? 1 : -1));
+      this.productCategoryInformation.sort((a, b) =>
+        a.name > b.name ? 1 : -1
+      );
       console.log("Sorted by name:   " + this.filtermonthwise);
-    }
-
-   else  if(this.filtermonthwise = 'Price Low to High')
-    {
+    } else if ((this.filtermonthwise = "Price Low to High")) {
       this.showToastOnSortingCategory();
-      this.productCategoryInformation.sort((a, b) => (a.regular_price > b.regular_price ? 1 : -1));
+      this.productCategoryInformation.sort((a, b) =>
+        a.regular_price > b.regular_price ? 1 : -1
+      );
       console.log("Sorted by price Low to High:   " + this.filtermonthwise);
-    }
-
-    else  if(this.filtermonthwise = 'Price High to Low')
-    {
+    } else if ((this.filtermonthwise = "Price High to Low")) {
       this.showToastOnSortingCategory();
-      this.productCategoryInformation.sort((a, b) => (a.regular_price < b.regular_price ? 1 : -1));
+      this.productCategoryInformation.sort((a, b) =>
+        a.regular_price < b.regular_price ? 1 : -1
+      );
       console.log("Sorted by price High to Low:   " + this.filtermonthwise);
     }
-
   }
 
   cartPage() {
@@ -155,6 +154,7 @@ export class ProductcategorydetailPage implements OnInit {
       ProductImage: image,
       ProductDescription: description,
       ProductRegularPrice: regular_price,
+      ProductDateCreated: this.vartoday,
     });
     localStorage.setItem("productsWishlist", JSON.stringify(productsWishlist));
     this.buttonIcon = "home";
@@ -272,6 +272,13 @@ export class ProductcategorydetailPage implements OnInit {
   }
 
   ngOnInit() {
+    this.vartoday = new Date();
+    var dd = String(this.vartoday.getDate()).padStart(2, "0");
+    var mm = String(this.vartoday.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var yyyy = this.vartoday.getFullYear();
+    this.vartoday = mm + "/" + dd + "/" + yyyy;
+    console.log("Today date " + this.vartoday);
+
     this.checkNetwork();
     this.viewCartApi();
     this.platform.registerBackButtonAction(() => {

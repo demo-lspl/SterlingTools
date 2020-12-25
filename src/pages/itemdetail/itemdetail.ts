@@ -78,6 +78,7 @@ export class ItemdetailPage implements OnInit {
   countProductsCartLocalUpdated: number | any = 0;
   countProductsWishlistLocalUpdated: number | any = 0;
   countProductsWishList: number = 0;
+  vartoday: any;
 
   constructor(
     public navCtrl: NavController,
@@ -98,6 +99,15 @@ export class ItemdetailPage implements OnInit {
   }
 
   ngOnInit() {
+    this.vartoday = new Date();
+    var dd = String(this.vartoday.getDate()).padStart(2, "0");
+    var mm = String(this.vartoday.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var yyyy = this.vartoday.getFullYear();
+
+    this.vartoday = mm + "/" + dd + "/" + yyyy;
+    // document.write(today);
+
+    console.log("Today date " + this.vartoday);
     if (this.countProductsWishlistLocalUpdated === 0) {
       this.countProductsWishlistLocalUpdated = "";
       console.log("Entered");
@@ -437,6 +447,14 @@ export class ItemdetailPage implements OnInit {
     }
     console.log("Sent productsList id " + id);
     console.log("Sent productsList name " + name);
+    // productsWishlist.push({
+    //   ProductId: id,
+    //   ProductName: name,
+    //   ProductQuantity: "1",
+    //   ProductImage: image,
+    //   ProductDescription: description,
+    //   ProductRegularPrice: regular_price,
+    // });
     productsWishlist.push({
       ProductId: id,
       ProductName: name,
@@ -444,7 +462,9 @@ export class ItemdetailPage implements OnInit {
       ProductImage: image,
       ProductDescription: description,
       ProductRegularPrice: regular_price,
+      ProductDateCreated: this.vartoday,
     });
+
     localStorage.setItem("productsWishlist", JSON.stringify(productsWishlist));
     this.buttonIcon = "home";
     this.showToastOnAddProductWishlist(name);

@@ -8,37 +8,32 @@
     <ion-title
       >Product Detail
       <span float-right>
-       
         <!-- <ion-icon class="icon" (click)="wishlistPage()"><img src="assets/imgs/ic_my_wishlist.png" width="100%;"/></ion-icon>
         <ion-icon class="icon"  (click)="cartPage()" ><img src="assets/imgs/ic_my_cart.png" width="100%;" /></ion-icon> -->
 
-        <ion-icon class="icon"  (click)="wishlistPage()" >
+        <ion-icon class="icon" (click)="wishlistPage()">
           <img src="assets/imgs/ic_my_wishlist.png" width="100%;" />
-          <ion-badge class="icon add-icon" >{{countProductsWishList}}</ion-badge> 
+          <ion-badge class="icon add-icon">{{countProductsWishList}}</ion-badge>
         </ion-icon>
 
-        <ion-icon class="icon"  (click)="cartPage()" >
+        <ion-icon class="icon" (click)="cartPage()">
           <img src="assets/imgs/ic_my_cart.png" width="100%;" />
-          <ion-badge class="icon add-icon" >{{countProductsCart}}</ion-badge> 
+          <ion-badge class="icon add-icon">{{countProductsCart}}</ion-badge>
         </ion-icon>
-        
-         
-     
-
       </span>
     </ion-title>
   </ion-navbar>
-</ion-header> 
+</ion-header>
 
 <!--<select size & color>-->
 <ion-content class="bg-light">
   <div class="img-section shadow-bottom" text-center>
-  
-  
-
     <!-- <img src="assets/imgs/productimage.jpg" /> -->
 
-    <img  [src]="strImage"  style="width:200px;height:150px;margin-top: 8px;">
+    <img
+      [src]="strImage"
+      style="width: 200px; height: 150px; margin-top: 8px"
+    />
 
     <!-- <div class="tab-btn-box">
       <div class="tab-btn">
@@ -123,26 +118,12 @@
   <div class="features bg-white shadow-bottom" padding>
     <h6 class="heading">Key Features</h6>
     <p><span class="circle"></span>{{strProductName}}</p>
-    <!-- <p><span class="circle"></span>{{strProductRegularPrice}} $ </p> -->
-
-   
     <p><span class="circle"></span>{{strProductDescription}}</p>
     <p><span class="circle"></span>{{strProductSalePrice}}</p>
-    <p><span class="circle"></span>{{strProductMake}}</p>  
+    <p><span class="circle"></span>{{strProductMake}}</p>
     <p><span class="circle"></span>{{strProductModel}}</p>
     <p><span class="circle"></span>{{strProductYear}}</p>
     <p><span class="circle"></span>{{strStock}}</p>
-
-  
-
-
-    <!-- <p><span class="circle"></span>{{strTaxonomyProductCatTitle}}</p>
-    <p><span class="circle"></span>{{strTaxonomyProductBrandTitle}}</p> -->
-    <!-- <p><span class="circle"></span>{{strTaxonomyProductBrandModel}}</p> -->
-
-    <!-- <p><span class="circle"></span>{{strTaxonomyProductMakeTitle}}</p>
-    <p><span class="circle"></span>{{strTaxonomyProductYearTitle}}</p> -->
-    <!-- <p><span class="circle"></span>{{strTaxonomyProductBrandTag}}</p> -->
   </div>
 
   <!-- <div class="reating-review bg-white" padding >

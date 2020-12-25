@@ -42,7 +42,7 @@ export class SearchproductsPage implements OnInit{
   countProductsCartLocalUpdated:number|any = 0;
   countProductsWishlistLocalUpdated:number | any = 0;
   strResponse:string;
-
+  vartoday: any;
   
     
  
@@ -94,6 +94,12 @@ export class SearchproductsPage implements OnInit{
    
 
   ngOnInit(){
+    this.vartoday = new Date();
+    var dd = String(this.vartoday.getDate()).padStart(2, "0");
+    var mm = String(this.vartoday.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var yyyy = this.vartoday.getFullYear();
+    this.vartoday = mm + "/" + dd + "/" + yyyy;
+    console.log("Today date " + this.vartoday);
 
     this.getProductsSearchApi();
 

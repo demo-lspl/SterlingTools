@@ -120,10 +120,10 @@ export class Myorder_2Page implements OnInit {
       console.log('Async operation has ended');
       //  event.target.complete();
       event.complete();
-    
+      
     }, 500);
   }
-
+  
 
   async viewOrdersApi() {
     const loader = await this.loadingController.create({

@@ -8,15 +8,19 @@ import { HttpClient } from '@angular/common/http';
 import { HomePage } from './../home/home';
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, AlertController, ToastController, LoadingController } from 'ionic-angular';
-import { Plugins } from '@capacitor/core';
 import { App } from 'ionic-angular';
+import { Plugins, NetworkStatus, PluginListenerHandle, Network } from "@capacitor/core";
 
 @IonicPage()
-@Component({
+@Component({  
   selector: 'page-register',
   templateUrl: 'register.html',
 })
 export class RegisterPage implements OnInit{
+
+
+  networkStatus: NetworkStatus;
+  networkListener: PluginListenerHandle;
 
   obj;
   emailAddress = '';
@@ -35,24 +39,10 @@ export class RegisterPage implements OnInit{
 
     ) {
       
-      // this.platform.registerBackButtonAction(() => {
-      //   // disabled back button   
-      //   this.showToastOnBackSignUp();
-      //   console.log('ngOnInit register back was called!');
-      //     });
+     
   }
   
-  // ionViewDidLoad() {
-  //    console.log('ionViewDidLoad Register Page');
-  //   if (localStorage.length === 0) {
-  //     // this.router.navigate(['/demo']);
-  //      // this.navCtrl.push(DemoPage);
-       
-  //   } else {
-  //     // this.showToastOnAlreadyLoggedIn();
-  //       this.navCtrl.push(HomePage);
-  //   }
-  // }  
+  
      
 
   backBtnClick() {
@@ -78,10 +68,10 @@ export class RegisterPage implements OnInit{
         this.showToastOnInvalidEmailAddress();
      }
 
-    //  else if ((await Network.getStatus()).connectionType === 'none') {
-    //   this.showNetworkAlert();
-    //   console.log('Network status not available', this.networkStatus);
-    // } 
+     else if ((await Network.getStatus()).connectionType === 'none') {
+      this.showNetworkAlert();
+      console.log('Network status not available', this.networkStatus);
+    } 
     // Credentials filled 
     else 
      {

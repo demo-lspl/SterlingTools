@@ -130,12 +130,9 @@ export class ViewcartPage implements OnInit {
     this.viewCartApi();
     this.showLoadingControllerLaunch();
 
-
-     if (localStorage.getItem("products") === null) {
-     // this.showToastOnEmptyCart();
-    }
-
-    else if(this.viewCartList.length=== 0){
+    if (localStorage.getItem("products") === null) {
+      // this.showToastOnEmptyCart();
+    } else if (this.viewCartList.length === 0) {
       this.showToastOnEmptyCart();
     }
 
@@ -153,11 +150,7 @@ export class ViewcartPage implements OnInit {
       console.log("****** filled" + localStorage.getItem("products"));
 
       //this.strDataLocal = 'Cart is Empty.Please add items!';
-    } 
-    
-    
-    
-    else {
+    } else {
       console.log("****** empty");
       // this.strDataLocal = 'Cart is Empty.Please add items!';
       //this.showToastOnEmptyCart();
@@ -171,7 +164,6 @@ export class ViewcartPage implements OnInit {
         this.productsLocalCart[i].ProductDescription &&
         this.productsLocalCart[i].ProductId
       ) {
-        // this.strProductQuantity;
         this.strProductQuantity = this.productsLocalCart[i].ProductQuantity;
         this.strProductRegularPrice = this.productsLocalCart[
           i
@@ -205,7 +197,6 @@ export class ViewcartPage implements OnInit {
         } else {
           console.log("data!!!");
         }
-        
       }
     });
   }
@@ -296,7 +287,7 @@ export class ViewcartPage implements OnInit {
     this.accordionExpanded = !this.accordionExpanded;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
   }
-
+ 
   toggleAccordion1() {
     if (this.accordionExpanded1) {
       this.renderer.setElementStyle(
@@ -399,8 +390,8 @@ export class ViewcartPage implements OnInit {
 
   decrementValue(index: number, strDynamicId) {
     if (this.viewCartList[index].quantity <= 1) {
-      console.log("failure");
-      this.showToastOnCart();
+      console.log("failure");  
+      this.showToastOnCart();  
     } else {
       if (
         this.viewCartList[index].product_id === this.eventCartNumber &&

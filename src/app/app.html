@@ -1,23 +1,24 @@
 <ion-menu [content]="content" [side]="getSideOfCurLang()">
   <ion-header>
-    <div style="background: #a8171e; height: 170px" padding text-center>
+    <div style="background: #a8171e; height: 190px" padding text-center>
       <ion-item text-center>
         <img src="assets/imgs/sterlinglogo.png" class="img" />
 
-        <h2 style="color: white; justify-content: center">STERLING</h2>
+        <h2 style="color: white; justify-content: center" >STERLING</h2>
 
         <ion-row style="margin-top: 4%">
-          <p style="color: white; margin-left: 14%; text-align: center">
+          <p style="color: white; margin-left: 14%; text-align: center;margin-top: 12px;">
             sterlingtools@gmail.com
           </p>
           <ion-icon
+            *ngIf="checkStatus"
             name="arrow-forward"
             style="
               margin-left: 88%;
               width: 30px;
               height: 30px;
               margin-top: 36px;
-              color: white;
+              color: transparent;
             "
           >
           </ion-icon>
@@ -27,31 +28,18 @@
 
     <!-- style="width: 40px;"  -->
     <div class="menu-tabs" padding text-center>
-      <ion-row>
-        <img src="assets/imgs/ic_my_orders_updated.png" />
-        <p
-          style="
-            font-size: 10px;
-            color: white;
-
-            font-size: 12px;
-          "
-        >
-          My Orders
+      <!-- <ion-row *ngIf="checkStatus">
+        <img src="assets/imgs/ic_my_orders_updated.png"  (click)="myorder_2Page()"/>
+        <p  
+          style="font-size: 10px;color: white;font-size: 12px;"> My Orders.
         </p>
 
         <img src="assets/imgs/ic_my_addresses_updated.png" />
-        <p
-          style="
-            font-size: 10px;
-            color: white;
 
-            font-size: 12px;
-          "
-        >
-          My Addresses
+        <p
+          style="font-size: 10px;color: white;font-size: 12px;">My Addresses
         </p>
-      </ion-row>
+      </ion-row> -->
     </div>
   </ion-header>
 
@@ -164,10 +152,10 @@
           Login
         </button>
 
-        <button ion-item menuClose (click)="testPage()">
+        <!-- <button ion-item menuClose (click)="testPage()">
           <img src="assets/imgs/ic_logout.png " />
           Test
-        </button>
+        </button> -->
 
         <!-- <button ion-item menuClose       (click)="testPage2()" >
             <img src="assets/imgs/ic_logout.png " />

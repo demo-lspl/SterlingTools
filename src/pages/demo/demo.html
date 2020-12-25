@@ -1,48 +1,68 @@
-<ion-content class="login-content" padding >
+<ion-content class="login-content" padding>
   <ion-row class="logo-row">
-      <ion-col>
-        <img src="assets/imgs/sterlinglogo.png"/>
-        <br/>
-        <h4 style="text-align: center;">Sterling Tools</h4>
-      </ion-col>
-    </ion-row>
-  
-    <div >
-      <ion-list >
-          <div class="login-box">
-            
-                <ion-row>
-                  <ion-col>
-                    <ion-list inset>
-                      
-                     
-                      <div class="input-container">
-                        <ion-icon name="mail"  item-left ></ion-icon>
-                        <input class="input-field" placeholder="Username" type="name" [(ngModel)]="emailAddress" >
-                      </div>
+    <ion-col>
+      <img src="assets/imgs/sterlinglogo.png" />
+      <br />
+      <h4 style="text-align: center">Sterling Tools</h4>
+    </ion-col>
+  </ion-row>
 
-                      <div class="input-container">
-                        <ion-icon name="eye"  item-left ></ion-icon>
-                        <input class="input-field"  placeholder="Password"  type="password"  [(ngModel)]="password">
-                      </div>
-                      
-                      
-                    </ion-list>
-                  </ion-col>
-                </ion-row>
-                
-                <ion-row>  
-                  <ion-col class="signup-col">
-                    <button ion-button class="submit-btn" full type="submit" style="text-transform: none;" class="bg-thime btn-round btn-text" (click)="loginBtnClick()">Login</button>
-                    <button ion-button class="submit-btn" full type="submit" style="text-transform: none;" class="bg-thime btn-round btn-text" (click)="registerBtnClick()" >Signup</button>
+  <div>
+    <ion-list>
+      <div class="login-box">
+        <ion-row>
+          <ion-col>
+            <ion-list inset>
+              <div class="input-container">
+                <ion-icon name="mail" item-left></ion-icon>
+                <input
+                  class="input-field"
+                  placeholder="Username"
+                  type="name"
+                  [(ngModel)]="emailAddress"
+                />
+              </div>
 
-                  </ion-col>
-                </ion-row>
-                
-             
-            </div>
-      </ion-list>
-    
-      
-    </div>
+              <div class="input-container">
+                <ion-icon name="eye" item-left></ion-icon>
+                <input
+                  class="input-field"
+                  placeholder="Password"
+                  type="password"
+                  [(ngModel)]="password"
+                />
+              </div>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="signup-col">
+            <button
+              ion-button
+              class="submit-btn"
+              full
+              type="submit"
+              style="text-transform: none"
+              class="bg-thime btn-round btn-text"
+              (click)="loginBtnClick()"
+            >
+              Login
+            </button>
+            <button
+              ion-button
+              class="submit-btn"
+              full
+              type="submit"
+              style="text-transform: none"
+              class="bg-thime btn-round btn-text"
+              (click)="registerBtnClick()"
+            >
+              Signup
+            </button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-list>
+  </div>
 </ion-content>

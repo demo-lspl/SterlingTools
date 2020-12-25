@@ -26,7 +26,7 @@ export class AboutusPage {
     console.log('ionViewDidLoad AboutusPage');
   }
 
-  wishlistPage() {
+  wishlistPage() {  
     this.navCtrl.push(WishlistupdatedPage);
   }
   cartPage() {
